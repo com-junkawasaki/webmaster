@@ -1,0 +1,75 @@
+---
+import { getCollection } from "astro:content";
+
+interface Post {
+  slug: string;
+  data: {
+    title: string;
+    date: string;
+    author: {
+      name: string;
+      picture: string;
+    };
+    excerpt: string;
+    coverImage: string;
+    ogImage: {
+      url: string;
+    };
+  };
+}
+
+interface Props {
+  posts: Post[];
+}
+
+const { posts } = Astro.props;
+---
+
+<section class="animate-slide-up">
+  <h2 class="mb-8 text-5xl md:text-7xl font-bold tracking-tighter leading-tight bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+    More Stories
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-32">
+    {posts.map((post, index) => (
+      <div
+        class="transform hover:scale-105 transition-transform duration-300"
+        style={{ animationDelay: `${index * 100}ms` }}
+      >
+        <div class="group cursor-pointer">
+          <div class="mb-5 overflow-hidden rounded-lg">
+            <img
+              src={post.data.coverImage}
+              alt={`Cover Image for ${post.data.title}`}
+              class="shadow-sm w-full hover:shadow-lg transition-shadow duration-200"
+            />
+          </div>
+          <h3 class="text-3xl mb-3 leading-snug group-hover:text-blue-400 transition-colors duration-300">
+            <a href={`/posts/${post.slug}`} class="hover:underline">
+              {post.data.title}
+            </a>
+          </h3>
+          <div class="text-lg mb-4 text-slate-400">
+            <time dateTime={post.data.date}>
+              {new Date(post.data.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </time>
+          </div>
+          <p class="text-lg leading-relaxed mb-4 text-slate-300">
+            {post.data.excerpt}
+          </p>
+          <div class="flex items-center">
+            <img
+              src={post.data.author.picture}
+              class="w-12 h-12 rounded-full mr-4"
+              alt={post.data.author.name}
+            />
+            <div class="text-xl font-bold">{post.data.author.name}</div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

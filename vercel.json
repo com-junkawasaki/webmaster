@@ -1,7 +1,7 @@
 {
-  "buildCommand": "cd apps/astro && pnpm run build",
-  "devCommand": "cd apps/astro && pnpm run dev",
-  "installCommand": "cd apps/astro && pnpm install",
+  "buildCommand": "pnpm run build",
+  "devCommand": "pnpm run dev",
+  "installCommand": "pnpm install",
   "framework": "astro",
   "outputDirectory": "apps/astro/dist",
   "regions": ["iad1"],

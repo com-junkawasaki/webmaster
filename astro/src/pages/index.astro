@@ -33,12 +33,13 @@ const title = "Jun Kawasaki - Jun Kawasaki";
           author={heroPost.data.author}
           slug={heroPost.slug}
           excerpt={heroPost.data.excerpt}
+          client:load
         />
       )}
       {morePosts.length > 0 && (
-        <MoreStories posts={morePosts} />
+        <MoreStories posts={morePosts} client:load />
       )}
-      <Career />
+      <Career client:load />
     </Container>
   </main>
 </BlogLayout>

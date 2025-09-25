@@ -5,6 +5,7 @@ import Intro from "../components/Intro.astro";
 import HeroPost from "../components/HeroPost.astro";
 import MoreStories from "../components/MoreStories.astro";
 import Career from "../components/Career.tsx";
+import Footer from "../components/Footer.astro";
 
 import { getCollection } from "astro:content";
 
@@ -47,4 +48,5 @@ const title = "Jun Kawasaki - Jun Kawasaki";
       <Career client:load />
     </div>
   </main>
+  <Footer />
 </BlogLayout>

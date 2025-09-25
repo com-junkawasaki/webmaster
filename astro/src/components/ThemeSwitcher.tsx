@@ -6,9 +6,9 @@ const ThemeSwitcher = () => {
   const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
-    // 初期テーマをlocalStorageから取得、なければdarkをデフォルトに
+    // 初期テーマをlocalStorageから取得、なければlightをデフォルトに
     const savedTheme = localStorage.getItem("theme") as Theme;
-    const initialTheme = savedTheme || "dark";
+    const initialTheme = savedTheme || "light";
     setTheme(initialTheme);
     updateTheme(initialTheme);
   }, []);

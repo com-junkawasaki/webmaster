@@ -1,1 +1,114 @@
+/* Import statements must come first */
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700;800&display=swap');
+
+/* 見出しスタイルの改善 */
+.prose h1,
+.prose h2,
+.prose h3 {
+  @apply font-sans font-semibold tracking-tight;
+  @apply text-slate-800 dark:text-slate-200;
+  font-family: 'Noto Sans JP', 'Poppins', ui-sans-serif, system-ui, sans-serif !important;
+}
+
+.prose h4,
+.prose h5,
+.prose h6 {
+  @apply font-sans font-medium tracking-tight;
+  @apply text-slate-700 dark:text-slate-300;
+  font-family: 'Poppins', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif !important;
+}
+
+.prose h1 {
+  @apply text-3xl md:text-4xl lg:text-5xl mb-6 mt-8;
+  @apply border-b border-slate-300 dark:border-slate-600 pb-4;
+}
+
+.prose h2 {
+  @apply text-2xl md:text-3xl lg:text-4xl mb-4 mt-6;
+  @apply border-b-2 border-blue-500 pb-2;
+}
+
+.prose h3 {
+  @apply text-xl md:text-2xl lg:text-3xl mb-3 mt-5;
+  @apply text-blue-600 dark:text-blue-400;
+}
+
+.prose h4 {
+  @apply text-lg md:text-xl lg:text-2xl mb-2 mt-4;
+  @apply text-slate-700 dark:text-slate-300;
+}
+
+.prose h5 {
+  @apply text-base md:text-lg lg:text-xl mb-2 mt-3;
+  @apply text-slate-600 dark:text-slate-400;
+}
+
+.prose h6 {
+  @apply text-sm md:text-base lg:text-lg mb-2 mt-3;
+  @apply text-slate-500 dark:text-slate-500;
+}
+
+/* 段落とリストのスタイル改善 */
+.prose p {
+  @apply text-slate-700 dark:text-slate-300 leading-relaxed mb-4;
+  @apply font-sans;
+  font-family: 'Poppins', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif !important;
+}
+
+.prose ul,
+.prose ol {
+  @apply text-slate-700 dark:text-slate-300 mb-4;
+  @apply font-sans;
+  font-family: 'Poppins', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif !important;
+}
+
+.prose li {
+  @apply leading-relaxed mb-2;
+}
+
+/* 引用のスタイル改善 */
+.prose blockquote {
+  @apply border-l-4 border-blue-500 pl-6 py-2 my-6;
+  @apply bg-slate-100 dark:bg-slate-800;
+  @apply text-slate-800 dark:text-slate-200;
+  @apply italic;
+}
+
+.prose blockquote p {
+  @apply text-slate-800 dark:text-slate-200 mb-0;
+}
+
+/* 強調のスタイル改善 */
+.prose strong {
+  @apply font-semibold text-slate-900 dark:text-slate-100;
+}
+
+.prose em {
+  @apply italic text-slate-700 dark:text-slate-300;
+}
+
+/* コードのスタイル改善 */
+.prose code {
+  @apply bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded text-sm;
+  @apply text-slate-800 dark:text-slate-200;
+  @apply font-mono;
+}
+
+.prose pre {
+  @apply bg-slate-900 dark:bg-slate-800 p-4 rounded-lg overflow-x-auto;
+  @apply border border-slate-300 dark:border-slate-600;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0 text-sm;
+  @apply text-slate-100 dark:text-slate-200;
+}
+
+/* Line clamp utilities */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

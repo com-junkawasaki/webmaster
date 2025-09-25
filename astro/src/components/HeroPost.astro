@@ -24,12 +24,12 @@ const { title, coverImage, date, excerpt, author, slug } = Astro.props;
   </div>
   <div class="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 mb-20 md:mb-28">
     <div>
-      <h3 class="mb-4 text-4xl lg:text-5xl leading-tight hover:text-blue-600 transition-colors duration-300">
+      <h3 class="mb-4 text-4xl lg:text-5xl leading-tight text-slate-900 hover:text-blue-600 transition-colors duration-300">
         <a href={`/posts/${slug}`} class="hover:underline">
           {title}
         </a>
       </h3>
-      <div class="mb-4 md:mb-0 text-lg">
+      <div class="mb-4 md:mb-0 text-lg text-slate-600">
         <time dateTime={date}>
           {new Date(date).toLocaleDateString('en-US', {
             year: 'numeric',
@@ -40,14 +40,14 @@ const { title, coverImage, date, excerpt, author, slug } = Astro.props;
       </div>
     </div>
     <div>
-      <p class="text-lg leading-relaxed mb-4">{excerpt}</p>
+      <p class="text-lg leading-relaxed mb-4 text-slate-700">{excerpt}</p>
       <div class="flex items-center">
         <img
           src={author.picture}
           class="w-12 h-12 rounded-full mr-4"
           alt={author.name}
         />
-        <div class="text-xl font-bold">{author.name}</div>
+        <div class="text-xl font-bold text-slate-900">{author.name}</div>
       </div>
     </div>
   </div>

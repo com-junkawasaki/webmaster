@@ -1,0 +1,40 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import Container from "../../components/Container.astro";
+import Header from "../../components/Header.astro";
+import PostBody from "../../components/PostBody.astro";
+import PostHeader from "../../components/PostHeader.astro";
+import { getCollection, getEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const title = `${post.data.title} | Jun Kawasaki`;
+---
+
+<BlogLayout title={title} description={post.data.excerpt} image={post.data.coverImage}>
+  <main>
+    <Container>
+      <Header />
+      <article className="mb-32">
+        <PostHeader
+          title={post.data.title}
+          coverImage={post.data.coverImage}
+          date={post.data.date}
+          author={post.data.author}
+        />
+        <PostBody>
+          <Content />
+        </PostBody>
+      </article>
+    </Container>
+  </main>
+</BlogLayout>

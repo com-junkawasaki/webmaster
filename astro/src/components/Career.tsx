@@ -19,21 +19,21 @@ const careerData = [
 export default function Career() {
   return (
     <section className="mb-16 md:mb-24 animate-fade-in-up">
-      <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-tight mb-8 text-slate-900 dark:text-slate-100">
+      <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-tight mb-8 text-slate-900">
         Career
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {careerData.map((item, index) => (
           <div
             key={index}
-            className="group p-6 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-all duration-300 hover:shadow-lg"
+            className="group p-6 bg-slate-50 rounded-lg border border-slate-200 hover:border-slate-300 transition-all duration-300 hover:shadow-lg"
             style={{ animationDelay: `${index * 200}ms` }}
           >
-            <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+            <h3 className="text-xl font-semibold mb-2 text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
               {item.company}
             </h3>
-            <p className="text-slate-600 dark:text-slate-400 mb-2 text-sm font-medium">{item.period}</p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed">{item.description}</p>
+            <p className="text-slate-600 mb-2 text-sm font-medium">{item.period}</p>
+            <p className="text-slate-700 leading-relaxed">{item.description}</p>
           </div>
         ))}
       </div>

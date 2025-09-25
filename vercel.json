@@ -1,0 +1,13 @@
+{
+  "buildCommand": "pnpm run build",
+  "devCommand": "pnpm run dev",
+  "installCommand": "pnpm install",
+  "framework": "astro",
+  "outputDirectory": "apps/astro/dist",
+  "regions": ["iad1"],
+  "functions": {
+    "apps/astro/dist/**/*.js": {
+      "runtime": "nodejs20.x"
+    }
+  }
+}

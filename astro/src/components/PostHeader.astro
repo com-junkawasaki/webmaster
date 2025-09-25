@@ -1,25 +1,20 @@
 ---
-import PostTitle from "./PostTitle.astro";
-import Avatar from "./Avatar.tsx";
-import CoverImage from "./CoverImage.tsx";
-import DateFormatter from "./DateFormatter.tsx";
-
-interface Author {
-  name: string;
-  picture: string;
-}
-
 interface Props {
   title: string;
   coverImage: string;
   date: string;
-  author: Author;
+  author: {
+    name: string;
+    picture: string;
+  };
 }
 
 const { title, coverImage, date, author } = Astro.props;
 ---
 
-<PostTitle>{title}</PostTitle>
+<h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
+  {title}
+</h1>
 <div class="hidden md:block md:mb-12">
   <div class="flex items-center">
     <img src={author.picture} class="w-12 h-12 rounded-full mr-4" alt={author.name} />

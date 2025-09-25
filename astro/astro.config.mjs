@@ -8,6 +8,11 @@ import react from '@astrojs/react';
 export default defineConfig({
   integrations: [mdx(), react()],
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    css: {
+      postcss: {
+        plugins: []
+      }
+    }
   }
 });

@@ -18,25 +18,66 @@ const careerData = [
 
 export default function Career() {
   return (
-    <section className="mb-16 md:mb-24 animate-fade-in-up">
-      <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-tight mb-8 text-slate-900">
+    <section>
+      <h2
+        style={{
+          fontSize: '1.5em',
+          fontWeight: 600,
+          paddingBottom: '0.3em',
+          borderBottom: '1px solid #d0d7de',
+          marginTop: 0,
+          marginBottom: '1em',
+          fontFamily: "'Noto Sans JP', 'Poppins', ui-sans-serif, system-ui, sans-serif",
+        }}
+        className="md-career-heading"
+      >
         Career
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <ul style={{ listStyle: 'none', paddingLeft: 0, margin: 0 }}>
         {careerData.map((item, index) => (
-          <div
+          <li
             key={index}
-            className="group p-6 bg-slate-50 rounded-lg border border-slate-200 hover:border-slate-300 transition-all duration-300 hover:shadow-lg"
-            style={{ animationDelay: `${index * 200}ms` }}
+            style={{
+              padding: '0.75em 0',
+              borderBottom: index < careerData.length - 1 ? '1px solid #d8dee4' : 'none',
+            }}
+            className="md-career-item"
           >
-            <h3 className="text-xl font-semibold mb-2 text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
+            <strong
+              style={{
+                fontWeight: 600,
+                fontFamily: "'Noto Sans JP', 'Poppins', ui-sans-serif, system-ui, sans-serif",
+              }}
+            >
               {item.company}
-            </h3>
-            <p className="text-slate-600 mb-2 text-sm font-medium">{item.period}</p>
-            <p className="text-slate-700 leading-relaxed">{item.description}</p>
-          </div>
+            </strong>
+            <br />
+            <span
+              style={{
+                color: '#57606a',
+                fontSize: '0.875em',
+                fontFamily: "'Poppins', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif",
+              }}
+              className="md-career-meta"
+            >
+              {item.period} &mdash; {item.description}
+            </span>
+          </li>
         ))}
-      </div>
+      </ul>
+
+      <style>{`
+        body[data-mode="dark"] .md-career-heading {
+          border-bottom-color: #30363d !important;
+        }
+        body[data-mode="dark"] .md-career-item {
+          border-bottom-color: #21262d !important;
+        }
+        body[data-mode="dark"] .md-career-meta {
+          color: #8b949e !important;
+        }
+      `}</style>
     </section>
   );
 }

@@ -3,10 +3,9 @@ import { useEffect, useState } from "react";
 type Theme = "dark" | "light";
 
 const ThemeSwitcher = () => {
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
-    // 初期テーマをlocalStorageから取得、なければlightをデフォルトに
     const savedTheme = localStorage.getItem("theme") as Theme;
     const initialTheme = savedTheme || "light";
     setTheme(initialTheme);
@@ -17,18 +16,16 @@ const ThemeSwitcher = () => {
     const root = document.documentElement;
     const body = document.body;
 
-    // Tailwind CSSのdarkクラスを切り替え
     if (newTheme === "dark") {
       root.classList.add("dark");
-      body.classList.remove("bg-white", "text-black");
-      body.classList.add("bg-slate-900", "text-slate-400");
+      body.style.color = "#c9d1d9";
+      body.style.backgroundColor = "#0d1117";
     } else {
       root.classList.remove("dark");
-      body.classList.remove("bg-slate-900", "text-slate-400");
-      body.classList.add("bg-white", "text-black");
+      body.style.color = "#24292f";
+      body.style.backgroundColor = "#ffffff";
     }
 
-    // data-mode属性を更新
     body.setAttribute("data-mode", newTheme);
     localStorage.setItem("theme", newTheme);
   };
@@ -42,17 +39,27 @@ const ThemeSwitcher = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="fixed right-5 top-20 z-50 w-6 h-6 rounded-full border border-dashed border-current cursor-pointer transition-all duration-300 hover:scale-110"
-      aria-label="テーマの切り替え"
-      title={`現在のテーマ: ${theme}`}
+      style={{
+        position: 'fixed',
+        right: '1.5rem',
+        top: '1.5rem',
+        zIndex: 50,
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        padding: '0.25rem',
+        fontSize: '0.75rem',
+        color: theme === 'dark' ? '#8b949e' : '#57606a',
+        fontFamily: "'Poppins', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif",
+        opacity: 0.6,
+        transition: 'opacity 0.2s',
+      }}
+      onMouseEnter={(e) => { e.currentTarget.style.opacity = '1'; }}
+      onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.6'; }}
+      aria-label="Toggle theme"
+      title={`Theme: ${theme}`}
     >
-      {theme === "dark" ? (
-        // ダークモードの場合：白い点（月）
-        <span className="block w-2 h-2 bg-white rounded-full mx-auto mt-1 animate-pulse"></span>
-      ) : (
-        // ライトモードの場合：黄色い丸（太陽）
-        <span className="block w-full h-full bg-yellow-400 rounded-full border border-orange-500 shadow-lg"></span>
-      )}
+      {theme === "dark" ? "[light]" : "[dark]"}
     </button>
   );
 };

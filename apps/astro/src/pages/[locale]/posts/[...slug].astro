@@ -1,57 +1,62 @@
 ---
-import BlogLayout from "../../layouts/BlogLayout.astro";
-import "../../styles/markdown.css";
+import BlogLayout from "../../../layouts/BlogLayout.astro";
+import "../../../styles/markdown.css";
 import { getCollection } from "astro:content";
+import type { Locale } from "../../../i18n/ui";
+import { getPostTitle, getPostExcerpt, getSwitchLocalePath, useTranslations } from "../../../i18n/utils";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+  const locales: Locale[] = ['en', 'ja'];
+  return locales.flatMap((locale) =>
+    posts.map((post) => ({
+      params: { locale, slug: post.slug },
+      props: { post, locale },
+    }))
+  );
 }
 
-const { post } = Astro.props;
+const { post, locale } = Astro.props;
 const { Content } = await post.render();
 
-const title = `${post.data.title} | Jun Kawasaki`;
+const postTitle = getPostTitle(post.data, locale);
+const title = `${postTitle} | Jun Kawasaki`;
 
-const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-});
+const formattedDate = new Date(post.data.date).toLocaleDateString(
+  locale === 'ja' ? 'ja-JP' : 'en-US',
+  { year: 'numeric', month: 'long', day: 'numeric' }
+);
+
+const switchPath = getSwitchLocalePath(Astro.url);
+const t = useTranslations(locale);
 ---
 
-<BlogLayout title={title} description={post.data.excerpt} image={post.data.ogImage?.url || post.data.coverImage}>
+<BlogLayout title={title} description={getPostExcerpt(post.data, locale)} image={post.data.ogImage?.url || post.data.coverImage}>
   <main class="md-body">
-    <!-- Back link -->
-    <p class="md-back-link">
-      <a href="/">&larr; Jun Kawasaki.</a>
-    </p>
+    <div class="md-nav-row">
+      <p class="md-back-link">
+        <a href={`/${locale}/`}>&larr; Jun Kawasaki.</a>
+      </p>
+      <a href={switchPath} class="md-lang-switch">{t('lang.switch')}</a>
+    </div>
 
     <hr />
 
-    <!-- Article -->
     <article>
-      <!-- Post Title (like # heading) -->
-      <h1 class="md-article-title">{post.data.title}</h1>
+      <h1 class="md-article-title">{postTitle}</h1>
 
-      <!-- Meta (author, date) -->
       <p class="md-article-meta">
         {post.data.author.name} &mdash; <time datetime={post.data.date}>{formattedDate}</time>
       </p>
 
-      <!-- Cover Image -->
       <img
         src={post.data.coverImage}
-        alt={`Cover Image for ${post.data.title}`}
+        alt={`Cover Image for ${postTitle}`}
         class="md-article-image"
       />
 
       <hr />
 
-      <!-- Article Content -->
       <div class="prose">
         <Content />
       </div>
@@ -60,6 +65,28 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
 </BlogLayout>
 
 <style>
+  .md-nav-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .md-lang-switch {
+    color: #0969da;
+    text-decoration: none;
+    font-size: 0.875em;
+    font-family: 'Poppins', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+  }
+
+  .md-lang-switch:hover {
+    text-decoration: underline;
+  }
+
+  :global(body[data-mode="dark"]) .md-lang-switch {
+    color: #58a6ff;
+  }
+
   .md-back-link {
     margin: 0;
     font-size: 0.875em;

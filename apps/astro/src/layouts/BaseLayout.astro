@@ -1,6 +1,7 @@
 ---
 import ThemeSwitcher from "../components/ThemeSwitcher.tsx";
 import "../styles/global.css";
+import { getLocaleFromUrl } from "../i18n/utils";
 
 export interface Props {
   title: string;
@@ -11,10 +12,11 @@ export interface Props {
 const { title, description = "Proverbs 1:7 The fear of Jehovah is the beginning of knowledge; But the foolish despise wisdom and instruction.", image = "/assets/posts/01/01.gif" } = Astro.props;
 
 const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url;
+const locale = getLocaleFromUrl(Astro.url);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />

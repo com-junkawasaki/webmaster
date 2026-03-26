@@ -1,13 +1,27 @@
 ---
+import { getLocaleFromUrl, useTranslations, getSwitchLocalePath } from '../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+const switchPath = getSwitchLocalePath(Astro.url);
 ---
 
 <header>
-  <h1 class="md-title">Jun Kawasaki.</h1>
-  <p class="md-tagline">Good Vibes For Children.</p>
+  <div class="md-header-row">
+    <h1 class="md-title">{t('site.title')}</h1>
+    <a href={switchPath} class="md-lang-switch">{t('lang.switch')}</a>
+  </div>
+  <p class="md-tagline">{t('site.tagline')}</p>
 </header>
 <hr />
 
 <style>
+  .md-header-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
   .md-title {
     font-size: 2em;
     font-weight: 600;
@@ -17,10 +31,29 @@
     margin-bottom: 0.5em;
     font-family: 'Noto Sans JP', 'Poppins', ui-sans-serif, system-ui, sans-serif;
     line-height: 1.3;
+    flex: 1;
   }
 
   :global(body[data-mode="dark"]) .md-title {
     border-bottom-color: #30363d;
+  }
+
+  .md-lang-switch {
+    color: #0969da;
+    text-decoration: none;
+    font-size: 0.875em;
+    font-family: 'Poppins', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    margin-left: 1em;
+    white-space: nowrap;
+  }
+
+  .md-lang-switch:hover {
+    text-decoration: underline;
+  }
+
+  :global(body[data-mode="dark"]) .md-lang-switch {
+    color: #58a6ff;
   }
 
   .md-tagline {

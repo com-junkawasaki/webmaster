@@ -1,4 +1,7 @@
 ---
+import { getLocaleFromUrl, useTranslations } from '../i18n/utils';
+import type { Locale } from '../i18n/ui';
+
 interface Props {
   title: string;
   coverImage: string;
@@ -9,23 +12,25 @@ interface Props {
     picture: string;
   };
   slug: string;
+  locale?: Locale;
 }
 
-const { title, coverImage, date, excerpt, author, slug } = Astro.props;
+const { title, coverImage, date, excerpt, author, slug, locale: propLocale } = Astro.props;
+const locale = propLocale || getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
 
-const formattedDate = new Date(date).toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-});
+const formattedDate = new Date(date).toLocaleDateString(
+  locale === 'ja' ? 'ja-JP' : 'en-US',
+  { year: 'numeric', month: 'long', day: 'numeric' }
+);
 ---
 
 <section class="md-hero-post">
-  <h2 class="md-section-heading">Latest</h2>
+  <h2 class="md-section-heading">{t('posts.latest')}</h2>
 
   <article>
     <h3 class="md-post-title">
-      <a href={`/posts/${slug}`}>{title}</a>
+      <a href={`/${locale}/posts/${slug}`}>{title}</a>
     </h3>
     <p class="md-post-meta">
       <time datetime={date}>{formattedDate}</time> &mdash; {author.name}

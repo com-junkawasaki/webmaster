@@ -1,0 +1,5 @@
+---
+import { getLocaleFromUrl } from '../../i18n/utils';
+const locale = getLocaleFromUrl(Astro.url);
+---
+{locale === 'en' && <slot />}

@@ -1,14 +1,17 @@
 ---
+import { getLocaleFromUrl, useTranslations, getPostTitle, getPostExcerpt } from '../i18n/utils';
+import type { Locale } from '../i18n/ui';
+
 interface Post {
   slug: string;
   data: {
-    title: string;
+    title: string | { en: string; ja: string };
     date: string;
     author: {
       name: string;
       picture: string;
     };
-    excerpt: string;
+    excerpt: string | { en: string; ja: string };
     coverImage: string;
     ogImage: {
       url: string;
@@ -18,26 +21,28 @@ interface Post {
 
 interface Props {
   posts: Post[];
+  locale?: Locale;
 }
 
-const { posts } = Astro.props;
+const { posts, locale: propLocale } = Astro.props;
+const locale = propLocale || getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
 ---
 
 <section class="md-more-stories">
-  <h2 class="md-section-heading">Posts</h2>
+  <h2 class="md-section-heading">{t('posts.all')}</h2>
 
   <ul class="md-post-list">
     {posts.map((post) => {
-      const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-      });
+      const formattedDate = new Date(post.data.date).toLocaleDateString(
+        locale === 'ja' ? 'ja-JP' : 'en-US',
+        { year: 'numeric', month: 'short', day: 'numeric' }
+      );
       return (
         <li class="md-post-item">
-          <a href={`/posts/${post.slug}`} class="md-post-link">{post.data.title}</a>
+          <a href={`/${locale}/posts/${post.slug}`} class="md-post-link">{getPostTitle(post.data, locale)}</a>
           <span class="md-post-date"> &mdash; {formattedDate}</span>
-          <p class="md-post-desc">{post.data.excerpt}</p>
+          <p class="md-post-desc">{getPostExcerpt(post.data, locale)}</p>
         </li>
       );
     })}

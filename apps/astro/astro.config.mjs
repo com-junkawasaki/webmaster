@@ -8,6 +8,13 @@ import react from '@astrojs/react';
 export default defineConfig({
   site: 'https://junkawasaki.com',
   output: 'static',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'ja'],
+    routing: {
+      prefixDefaultLocale: true,
+    },
+  },
   integrations: [mdx(), react()],
   markdown: {
     shikiConfig: {

@@ -1,0 +1,138 @@
+.markdown {
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+.markdown p,
+.markdown ul,
+.markdown ol,
+.markdown blockquote {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.markdown h2 {
+  font-size: 1.875rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.markdown h3 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.markdown .math-formula {
+  font-family: 'Times New Roman', serif;
+  font-style: italic;
+  background-color: rgb(243 244 246);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 0.25rem;
+  overflow-x: auto;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.dark .markdown .math-formula {
+  background-color: rgb(31 41 55);
+  color: white;
+}
+
+.markdown .mathBlock {
+  margin: 2rem 0;
+  padding: 1rem;
+  background-color: rgb(243 244 246);
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.dark .markdown .mathBlock {
+  background-color: rgb(31 41 55);
+}
+
+.markdown .katex-display {
+  margin: 0;
+}
+
+/* KaTeXのダークモード対応 */
+:global(.dark) .katex,
+:global(.dark) .katex .katex-html,
+:global(.dark) .katex .katex-mathml {
+  color: white !important;
+}
+
+:global(.dark) .katex-html {
+  color: #ccc !important;
+}
+
+:global(.dark) .katex .mord,
+:global(.dark) .katex .mord .textsf,
+:global(.dark) .katex .mord .textrm,
+:global(.dark) .katex .mord .texttt,
+:global(.dark) .katex .mord .textbf,
+:global(.dark) .katex .mord .mathit,
+:global(.dark) .katex .mord .textit,
+:global(.dark) .katex .mord .mathdefault {
+  color: white !important;
+}
+
+:global(.dark) .katex .mbin {
+  color: white !important;
+}
+
+:global(.dark) .katex .mrel {
+  color: white !important;
+}
+
+:global(.dark) .katex .mopen,
+:global(.dark) .katex .mclose {
+  color: white !important;
+}
+
+:global(.dark) .katex .mfrac {
+  color: white !important;
+}
+
+:global(.dark) .katex .mfrac .frac-line {
+  border-bottom-color: white !important;
+}
+
+:global(.dark) .katex .minner {
+  color: white !important;
+}
+
+:global(.dark) .katex .mop {
+  color: white !important;
+}
+
+:global(.dark) .katex .msupsub {
+  color: white !important;
+}
+
+:global(.dark) .katex .vlist {
+  color: white !important;
+}
+
+:global(.dark) .katex .overline .overline-line {
+  border-top-color: white !important;
+}
+
+:global(.dark) .katex .underline .underline-line {
+  border-bottom-color: white !important;
+}
+
+/* Additional fixes for dark mode */
+:global(.dark) .mathBlock {
+  background-color: #1f2937 !important;
+}
+
+:global(.dark) .math-formula {
+  background-color: #1f2937 !important;
+  color: white !important;
+}

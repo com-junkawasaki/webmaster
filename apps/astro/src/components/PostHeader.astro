@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  coverImage: string;
+  date: string;
+  author: {
+    name: string;
+    picture: string;
+  };
+}
+
+const { title, coverImage, date, author } = Astro.props;
+---
+
+<h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
+  {title}
+</h1>
+<div class="hidden md:block md:mb-12">
+  <div class="flex items-center">
+    <img src={author.picture} class="w-12 h-12 rounded-full mr-4" alt={author.name} />
+    <div class="text-xl font-bold">{author.name}</div>
+  </div>
+</div>
+<div class="mb-8 md:mb-16 sm:mx-0">
+  <img
+    src={coverImage}
+    alt={`Cover Image for ${title}`}
+    class="shadow-sm w-full hover:shadow-lg transition-shadow duration-200"
+  />
+</div>
+<div class="max-w-2xl mx-auto">
+  <div class="block md:hidden mb-6">
+    <div class="flex items-center">
+      <img src={author.picture} class="w-12 h-12 rounded-full mr-4" alt={author.name} />
+      <div class="text-xl font-bold">{author.name}</div>
+    </div>
+  </div>
+  <div class="mb-6 text-lg">
+    <time dateTime={date}>
+      {new Date(date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })}
+    </time>
+  </div>
+</div>

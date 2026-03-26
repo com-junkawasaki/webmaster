@@ -1,0 +1,109 @@
+---
+interface Props {
+  title: string;
+  coverImage: string;
+  date: string;
+  excerpt: string;
+  author: {
+    name: string;
+    picture: string;
+  };
+  slug: string;
+}
+
+const { title, coverImage, date, excerpt, author, slug } = Astro.props;
+
+const formattedDate = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<section class="md-hero-post">
+  <h2 class="md-section-heading">Latest</h2>
+
+  <article>
+    <h3 class="md-post-title">
+      <a href={`/posts/${slug}`}>{title}</a>
+    </h3>
+    <p class="md-post-meta">
+      <time datetime={date}>{formattedDate}</time> &mdash; {author.name}
+    </p>
+    <img src={coverImage} alt={`Cover Image for ${title}`} class="md-post-image" />
+    <p class="md-post-excerpt">{excerpt}</p>
+  </article>
+</section>
+<hr />
+
+<style>
+  .md-section-heading {
+    font-size: 1.5em;
+    font-weight: 600;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid #d0d7de;
+    margin-top: 0;
+    margin-bottom: 1em;
+    font-family: 'Noto Sans JP', 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  :global(body[data-mode="dark"]) .md-section-heading {
+    border-bottom-color: #30363d;
+  }
+
+  .md-post-title {
+    font-size: 1.25em;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0.25em;
+    font-family: 'Noto Sans JP', 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .md-post-title a {
+    color: #0969da;
+    text-decoration: none;
+  }
+
+  .md-post-title a:hover {
+    text-decoration: underline;
+  }
+
+  :global(body[data-mode="dark"]) .md-post-title a {
+    color: #58a6ff;
+  }
+
+  .md-post-meta {
+    color: #57606a;
+    font-size: 0.875em;
+    margin-bottom: 1em;
+    font-family: 'Poppins', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  :global(body[data-mode="dark"]) .md-post-meta {
+    color: #8b949e;
+  }
+
+  .md-post-image {
+    max-width: 100%;
+    border-radius: 6px;
+    margin-bottom: 1em;
+  }
+
+  .md-post-excerpt {
+    line-height: 1.8;
+    margin-bottom: 0;
+    font-family: 'Poppins', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  hr {
+    height: 0.25em;
+    padding: 0;
+    margin: 1.5em 0;
+    background-color: #d0d7de;
+    border: 0;
+  }
+
+  :global(body[data-mode="dark"]) hr {
+    background-color: #30363d;
+  }
+</style>

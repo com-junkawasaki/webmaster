@@ -1,0 +1,15 @@
+---
+import "../styles/markdown.css";
+
+interface Props {
+  content: any;
+}
+
+const { content } = Astro.props;
+---
+
+<div class="max-w-2xl mx-auto">
+  <div class="markdown prose dark:prose-invert">
+    <content />
+  </div>
+</div>

@@ -1,0 +1,19 @@
+{
+  "name": "Webmaster",
+  "short_name": "Webmaster",
+  "icons": [
+    {
+      "src": "/favicon/623495.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/favicon/623495.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone"
+}

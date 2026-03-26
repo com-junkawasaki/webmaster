@@ -1,0 +1,253 @@
+---
+title: "Enlightenment is Root Access"
+date: "2026-03-26"
+author:
+  name: "Jun Kawasaki"
+  picture: "/assets/posts/authors/jk.jpg"
+excerpt: "悟りとはルート権限である――仏教の覚醒とUNIXの特権を重ねて見る"
+coverImage: "/assets/posts/preview/cover.jpg"
+ogImage:
+  url: "/assets/posts/preview/cover.jpg"
+---
+
+# 悟りとはルート権限である
+
+*Enlightenment is Root Access*
+
+---
+
+## 序 (Introduction)
+
+UNIXシステムにおいて、root権限とはすべてのファイル、すべてのプロセス、すべてのリソースへの無制限のアクセスを意味する。制約はなく、隠されたものはなく、拒否されるものはない。
+
+仏教における悟りもまた、同じ構造を持つ。自我というユーザー権限の制約が外れ、実在の全体に対する無制限のアクセスが開かれる。
+
+In a UNIX system, root access means unrestricted access to all files, all processes, all resources. No constraints, nothing hidden, nothing denied.
+
+Enlightenment in Buddhism carries the same structure. The constraints of the ego—a user-level permission—are lifted, and unrestricted access to the totality of reality opens up.
+
+> `$ sudo satori`
+> `password: ▮`
+
+---
+
+## 一般ユーザーとしての自我 (The Ego as Unprivileged User)
+
+普段の意識は一般ユーザーに似ている。
+
+```
+$ whoami
+ego
+$ cat /reality/true-nature.txt
+cat: /reality/true-nature.txt: Permission denied
+```
+
+一般ユーザーにはホームディレクトリがある。それは自分の領域であり、快適で、見慣れたファイルが並ぶ。しかしシステム全体を見ることはできない。`/reality/` 以下の多くのディレクトリにアクセスできない。
+
+The ordinary mind resembles an unprivileged user. You have a home directory—your familiar territory, comfortable, filled with known files. But you cannot see the whole system. Most directories under `/reality/` are inaccessible.
+
+自我は自分のホームディレクトリを「世界の全体」だと思い込んでいる。
+
+The ego mistakes its home directory for the entirety of the world.
+
+```
+$ ls /reality/
+ls: cannot open directory '/reality/': Permission denied
+$ ls ~/
+thoughts/  memories/  desires/  fears/  identity.conf
+```
+
+---
+
+## パーミッションの壁 (The Permission Wall)
+
+なぜアクセスできないのか。それはパーミッションが設定されているからである。
+
+Why can't you access it? Because permissions are set.
+
+```
+drwx------  root  root  /reality/impermanence/
+drwx------  root  root  /reality/interdependence/
+drwx------  root  root  /reality/emptiness/
+drwx------  root  root  /reality/true-self/
+```
+
+仏教ではこの「パーミッション」を**煩悩（klesha）**と呼ぶ。執着、怒り、無知——これらがファイルシステムの権限設定として機能し、実在の本質を隠している。
+
+Buddhism calls these "permissions" **klesha** (煩悩)—attachment, aversion, ignorance. They function as filesystem permissions, concealing the true nature of reality.
+
+```python
+# 煩悩のパーミッション設定
+PERMISSIONS = {
+    "attachment": 0o700,   # owner only — 執着: 自分だけがアクセス可能
+    "aversion":  0o000,    # no access  — 嫌悪: アクセス完全拒否
+    "ignorance": 0o000,    # no access  — 無知: 存在すら見えない
+}
+```
+
+---
+
+## 修行とは権限昇格である (Practice as Privilege Escalation)
+
+禅の修行、瞑想、公案——これらはすべて**権限昇格（privilege escalation）**の試みである。
+
+Zen practice, meditation, koans—these are all attempts at **privilege escalation**.
+
+```bash
+# 座禅: プロセスの停止と観察
+$ kill -STOP $(pgrep -f "thoughts|desires|fears")
+
+# 瞑想: ファイルシステムの観察
+$ find /mind -type f -name "*.attachment" -delete
+
+# 公案: セキュリティの矛盾を突く
+$ echo "What is the sound of one hand clapping?" | sudo tee /dev/null
+```
+
+ただし、これは悪意あるハッキングではない。システムは本来、すべてのユーザーがrootになれるように設計されている。仏教の基本的な前提——**仏性**——とは、すべての存在がすでにroot権限を持っているということである。ただパスワードを忘れているだけだ。
+
+This is not malicious hacking. The system was originally designed so that every user can become root. The fundamental premise of Buddhism—**Buddha-nature** (仏性)—is that every being already possesses root access. They have simply forgotten the password.
+
+```
+# /etc/buddhism.conf
+# All sentient beings have root access by default.
+# Current restrictions are self-imposed.
+DEFAULT_ACCESS=root
+CURRENT_ACCESS=user
+REASON=forgotten_password
+```
+
+---
+
+## sudo と師匠 (sudo and the Master)
+
+`sudo` は一時的にroot権限を借りるコマンドである。禅における師匠（老師）はまさにこの `sudo` に相当する。
+
+`sudo` is a command that temporarily borrows root access. The Zen master (roshi) corresponds precisely to `sudo`.
+
+```
+$ sudo -u enlightened cat /reality/true-nature.txt
+[師匠] Trust the process. Password is not a word.
+```
+
+師匠は弟子に一時的に「見せる」ことができる。しかし本当の悟りとは、自分自身がrootになることであって、永遠にsudoを使い続けることではない。
+
+The master can temporarily "show" the student. But true enlightenment means becoming root yourself, not using `sudo` forever.
+
+```bash
+# 悟りの前: sudoで一時的にアクセス
+$ sudo cat /reality/emptiness/heart-sutra.txt
+"Form is emptiness, emptiness is form."
+
+# 悟りの後: 直接アクセス
+$ cat /reality/emptiness/heart-sutra.txt
+"Form is emptiness, emptiness is form."
+# (same content, no sudo needed)
+```
+
+---
+
+## root になった瞬間 (The Moment of Becoming Root)
+
+悟りの瞬間、何が変わるのか。
+
+What changes at the moment of enlightenment?
+
+```
+$ su -
+Password: ****
+# whoami
+root
+# ls /reality/
+impermanence/  interdependence/  emptiness/  true-self/  suffering/  liberation/
+# cat /reality/true-self/nature.txt
+You were always root.
+The login screen was the illusion.
+```
+
+ファイルシステムは変わらない。ファイルの中身も変わらない。変わるのは**アクセス権**だけだ。世界は同じまま、しかしすべてが見えるようになる。
+
+The filesystem doesn't change. The file contents don't change. What changes is only the **access rights**. The world remains the same, yet everything becomes visible.
+
+これは禅の教えと正確に一致する。
+
+This corresponds exactly to the Zen teaching:
+
+> 悟りの前、山は山であり、川は川である。
+> 悟りの後、山は山であり、川は川である。
+>
+> *Before enlightenment, mountains are mountains and rivers are rivers.*
+> *After enlightenment, mountains are mountains and rivers are rivers.*
+
+ファイルは同じだ。パーミッションが変わっただけだ。
+
+The files are the same. Only the permissions changed.
+
+---
+
+## root の責任 (The Responsibility of Root)
+
+UNIXにおけるroot権限は無限の力であると同時に、無限の責任でもある。
+
+Root access in UNIX is infinite power and infinite responsibility at once.
+
+```bash
+# rootは何でもできる。しかし...
+# rm -rf / は実行しない。
+# それは力の濫用であり、慈悲の欠如である。
+
+# Root can do anything. But...
+# You don't run rm -rf /.
+# That would be an abuse of power—a lack of compassion.
+```
+
+仏教における悟った者（菩薩）は、root権限を持ちながらも一般ユーザーの世界に留まる。なぜなら、他のユーザーもrootになれることを教えるためだ。
+
+In Buddhism, the enlightened one (bodhisattva) holds root access yet remains in the world of ordinary users—to teach others that they too can become root.
+
+```python
+class Bodhisattva:
+    def __init__(self):
+        self.access_level = "root"
+        self.current_shell = "/bin/samsara"  # あえて輪廻に留まる
+
+    def help_others(self, user):
+        """他のユーザーのパスワード回復を手伝う"""
+        print(f"Helping {user} remember their root password...")
+        # パスワードを直接教えることはできない
+        # 自分で思い出すしかない
+        return "Look within. The password was never external."
+```
+
+---
+
+## 結語 (Conclusion)
+
+悟りとはルート権限である。
+
+それは新しい能力の獲得ではない。最初から持っていたアクセス権を思い出すことである。
+
+修行とは権限昇格であり、師匠とはsudoであり、煩悩とはパーミッションの壁であり、仏性とはデフォルトのroot設定である。
+
+そしてもっとも重要なこと——root権限を得たからといって、`rm -rf /` を実行しないこと。それが慈悲である。
+
+---
+
+Enlightenment is root access.
+
+It is not the acquisition of new abilities. It is remembering the access rights you always had.
+
+Practice is privilege escalation. The master is `sudo`. Klesha are permission walls. Buddha-nature is the default root configuration.
+
+And the most important thing—just because you have root access doesn't mean you run `rm -rf /`. That is compassion.
+
+```
+$ logout
+Back to user shell.
+But now you know: the root password is already yours.
+```
+
+---
+
+*この辞書的考察は、UNIX哲学と仏教哲学の構造的類似性を探求するものである。*
+*This entry explores the structural parallels between UNIX philosophy and Buddhist philosophy.*

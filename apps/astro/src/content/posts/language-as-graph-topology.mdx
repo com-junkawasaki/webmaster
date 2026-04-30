@@ -1,0 +1,279 @@
+---
+title:
+  ja: "言語をグラフ位相で読む — 5つの言語、3つの計算形式"
+  en: "Reading Language as Graph Topology — Five Languages, Three Computational Shapes"
+date: "2026-04-30"
+author:
+  name: "Jun Kawasaki"
+  picture: "/assets/posts/authors/jk.jpg"
+excerpt:
+  ja: "依存構造をグラフとして見ると、言語ごとに異なる「計算の形」が浮かび上がる。fold する日本語、apply する英語、scatter するアラビア語。"
+  en: "When you look at dependency structure as a graph, each language reveals a different shape of computation: Japanese folds, English applies, Arabic scatters."
+coverImage: "/assets/posts/language-as-graph-topology/topology-types.svg"
+ogImage:
+  url: "/assets/posts/language-as-graph-topology/topology-types.svg"
+---
+import Ja from '../../components/i18n/Ja.astro';
+import En from '../../components/i18n/En.astro';
+
+<Ja>
+# 言語をグラフ位相で読む
+</Ja>
+<En>
+# Reading Language as Graph Topology
+</En>
+
+<Ja>
+*プレプリント [Languages as Graph Topologies](https://github.com/com-junkawasaki/kotoba-topology) (Kawasaki, 2026) の要約とブログ向け再構成。*
+</Ja>
+<En>
+*A summary and blog-side reconstruction of the preprint [Languages as Graph Topologies](https://github.com/com-junkawasaki/kotoba-topology) (Kawasaki, 2026).*
+</En>
+
+---
+
+<Ja>
+## 1. 出発点 — 文法は計算の形である
+
+英語、日本語、ヒンディー語、フランス語、アラビア語。語順は SVO・SOV・VSO に分かれる。これは表面的な並び替えではなく、**情報をどう束ねて処理するか** という計算戦略の差である、というのが本稿の主張だ。
+
+文を「単語の列」ではなく **依存グラフ** `G = (V, E)` として見る。頂点 `V` は語、辺 `E` は head→dependent の関係。すると言語ごとに異なる位相 (topology) が立ち上がる。
+</Ja>
+<En>
+## 1. Starting Point — Grammar is the Shape of Computation
+
+English, Japanese, Hindi, French, Arabic. Word orders split into SVO, SOV, VSO. This paper's claim: that split is not surface reshuffling — it is a difference in **computational strategy**, in how each language bundles and processes information.
+
+Stop looking at a sentence as a string of words. Look at it as a **dependency graph** `G = (V, E)`: vertices are words, edges are head→dependent relations. A different topology emerges for each language.
+</En>
+
+---
+
+<Ja>
+## 2. 5 つの位相メトリック
+
+論文では次の 5 つを定義する。
+</Ja>
+<En>
+## 2. Five Topological Metrics
+
+The paper defines five:
+</En>
+
+| Metric | Definition | Reads as |
+|---|---|---|
+| Tree depth `D(T)` | `max_v dist(r, v) / |V|` | how deeply the parser must descend |
+| Branching factor `B(T)` | mean out-degree of internal nodes | how wide each head fans |
+| Head Directionality Index (HDI) | fraction of edges where head precedes dependent | head-initial vs. head-final |
+| Crossing Number (CN) | fraction of arc pairs that cross | non-projectivity |
+| Mean Dependency Distance (MDD) | mean linear distance between head and dependent | working-memory load |
+
+<Ja>
+さらに代数的位相幾何から **Betti 数** を借りる。`β₀` は連結成分数、`β₁` は独立 1-cycle 数。射影的な木では `β₁ = 0`。非射影構造が入ると `β₁ > 0` になる。これが「文法的自由度の位相不変量」になる。
+</Ja>
+<En>
+On top of that, **Betti numbers** from algebraic topology: `β₀` counts connected components, `β₁` counts independent 1-cycles. Projective trees have `β₁ = 0`; non-projective constructions push `β₁ > 0`. That gives a topological invariant for grammatical freedom.
+</En>
+
+---
+
+<Ja>
+## 3. 3 つの計算形式
+
+5 言語をこれらの軸に乗せると、**3 つの位相クラス** に綺麗に分かれる。各クラスはそのまま情報処理の比喩 (関数型プログラミングの操作) になる。
+</Ja>
+<En>
+## 3. Three Computational Shapes
+
+Plot the five languages on these axes and they fall into **three topological classes**. Each class doubles as an information-processing metaphor — the same primitives you find in functional programming.
+</En>
+
+![Three computational topologies of language](/assets/posts/language-as-graph-topology/topology-types.svg)
+
+<Ja>
+### 3.1 Convergent — `fold` (日本語・ヒンディー語, SOV)
+
+文：「猫が 鼠を 追いかけた」。すべての依存辺が文末動詞 `追いかけた` に向かって集束する。HDI ≈ 0.15 (head-final), CN ≈ 0.10 (ほぼ射影的), β₁ ≈ 0.05 (最も木に近い)。
+
+これは関数型での **`fold`** に対応する。引数を左から右へ蓄積し、最後の動詞でリダクションが閉じる。日本語の助詞 (`-が`, `-を`, `-に`) は引数のラベルであり、動詞は accumulator を受け取って評価する関数だ。
+</Ja>
+<En>
+### 3.1 Convergent — `fold` (Japanese, Hindi · SOV)
+
+Sentence: *neko-ga nezumi-wo oikaketa* — "the cat chased the mouse." Every dependency arc converges on the sentence-final verb *oikaketa*. HDI ≈ 0.15 (head-final), CN ≈ 0.10 (mostly projective), β₁ ≈ 0.05 (most tree-like of the five).
+
+This is **`fold`** in functional terms. Arguments accumulate left to right and the final verb closes the reduction. Japanese case particles (*-ga*, *-wo*, *-ni*) are argument labels; the verb is a function that takes the accumulator and evaluates.
+</En>
+
+```haskell
+-- Japanese sentence as a fold
+sentence = foldl (flip ($)) verb [subject, object]
+-- Arguments are pushed onto the stack; the verb at the end pops and computes.
+```
+
+<Ja>
+### 3.2 Divergent — `apply` (英語・フランス語, SVO)
+
+文：「The cat chased the mouse」。動詞 `chased` が早い段階で現れ、左に主語を、右に目的語を分岐させる。HDI ≈ 0.75 (head-initial), β₁ ≈ 0.10。
+
+これは **`apply`** に対応する。動詞が関数として早期にコミットし、パーサは前方予測で残りの引数スロットを埋めにいく。英語の不自然な省略 (例：`What did you give ___?`) が許される構造的余地は、動詞の引数フレームが先に立つこの位相から来ている。
+</Ja>
+<En>
+### 3.2 Divergent — `apply` (English, French · SVO)
+
+Sentence: "The cat chased the mouse." The verb *chased* commits early, branching left to subject and right to object. HDI ≈ 0.75 (head-initial), β₁ ≈ 0.10.
+
+This is **`apply`**. The verb commits as a function early, and the parser forward-predicts to fill the remaining argument slots. The structural room English leaves for gaps (`What did you give ___?`) comes directly from this topology — the verb's argument frame is fixed before the arguments arrive.
+</En>
+
+```haskell
+-- English sentence as an application
+sentence = chased subject object
+-- Verb is curried; arguments are supplied as they appear.
+```
+
+<Ja>
+### 3.3 Broadcast — `scatter` (アラビア語, VSO)
+
+文：`طارد قطٌّ فأرًا` (verb-subject-object)。動詞が文頭にあり、root から主語・目的語が同時に枝分かれする。HDI ≈ 0.60, β₁ ≈ 0.22 (5 言語中最大)。
+
+これは MPI の **`scatter`** や broadcast に近い。動詞が一気に複数の slot 要件を投射し、豊富な形態素的一致 (動詞が主語の人称・数を屈折で抱える) によって主語チャネルが圧縮される。語順の自由度 (= 高い β₁) は、形態論で関係を担保するからこそ許される。
+</Ja>
+<En>
+### 3.3 Broadcast — `scatter` (Arabic · VSO)
+
+Sentence: `ṭārada qiṭṭun faʾran` (verb-subject-object). The verb sits at the front; subject and object branch simultaneously from the root. HDI ≈ 0.60, β₁ ≈ 0.22 — the highest of the five.
+
+This is closer to MPI's **`scatter`** / broadcast. The verb projects multiple slot requirements at once, and rich agreement morphology (the verb inflects for subject person/number) compresses the subject channel. The high word-order freedom — high β₁ — is licensed precisely because the morphology, not position, carries the grammatical relation.
+</En>
+
+---
+
+<Ja>
+## 4. 位相空間における言語クラスタ
+
+HDI と β₁ の 2 軸を取って 5 言語をプロットすると、3 クラスタが幾何的にも分離する。
+</Ja>
+<En>
+## 4. Languages as Clusters in Topological Space
+
+Plot the five languages on HDI vs. β₁ and the three clusters separate geometrically as well.
+</En>
+
+![HDI x beta-1 scatter showing the three clusters](/assets/posts/language-as-graph-topology/metric-space.svg)
+
+<Ja>
+注目すべきは **日本語とヒンディー語の分離** である。両者ともに SOV / head-final と分類されるが、日本語は射影的 (β₁ ≈ 0.05)、ヒンディー語は scrambling を許すぶん非射影的 (β₁ ≈ 0.18)。離散的な「SOV か否か」では捉えられないこの差を、位相不変量は連続量として記述する。
+</Ja>
+<En>
+The interesting thing is **Japanese and Hindi separating**. Both are tagged SOV / head-final, but Japanese is projective (β₁ ≈ 0.05) while Hindi — which allows scrambling — is markedly non-projective (β₁ ≈ 0.18). The discrete label "SOV" cannot see this difference; the topological invariants do, as a continuous quantity.
+</En>
+
+---
+
+<Ja>
+## 5. なぜ位相か — 形と計算のトレードオフ
+
+論文の中心定理 (Topology–Computation Correspondence) は、言語 `L` の計算戦略 `C(L)` が位相特徴ベクトル `(HDI, CN, β₁)` の関数であると主張する。
+</Ja>
+<En>
+## 5. Why Topology — The Shape/Computation Trade-off
+
+The paper's central theorem (Topology–Computation Correspondence) claims that the computational strategy `C(L)` of a language `L` is a function of its topological feature vector `(HDI, CN, β₁)`.
+</En>
+
+```
+C(L) = f( HDI(T), CN(T), β₁(T) )
+```
+
+<Ja>
+そして観察される基本的トレードオフ：
+
+> 文法関係を **位置で符号化する** (β₁ → 0) か、**形態素で符号化する** (β₁ ↑) か。
+
+これは情報理論的に等価である。日本語と英語は前者を、アラビア語とヒンディー語は後者を選ぶ。どちらも root に向けた依存関係を保つが、その「保ち方」が位相に出る。
+</Ja>
+<En>
+And the basic trade-off the metrics reveal:
+
+> Encode grammatical relations in **position** (β₁ → 0) or in **morphology** (β₁ ↑).
+
+The two are information-theoretically equivalent. Japanese and English pick the first; Arabic and Hindi pick the second. Both preserve the root-directed dependency structure — what differs is *how* it is preserved, and that difference shows up in topology.
+</En>
+
+---
+
+<Ja>
+## 6. NLP への含意 — アーキテクチャは位相を見るべきか
+
+現在の Transformer は、すべての言語を同じアーキテクチャで処理する。位置エンコーディングは線形であり、`fold` 言語と `apply` 言語の構造的差異は attention の重みの中にしか反映されない。
+
+しかし論文の主張に従えば、これは **位相のミスマッチ** である。日本語のように引数を末尾の動詞に集束させる言語に対しては、`fold`-friendly な inductive bias (例：右から左への evaluation order、final-head に向けた causal mask) が原理的には合理的である。
+
+この観点は、依存解析の精度を上げる以上の含意を持つ。**言語ごとに inductive bias を変える** ことが、Transformer の universal architecture 仮説に対する一つの反論材料になる。
+</Ja>
+<En>
+## 6. Implications for NLP — Should Architectures See Topology?
+
+Today's transformers process every language with the same architecture. Positional encoding is linear, and the structural difference between `fold` languages and `apply` languages lives only inside the attention weights.
+
+But by the paper's argument, that is a **topological mismatch**. For a language like Japanese — arguments converging on a final verb — a `fold`-friendly inductive bias (right-to-left evaluation order, a causal mask oriented toward the final head) is in principle the natural fit.
+
+The implication runs deeper than parsing accuracy: **varying inductive bias per language family** is a candidate counter-argument to the universal-architecture hypothesis behind transformers.
+</En>
+
+---
+
+<Ja>
+## 7. まとめ
+
+- 文は依存グラフ。グラフには位相がある。
+- HDI と β₁ を取れば、5 言語は **convergent / divergent / broadcast** の 3 クラスタに分かれる。
+- 各クラスタは関数型の **fold / apply / scatter** に対応する計算形式である。
+- 位相は「文法を位置で符号化するか、形態素で符号化するか」というトレードオフの幾何的記述になっている。
+
+言語は孤立した文法体系ではなく、**情報処理の異なる計算機** である。位相幾何はそれを見るためのレンズだ。
+
+---
+
+詳細な定義、Betti 数の計算手法、対象 5 言語のコーパス分析は [`com-junkawasaki/kotoba-topology`](https://github.com/com-junkawasaki/kotoba-topology) のプレプリント PDF を参照。
+</Ja>
+<En>
+## 7. Summary
+
+- A sentence is a dependency graph. A graph has topology.
+- Take HDI and β₁ and the five languages split into three clusters: **convergent / divergent / broadcast**.
+- Each cluster corresponds to a functional-style computation: **fold / apply / scatter**.
+- Topology is the geometric description of a single trade-off: encode grammar in **position** or in **morphology**.
+
+Languages are not isolated grammars. They are **different computational machines for processing information**. Topology is the lens that shows it.
+
+---
+
+For the full definitions, Betti number computations, and per-language corpus analysis, see the preprint PDF at [`com-junkawasaki/kotoba-topology`](https://github.com/com-junkawasaki/kotoba-topology).
+</En>
+
+---
+
+<Ja>
+## References
+
+- Kawasaki, J. (2026). *Languages as Graph Topologies: A Computational Framework for Cross-Linguistic Syntactic Structure Analysis.* Preprint.
+- Tesnière, L. (1959). *Éléments de syntaxe structurale.*
+- Mel'čuk, I. (1988). *Dependency Syntax.*
+- Liu, H. (2008). "Dependency Distance as a Metric of Language Comprehension Difficulty."
+- Futrell, R., Mahowald, K., Gibson, E. (2015). "Large-scale evidence of dependency length minimization in 37 languages."
+- Hatcher, A. (2002). *Algebraic Topology.* Cambridge UP.
+- Greenberg, J. H. (1963). "Some universals of grammar with particular reference to the order of meaningful elements."
+</Ja>
+<En>
+## References
+
+- Kawasaki, J. (2026). *Languages as Graph Topologies: A Computational Framework for Cross-Linguistic Syntactic Structure Analysis.* Preprint.
+- Tesnière, L. (1959). *Éléments de syntaxe structurale.*
+- Mel'čuk, I. (1988). *Dependency Syntax.*
+- Liu, H. (2008). "Dependency Distance as a Metric of Language Comprehension Difficulty."
+- Futrell, R., Mahowald, K., Gibson, E. (2015). "Large-scale evidence of dependency length minimization in 37 languages."
+- Hatcher, A. (2002). *Algebraic Topology.* Cambridge UP.
+- Greenberg, J. H. (1963). "Some universals of grammar with particular reference to the order of meaningful elements."
+</En>

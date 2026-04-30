@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" font-family="ui-sans-serif, -apple-system, 'Helvetica Neue', sans-serif">
+  <defs>
+    <style>
+      .axis { stroke: #9ca3af; stroke-width: 1.2; }
+      .grid { stroke: #f3f4f6; stroke-width: 1; }
+      .tick { font-size: 10px; fill: #6b7280; font-family: ui-monospace, monospace; }
+      .axis-label { font-size: 13px; fill: #374151; font-weight: 500; }
+      .title { font-size: 18px; font-weight: 700; fill: #111827; }
+      .subtitle { font-size: 12px; fill: #6b7280; }
+      .lang { font-size: 13px; font-weight: 600; fill: #111827; }
+      .cluster { fill: none; stroke-width: 1.5; stroke-dasharray: 4 4; }
+      .badge { font-size: 10px; fill: #6b7280; }
+    </style>
+  </defs>
+
+  <text x="360" y="34" text-anchor="middle" class="title">Topological Cluster Space</text>
+  <text x="360" y="54" text-anchor="middle" class="subtitle">Head Directionality Index (HDI) × First Betti Number (β₁)</text>
+
+  <!-- axes -->
+  <!-- plot box: x 80..660, y 100..440 -->
+  <line x1="80" y1="440" x2="660" y2="440" class="axis"/>
+  <line x1="80" y1="100" x2="80" y2="440" class="axis"/>
+
+  <!-- x ticks (HDI 0.0 -> 1.0) -->
+  <g>
+    <line x1="80"  y1="440" x2="80"  y2="445" class="axis"/>
+    <line x1="225" y1="440" x2="225" y2="445" class="axis"/>
+    <line x1="370" y1="440" x2="370" y2="445" class="axis"/>
+    <line x1="515" y1="440" x2="515" y2="445" class="axis"/>
+    <line x1="660" y1="440" x2="660" y2="445" class="axis"/>
+    <text x="80"  y="460" text-anchor="middle" class="tick">0.0</text>
+    <text x="225" y="460" text-anchor="middle" class="tick">0.25</text>
+    <text x="370" y="460" text-anchor="middle" class="tick">0.50</text>
+    <text x="515" y="460" text-anchor="middle" class="tick">0.75</text>
+    <text x="660" y="460" text-anchor="middle" class="tick">1.0</text>
+    <text x="370" y="490" text-anchor="middle" class="axis-label">HDI  →  head-initial</text>
+    <text x="80"  y="478" text-anchor="middle" class="badge">head-final</text>
+  </g>
+
+  <!-- y ticks (β1 0.0 -> 0.25) -->
+  <g>
+    <line x1="75" y1="440" x2="80" y2="440" class="axis"/>
+    <line x1="75" y1="355" x2="80" y2="355" class="axis"/>
+    <line x1="75" y1="270" x2="80" y2="270" class="axis"/>
+    <line x1="75" y1="185" x2="80" y2="185" class="axis"/>
+    <line x1="75" y1="100" x2="80" y2="100" class="axis"/>
+    <text x="68" y="444" text-anchor="end" class="tick">0.00</text>
+    <text x="68" y="359" text-anchor="end" class="tick">0.06</text>
+    <text x="68" y="274" text-anchor="end" class="tick">0.12</text>
+    <text x="68" y="189" text-anchor="end" class="tick">0.18</text>
+    <text x="68" y="104" text-anchor="end" class="tick">0.25</text>
+    <text x="22" y="270" text-anchor="middle" class="axis-label" transform="rotate(-90 22 270)">β₁  →  non-projective</text>
+  </g>
+
+  <!-- gridlines -->
+  <line x1="80" y1="355" x2="660" y2="355" class="grid"/>
+  <line x1="80" y1="270" x2="660" y2="270" class="grid"/>
+  <line x1="80" y1="185" x2="660" y2="185" class="grid"/>
+  <line x1="225" y1="100" x2="225" y2="440" class="grid"/>
+  <line x1="370" y1="100" x2="370" y2="440" class="grid"/>
+  <line x1="515" y1="100" x2="515" y2="440" class="grid"/>
+
+  <!-- cluster ellipses -->
+  <!-- Convergent: head-final (HDI 0.15-0.25), low β1 -->
+  <ellipse cx="160" cy="370" rx="95" ry="60" class="cluster" stroke="#2563eb"/>
+  <text x="115" y="318" class="badge" fill="#2563eb">Convergent (fold)</text>
+
+  <!-- Divergent: head-initial English/French, low-mid β1 -->
+  <ellipse cx="540" cy="335" rx="100" ry="55" class="cluster" stroke="#059669"/>
+  <text x="495" y="285" class="badge" fill="#059669">Divergent (apply)</text>
+
+  <!-- Broadcast: Arabic, mid HDI, high β1 -->
+  <ellipse cx="430" cy="135" rx="80" ry="50" class="cluster" stroke="#dc2626"/>
+  <text x="395" y="92" class="badge" fill="#dc2626">Broadcast (scatter)</text>
+
+  <!-- data points -->
+  <!-- Japanese: HDI 0.15, β1 0.05 -> x = 80 + 0.15*580 = 167 ; y = 440 - (0.05/0.25)*340 = 440 - 68 = 372 -->
+  <circle cx="167" cy="372" r="7" fill="#2563eb"/>
+  <text x="180" y="376" class="lang">Japanese</text>
+  <text x="180" y="389" class="badge">SOV · HDI 0.15 · β₁ 0.05</text>
+
+  <!-- Hindi: HDI 0.25, β1 0.18 -> x = 80 + 0.25*580 = 225 ; y = 440 - (0.18/0.25)*340 = 440 - 244.8 = 195.2 -->
+  <circle cx="225" cy="195" r="7" fill="#2563eb"/>
+  <text x="238" y="199" class="lang">Hindi</text>
+  <text x="238" y="212" class="badge">SOV · HDI 0.25 · β₁ 0.18</text>
+
+  <!-- French: HDI 0.70, β1 0.10 -> x = 80 + 0.70*580 = 486 ; y = 440 - (0.10/0.25)*340 = 440 - 136 = 304 -->
+  <circle cx="486" cy="304" r="7" fill="#059669"/>
+  <text x="499" y="308" class="lang">French</text>
+  <text x="499" y="321" class="badge">SVO · HDI 0.70 · β₁ 0.10</text>
+
+  <!-- English: HDI 0.75, β1 0.08 -> x = 80 + 0.75*580 = 515 ; y = 440 - (0.08/0.25)*340 = 440 - 108.8 = 331 -->
+  <circle cx="515" cy="331" r="7" fill="#059669"/>
+  <text x="528" y="335" class="lang">English</text>
+  <text x="528" y="348" class="badge">SVO · HDI 0.75 · β₁ 0.08</text>
+
+  <!-- Arabic: HDI 0.60, β1 0.22 -> x = 80 + 0.60*580 = 428 ; y = 440 - (0.22/0.25)*340 = 440 - 299.2 = 140.8 -->
+  <circle cx="428" cy="141" r="7" fill="#dc2626"/>
+  <text x="441" y="145" class="lang">Arabic</text>
+  <text x="441" y="158" class="badge">VSO · HDI 0.60 · β₁ 0.22</text>
+</svg>

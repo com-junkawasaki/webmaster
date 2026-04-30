@@ -13,6 +13,7 @@ export default defineConfig({
     locales: ['en', 'ja'],
     routing: {
       prefixDefaultLocale: true,
+      redirectToDefaultLocale: false,
     },
   },
   integrations: [mdx(), react()],

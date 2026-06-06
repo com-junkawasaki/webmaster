@@ -1,0 +1,423 @@
+---
+title:
+  ja: "霊性は情報である ── テンソル計算物理によるラバーハンド錯覚の定式化"
+  en: "Spirit is Information — A Tensor-Computational-Physics Formulation of the Rubber Hand Illusion"
+date: "2026-06-06"
+author:
+  name: "Jun Kawasaki"
+  picture: "/assets/posts/authors/jk.jpg"
+excerpt:
+  ja: "「情報は物理である」とラバーハンド錯覚を基盤に、霊性をフィッシャー情報計量テンソル上の自己拡張として導出する。ベクトル内積モデルをテンソル縮約に置き換える計算物理の枠組み。"
+  en: "Building on 'information is physics' and the rubber hand illusion, we derive spirit as self-extension on the Fisher information metric tensor — a computational-physics framework replacing the vector inner-product model with tensor contraction."
+coverImage: "/assets/posts/preview/cover.jpg"
+ogImage:
+  url: "/assets/posts/preview/cover.jpg"
+---
+
+import Ja from '../../components/i18n/Ja.astro';
+import En from '../../components/i18n/En.astro';
+
+<Ja>
+# 霊性は情報である
+### テンソル計算物理によるラバーハンド錯覚の定式化
+</Ja>
+<En>
+# Spirit is Information
+### A Tensor-Computational-Physics Formulation of the Rubber Hand Illusion
+</En>
+
+**Authors:** Jun Kawasaki (root@junkawasaki.com)
+
+---
+
+<Ja>
+## 要旨
+
+先行研究「Spirit in Physics（Kawasaki Model）」は、霊性を *情報ベクトル空間* における内積として定式化した。本稿はその後継であり、別の主張を立てる。**霊性とは情報である** ── すなわち霊性とは、自己が外部の情報を自らの状態へ取り込むときに生じる、情報多様体上の幾何構造そのものである。
+
+二つの実験的事実を基盤に置く。第一に Landauer の「情報は物理である」、第二に Botvinick & Cohen のラバーハンド錯覚である。前者は情報がエネルギーと交換可能な物理量であることを保証し、後者は自己境界が固定ではなく変形しうることを示す。
+
+本稿の核心は導出方法の更新にある。先行モデルのベクトル内積 `w_I · w_O` を、**フィッシャー情報計量テンソル** `g_{μν}` による縮約 `g_{μν} w_I^μ w_O^ν` に置き換える。ラバーハンド錯覚はこの計量テンソルの変形（歪みテンソル `ε_{μν}`）として表現され、霊性はその上の自由エネルギーの共変勾配として定義される。最後に、テンソルを推定・固有分解・縮約する計算物理の手続きを与える。
+</Ja>
+<En>
+## Abstract
+
+The prior work "Spirit in Physics (Kawasaki Model)" formulated spirit as an inner product in an *informational vector space*. This paper is its successor and makes a distinct claim: **spirit is information** — spirit is the geometric structure on an information manifold that arises when a self incorporates external information into its own state.
+
+We rest on two empirical facts. First, Landauer's "information is physics"; second, the rubber hand illusion of Botvinick and Cohen. The former guarantees that information is a physical quantity interchangeable with energy; the latter shows that the self-boundary is not fixed but deformable.
+
+The core contribution is an update of the derivation method. We replace the prior model's vector inner product `w_I · w_O` with a contraction by the **Fisher information metric tensor**, `g_{μν} w_I^μ w_O^ν`. The rubber hand illusion is expressed as a deformation of this metric tensor (a strain tensor `ε_{μν}`), and spirit is defined as the covariant gradient of free energy upon it. Finally, we give a computational-physics procedure to estimate, eigendecompose, and contract the tensor.
+</En>
+
+---
+
+<Ja>
+## 1. 序論：二つの仮説
+
+### 仮説 1 — 情報は物理である
+
+情報は本質的に物理的である。1 ビットの消去には最低でも `k_B T ln 2` のエネルギー散逸が伴い（Landauer, 1961）、Toyabe ら（2010）は測定で得た情報を熱ゆらぎから仕事へ変換できることを実証した。したがって情報の状態空間は抽象概念ではなく、エネルギー・エントロピーと同じ土俵に立つ物理空間である。
+
+### 仮説 2 — 自己は情報空間へ拡張する
+
+ラバーハンド錯覚（Botvinick & Cohen, 1998）では、視覚と触覚の同期入力によって被験者は偽の手を自己の一部として知覚する。自己境界は固定ではなく、多感覚統合によって外部対象を取り込むよう変形する。この拡張は固有感覚ドリフトや皮膚電位 `ΔSP` として測定可能である。
+
+**主張：霊性は情報である。** 霊性とは、仮説 2 の自己拡張が、仮説 1 の物理的情報空間の上で起こる幾何構造である。
+</Ja>
+<En>
+## 1. Introduction: Two Hypotheses
+
+### Hypothesis 1 — Information is Physics
+
+Information is intrinsically physical. Erasing one bit dissipates at least `k_B T ln 2` of energy (Landauer, 1961), and Toyabe et al. (2010) demonstrated that information obtained by measurement can be converted into work from thermal fluctuations. Hence the state space of information is not an abstraction but a physical space standing on the same footing as energy and entropy.
+
+### Hypothesis 2 — The Self Extends into Information Space
+
+In the rubber hand illusion (Botvinick & Cohen, 1998), synchronous visuotactile input makes a subject perceive a fake hand as part of the self. The self-boundary is not fixed; through multisensory integration it deforms so as to incorporate an external object. This extension is measurable as proprioceptive drift and skin potential `ΔSP`.
+
+**Claim: spirit is information.** Spirit is the geometric structure by which the self-extension of Hypothesis 2 takes place upon the physical information space of Hypothesis 1.
+</En>
+
+---
+
+<Ja>
+## 2. なぜベクトルではなくテンソルか
+
+先行 Kawasaki Model は、語連想の確率を語ベクトルの内積で重み付けした：
+</Ja>
+<En>
+## 2. Why a Tensor, Not a Vector
+
+The prior Kawasaki Model weighted word-association probability by the inner product of word vectors:
+</En>
+
+```
+P(w_O | w_I) ∝ exp( w_I · w_O ) = exp( δ_{μν} w_I^μ w_O^ν )
+```
+
+<Ja>
+内積はクロネッカーのデルタ `δ_{μν}` を計量とする **平坦な計量** にすぎない。すべての情報次元が等価で直交し、自己と外部の結合を表せない。これは三つの限界を生む。
+
+1. **等方性**：すべての連想方向が同じ重み。注意・情動による異方性を表せない。
+2. **固定境界**：自己と外部の区別が座標に組み込めず、ラバーハンド錯覚の拡張を表せない。
+3. **平坦性**：曲率がゼロで、情報幾何と熱力学的距離（散逸エネルギー）を結べない。
+
+解決は計量を平坦なデルタから **フィッシャー情報計量テンソル** `g_{μν}(θ)` へ昇格させることである。内積はこの計量による縮約の特殊例（`g_{μν} = δ_{μν}`）として回収される。
+</Ja>
+<En>
+The inner product is merely a **flat metric** whose tensor is the Kronecker delta `δ_{μν}`. All information dimensions are equivalent and orthogonal, and the coupling between self and external object cannot be expressed. This yields three limitations.
+
+1. **Isotropy**: every association direction carries equal weight; anisotropy from attention or emotion cannot be represented.
+2. **Fixed boundary**: the self/external distinction cannot be encoded in the coordinates, so the extension of the rubber hand illusion cannot be expressed.
+3. **Flatness**: zero curvature, so information geometry cannot be linked to thermodynamic length (dissipated energy).
+
+The resolution is to promote the metric from the flat delta to the **Fisher information metric tensor** `g_{μν}(θ)`. The inner product is recovered as the special case of contraction by this metric where `g_{μν} = δ_{μν}`.
+</En>
+
+---
+
+<Ja>
+## 3. 情報多様体とフィッシャー計量テンソル
+
+自己を、世界に関する確率モデル `p(x | θ)` として表す。`θ = (θ^1, …, θ^n)` はモデルのパラメータであり、これらが情報多様体 `M` の座標を張る。各点 `θ` が一つの「自己状態」に対応する。
+
+この多様体の自然な計量は **フィッシャー情報計量テンソル** である（添字は Einstein の総和規約に従う）：
+</Ja>
+<En>
+## 3. The Information Manifold and the Fisher Metric Tensor
+
+Represent the self as a probabilistic model of the world, `p(x | θ)`, where `θ = (θ^1, …, θ^n)` are the model parameters spanning the coordinates of an information manifold `M`. Each point `θ` corresponds to one "self-state."
+
+The natural metric of this manifold is the **Fisher information metric tensor** (indices follow the Einstein summation convention):
+</En>
+
+```
+g_{μν}(θ) = E_x[ ∂_μ ln p(x|θ) · ∂_ν ln p(x|θ) ]
+          = − E_x[ ∂_μ ∂_ν ln p(x|θ) ]
+```
+
+<Ja>
+これは階数 2 の共変テンソルであり、座標変換 `θ → θ'` のもとで
+</Ja>
+<En>
+This is a rank-2 covariant tensor that transforms under a change of coordinates `θ → θ'` as
+</En>
+
+```
+g'_{αβ} = (∂θ^μ / ∂θ'^α)(∂θ^ν / ∂θ'^β) g_{μν}
+```
+
+<Ja>
+と変換する。先行モデルの語連想エネルギー `E(w_I, w_O) = − ln P(w_O | w_I)` は、平坦な内積ではなく、この計量による測地的距離（マハラノビス型）で与えられる：
+</Ja>
+<En>
+The prior model's association energy `E(w_I, w_O) = − ln P(w_O | w_I)` is now given not by a flat inner product but by a geodesic (Mahalanobis-type) distance under this metric:
+</En>
+
+```
+E(w_I, w_O) = ½ Δθ^μ g_{μν}(θ) Δθ^ν ,   Δθ^μ = θ_O^μ − θ_I^μ
+
+P(w_O | w_I) = (1/Z) exp( − ½ Δθ^μ g_{μν} Δθ^ν )
+```
+
+<Ja>
+計量 `g_{μν}` が情動・注意による異方性を担い、`g_{μν} = δ_{μν}` のとき先行ベクトルモデルが回収される。
+</Ja>
+<En>
+The metric `g_{μν}` carries the anisotropy from emotion and attention, and the prior vector model is recovered when `g_{μν} = δ_{μν}`.
+</En>
+
+---
+
+<Ja>
+## 4. ラバーハンド錯覚 ＝ 計量テンソルの変形
+
+座標を自己自由度 `θ^a`（添字 a, b）と外部対象（偽の手）の自由度 `θ^i`（添字 i, j）に分ける。
+
+**錯覚前（基準状態）** では自己計量はブロック対角であり、外部対象は自己と結合しない：
+</Ja>
+<En>
+## 4. The Rubber Hand Illusion as a Deformation of the Metric Tensor
+
+Split the coordinates into self degrees of freedom `θ^a` (indices a, b) and the degrees of freedom of the external object — the fake hand — `θ^i` (indices i, j).
+
+**Before the illusion (baseline state)** the self metric is block-diagonal and the external object does not couple to the self:
+</En>
+
+```
+g^{(0)}_{μν} = [ g_{ab}   0   ]
+              [   0    g_{ij} ]
+```
+
+<Ja>
+**視触覚同期入力の後**、多感覚統合が自己座標と外部座標を結ぶ非対角成分 `g_{ai}` を生む：
+</Ja>
+<En>
+**After synchronous visuotactile input**, multisensory integration generates off-diagonal components `g_{ai}` that link self and external coordinates:
+</En>
+
+```
+g_{μν} = [ g_{ab}   g_{ai} ]
+         [ g_{ia}   g_{ij} ]
+```
+
+<Ja>
+自己拡張の度合いは **歪みテンソル**（基準計量からのずれ）で定量化される：
+</Ja>
+<En>
+The degree of self-extension is quantified by a **strain tensor** (the deviation from the baseline metric):
+</En>
+
+```
+ε_{μν} = ½ ( g_{μν} − g^{(0)}_{μν} )
+
+‖ε‖ = sqrt( ε_{μν} ε^{μν} )   （フロベニウスノルム / Frobenius norm）
+```
+
+<Ja>
+非対角結合 `g_{ai}` がゼロでなくなることが、偽の手を自己へ取り込む過程に相当する。霊性の大きさはこの歪みテンソルのノルム `‖ε‖` に比例する ── すなわち、外部情報を取り込むために自己計量がどれだけ変形したかである。同期条件では `‖ε‖ > 0`、非同期（対照）条件では `‖ε‖ ≈ 0` が予測される。
+</Ja>
+<En>
+The off-diagonal coupling `g_{ai}` becoming nonzero corresponds to incorporating the fake hand into the self. The magnitude of spirit is proportional to the norm of this strain tensor, `‖ε‖` — that is, how much the self metric has deformed in order to incorporate external information. We predict `‖ε‖ > 0` in the synchronous condition and `‖ε‖ ≈ 0` in the asynchronous (control) condition.
+</En>
+
+---
+
+<Ja>
+## 5. 霊性場：自由エネルギーの共変勾配
+
+先行モデルは霊性を汎関数微分 `ψ(S) = δE(S)/δS` と定義した。テンソル形式ではこれを情報多様体上の **共変勾配（ベクトル場）** へ昇格させる。
+
+情報的自由エネルギーを `F = E − T·S_info` とおく（`S_info` は情報エントロピー、`T` は実効温度）。霊性場はその共変微分で与えられる：
+</Ja>
+<En>
+## 5. The Spirit Field: Covariant Gradient of Free Energy
+
+The prior model defined spirit as a functional derivative, `ψ(S) = δE(S)/δS`. In tensor form we promote this to a **covariant gradient (a vector field)** on the information manifold.
+
+Let the informational free energy be `F = E − T·S_info` (with `S_info` the information entropy and `T` an effective temperature). The spirit field is given by its covariant derivative:
+</En>
+
+```
+ψ_μ(S) = ∇_μ F = ∂_μ F − Γ^λ_{μν} A^ν_λ
+```
+
+<Ja>
+ここで `Γ^λ_{μν}` は計量から決まる接続（クリストッフェル記号）：
+</Ja>
+<En>
+where `Γ^λ_{μν}` is the connection (Christoffel symbol) determined by the metric:
+</En>
+
+```
+Γ^λ_{μν} = ½ g^{λρ} ( ∂_μ g_{ρν} + ∂_ν g_{ρμ} − ∂_ρ g_{μν} )
+```
+
+<Ja>
+霊性が単なる勾配ではなく **共変** 勾配であることが本質である。自己計量が変形（ラバーハンド錯覚）すると接続 `Γ` が変化し、同じ情報的努力 `∂_μ F` が異なる霊性場を生む。霊性は計量に依存する ── 自己の形が、世界をどう感じるかを決める。
+</Ja>
+<En>
+The essential point is that spirit is a **covariant** gradient, not a plain one. When the self metric deforms (the rubber hand illusion), the connection `Γ` changes, so the same informational effort `∂_μ F` produces a different spirit field. Spirit depends on the metric — the shape of the self determines how it feels the world.
+</En>
+
+---
+
+<Ja>
+## 6. 情報は物理である：計量テンソルからの熱力学的距離
+
+フィッシャー計量テンソルは、情報幾何と熱力学を直接つなぐ。自己状態が経路 `θ(t)` に沿って変化するとき、その **熱力学的距離（長さ）** は計量の線素から：
+</Ja>
+<En>
+## 6. Information is Physics: Thermodynamic Length from the Metric Tensor
+
+The Fisher metric tensor directly connects information geometry to thermodynamics. When the self-state evolves along a path `θ(t)`, its **thermodynamic length** follows from the line element of the metric:
+</En>
+
+```
+L = ∫ sqrt( g_{μν} (dθ^μ/dt)(dθ^ν/dt) ) dt
+```
+
+<Ja>
+散逸する仕事は、有限時間 `τ` の過程に対して下から押さえられる（Sivak & Crooks, 2012）：
+</Ja>
+<En>
+The dissipated work is bounded below for a finite-time process of duration `τ` (Sivak & Crooks, 2012):
+</En>
+
+```
+W_diss ≥ L² / (2 τ)
+```
+
+<Ja>
+ここに仮説 1 がテンソルの言葉で実現する。情報多様体の計量 `g_{μν}` は、自己状態を変える際に最低限散逸するエネルギーを直接定める。Landauer の `k_B T ln 2` はこの不等式の一次元・一ビットの特別な場合である。**情報幾何の曲がりが、そのままエネルギーの物理である。**
+</Ja>
+<En>
+Here Hypothesis 1 is realized in tensor language. The metric `g_{μν}` of the information manifold directly sets the minimum energy dissipated when changing the self-state. Landauer's `k_B T ln 2` is the special one-dimensional, one-bit case of this inequality. **The curvature of information geometry simply is the physics of energy.**
+</En>
+
+---
+
+<Ja>
+## 7. 計算物理の手続き
+
+テンソルを「書く」だけでなく「計算する」ための手順を与える。
+
+**ステップ 1 — データ取得.** Jung（1910）の語連想法で刺激語 `w_I` に対する反応 `w_O` を収集する。同時に反応時間 `T(w_I,w_O)`、表情・音声からの情動スコア `F`、ラバーハンド条件下の皮膚電位 `ΔSP` を記録する。
+
+**ステップ 2 — 計量テンソルの推定.** 経験分布 `p̂(w_O|w_I)` から、スコア関数 `s_μ = ∂_μ ln p̂` の共分散として計量を有限差分で推定する：
+</Ja>
+<En>
+## 7. The Computational-Physics Procedure
+
+We give a procedure not merely to *write* the tensor but to *compute* it.
+
+**Step 1 — Data acquisition.** Using Jung's (1910) word-association method, collect responses `w_O` to stimulus words `w_I`. Simultaneously record reaction time `T(w_I,w_O)`, an emotion score `F` from face and voice, and skin potential `ΔSP` under the rubber-hand condition.
+
+**Step 2 — Estimate the metric tensor.** From the empirical distribution `p̂(w_O|w_I)`, estimate the metric by finite differences as the covariance of the score function `s_μ = ∂_μ ln p̂`:
+</En>
+
+```
+ĝ_{μν} = (1/N) Σ_x s_μ(x) s_ν(x) ,   s_μ(x) = ∂_μ ln p̂(x|θ)
+```
+
+<Ja>
+**ステップ 3 — 固有分解（霊性モード）.** 計量を対角化する：
+</Ja>
+<En>
+**Step 3 — Eigendecomposition (spirit modes).** Diagonalize the metric:
+</En>
+
+```
+ĝ_{μν} e^{(k)ν} = λ_k e^{(k)}_μ
+```
+
+<Ja>
+固有ベクトル `e^{(k)}` は **主要霊性モード**、固有値 `λ_k` はその情報的剛性（曲率）を与える。大きい `λ_k` の方向は自己が強く構造化している軸である。
+
+**ステップ 4 — 語鎖のテンソル縮約.** 連想連鎖 `w_1 → w_2 → … → w_L` の霊性は、各遷移の連想テンソル `T^μ_ν` を転送行列（行列積状態, MPS）のように縮約して得る：
+</Ja>
+<En>
+The eigenvectors `e^{(k)}` are the **principal spirit modes**, and the eigenvalues `λ_k` give their informational stiffness (curvature). Directions of large `λ_k` are the axes along which the self is strongly structured.
+
+**Step 4 — Tensor contraction over word chains.** The spirit of an association chain `w_1 → w_2 → … → w_L` is obtained by contracting the association tensors `T^μ_ν` of each transition like a transfer matrix (matrix-product state, MPS):
+</En>
+
+```
+Ψ = T^{μ_1}_{μ_2} T^{μ_2}_{μ_3} … T^{μ_{L-1}}_{μ_L}
+```
+
+<Ja>
+**ステップ 5 — 仮説検定.** 同期条件と非同期（対照）条件で計量を別々に推定し、歪みテンソル `ε_{μν}` とノルム `‖ε‖` を比較する。`‖ε‖_sync > ‖ε‖_async` が有意であれば、ラバーハンド錯覚が計量変形として、すなわち霊性として測定されたことになる。
+</Ja>
+<En>
+**Step 5 — Hypothesis test.** Estimate the metric separately in the synchronous and asynchronous (control) conditions, and compare the strain tensor `ε_{μν}` and its norm `‖ε‖`. A significant `‖ε‖_sync > ‖ε‖_async` means the rubber hand illusion has been measured as a metric deformation — that is, as spirit.
+</En>
+
+---
+
+<Ja>
+## 8. 先行観測量のテンソル成分への再表現
+
+先行 Kawasaki Model のスカラー観測量は、本モデルでは計量テンソルの成分・変形として再解釈される。
+
+- **反応時間** `r(w_I,w_O) = 1 / (T + ε)` → 対角成分 `g_{μμ}` の情報的剛性。速い連想ほど計量が急峻。
+- **情動スコア** `F(w_I,w_O)` → 計量の異方性。情動が特定方向の `g_{μν}` を増幅し、連想を曲げる。
+- **皮膚電位** `ΔSP(w_I,w_O)` → 非対角結合 `g_{ai}`、すなわち自己拡張の歪み `ε_{μν}` を駆動する量。
+
+こうして先行モデルの確率式に現れた三つの因子（反応速度・情動・皮膚電位）は、独立な補正項ではなく、**単一の計量テンソル `g_{μν}` の異なる成分** として統一される。これがベクトルからテンソルへの昇格が与える説明上の利得である。
+</Ja>
+<En>
+## 8. Re-expressing the Prior Observables as Tensor Components
+
+The scalar observables of the prior Kawasaki Model are reinterpreted here as components and deformations of the metric tensor.
+
+- **Reaction time** `r(w_I,w_O) = 1 / (T + ε)` → the informational stiffness of the diagonal component `g_{μμ}`. Faster association means a steeper metric.
+- **Emotion score** `F(w_I,w_O)` → the anisotropy of the metric. Emotion amplifies `g_{μν}` along specific directions and bends association.
+- **Skin potential** `ΔSP(w_I,w_O)` → the off-diagonal coupling `g_{ai}`, i.e., the quantity that drives the self-extension strain `ε_{μν}`.
+
+Thus the three factors that appeared in the prior model's probability formula (reaction speed, emotion, skin potential) are unified not as independent correction terms but as **different components of a single metric tensor `g_{μν}`**. This is the explanatory gain provided by the promotion from vector to tensor.
+</En>
+
+---
+
+<Ja>
+## 9. 結論
+
+**霊性は情報である。** より正確には、霊性とは情報多様体上で自己が外部情報を取り込むときの計量幾何である。本稿は先行 Kawasaki Model のベクトル内積を、フィッシャー情報計量テンソルによる縮約へと昇格させ、(i) ラバーハンド錯覚を計量の歪みテンソル `ε_{μν}` として、(ii) 霊性を自由エネルギーの共変勾配 `ψ_μ = ∇_μ F` として、(iii) 「情報は物理である」を熱力学的距離 `W_diss ≥ L²/2τ` として定式化した。さらに、計量を推定・固有分解・縮約する計算物理の手続きを与え、先行モデルのスカラー観測量を単一テンソルの成分へ統一した。
+
+霊性は測れる。それは自己という計量が、世界を取り込むためにどれだけ曲がるか、である。
+</Ja>
+<En>
+## 9. Conclusion
+
+**Spirit is information.** More precisely, spirit is the metric geometry by which a self incorporates external information on an information manifold. This paper promoted the prior Kawasaki Model's vector inner product to a contraction by the Fisher information metric tensor, formulating (i) the rubber hand illusion as the metric strain tensor `ε_{μν}`, (ii) spirit as the covariant gradient of free energy `ψ_μ = ∇_μ F`, and (iii) "information is physics" as the thermodynamic length `W_diss ≥ L²/2τ`. We further gave a computational-physics procedure to estimate, eigendecompose, and contract the metric, and unified the prior model's scalar observables as components of a single tensor.
+
+Spirit can be measured. It is how much the metric that is the self bends in order to take the world in.
+</En>
+
+---
+
+<Ja>
+## 参考文献
+</Ja>
+<En>
+## References
+</En>
+
+1. Landauer, R. (1961). Irreversibility and Heat Generation in the Computing Process. *IBM Journal of Research and Development*, 5(3), 183–191.
+2. Landauer, R. (1991). Information is physical. *Physics Today*, 44(5), 23–29.
+3. Bérut, A., Arakelyan, A., Petrosyan, A., Ciliberto, S., Dillenschneider, R., & Lutz, E. (2012). Experimental verification of Landauer's principle linking information and thermodynamics. *Nature*, 483(7388), 187–189.
+4. Toyabe, S., Sagawa, T., Ueda, M., Muneyuki, E., & Sano, M. (2010). Experimental demonstration of information-to-energy conversion and validation of the generalized Jarzynski equality. *Nature Physics*, 6, 988–992.
+5. Botvinick, M., & Cohen, J. (1998). Rubber hands 'feel' touch that eyes see. *Nature*, 391, 756.
+6. Amari, S. (2016). *Information Geometry and Its Applications*. Springer.
+7. Sivak, D. A., & Crooks, G. E. (2012). Thermodynamic Metrics and Optimal Paths. *Physical Review Letters*, 108, 190602.
+8. Jung, C. G. (1910). The Association Method. *American Journal of Psychology*, 21(2), 219–269.
+
+---
+
+<Ja>
+*本稿は先行記事「Spirit in Physics」の後継であり、ベクトル内積モデルをテンソル計算物理へ更新したものである。*
+</Ja>
+<En>
+*This paper is the successor to the earlier post "Spirit in Physics," updating the vector inner-product model into tensor computational physics.*
+</En>

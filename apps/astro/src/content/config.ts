@@ -19,6 +19,10 @@ const postsCollection = defineCollection({
     ogImage: z.object({
       url: z.string(),
     }),
+    // Which locales to publish this post in. Defaults to both ['en', 'ja'].
+    // Use e.g. ['en'] to publish English-only: the <Ja> source stays in the
+    // repo, but no /ja/ route or /ja/ listing entry is generated for it.
+    locales: z.array(z.enum(['en', 'ja'])).optional(),
   }),
 });
 

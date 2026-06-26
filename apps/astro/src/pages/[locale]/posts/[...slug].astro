@@ -7,12 +7,14 @@ import { getPostTitle, getPostExcerpt, getSwitchLocalePath, useTranslations } fr
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
-  const locales: Locale[] = ['en', 'ja'];
-  return locales.flatMap((locale) =>
-    posts.map((post) => ({
-      params: { locale, slug: post.slug },
-      props: { post, locale },
-    }))
+  const allLocales: Locale[] = ['en', 'ja'];
+  return allLocales.flatMap((locale) =>
+    posts
+      .filter((post) => (post.data.locales ?? allLocales).includes(locale))
+      .map((post) => ({
+        params: { locale, slug: post.slug },
+        props: { post, locale },
+      }))
   );
 }
 
@@ -29,6 +31,10 @@ const formattedDate = new Date(post.data.date).toLocaleDateString(
 
 const switchPath = getSwitchLocalePath(Astro.url);
 const t = useTranslations(locale);
+
+// Only offer the language switch when the post is actually published in both
+// locales (a single-locale post has no counterpart route to switch to).
+const isBilingual = (post.data.locales ?? ['en', 'ja']).length > 1;
 ---
 
 <BlogLayout title={title} description={getPostExcerpt(post.data, locale)} image={post.data.ogImage?.url || post.data.coverImage}>
@@ -37,7 +43,7 @@ const t = useTranslations(locale);
       <p class="md-back-link">
         <a href={`/${locale}/`}>&larr; Jun Kawasaki.</a>
       </p>
-      <a href={switchPath} class="md-lang-switch">{t('lang.switch')}</a>
+      {isBilingual && <a href={switchPath} class="md-lang-switch">{t('lang.switch')}</a>}
     </div>
 
     <hr />

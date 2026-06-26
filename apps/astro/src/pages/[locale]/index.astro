@@ -18,7 +18,12 @@ export async function getStaticPaths() {
 const locale = Astro.params.locale as Locale;
 const posts = await getCollection("posts");
 
-const sortedPosts = posts.sort((a, b) =>
+// Only list posts published in this locale (default: all locales).
+const localePosts = posts.filter(
+  (post) => (post.data.locales ?? ['en', 'ja']).includes(locale)
+);
+
+const sortedPosts = localePosts.sort((a, b) =>
   new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
 );
 

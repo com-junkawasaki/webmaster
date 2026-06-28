@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" font-family="ui-sans-serif, -apple-system, 'Helvetica Neue', sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f2937"/>
+    </marker>
+    <style>
+      .panel { fill: #fafafa; stroke: #e5e7eb; stroke-width: 1; }
+      .title { font-size: 18px; font-weight: 600; fill: #111827; }
+      .subtitle { font-size: 12px; fill: #6b7280; }
+      .word { font-size: 13px; fill: #111827; font-weight: 500; }
+      .gloss { font-size: 11px; fill: #6b7280; }
+      .node { fill: #ffffff; stroke: #1f2937; stroke-width: 1.5; }
+      .root { fill: #fef3c7; stroke: #d97706; stroke-width: 2; }
+      .edge { stroke: #1f2937; stroke-width: 1.5; fill: none; }
+      .edge-mesh { stroke: #dc2626; stroke-width: 1.2; fill: none; opacity: 0.55; }
+      .metric { font-size: 11px; fill: #374151; font-family: ui-monospace, 'SF Mono', monospace; }
+      .label { font-size: 10px; fill: #9ca3af; }
+      .heading { font-size: 22px; font-weight: 700; fill: #111827; }
+      .deck { font-size: 13px; fill: #4b5563; }
+    </style>
+  </defs>
+
+  <!-- Header -->
+  <text x="480" y="38" text-anchor="middle" class="heading">The Structure of Love — Vertical or Horizontal</text>
+  <text x="480" y="60" text-anchor="middle" class="deck">Two social topologies of love: a rooted hierarchy vs. a non-separating mesh</text>
+
+  <!-- ======================== Panel 1: Vertical (hierarchy) ======================== -->
+  <rect x="30" y="90" width="430" height="490" rx="10" class="panel"/>
+  <text x="245" y="120" text-anchor="middle" class="title">Vertical · 垂直</text>
+  <text x="245" y="138" text-anchor="middle" class="subtitle">hierarchy · rooted tree · top-down (agape)</text>
+
+  <!-- edges first (drawn under nodes), directed downward from the apex -->
+  <path d="M 245,206 L 180,242" class="edge" marker-end="url(#arrow)"/>
+  <path d="M 245,206 L 310,242" class="edge" marker-end="url(#arrow)"/>
+  <path d="M 175,282 L 145,318" class="edge" marker-end="url(#arrow)"/>
+  <path d="M 175,282 L 210,318" class="edge" marker-end="url(#arrow)"/>
+  <path d="M 315,282 L 280,318" class="edge" marker-end="url(#arrow)"/>
+  <path d="M 315,282 L 350,318" class="edge" marker-end="url(#arrow)"/>
+
+  <!-- apex (single source) -->
+  <circle cx="245" cy="185" r="24" class="root"/>
+  <text x="245" y="190" text-anchor="middle" class="word">神</text>
+
+  <!-- layer 2 -->
+  <circle cx="175" cy="262" r="20" class="node"/>
+  <circle cx="315" cy="262" r="20" class="node"/>
+
+  <!-- layer 3 (individuals) -->
+  <circle cx="145" cy="338" r="18" class="node"/>
+  <circle cx="210" cy="338" r="18" class="node"/>
+  <circle cx="280" cy="338" r="18" class="node"/>
+  <circle cx="350" cy="338" r="18" class="node"/>
+
+  <text x="245" y="380" text-anchor="middle" class="label">love descends from a single source; it cannot return up the same edge</text>
+
+  <!-- metric box -->
+  <rect x="50" y="395" width="390" height="150" rx="6" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="245" y="417" text-anchor="middle" class="title" font-size="14">order — 上から下へ</text>
+  <text x="65" y="440" class="metric">topology       : rooted tree (DAG)</text>
+  <text x="65" y="458" class="metric">β₁ (cycles)    : ≈ 0    (acyclic)</text>
+  <text x="65" y="476" class="metric">reciprocity    : ≈ 0    (one-way edges)</text>
+  <text x="65" y="494" class="metric">centralization : ≈ 1    (single hub)</text>
+  <line x1="65" y1="506" x2="425" y2="506" stroke="#e5e7eb"/>
+  <text x="65" y="524" class="subtitle">One apex, one mediator. Everyone receives from</text>
+  <text x="65" y="540" class="subtitle">above. Order is preserved — but love is owed, not mutual.</text>
+
+  <!-- ======================== Panel 2: Horizontal (mesh) ======================== -->
+  <rect x="500" y="90" width="430" height="490" rx="10" class="panel"/>
+  <text x="715" y="120" text-anchor="middle" class="title">Horizontal · 水平</text>
+  <text x="715" y="138" text-anchor="middle" class="subtitle">mesh · peer-to-peer · 自他非分離</text>
+
+  <!-- mesh edges (complete graph over 6 ring nodes), undirected & mutual -->
+  <!-- nodes: A(797,240) B(756,311) C(674,311) D(633,240) E(674,169) F(756,169) -->
+  <path d="M 797,240 L 756,311" class="edge-mesh"/>
+  <path d="M 797,240 L 674,311" class="edge-mesh"/>
+  <path d="M 797,240 L 633,240" class="edge-mesh"/>
+  <path d="M 797,240 L 674,169" class="edge-mesh"/>
+  <path d="M 797,240 L 756,169" class="edge-mesh"/>
+  <path d="M 756,311 L 674,311" class="edge-mesh"/>
+  <path d="M 756,311 L 633,240" class="edge-mesh"/>
+  <path d="M 756,311 L 674,169" class="edge-mesh"/>
+  <path d="M 756,311 L 756,169" class="edge-mesh"/>
+  <path d="M 674,311 L 633,240" class="edge-mesh"/>
+  <path d="M 674,311 L 674,169" class="edge-mesh"/>
+  <path d="M 674,311 L 756,169" class="edge-mesh"/>
+  <path d="M 633,240 L 674,169" class="edge-mesh"/>
+  <path d="M 633,240 L 756,169" class="edge-mesh"/>
+  <path d="M 674,169 L 756,169" class="edge-mesh"/>
+
+  <!-- ring nodes (no root): self / other are interchangeable -->
+  <circle cx="797" cy="240" r="20" class="node"/><text x="797" y="245" text-anchor="middle" class="word">我</text>
+  <circle cx="756" cy="311" r="20" class="node"/><text x="756" y="316" text-anchor="middle" class="word">他</text>
+  <circle cx="674" cy="311" r="20" class="node"/><text x="674" y="316" text-anchor="middle" class="word">我</text>
+  <circle cx="633" cy="240" r="20" class="node"/><text x="633" y="245" text-anchor="middle" class="word">他</text>
+  <circle cx="674" cy="169" r="20" class="node"/><text x="674" y="174" text-anchor="middle" class="word">我</text>
+  <circle cx="756" cy="169" r="20" class="node"/><text x="756" y="174" text-anchor="middle" class="word">他</text>
+
+  <text x="715" y="380" text-anchor="middle" class="label">no apex — every node connects to all; love returns along every edge</text>
+
+  <!-- metric box -->
+  <rect x="520" y="395" width="390" height="150" rx="6" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="715" y="417" text-anchor="middle" class="title" font-size="14">non-separation — 自他非分離</text>
+  <text x="535" y="440" class="metric">topology       : mesh (≈ complete)</text>
+  <text x="535" y="458" class="metric">β₁ (cycles)    : high  (many loops)</text>
+  <text x="535" y="476" class="metric">reciprocity    : ≈ 1    (mutual edges)</text>
+  <text x="535" y="494" class="metric">centralization : ≈ 0    (no hub)</text>
+  <line x1="535" y1="506" x2="895" y2="506" stroke="#e5e7eb"/>
+  <text x="535" y="524" class="subtitle">No one above another. Love is mutual on every edge.</text>
+  <text x="535" y="540" class="subtitle">The self expands until it is the whole graph.</text>
+
+  <!-- footer -->
+  <text x="480" y="605" text-anchor="middle" class="subtitle">Source: Kawasaki, “Love as Self-Expansion” (2025) — vertical agape (hierarchy) vs. horizontal 自他非分離 (mesh)</text>
+</svg>

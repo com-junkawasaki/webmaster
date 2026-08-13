@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 525" font-family="ui-sans-serif, -apple-system, 'Helvetica Neue', sans-serif">
+  <defs>
+    <style>
+      .heading { font-size: 22px; font-weight: 700; fill: #111827; }
+      .deck { font-size: 13px; fill: #4b5563; }
+      .word { font-size: 14px; font-weight: 600; fill: #111827; }
+      .gloss { font-size: 11px; fill: #6b7280; }
+      .enso { fill: #ffffff; stroke: #1f2937; stroke-width: 1.5; }
+      .enso8 { fill: #ffffff; stroke: #1f2937; stroke-width: 4; }
+      .subtitle { font-size: 12px; fill: #6b7280; }
+    </style>
+
+    <symbol id="ox" viewBox="0 0 50 50">
+      <g fill="#fef3c7" stroke="#d97706" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
+        <ellipse cx="28" cy="28" rx="13" ry="8"/>
+        <circle cx="13" cy="25" r="5.5"/>
+      </g>
+      <g fill="none" stroke="#d97706" stroke-width="1.8" stroke-linecap="round">
+        <path d="M9,21 L6,14"/>
+        <path d="M16,21 L13,14"/>
+        <path d="M20,35 L20,43"/>
+        <path d="M27,36 L27,44"/>
+        <path d="M33,36 L33,44"/>
+        <path d="M38,35 L38,43"/>
+        <path d="M41,25 Q46,27 44,33"/>
+      </g>
+      <circle cx="11" cy="24" r="1.1" fill="#7c2d12"/>
+    </symbol>
+
+    <symbol id="person" viewBox="0 0 50 50">
+      <g fill="none" stroke="#1f2937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="25" cy="13" r="5" fill="#ffffff"/>
+        <path d="M25,18 L25,33"/>
+        <path d="M25,23 L17,29"/>
+        <path d="M25,23 L33,29"/>
+        <path d="M25,33 L18,44"/>
+        <path d="M25,33 L32,44"/>
+      </g>
+    </symbol>
+
+    <symbol id="prints" viewBox="0 0 50 50">
+      <g fill="#9ca3af">
+        <ellipse cx="15" cy="35" rx="2.4" ry="3.6" transform="rotate(20 15 35)"/>
+        <ellipse cx="25" cy="27" rx="2.4" ry="3.6" transform="rotate(20 25 27)"/>
+        <ellipse cx="35" cy="19" rx="2.4" ry="3.6" transform="rotate(20 35 19)"/>
+      </g>
+    </symbol>
+
+    <symbol id="tree" viewBox="0 0 50 50">
+      <rect x="23" y="27" width="4" height="16" fill="#92400e"/>
+      <circle cx="25" cy="21" r="12" fill="none" stroke="#16a34a" stroke-width="2"/>
+      <path d="M16,43 q9,3 18,0" stroke="#16a34a" stroke-width="1.5" fill="none"/>
+    </symbol>
+  </defs>
+
+  <!-- Header -->
+  <text x="480" y="38" text-anchor="middle" class="heading">Ten Ox-Herding Pictures · 十牛図</text>
+  <text x="480" y="60" text-anchor="middle" class="deck">Kuòān Shīyuǎn (廓庵, 12th c.) — ten stages of awakening, ending in 入鄽垂手, the return to the marketplace</text>
+
+  <!-- ============ Row 1 (stages 1–5, cy=180) ============ -->
+  <!-- 1 尋牛 : the herdsman, searching -->
+  <circle cx="120" cy="180" r="52" class="enso"/>
+  <use href="#person" x="95" y="155" width="50" height="50"/>
+  <text x="120" y="254" text-anchor="middle" class="word">1 · 尋牛</text>
+  <text x="120" y="270" text-anchor="middle" class="gloss">Searching for the Ox</text>
+
+  <!-- 2 見跡 : footprints -->
+  <circle cx="300" cy="180" r="52" class="enso"/>
+  <use href="#prints" x="272" y="152" width="56" height="56"/>
+  <text x="300" y="254" text-anchor="middle" class="word">2 · 見跡</text>
+  <text x="300" y="270" text-anchor="middle" class="gloss">Seeing the Traces</text>
+
+  <!-- 3 見牛 : first glimpse of the ox -->
+  <circle cx="480" cy="180" r="52" class="enso"/>
+  <use href="#ox" x="452" y="152" width="56" height="56"/>
+  <text x="480" y="254" text-anchor="middle" class="word">3 · 見牛</text>
+  <text x="480" y="270" text-anchor="middle" class="gloss">Seeing the Ox</text>
+
+  <!-- 4 得牛 : catching the ox -->
+  <circle cx="660" cy="180" r="52" class="enso"/>
+  <use href="#ox" x="630" y="166" width="48" height="48"/>
+  <use href="#person" x="660" y="150" width="30" height="30"/>
+  <text x="660" y="254" text-anchor="middle" class="word">4 · 得牛</text>
+  <text x="660" y="270" text-anchor="middle" class="gloss">Catching the Ox</text>
+
+  <!-- 5 牧牛 : herding -->
+  <circle cx="840" cy="180" r="52" class="enso"/>
+  <use href="#ox" x="810" y="166" width="48" height="48"/>
+  <use href="#person" x="840" y="150" width="30" height="30"/>
+  <text x="840" y="254" text-anchor="middle" class="word">5 · 牧牛</text>
+  <text x="840" y="270" text-anchor="middle" class="gloss">Herding the Ox</text>
+
+  <!-- ============ Row 2 (stages 6–10, cy=360) ============ -->
+  <!-- 6 騎牛帰家 : riding the ox home -->
+  <circle cx="120" cy="360" r="52" class="enso"/>
+  <use href="#ox" x="94" y="354" width="48" height="48"/>
+  <use href="#person" x="105" y="330" width="30" height="30"/>
+  <text x="120" y="434" text-anchor="middle" class="word">6 · 騎牛帰家</text>
+  <text x="120" y="450" text-anchor="middle" class="gloss">Riding the Ox Home</text>
+
+  <!-- 7 忘牛存人 : the ox forgotten, the self remains -->
+  <circle cx="300" cy="360" r="52" class="enso"/>
+  <use href="#person" x="275" y="335" width="50" height="50"/>
+  <text x="300" y="434" text-anchor="middle" class="word">7 · 忘牛存人</text>
+  <text x="300" y="450" text-anchor="middle" class="gloss">Ox Forgotten, Self Remains</text>
+
+  <!-- 8 人牛俱忘 : both ox and self forgotten — the empty ensō -->
+  <circle cx="480" cy="360" r="52" class="enso8"/>
+  <text x="480" y="434" text-anchor="middle" class="word">8 · 人牛俱忘</text>
+  <text x="480" y="450" text-anchor="middle" class="gloss">Both Ox and Self Forgotten</text>
+
+  <!-- 9 返本還源 : returning to the source -->
+  <circle cx="660" cy="360" r="52" class="enso"/>
+  <use href="#tree" x="632" y="332" width="56" height="56"/>
+  <text x="660" y="434" text-anchor="middle" class="word">9 · 返本還源</text>
+  <text x="660" y="450" text-anchor="middle" class="gloss">Returning to the Source</text>
+
+  <!-- 10 入鄽垂手 : entering the marketplace with helping hands -->
+  <circle cx="840" cy="360" r="52" class="enso"/>
+  <use href="#person" x="815" y="335" width="50" height="50"/>
+  <text x="840" y="434" text-anchor="middle" class="word">10 · 入鄽垂手</text>
+  <text x="840" y="450" text-anchor="middle" class="gloss">Entering the Marketplace</text>
+
+  <!-- footer -->
+  <text x="480" y="508" text-anchor="middle" class="subtitle">Source: Kuòān Shīyuǎn (廓庵師遠), “Ten Ox-Herding Pictures” (十牛図), 12th c. — schematic diagram, drawn for this article (CC BY 4.0)</text>
+</svg>

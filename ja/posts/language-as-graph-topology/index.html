@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="ja"> <head><meta charset="UTF-8"><meta name="description" content="依存構造をグラフとして見ると、言語ごとに異なる「計算の形」が浮かび上がる。fold する日本語、apply する英語、scatter するアラビア語。"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/jpeg" href="/favicon/623495.jpeg"><meta name="generator" content="Astro v5.18.1"><!-- Canonical URL --><link rel="canonical" href="https://junkawasaki.com/ja/posts/language-as-graph-topology/"><!-- Primary Meta Tags --><title>言語をグラフ位相で読む — 5つの言語、3つの計算形式 | Jun Kawasaki</title><meta name="title" content="言語をグラフ位相で読む — 5つの言語、3つの計算形式 | Jun Kawasaki"><meta name="description" content="依存構造をグラフとして見ると、言語ごとに異なる「計算の形」が浮かび上がる。fold する日本語、apply する英語、scatter するアラビア語。"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://junkawasaki.com/ja/posts/language-as-graph-topology/"><meta property="og:title" content="言語をグラフ位相で読む — 5つの言語、3つの計算形式 | Jun Kawasaki"><meta property="og:description" content="依存構造をグラフとして見ると、言語ごとに異なる「計算の形」が浮かび上がる。fold する日本語、apply する英語、scatter するアラビア語。"><meta property="og:image" content="https://junkawasaki.com/assets/posts/language-as-graph-topology/topology-types.svg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://junkawasaki.com/ja/posts/language-as-graph-topology/"><meta property="twitter:title" content="言語をグラフ位相で読む — 5つの言語、3つの計算形式 | Jun Kawasaki"><meta property="twitter:description" content="依存構造をグラフとして見ると、言語ごとに異なる「計算の形」が浮かび上がる。fold する日本語、apply する英語、scatter するアラビア語。"><meta property="twitter:image" content="https://junkawasaki.com/assets/posts/language-as-graph-topology/topology-types.svg"><!-- Theme --><meta name="theme-color" content="#ffffff"><!-- Favicon --><link rel="apple-touch-icon" sizes="180x180" href="/favicon/623495.jpeg"><link rel="icon" type="image/jpeg" sizes="32x32" href="/favicon/623495.jpeg"><link rel="icon" type="image/jpeg" sizes="16x16" href="/favicon/623495.jpeg"><link rel="manifest" href="/favicon/site.webmanifest"><style>.markdown{font-size:1.125rem;line-height:1.75}.markdown p,.markdown ul,.markdown ol,.markdown blockquote{margin-top:1.5rem;margin-bottom:1.5rem}.markdown h2{font-size:1.875rem;margin-top:3rem;margin-bottom:1rem;line-height:1.3}.markdown h3{font-size:1.5rem;margin-top:2rem;margin-bottom:1rem;line-height:1.3}.markdown .math-formula{font-family:Times New Roman,serif;font-style:italic;background-color:#f3f4f6;padding:1rem;margin:1rem 0;border-radius:.25rem;overflow-x:auto;text-align:center;line-height:1.6;font-size:1.1rem}.dark .markdown .math-formula{background-color:#1f2937;color:#fff}.markdown .mathBlock{margin:2rem 0;padding:1rem;background-color:#f3f4f6;border-radius:.5rem;overflow-x:auto;text-align:center}.dark .markdown .mathBlock{background-color:#1f2937}.markdown .katex-display{margin:0}:global(.dark) .katex,:global(.dark) .katex .katex-html,:global(.dark) .katex .katex-mathml{color:#fff!important}:global(.dark) .katex-html{color:#ccc!important}:global(.dark) .katex .mord,:global(.dark) .katex .mord .textsf,:global(.dark) .katex .mord .textrm,:global(.dark) .katex .mord .texttt,:global(.dark) .katex .mord .textbf,:global(.dark) .katex .mord .mathit,:global(.dark) .katex .mord .textit,:global(.dark) .katex .mord .mathdefault{color:#fff!important}:global(.dark) .katex .mbin{color:#fff!important}:global(.dark) .katex .mrel{color:#fff!important}:global(.dark) .katex .mopen,:global(.dark) .katex .mclose{color:#fff!important}:global(.dark) .katex .mfrac{color:#fff!important}:global(.dark) .katex .mfrac .frac-line{border-bottom-color:#fff!important}:global(.dark) .katex .minner{color:#fff!important}:global(.dark) .katex .mop{color:#fff!important}:global(.dark) .katex .msupsub{color:#fff!important}:global(.dark) .katex .vlist{color:#fff!important}:global(.dark) .katex .overline .overline-line{border-top-color:#fff!important}:global(.dark) .katex .underline .underline-line{border-bottom-color:#fff!important}:global(.dark) .mathBlock{background-color:#1f2937!important}:global(.dark) .math-formula{background-color:#1f2937!important;color:#fff!important}.md-nav-row[data-astro-cid-3osipt2g]{display:flex;align-items:baseline;justify-content:space-between}.md-lang-switch[data-astro-cid-3osipt2g]{color:#0969da;text-decoration:none;font-size:.875em;font-family:Poppins,Noto Sans JP,ui-sans-serif,system-ui,sans-serif;font-weight:600}.md-lang-switch[data-astro-cid-3osipt2g]:hover{text-decoration:underline}body[data-mode=dark] .md-lang-switch[data-astro-cid-3osipt2g]{color:#58a6ff}.md-back-link[data-astro-cid-3osipt2g]{margin:0;font-size:.875em}.md-back-link[data-astro-cid-3osipt2g] a[data-astro-cid-3osipt2g]{color:#0969da;text-decoration:none;font-family:Noto Sans JP,Poppins,ui-sans-serif,system-ui,sans-serif;font-weight:600}.md-back-link[data-astro-cid-3osipt2g] a[data-astro-cid-3osipt2g]:hover{text-decoration:underline}body[data-mode=dark] .md-back-link[data-astro-cid-3osipt2g] a[data-astro-cid-3osipt2g]{color:#58a6ff}hr[data-astro-cid-3osipt2g]{height:.25em;padding:0;margin:1.5em 0;background-color:#d0d7de;border:0}body[data-mode=dark] hr[data-astro-cid-3osipt2g]{background-color:#30363d}.md-article-title[data-astro-cid-3osipt2g]{font-size:2em;font-weight:600;padding-bottom:.3em;border-bottom:1px solid #d0d7de;margin-top:0;margin-bottom:.5em;line-height:1.3;font-family:Noto Sans JP,Poppins,ui-sans-serif,system-ui,sans-serif}body[data-mode=dark] .md-article-title[data-astro-cid-3osipt2g]{border-bottom-color:#30363d}.md-article-meta[data-astro-cid-3osipt2g]{color:#57606a;font-size:.875em;margin-bottom:1.5em;font-family:Poppins,Noto Sans JP,ui-sans-serif,system-ui,sans-serif}body[data-mode=dark] .md-article-meta[data-astro-cid-3osipt2g]{color:#8b949e}.md-article-image[data-astro-cid-3osipt2g]{max-width:100%;border-radius:6px;margin-bottom:0}
+</style>
+<link rel="stylesheet" href="/_astro/index.gjh7dBNp.css"></head> <body data-mode="light"> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var l=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>y(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[h,e]=t;return h in i?i[h](e):void 0},a=t=>t.map(o),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([h,e])=>[h,o(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},p=this.querySelectorAll("template[data-astro-template]");for(let r of p){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let d,m=this.hydrator(this);d=performance.now(),await m(this.Component,u,n,{client:this.getAttribute("client")}),d&&this.setAttribute("client-render-time",(performance.now()-d).toString()),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[p,{default:u}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),d=this.getAttribute("component-export")||"default";if(!d.includes("."))this.Component=p[d];else{this.Component=p;for(let m of d.split("."))this.Component=this.Component[m]}return this.hydrator=u,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="2qgH0U" prefix="r1" component-url="/_astro/ThemeSwitcher.DOF6CB_r.js" component-export="default" renderer-url="/_astro/client.t3cO19W0.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;ThemeSwitcher&quot;,&quot;value&quot;:true}" server-render-time="0.3577500000001237" await-children><button style="position:fixed;right:1.5rem;top:1.5rem;z-index:50;background:none;border:none;cursor:pointer;padding:0.25rem;font-size:0.75rem;color:#57606a;font-family:&#x27;Poppins&#x27;, &#x27;Noto Sans JP&#x27;, ui-sans-serif, system-ui, sans-serif;opacity:0.6;transition:opacity 0.2s" aria-label="Toggle theme" title="Theme: light">[dark]</button><!--astro:end--></astro-island>   <main class="md-body" data-astro-cid-3osipt2g> <div class="md-nav-row" data-astro-cid-3osipt2g> <p class="md-back-link" data-astro-cid-3osipt2g> <a href="/ja/" data-astro-cid-3osipt2g>&larr; Jun Kawasaki.</a> </p> <a href="/en/posts/language-as-graph-topology/" class="md-lang-switch" data-astro-cid-3osipt2g>English</a> </div> <hr data-astro-cid-3osipt2g> <article data-astro-cid-3osipt2g> <h1 class="md-article-title" data-astro-cid-3osipt2g>言語をグラフ位相で読む — 5つの言語、3つの計算形式</h1> <p class="md-article-meta" data-astro-cid-3osipt2g> Jun Kawasaki &mdash; <time datetime="2026-04-30" data-astro-cid-3osipt2g>2026年4月30日</time> </p> <img src="/assets/posts/language-as-graph-topology/topology-types.svg" alt="Cover Image for 言語をグラフ位相で読む — 5つの言語、3つの計算形式" class="md-article-image" data-astro-cid-3osipt2g> <hr data-astro-cid-3osipt2g> <div class="prose" data-astro-cid-3osipt2g> <h1 id="言語をグラフ位相で読む">言語をグラフ位相で読む</h1>
+
+<p><em>プレプリント <a href="https://github.com/com-junkawasaki/kotoba-topology">Languages as Graph Topologies</a> (Kawasaki, 2026) の要約とブログ向け再構成。</em></p>
+
+<hr/>
+<h2 id="1-出発点--文法は計算の形である">1. 出発点 — 文法は計算の形である</h2><p>英語、日本語、ヒンディー語、フランス語、アラビア語。語順は SVO・SOV・VSO に分かれる。これは表面的な並び替えではなく、<strong>情報をどう束ねて処理するか</strong> という計算戦略の差である、というのが本稿の主張だ。</p><p>文を「単語の列」ではなく <strong>依存グラフ</strong> <code>G = (V, E)</code> として見る。頂点 <code>V</code> は語、辺 <code>E</code> は head→dependent の関係。すると言語ごとに異なる位相 (topology) が立ち上がる。</p>
+
+<hr/>
+<h2 id="2-5-つの位相メトリック">2. 5 つの位相メトリック</h2><p>論文では次の 5 つを定義する。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Metric</th><th>Definition</th><th>Reads as</th></tr></thead><tbody><tr><td>Tree depth <code>D(T)</code></td><td>`max_v dist(r, v) /</td><td>V</td></tr><tr><td>Branching factor <code>B(T)</code></td><td>mean out-degree of internal nodes</td><td>how wide each head fans</td></tr><tr><td>Head Directionality Index (HDI)</td><td>fraction of edges where head precedes dependent</td><td>head-initial vs. head-final</td></tr><tr><td>Crossing Number (CN)</td><td>fraction of arc pairs that cross</td><td>non-projectivity</td></tr><tr><td>Mean Dependency Distance (MDD)</td><td>mean linear distance between head and dependent</td><td>working-memory load</td></tr></tbody></table>
+<p>さらに代数的位相幾何から <strong>Betti 数</strong> を借りる。<code>β₀</code> は連結成分数、<code>β₁</code> は独立 1-cycle 数。射影的な木では <code>β₁ = 0</code>。非射影構造が入ると <code>β₁ &gt; 0</code> になる。これが「文法的自由度の位相不変量」になる。</p>
+
+<hr/>
+<h2 id="3-3-つの計算形式">3. 3 つの計算形式</h2><p>5 言語をこれらの軸に乗せると、<strong>3 つの位相クラス</strong> に綺麗に分かれる。各クラスはそのまま情報処理の比喩 (関数型プログラミングの操作) になる。</p>
+
+<p><img src="/assets/posts/language-as-graph-topology/topology-types.svg" alt="Three computational topologies of language"/></p>
+<h3 id="31-convergent--fold-日本語ヒンディー語-sov">3.1 Convergent — <code>fold</code> (日本語・ヒンディー語, SOV)</h3><p>文：「猫が 鼠を 追いかけた」。すべての依存辺が文末動詞 <code>追いかけた</code> に向かって集束する。HDI ≈ 0.15 (head-final), CN ≈ 0.10 (ほぼ射影的), β₁ ≈ 0.05 (最も木に近い)。</p><p>これは関数型での <strong><code>fold</code></strong> に対応する。引数を左から右へ蓄積し、最後の動詞でリダクションが閉じる。日本語の助詞 (<code>-が</code>, <code>-を</code>, <code>-に</code>) は引数のラベルであり、動詞は accumulator を受け取って評価する関数だ。</p>
+
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">-- Japanese sentence as a fold</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">sentence </span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> foldl (flip (</span><span style="color:#6F42C1;--shiki-dark:#B392F0">$</span><span style="color:#24292E;--shiki-dark:#E1E4E8">)) verb [subject, object]</span></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">-- Arguments are pushed onto the stack; the verb at the end pops and computes.</span></span></code></pre>
+<h3 id="32-divergent--apply-英語フランス語-svo">3.2 Divergent — <code>apply</code> (英語・フランス語, SVO)</h3><p>文：「The cat chased the mouse」。動詞 <code>chased</code> が早い段階で現れ、左に主語を、右に目的語を分岐させる。HDI ≈ 0.75 (head-initial), β₁ ≈ 0.10。</p><p>これは <strong><code>apply</code></strong> に対応する。動詞が関数として早期にコミットし、パーサは前方予測で残りの引数スロットを埋めにいく。英語の不自然な省略 (例：<code>What did you give ___?</code>) が許される構造的余地は、動詞の引数フレームが先に立つこの位相から来ている。</p>
+
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">-- English sentence as an application</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">sentence </span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> chased subject object</span></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">-- Verb is curried; arguments are supplied as they appear.</span></span></code></pre>
+<h3 id="33-broadcast--scatter-アラビア語-vso">3.3 Broadcast — <code>scatter</code> (アラビア語, VSO)</h3><p>文：<code>طارد قطٌّ فأرًا</code> (verb-subject-object)。動詞が文頭にあり、root から主語・目的語が同時に枝分かれする。HDI ≈ 0.60, β₁ ≈ 0.22 (5 言語中最大)。</p><p>これは MPI の <strong><code>scatter</code></strong> や broadcast に近い。動詞が一気に複数の slot 要件を投射し、豊富な形態素的一致 (動詞が主語の人称・数を屈折で抱える) によって主語チャネルが圧縮される。語順の自由度 (= 高い β₁) は、形態論で関係を担保するからこそ許される。</p>
+
+<hr/>
+<h2 id="4-位相空間における言語クラスタ">4. 位相空間における言語クラスタ</h2><p>HDI と β₁ の 2 軸を取って 5 言語をプロットすると、3 クラスタが幾何的にも分離する。</p>
+
+<p><img src="/assets/posts/language-as-graph-topology/metric-space.svg" alt="HDI x beta-1 scatter showing the three clusters"/></p>
+<p>注目すべきは <strong>日本語とヒンディー語の分離</strong> である。両者ともに SOV / head-final と分類されるが、日本語は射影的 (β₁ ≈ 0.05)、ヒンディー語は scrambling を許すぶん非射影的 (β₁ ≈ 0.18)。離散的な「SOV か否か」では捉えられないこの差を、位相不変量は連続量として記述する。</p>
+
+<hr/>
+<h2 id="5-なぜ位相か--形と計算のトレードオフ">5. なぜ位相か — 形と計算のトレードオフ</h2><p>論文の中心定理 (Topology–Computation Correspondence) は、言語 <code>L</code> の計算戦略 <code>C(L)</code> が位相特徴ベクトル <code>(HDI, CN, β₁)</code> の関数であると主張する。</p>
+
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8;overflow-x:auto" tabindex="0" data-language="plaintext"><code><span class="line"><span>C(L) = f( HDI(T), CN(T), β₁(T) )</span></span></code></pre>
+<p>そして観察される基本的トレードオフ：</p><blockquote>
+<p>文法関係を <strong>位置で符号化する</strong> (β₁ → 0) か、<strong>形態素で符号化する</strong> (β₁ ↑) か。</p>
+</blockquote><p>これは情報理論的に等価である。日本語と英語は前者を、アラビア語とヒンディー語は後者を選ぶ。どちらも root に向けた依存関係を保つが、その「保ち方」が位相に出る。</p>
+
+<hr/>
+<h2 id="6-nlp-への含意--アーキテクチャは位相を見るべきか">6. NLP への含意 — アーキテクチャは位相を見るべきか</h2><p>現在の Transformer は、すべての言語を同じアーキテクチャで処理する。位置エンコーディングは線形であり、<code>fold</code> 言語と <code>apply</code> 言語の構造的差異は attention の重みの中にしか反映されない。</p><p>しかし論文の主張に従えば、これは <strong>位相のミスマッチ</strong> である。日本語のように引数を末尾の動詞に集束させる言語に対しては、<code>fold</code>-friendly な inductive bias (例：右から左への evaluation order、final-head に向けた causal mask) が原理的には合理的である。</p><p>この観点は、依存解析の精度を上げる以上の含意を持つ。<strong>言語ごとに inductive bias を変える</strong> ことが、Transformer の universal architecture 仮説に対する一つの反論材料になる。</p>
+
+<hr/>
+<h2 id="7-まとめ">7. まとめ</h2><ul>
+<li>文は依存グラフ。グラフには位相がある。</li>
+<li>HDI と β₁ を取れば、5 言語は <strong>convergent / divergent / broadcast</strong> の 3 クラスタに分かれる。</li>
+<li>各クラスタは関数型の <strong>fold / apply / scatter</strong> に対応する計算形式である。</li>
+<li>位相は「文法を位置で符号化するか、形態素で符号化するか」というトレードオフの幾何的記述になっている。</li>
+</ul><p>言語は孤立した文法体系ではなく、<strong>情報処理の異なる計算機</strong> である。位相幾何はそれを見るためのレンズだ。</p><hr/><p>詳細な定義、Betti 数の計算手法、対象 5 言語のコーパス分析は <a href="https://github.com/com-junkawasaki/kotoba-topology"><code>com-junkawasaki/kotoba-topology</code></a> のプレプリント PDF を参照。</p>
+
+<hr/>
+<h2 id="references">References</h2><ul>
+<li>Kawasaki, J. (2026). <em>Languages as Graph Topologies: A Computational Framework for Cross-Linguistic Syntactic Structure Analysis.</em> Preprint.</li>
+<li>Tesnière, L. (1959). <em>Éléments de syntaxe structurale.</em></li>
+<li>Mel’čuk, I. (1988). <em>Dependency Syntax.</em></li>
+<li>Liu, H. (2008). “Dependency Distance as a Metric of Language Comprehension Difficulty.”</li>
+<li>Futrell, R., Mahowald, K., Gibson, E. (2015). “Large-scale evidence of dependency length minimization in 37 languages.”</li>
+<li>Hatcher, A. (2002). <em>Algebraic Topology.</em> Cambridge UP.</li>
+<li>Greenberg, J. H. (1963). “Some universals of grammar with particular reference to the order of meaningful elements.”</li>
+</ul>
+ </div> </article> </main>  <footer class="md-footer" data-astro-cid-sz7xmlte> <hr data-astro-cid-sz7xmlte> <p class="md-footer-text" data-astro-cid-sz7xmlte>All rights reserved by Jun Kawasaki. @CC BY-NC-SA</p> </footer>   </body></html> 

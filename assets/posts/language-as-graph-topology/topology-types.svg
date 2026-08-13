@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" font-family="ui-sans-serif, -apple-system, 'Helvetica Neue', sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f2937"/>
+    </marker>
+    <marker id="arrowAccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/>
+    </marker>
+    <style>
+      .panel { fill: #fafafa; stroke: #e5e7eb; stroke-width: 1; }
+      .title { font-size: 18px; font-weight: 600; fill: #111827; }
+      .subtitle { font-size: 12px; fill: #6b7280; }
+      .word { font-size: 14px; fill: #111827; font-weight: 500; }
+      .gloss { font-size: 11px; fill: #6b7280; }
+      .node { fill: #ffffff; stroke: #1f2937; stroke-width: 1.5; }
+      .verb { fill: #fef3c7; stroke: #d97706; stroke-width: 2; }
+      .edge { stroke: #1f2937; stroke-width: 1.5; fill: none; }
+      .edge-accent { stroke: #dc2626; stroke-width: 2; fill: none; }
+      .metric { font-size: 11px; fill: #374151; font-family: ui-monospace, 'SF Mono', monospace; }
+      .label { font-size: 10px; fill: #9ca3af; }
+      .heading { font-size: 22px; font-weight: 700; fill: #111827; }
+      .deck { font-size: 13px; fill: #4b5563; }
+    </style>
+  </defs>
+
+  <!-- Header -->
+  <text x="480" y="38" text-anchor="middle" class="heading">Languages as Graph Topologies</text>
+  <text x="480" y="60" text-anchor="middle" class="deck">Three computational shapes induced by dependency direction</text>
+
+  <!-- ======================== Panel 1: Convergent (SOV) ======================== -->
+  <rect x="30" y="90" width="290" height="490" rx="10" class="panel"/>
+  <text x="175" y="120" text-anchor="middle" class="title">Convergent</text>
+  <text x="175" y="138" text-anchor="middle" class="subtitle">SOV · head-final · Japanese, Hindi</text>
+
+  <!-- words on a line, verb at right -->
+  <!-- 猫が -->
+  <circle cx="80" cy="240" r="22" class="node"/>
+  <text x="80" y="244" text-anchor="middle" class="word">猫が</text>
+  <text x="80" y="278" text-anchor="middle" class="gloss">cat-NOM</text>
+
+  <!-- ねずみを -->
+  <circle cx="175" cy="240" r="22" class="node"/>
+  <text x="175" y="244" text-anchor="middle" class="word">鼠を</text>
+  <text x="175" y="278" text-anchor="middle" class="gloss">mouse-ACC</text>
+
+  <!-- 追いかけた (verb root) -->
+  <circle cx="270" cy="240" r="26" class="verb"/>
+  <text x="270" y="244" text-anchor="middle" class="word">追った</text>
+  <text x="270" y="282" text-anchor="middle" class="gloss">chased</text>
+
+  <!-- arrows convergent -->
+  <path d="M 80,218 Q 175,170 268,222" class="edge" marker-end="url(#arrow)"/>
+  <path d="M 175,218 Q 220,190 264,224" class="edge" marker-end="url(#arrow)"/>
+
+  <!-- annotation -->
+  <text x="175" y="345" text-anchor="middle" class="label">all edges flow → final verb</text>
+
+  <!-- metaphor box -->
+  <rect x="50" y="370" width="250" height="180" rx="6" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="175" y="392" text-anchor="middle" class="title" font-size="14">fold</text>
+  <text x="65" y="415" class="metric">HDI ≈ 0.15  (head-final)</text>
+  <text x="65" y="433" class="metric">CN  ≈ 0.10  (projective)</text>
+  <text x="65" y="451" class="metric">β₁  ≈ 0.05  (tree-like)</text>
+  <text x="65" y="469" class="metric">MDD ≈ 0.40  (compact)</text>
+  <line x1="65" y1="482" x2="285" y2="482" stroke="#e5e7eb"/>
+  <text x="65" y="500" class="subtitle">left-to-right accumulation;</text>
+  <text x="65" y="516" class="subtitle">arguments stack until the verb</text>
+  <text x="65" y="532" class="subtitle">closes the reduction.</text>
+
+  <!-- ======================== Panel 2: Divergent (SVO) ======================== -->
+  <rect x="335" y="90" width="290" height="490" rx="10" class="panel"/>
+  <text x="480" y="120" text-anchor="middle" class="title">Divergent</text>
+  <text x="480" y="138" text-anchor="middle" class="subtitle">SVO · head-initial · English, French</text>
+
+  <!-- The cat -->
+  <circle cx="385" cy="260" r="22" class="node"/>
+  <text x="385" y="264" text-anchor="middle" class="word">cat</text>
+
+  <!-- chased (verb at root, mid) -->
+  <circle cx="480" cy="200" r="26" class="verb"/>
+  <text x="480" y="204" text-anchor="middle" class="word">chased</text>
+
+  <!-- mouse -->
+  <circle cx="575" cy="260" r="22" class="node"/>
+  <text x="575" y="264" text-anchor="middle" class="word">mouse</text>
+
+  <!-- diverging arrows from verb -->
+  <path d="M 463,218 Q 425,250 393,250" class="edge" marker-end="url(#arrow)"/>
+  <path d="M 497,218 Q 535,250 567,250" class="edge" marker-end="url(#arrow)"/>
+
+  <text x="480" y="345" text-anchor="middle" class="label">verb projects → arguments fan out</text>
+
+  <rect x="355" y="370" width="250" height="180" rx="6" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="480" y="392" text-anchor="middle" class="title" font-size="14">apply</text>
+  <text x="370" y="415" class="metric">HDI ≈ 0.75  (head-initial)</text>
+  <text x="370" y="433" class="metric">CN  ≈ 0.20  (mostly proj.)</text>
+  <text x="370" y="451" class="metric">β₁  ≈ 0.10</text>
+  <text x="370" y="469" class="metric">MDD ≈ 0.50</text>
+  <line x1="370" y1="482" x2="590" y2="482" stroke="#e5e7eb"/>
+  <text x="370" y="500" class="subtitle">verb commits early; the parser</text>
+  <text x="370" y="516" class="subtitle">forward-predicts arguments to</text>
+  <text x="370" y="532" class="subtitle">fill the open positions.</text>
+
+  <!-- ======================== Panel 3: Broadcast (VSO) ======================== -->
+  <rect x="640" y="90" width="290" height="490" rx="10" class="panel"/>
+  <text x="785" y="120" text-anchor="middle" class="title">Broadcast</text>
+  <text x="785" y="138" text-anchor="middle" class="subtitle">VSO · head-initial · Arabic</text>
+
+  <!-- verb at left as root -->
+  <circle cx="700" cy="200" r="26" class="verb"/>
+  <text x="700" y="204" text-anchor="middle" class="word">طارد</text>
+  <text x="700" y="240" text-anchor="middle" class="gloss">chased-3SG</text>
+
+  <!-- subject -->
+  <circle cx="800" cy="270" r="22" class="node"/>
+  <text x="800" y="274" text-anchor="middle" class="word">قطّ</text>
+  <text x="800" y="306" text-anchor="middle" class="gloss">cat</text>
+
+  <!-- object -->
+  <circle cx="880" cy="200" r="22" class="node"/>
+  <text x="880" y="204" text-anchor="middle" class="word">فأر</text>
+  <text x="880" y="236" text-anchor="middle" class="gloss">mouse</text>
+
+  <!-- broadcast: verb fans to both -->
+  <path d="M 720,215 Q 760,260 783,265" class="edge-accent" marker-end="url(#arrowAccent)"/>
+  <path d="M 725,194 Q 800,170 858,198" class="edge-accent" marker-end="url(#arrowAccent)"/>
+
+  <text x="785" y="360" text-anchor="middle" class="label">single root broadcasts to both args</text>
+
+  <rect x="660" y="370" width="250" height="180" rx="6" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="785" y="392" text-anchor="middle" class="title" font-size="14">scatter</text>
+  <text x="675" y="415" class="metric">HDI ≈ 0.60  (head-initial)</text>
+  <text x="675" y="433" class="metric">CN  ≈ 0.25  (some non-proj.)</text>
+  <text x="675" y="451" class="metric">β₁  ≈ 0.22  (highest)</text>
+  <text x="675" y="469" class="metric">B   ≈ 0.55  (high branching)</text>
+  <line x1="675" y1="482" x2="895" y2="482" stroke="#e5e7eb"/>
+  <text x="675" y="500" class="subtitle">verb-initial, flat root; agreement</text>
+  <text x="675" y="516" class="subtitle">morphology compresses the</text>
+  <text x="675" y="532" class="subtitle">subject channel.</text>
+
+  <!-- footer -->
+  <text x="480" y="605" text-anchor="middle" class="subtitle">Source: Kawasaki, “Languages as Graph Topologies” (2026) — github.com/com-junkawasaki/kotoba-topology</text>
+</svg>

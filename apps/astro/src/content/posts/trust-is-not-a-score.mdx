@@ -1,0 +1,259 @@
+---
+title:
+  ja: "信頼を点数にしない ── 自由で安全なID連携への声明"
+  en: "Trust Is Not a Score — A Statement on Free and Safe Identity"
+date: "2026-08-27"
+author:
+  name: "Jun Kawasaki"
+  picture: "/assets/posts/authors/jk.jpg"
+excerpt:
+  ja: "複数IDを私的に束ね、必要な証明だけを開示し、行為ごとに判断する。全人格を採点せず、自由・秘匿性・安全性を両立するKotoba/Kotobaseの設計声明。"
+  en: "Link identities privately, disclose only required proof, and decide per action—not by scoring a whole person. A design statement for Kotoba and Kotobase."
+coverImage: "/assets/posts/preview/cover.jpg"
+ogImage:
+  url: "/assets/posts/preview/cover.jpg"
+---
+
+import Ja from '../../components/i18n/Ja.astro';
+import En from '../../components/i18n/En.astro';
+
+<Ja>
+# 信頼を点数にしない
+### 自由で安全なID連携への声明
+</Ja>
+<En>
+# Trust Is Not a Score
+### A Statement on Free and Safe Identity
+</En>
+
+**Author:** Jun Kawasaki (root@junkawasaki.com)
+
+---
+
+<Ja>
+安全なウェブを作りたい。しかし、安全の名のもとに全員を実名化し、追跡し、人格を採点するウェブは作りたくない。
+
+KotobaとKotobaseが目指すのは、匿名か実名かという二択ではない。複数のIDを本人の管理下で連携し、独立した証明が重なるほど「この場面で必要な事実」の確かさを高める。そして閲覧、投稿、送金、契約、管理操作など、**行為ごとに権限を判断する**。
+
+結論を先に書く。**信頼は人間に貼る一個の点数ではない。信頼とは、特定の行為について、誰が何を証明し、どの権限を、どの条件で委ねられるかという関係である。**
+</Ja>
+<En>
+I want to build a safe web. But I do not want a web that, in the name of safety, forces everyone into legal-name identity, tracks them everywhere, and assigns a score to their whole person.
+
+Kotoba and Kotobase should not force a choice between anonymity and legal identity. A person may link multiple identifiers under their own control. Independent evidence can increase confidence in the particular fact required for a particular situation. Reading, publishing, paying, contracting, and administering are then **authorized action by action**.
+
+The conclusion comes first. **Trust is not one score attached to a human being. Trust is a relationship: for a particular action, who proved what, which authority may be delegated, and under which conditions.**
+</En>
+
+---
+
+<Ja>
+## 1. Ethereumにすでにあった複数ID連携
+
+思い出していたものに最も直接近い規格は、2018年の [ERC-1484: Digital Identity Aggregator](https://eips.ethereum.org/EIPS/eip-1484) だと思う。一つのIdentityに複数のEthereumアドレスを関連付け、ProviderやResolverを通じてID情報やアプリケーションを拡張する構想だった。Ceramicの [3ID](https://developers.ceramic.network/docs/introduction/did-overview) も、一つのDIDを複数アカウント・複数鍵で扱う集約器である。
+
+ただし、ERC-1484は現在 `Stagnant` であり、関連アドレスを公開の単一レジストリへ束ねる。これは継続性と復旧には強いが、複数の仮名を同一人物へ公開リンクし、監視者に巨大な相関グラフを渡してしまう。
+
+その弱点に対して、[Sismo](https://github.com/sismo-core/sismo-docs) はより近代的な答えを試みた。複数のEthereumウォレット、GitHub、Twitter、Telegramなどを、本人の私的なData Vaultに集約し、その所有やグループ所属をZK証明で選択的に開示する。複数ソースの履歴を使いながら、元アカウント同士や受取先アドレスを公開しない。これは今回の構想に最も近い先例である。ただし公開ドキュメントの主要更新は2023年で止まっており、依存先ではなく設計上の先例として扱う。
+
+他にも、役割の異なる系譜がある。
+
+| 系譜 | 何を与えるか | そのまま採らない理由 |
+|---|---|---|
+| [uPort](https://github.com/uport-project/specs) / Ceramic | DID、複数鍵、第三者の署名付き証明 | IDの継続性は信頼性そのものではない |
+| [EAS](https://docs.attest.org/docs/core--concepts/attestations) | オンチェーン・オフチェーンの合成可能な証明 | 証明の存在は内容の真実を保証しない。発行者を評価する必要がある |
+| [DeSoc / SBT](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4105763) | 資格、所属、履歴からなる非譲渡の社会的ID | 永続公開すると追跡、烙印、強制的な所属表示になりうる |
+| [BrightID](https://brightid.gitbook.io/brightid/explorer/getting-started) / [Proof of Humanity](https://proofofhumanity.org/developers) | 社会グラフや証明による一人一資格、Sybil耐性 | 「一人である」は「善良である」でも「この取引を許可できる」でもない |
+| [Circles](https://handbook.joincircles.net/docs/developers/architecture/tech-overview/) | 有向の信頼グラフから取引可能性を決める | ある通貨を受け取る意思を、人格全体の信頼へ一般化できない |
+
+2026年の [Ethereum Foundation Mandate](https://ethereum.org/foundation/mandate) も、政府IDや生体認証を唯一の入口にせず、独立した複数の証明源と、社会グラフのような弱い信号を組み合わせられることを既定にすべきだと明記している。方向は正しい。必要なのは、それを一個の社会信用スコアへ潰さないことである。
+</Ja>
+<En>
+## 1. Multiple-identity linking already existed in Ethereum
+
+The closest direct match to the remembered idea is probably the 2018 proposal [ERC-1484: Digital Identity Aggregator](https://eips.ethereum.org/EIPS/eip-1484). It associated multiple Ethereum addresses with one Identity and allowed Providers and Resolvers to extend that identity with applications and information. Ceramic's [3ID](https://developers.ceramic.network/docs/introduction/did-overview) likewise acts as an aggregator that lets multiple accounts and keys control one DID.
+
+ERC-1484 is now marked `Stagnant`, however, and it aggregates associated addresses in a single public registry. That helps continuity and recovery, but publicly correlates multiple pseudonyms as one person and gives observers an enormous linkage graph.
+
+[Sismo](https://github.com/sismo-core/sismo-docs) attempted a more modern answer. It aggregated Ethereum wallets and accounts such as GitHub, Twitter, and Telegram in the holder's private Data Vault, then used zero-knowledge proofs to disclose ownership or group membership selectively. Histories from several sources could be used without publicly linking the source accounts to one another or to the destination address. This is the closest precedent for the present proposal. Its principal public documentation stopped changing in 2023, so I treat it as a design precedent, not as a dependency.
+
+Several other lines of work solve different parts of the problem.
+
+| Line of work | What it provides | Why it is not sufficient by itself |
+|---|---|---|
+| [uPort](https://github.com/uport-project/specs) / Ceramic | DIDs, multiple keys, signed third-party verifications | identity continuity is not trustworthiness |
+| [EAS](https://docs.attest.org/docs/core--concepts/attestations) | composable onchain and offchain attestations | the existence of an attestation does not make its content true; the issuer must be evaluated |
+| [DeSoc / SBT](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4105763) | non-transferable social identity made of credentials, affiliations, and history | permanent publication can become tracking, stigma, or coerced disclosure of association |
+| [BrightID](https://brightid.gitbook.io/brightid/explorer/getting-started) / [Proof of Humanity](https://proofofhumanity.org/developers) | one-person credentials and Sybil resistance through social graphs or proofs | being one person does not mean being good or authorized for this transaction |
+| [Circles](https://handbook.joincircles.net/docs/developers/architecture/tech-overview/) | transaction capacity derived from a directed trust graph | willingness to accept one currency cannot become general trust in a whole person |
+
+The 2026 [Ethereum Foundation Mandate](https://ethereum.org/foundation/mandate) likewise says that government identity or biometrics should not become the sole gate; systems should default to multiple independent attestation sources and should support combinations of weaker signals such as social-graph attestations. That direction is right. The remaining task is to avoid collapsing those signals into a single social-credit score.
+</En>
+
+---
+
+<Ja>
+## 2. ID連携で高めるのは「人物の価値」ではなく証明の確かさ
+
+複数IDを連携しただけでは信頼は増えない。同じ運営会社のOAuthアカウントを五つ束ねても、独立した五つの証拠にはならない。盗まれたウォレットを十個結び付ければ、むしろ攻撃面が増える。
+
+高められるのは、次のような**別々の確かさ**である。
+
+1. **継続性** — 過去から同じ主体が鍵やアカウントを支配しているか。
+2. **一意性** — この制度の中で同じ人が複数人を装っていないか。
+3. **身元保証** — 連絡可能、組織証明済み、KYC済みなど、必要な段階を満たすか。
+4. **認証強度** — 今回の操作がpasskey、ハードウェア鍵、多要素認証などで確認されたか。
+5. **主張の根拠** — 年齢、資格、所属、制裁対象外などを、どの発行者がいつまで保証するか。
+6. **文脈上の履歴** — この市場、この共同体、この役割における実績と違反は何か。
+7. **行為の危険度** — 金額、情報分類、不可逆性、対象地域、異常な振る舞いはどうか。
+8. **権限** — 以上を満たしても、この資源に対する明示的な委任が存在するか。
+
+`ID rank`という名前を使うなら、それは人格の順位ではなく、**identity assurance level**、つまり「どの種類の身元証明まで完了したか」に限定する。匿名、連絡可能、鍵に根差す、第三者証明済み、法的身元確認済み、という段階は作れる。しかし、その段階から投稿権、閲覧権、送金権を自動的に導いてはならない。
+
+判断は次の形になる。
+
+`Decision = policy(action, resource, persona, evidence, authority, risk, context)`
+
+数値が必要な場合も、特定の判断のための `TrustProjection` として、その場で計算する。有効期限、対象行為、利用した証拠、発行者の独立性、拒否理由を伴い、人物の恒久的な属性として保存しない。同じ人でも「公開記事を読む」「医療記録を読む」「一万円を送る」「法人契約を結ぶ」では答えが違ってよい。
+</Ja>
+<En>
+## 2. Identity linking should increase assurance, not a person's value
+
+Linking several identifiers does not automatically increase trust. Five OAuth accounts operated by one company are not five independent pieces of evidence. Linking ten stolen wallets only expands the attack surface.
+
+What can increase are several **distinct kinds of assurance**.
+
+1. **Continuity** — has the same subject controlled these keys or accounts over time?
+2. **Uniqueness** — within this particular system, is one person pretending to be several people?
+3. **Identity proofing** — is the subject contactable, organizationally attested, KYC-verified, or otherwise at the required tier?
+4. **Authentication strength** — was this operation confirmed with a passkey, hardware key, or multiple factors?
+5. **Claim provenance** — which issuer warrants age, qualification, affiliation, or sanctions status, and until when?
+6. **Contextual history** — what performance and violations exist in this market, community, and role?
+7. **Action risk** — what are the amount, data classification, irreversibility, jurisdiction, and anomalous behavior?
+8. **Authority** — even when all other conditions pass, is there an explicit delegation over this resource?
+
+If we use the name `ID rank`, it must mean an **identity assurance level**, never a rank of human worth: anonymous, contactable, rooted in a key, third-party attested, or legal-identity verified. That tier must not automatically imply permission to publish, read, transfer money, or enter a contract.
+
+The decision has this shape:
+
+`Decision = policy(action, resource, persona, evidence, authority, risk, context)`
+
+If a number is useful, it is computed as a decision-specific `TrustProjection`. It has an expiry, a target action, the evidence used, issuer-independence information, and reasons for denial. It is not stored as a permanent property of the person. The same individual may correctly receive different decisions when reading a public essay, reading a medical record, transferring ten thousand yen, or signing for a corporation.
+</En>
+
+---
+
+<Ja>
+## 3. 秘匿性と監査を同時に成立させる
+
+ID連携は本人の端末または本人が選ぶ保管域に置き、外から検索できる巨大な名寄せ表を作らない。サービスごとに異なるpairwise personaを使い、必要なら「この複数IDの正当な支配者である」「18歳以上である」「ある資格を持つ」「同一制度内で未登録である」といった命題だけを、VC、署名付きattestation、選択的開示、ZK証明で示す。
+
+監査も、すべてを平文で記録することではない。保護された情報の閲覧では、少なくとも次を改ざん検知可能なreceiptにする。
+
+- 誰のどのpersonaが要求したか
+- 何の目的と権限で要求したか
+- どのpolicyと証明を評価したか
+- 許可または拒否の結果と理由
+- どの暗号鍵の解放またはデータ配送が起きたか
+- いつ失効し、監査記録をいつまで保持するか
+
+ただし、「人間の目が実際に内容を理解して見た」ことまでは証明できない。証明できるのは認証、認可、鍵の解放、配送、クライアントでの復号などの観測可能な出来事である。この限界を正直に書く。
+
+公開情報は匿名で読めることを既定とし、個人別の閲覧履歴を残さない。非公開情報では、内容をエンドツーエンド暗号化したまま、許可と鍵解放だけを監査する。本人には「誰が、いつ、なぜ、自分の情報へアクセスしたか」を見せる。管理者も例外ではなく、緊急アクセスは強い理由、短い有効期限、複数者承認、事後通知を必要とする。
+</Ja>
+<En>
+## 3. Privacy and auditability must coexist
+
+Identity links belong on the holder's device or in storage chosen by the holder, not in a universal correlation table that outsiders can search. Pairwise personas should differ between services. When needed, the holder can prove only a proposition: that they legitimately control several identifiers, are over eighteen, hold a qualification, or have not already registered in this system. The mechanisms may include verifiable credentials, signed attestations, selective disclosure, and zero-knowledge proofs.
+
+Auditability does not mean writing everything in plaintext. A protected read should produce a tamper-evident receipt containing at least:
+
+- which persona requested access;
+- the purpose and authority asserted;
+- the policy and evidence evaluated;
+- the allow or deny result and its reasons;
+- which key release or data delivery occurred; and
+- when the grant expires and how long the audit record is retained.
+
+We cannot prove that human eyes actually saw and understood the content. We can prove observable events such as authentication, authorization, key release, delivery, and client-side decryption. The system must state this limit honestly.
+
+Public information should be anonymously readable by default, without per-person view histories. Private information remains end-to-end encrypted while only authorization and key release are audited. The subject should be able to see who accessed their information, when, and why. Administrators are not exempt: emergency access requires a strong reason, short expiry, multiple approvals, and notice after the event.
+</En>
+
+---
+
+<Ja>
+## 4. 犯罪を防ぐことと、人間を永久に分類することは違う
+
+攻撃、詐欺、資金洗浄、テロ支援、児童搾取などの具体的な行為を防ぐ必要がある。しかし「犯罪者」「危険人物」「テロリスト」という全世界共通の真偽値を、プラットフォームが一人の人格へ永久に貼るべきではない。
+
+法的な制限が必要なら、発行主体、法域、根拠、対象行為、有効期限、異議申立て経路を持つ署名付きの主張として扱う。たとえば「特定法域の制裁リストに、特定日時点で一致した」という主張と、「この人間は悪である」はまったく違う。誤認、同姓同名、政権交代、失効、発行者の侵害に備えなければならない。
+
+システムが止めるのは**人間の存在**ではなく、根拠を示せる**具体的な能力と行為**である。高額送金を保留する、危険な管理操作に追加認証を求める、盗まれた鍵の権限を失効する、違法な非公開情報の配送を拒否する。その判断は監査でき、期限があり、再審できなければならない。
+
+匿名性は悪意のためだけにあるのではない。告発者、被害者、子ども、患者、政治的少数者、創作者が生きるための安全装置でもある。したがって実名とKYCは、高い外部効果を持つ取引や法的に必要な行為に限定し、一般の閲覧、思考、表現の入場券にはしない。
+</Ja>
+<En>
+## 4. Preventing crime is not the same as permanently classifying people
+
+We must prevent concrete acts such as attacks, fraud, money laundering, support for terrorism, and child exploitation. But a platform should not attach a permanent, globally valid Boolean such as "criminal," "dangerous person," or "terrorist" to an entire human being.
+
+Where legal restrictions are required, they should be signed claims with an issuer, jurisdiction, legal basis, affected action, expiry, and appeal path. "Matched a particular jurisdiction's sanctions list at a particular time" is fundamentally different from "this person is evil." The design must account for mistaken identity, shared names, regime change, expiry, and issuer compromise.
+
+The system restricts not **a person's existence**, but a **specific capability or action** for which reasons can be given: hold a high-value transfer, demand stronger authentication for a dangerous administrative operation, revoke authority from a stolen key, or refuse delivery of unlawfully requested private data. The decision must be auditable, time-bounded, and reviewable.
+
+Anonymity does not exist only for malicious actors. It is a safety mechanism for whistleblowers, victims, children, patients, political minorities, and creators. Legal identity and KYC should therefore be limited to transactions with substantial external effects or actions where the law requires them. They must not become admission tickets for ordinary reading, thought, and expression.
+</En>
+
+---
+
+<Ja>
+## 5. Kotoba / Kotobaseに対する七つの約束
+
+1. **暗号化を既定にする。** 公開する理由がある情報だけを公開する。
+2. **ID連携を本人の支配下に置く。** 結び付きは既定で非公開とし、目的外の相関を許さない。
+3. **一個のglobal trust scoreを作らない。** 複数のassurance軸と、行為限定の判断を使う。
+4. **証明と権限を分ける。** KYC済みでも、明示的な権限がなければ他人の情報は読めない。
+5. **最小限だけ開示する。** 実名そのものではなく、必要なら年齢条件や資格の充足だけを示す。
+6. **制限には出所、理由、期限、異議申立てを付ける。** 秘密のblacklistで人を消さない。
+7. **すべての権力に出口を作る。** 発行者、KYC事業者、運営者、政府、Kotoba自身のいずれも、個人の全生活を単独で支配できない設計にする。
+
+次に実装すべき最小単位は、Kotobaseの一つの保護されたgraph readである。pairwise personaで要求し、passkeyで認証し、複数IDから必要な主張だけを選択開示し、能力tokenとpolicyで判断し、暗号鍵を解放する。そしてDecision ReceiptとDisclosure Receiptを本人と監査者へ残す。
+
+この一往復が成立すれば、ID連携は監視のための名寄せではなく、**余計な身元を明かさずに、より確かな判断を可能にする技術**になる。
+
+自由と安全は、どちらかを捨てて得るものではない。情報を秘匿し、証明を分散し、権限を狭くし、判断を説明可能にすることで、両方を同じ構造から作る。
+</Ja>
+<En>
+## 5. Seven commitments for Kotoba and Kotobase
+
+1. **Encryption is the default.** Only information with a reason to be public becomes public.
+2. **Identity linking remains under the holder's control.** Links are private by default and cannot be correlated for unrelated purposes.
+3. **There will be no global trust score.** We use multiple assurance dimensions and action-bounded decisions.
+4. **Evidence and authority remain separate.** Completing KYC does not grant permission to read another person's data.
+5. **Disclosure is minimal.** When possible, prove an age condition or qualification rather than reveal a legal identity.
+6. **Every restriction has a source, reason, expiry, and appeal path.** People are not erased through secret blacklists.
+7. **Every power has an exit.** No issuer, KYC provider, operator, government, or Kotoba itself may unilaterally control a person's whole life.
+
+The next smallest implementation should be one protected Kotobase graph read. A pairwise persona makes the request, a passkey authenticates it, and the holder selectively discloses only the necessary claims from multiple identities. A capability token and policy produce the decision, the decryption key is released, and a Decision Receipt and Disclosure Receipt remain available to the subject and authorized auditors.
+
+When that round trip works, identity linking is no longer correlation for surveillance. It becomes a way to make a more reliable decision **without disclosing unnecessary identity**.
+
+Freedom and safety are not obtained by sacrificing one for the other. We can derive both from the same structure: keep information confidential, distribute proof, narrow authority, and make decisions explainable.
+</En>
+
+---
+
+<Ja>
+## 参考資料
+</Ja>
+<En>
+## References
+</En>
+
+1. Ethereum Foundation, [*Ethereum Foundation Mandate*](https://ethereum.org/foundation/mandate), 2026.
+2. Angara et al., [*ERC-1484: Digital Identity Aggregator*](https://eips.ethereum.org/EIPS/eip-1484), 2018, status: Stagnant.
+3. Sismo, [*Sovereign Identity Aggregator and Crypto-Native SSO*](https://github.com/sismo-core/sismo-docs).
+4. Ethereum Attestation Service, [*Attestations*](https://docs.attest.org/docs/core--concepts/attestations).
+5. Ohlhaver, Weyl, and Buterin, [*Decentralized Society: Finding Web3's Soul*](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4105763), 2022, revised 2024.
+6. W3C, [*Verifiable Credentials Data Model v2.0*](https://www.w3.org/TR/vc-data-model/), 2025.

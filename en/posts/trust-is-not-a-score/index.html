@@ -1,30 +1,124 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="description" content="A practical architecture for resisting cyberattacks and illegal activity while preserving privacy, auditability, and individual freedom."><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/jpeg" href="/favicon/623495.jpeg"><meta name="generator" content="Astro v5.18.1"><!-- Canonical URL --><link rel="canonical" href="https://junkawasaki.com/en/posts/trust-is-not-a-score/"><!-- Primary Meta Tags --><title>How to Keep the Web Free and Safe | Jun Kawasaki</title><meta name="title" content="How to Keep the Web Free and Safe | Jun Kawasaki"><meta name="description" content="A practical architecture for resisting cyberattacks and illegal activity while preserving privacy, auditability, and individual freedom."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://junkawasaki.com/en/posts/trust-is-not-a-score/"><meta property="og:title" content="How to Keep the Web Free and Safe | Jun Kawasaki"><meta property="og:description" content="A practical architecture for resisting cyberattacks and illegal activity while preserving privacy, auditability, and individual freedom."><meta property="og:image" content="https://junkawasaki.com/assets/posts/preview/cover.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://junkawasaki.com/en/posts/trust-is-not-a-score/"><meta property="twitter:title" content="How to Keep the Web Free and Safe | Jun Kawasaki"><meta property="twitter:description" content="A practical architecture for resisting cyberattacks and illegal activity while preserving privacy, auditability, and individual freedom."><meta property="twitter:image" content="https://junkawasaki.com/assets/posts/preview/cover.jpg"><!-- Theme --><meta name="theme-color" content="#ffffff"><!-- Favicon --><link rel="apple-touch-icon" sizes="180x180" href="/favicon/623495.jpeg"><link rel="icon" type="image/jpeg" sizes="32x32" href="/favicon/623495.jpeg"><link rel="icon" type="image/jpeg" sizes="16x16" href="/favicon/623495.jpeg"><link rel="manifest" href="/favicon/site.webmanifest"><style>.markdown{font-size:1.125rem;line-height:1.75}.markdown p,.markdown ul,.markdown ol,.markdown blockquote{margin-top:1.5rem;margin-bottom:1.5rem}.markdown h2{font-size:1.875rem;margin-top:3rem;margin-bottom:1rem;line-height:1.3}.markdown h3{font-size:1.5rem;margin-top:2rem;margin-bottom:1rem;line-height:1.3}.markdown .math-formula{font-family:Times New Roman,serif;font-style:italic;background-color:#f3f4f6;padding:1rem;margin:1rem 0;border-radius:.25rem;overflow-x:auto;text-align:center;line-height:1.6;font-size:1.1rem}.dark .markdown .math-formula{background-color:#1f2937;color:#fff}.markdown .mathBlock{margin:2rem 0;padding:1rem;background-color:#f3f4f6;border-radius:.5rem;overflow-x:auto;text-align:center}.dark .markdown .mathBlock{background-color:#1f2937}.markdown .katex-display{margin:0}:global(.dark) .katex,:global(.dark) .katex .katex-html,:global(.dark) .katex .katex-mathml{color:#fff!important}:global(.dark) .katex-html{color:#ccc!important}:global(.dark) .katex .mord,:global(.dark) .katex .mord .textsf,:global(.dark) .katex .mord .textrm,:global(.dark) .katex .mord .texttt,:global(.dark) .katex .mord .textbf,:global(.dark) .katex .mord .mathit,:global(.dark) .katex .mord .textit,:global(.dark) .katex .mord .mathdefault{color:#fff!important}:global(.dark) .katex .mbin{color:#fff!important}:global(.dark) .katex .mrel{color:#fff!important}:global(.dark) .katex .mopen,:global(.dark) .katex .mclose{color:#fff!important}:global(.dark) .katex .mfrac{color:#fff!important}:global(.dark) .katex .mfrac .frac-line{border-bottom-color:#fff!important}:global(.dark) .katex .minner{color:#fff!important}:global(.dark) .katex .mop{color:#fff!important}:global(.dark) .katex .msupsub{color:#fff!important}:global(.dark) .katex .vlist{color:#fff!important}:global(.dark) .katex .overline .overline-line{border-top-color:#fff!important}:global(.dark) .katex .underline .underline-line{border-bottom-color:#fff!important}:global(.dark) .mathBlock{background-color:#1f2937!important}:global(.dark) .math-formula{background-color:#1f2937!important;color:#fff!important}.md-nav-row[data-astro-cid-3osipt2g]{display:flex;align-items:baseline;justify-content:space-between}.md-lang-switch[data-astro-cid-3osipt2g]{color:#0969da;text-decoration:none;font-size:.875em;font-family:Poppins,Noto Sans JP,ui-sans-serif,system-ui,sans-serif;font-weight:600}.md-lang-switch[data-astro-cid-3osipt2g]:hover{text-decoration:underline}body[data-mode=dark] .md-lang-switch[data-astro-cid-3osipt2g]{color:#58a6ff}.md-back-link[data-astro-cid-3osipt2g]{margin:0;font-size:.875em}.md-back-link[data-astro-cid-3osipt2g] a[data-astro-cid-3osipt2g]{color:#0969da;text-decoration:none;font-family:Noto Sans JP,Poppins,ui-sans-serif,system-ui,sans-serif;font-weight:600}.md-back-link[data-astro-cid-3osipt2g] a[data-astro-cid-3osipt2g]:hover{text-decoration:underline}body[data-mode=dark] .md-back-link[data-astro-cid-3osipt2g] a[data-astro-cid-3osipt2g]{color:#58a6ff}hr[data-astro-cid-3osipt2g]{height:.25em;padding:0;margin:1.5em 0;background-color:#d0d7de;border:0}body[data-mode=dark] hr[data-astro-cid-3osipt2g]{background-color:#30363d}.md-article-title[data-astro-cid-3osipt2g]{font-size:2em;font-weight:600;padding-bottom:.3em;border-bottom:1px solid #d0d7de;margin-top:0;margin-bottom:.5em;line-height:1.3;font-family:Noto Sans JP,Poppins,ui-sans-serif,system-ui,sans-serif}body[data-mode=dark] .md-article-title[data-astro-cid-3osipt2g]{border-bottom-color:#30363d}.md-article-meta[data-astro-cid-3osipt2g]{color:#57606a;font-size:.875em;margin-bottom:1.5em;font-family:Poppins,Noto Sans JP,ui-sans-serif,system-ui,sans-serif}body[data-mode=dark] .md-article-meta[data-astro-cid-3osipt2g]{color:#8b949e}.md-article-image[data-astro-cid-3osipt2g]{max-width:100%;border-radius:6px;margin-bottom:0}
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="description" content="For Kotoba and Kotobase: causal history remains, trust restarts at zero, and repentance permits return without escaping responsibility."><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/jpeg" href="/favicon/623495.jpeg"><meta name="generator" content="Astro v5.18.1"><!-- Canonical URL --><link rel="canonical" href="https://junkawasaki.com/en/posts/trust-is-not-a-score/"><!-- Primary Meta Tags --><title>A Web That Never Forgets, Yet Allows Return | Jun Kawasaki</title><meta name="title" content="A Web That Never Forgets, Yet Allows Return | Jun Kawasaki"><meta name="description" content="For Kotoba and Kotobase: causal history remains, trust restarts at zero, and repentance permits return without escaping responsibility."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://junkawasaki.com/en/posts/trust-is-not-a-score/"><meta property="og:title" content="A Web That Never Forgets, Yet Allows Return | Jun Kawasaki"><meta property="og:description" content="For Kotoba and Kotobase: causal history remains, trust restarts at zero, and repentance permits return without escaping responsibility."><meta property="og:image" content="https://junkawasaki.com/assets/posts/preview/cover.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://junkawasaki.com/en/posts/trust-is-not-a-score/"><meta property="twitter:title" content="A Web That Never Forgets, Yet Allows Return | Jun Kawasaki"><meta property="twitter:description" content="For Kotoba and Kotobase: causal history remains, trust restarts at zero, and repentance permits return without escaping responsibility."><meta property="twitter:image" content="https://junkawasaki.com/assets/posts/preview/cover.jpg"><!-- Theme --><meta name="theme-color" content="#ffffff"><!-- Favicon --><link rel="apple-touch-icon" sizes="180x180" href="/favicon/623495.jpeg"><link rel="icon" type="image/jpeg" sizes="32x32" href="/favicon/623495.jpeg"><link rel="icon" type="image/jpeg" sizes="16x16" href="/favicon/623495.jpeg"><link rel="manifest" href="/favicon/site.webmanifest"><style>.markdown{font-size:1.125rem;line-height:1.75}.markdown p,.markdown ul,.markdown ol,.markdown blockquote{margin-top:1.5rem;margin-bottom:1.5rem}.markdown h2{font-size:1.875rem;margin-top:3rem;margin-bottom:1rem;line-height:1.3}.markdown h3{font-size:1.5rem;margin-top:2rem;margin-bottom:1rem;line-height:1.3}.markdown .math-formula{font-family:Times New Roman,serif;font-style:italic;background-color:#f3f4f6;padding:1rem;margin:1rem 0;border-radius:.25rem;overflow-x:auto;text-align:center;line-height:1.6;font-size:1.1rem}.dark .markdown .math-formula{background-color:#1f2937;color:#fff}.markdown .mathBlock{margin:2rem 0;padding:1rem;background-color:#f3f4f6;border-radius:.5rem;overflow-x:auto;text-align:center}.dark .markdown .mathBlock{background-color:#1f2937}.markdown .katex-display{margin:0}:global(.dark) .katex,:global(.dark) .katex .katex-html,:global(.dark) .katex .katex-mathml{color:#fff!important}:global(.dark) .katex-html{color:#ccc!important}:global(.dark) .katex .mord,:global(.dark) .katex .mord .textsf,:global(.dark) .katex .mord .textrm,:global(.dark) .katex .mord .texttt,:global(.dark) .katex .mord .textbf,:global(.dark) .katex .mord .mathit,:global(.dark) .katex .mord .textit,:global(.dark) .katex .mord .mathdefault{color:#fff!important}:global(.dark) .katex .mbin{color:#fff!important}:global(.dark) .katex .mrel{color:#fff!important}:global(.dark) .katex .mopen,:global(.dark) .katex .mclose{color:#fff!important}:global(.dark) .katex .mfrac{color:#fff!important}:global(.dark) .katex .mfrac .frac-line{border-bottom-color:#fff!important}:global(.dark) .katex .minner{color:#fff!important}:global(.dark) .katex .mop{color:#fff!important}:global(.dark) .katex .msupsub{color:#fff!important}:global(.dark) .katex .vlist{color:#fff!important}:global(.dark) .katex .overline .overline-line{border-top-color:#fff!important}:global(.dark) .katex .underline .underline-line{border-bottom-color:#fff!important}:global(.dark) .mathBlock{background-color:#1f2937!important}:global(.dark) .math-formula{background-color:#1f2937!important;color:#fff!important}.md-nav-row[data-astro-cid-3osipt2g]{display:flex;align-items:baseline;justify-content:space-between}.md-lang-switch[data-astro-cid-3osipt2g]{color:#0969da;text-decoration:none;font-size:.875em;font-family:Poppins,Noto Sans JP,ui-sans-serif,system-ui,sans-serif;font-weight:600}.md-lang-switch[data-astro-cid-3osipt2g]:hover{text-decoration:underline}body[data-mode=dark] .md-lang-switch[data-astro-cid-3osipt2g]{color:#58a6ff}.md-back-link[data-astro-cid-3osipt2g]{margin:0;font-size:.875em}.md-back-link[data-astro-cid-3osipt2g] a[data-astro-cid-3osipt2g]{color:#0969da;text-decoration:none;font-family:Noto Sans JP,Poppins,ui-sans-serif,system-ui,sans-serif;font-weight:600}.md-back-link[data-astro-cid-3osipt2g] a[data-astro-cid-3osipt2g]:hover{text-decoration:underline}body[data-mode=dark] .md-back-link[data-astro-cid-3osipt2g] a[data-astro-cid-3osipt2g]{color:#58a6ff}hr[data-astro-cid-3osipt2g]{height:.25em;padding:0;margin:1.5em 0;background-color:#d0d7de;border:0}body[data-mode=dark] hr[data-astro-cid-3osipt2g]{background-color:#30363d}.md-article-title[data-astro-cid-3osipt2g]{font-size:2em;font-weight:600;padding-bottom:.3em;border-bottom:1px solid #d0d7de;margin-top:0;margin-bottom:.5em;line-height:1.3;font-family:Noto Sans JP,Poppins,ui-sans-serif,system-ui,sans-serif}body[data-mode=dark] .md-article-title[data-astro-cid-3osipt2g]{border-bottom-color:#30363d}.md-article-meta[data-astro-cid-3osipt2g]{color:#57606a;font-size:.875em;margin-bottom:1.5em;font-family:Poppins,Noto Sans JP,ui-sans-serif,system-ui,sans-serif}body[data-mode=dark] .md-article-meta[data-astro-cid-3osipt2g]{color:#8b949e}.md-article-image[data-astro-cid-3osipt2g]{max-width:100%;border-radius:6px;margin-bottom:0}
 </style>
-<link rel="stylesheet" href="/_astro/index.Day_4hbW.css"></head> <body data-mode="light"> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="1HHuhl" prefix="r1" component-url="/_astro/ThemeSwitcher.CaLx6D2m.js" component-export="default" renderer-url="/_astro/client.XgambzTh.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;ThemeSwitcher&quot;,&quot;value&quot;:true}" await-children><button style="position:fixed;right:1.5rem;top:1.5rem;z-index:50;background:none;border:none;cursor:pointer;padding:0.25rem;font-size:0.75rem;color:#57606a;font-family:&#x27;Poppins&#x27;, &#x27;Noto Sans JP&#x27;, ui-sans-serif, system-ui, sans-serif;opacity:0.6;transition:opacity 0.2s" aria-label="Toggle theme" title="Theme: light">[dark]</button><!--astro:end--></astro-island>   <main class="md-body" data-astro-cid-3osipt2g> <div class="md-nav-row" data-astro-cid-3osipt2g> <p class="md-back-link" data-astro-cid-3osipt2g> <a href="/en/" data-astro-cid-3osipt2g>&larr; Jun Kawasaki.</a> </p>  </div> <hr data-astro-cid-3osipt2g> <article data-astro-cid-3osipt2g> <h1 class="md-article-title" data-astro-cid-3osipt2g>How to Keep the Web Free and Safe</h1> <p class="md-article-meta" data-astro-cid-3osipt2g> Jun Kawasaki &mdash; <time datetime="2026-08-27" data-astro-cid-3osipt2g>August 27, 2026</time> </p> <img src="/assets/posts/preview/cover.jpg" alt="Cover Image for How to Keep the Web Free and Safe" class="md-article-image" data-astro-cid-3osipt2g> <hr data-astro-cid-3osipt2g> <div class="prose" data-astro-cid-3osipt2g> <h1 id="how-to-keep-the-web-free-and-safe">How to Keep the Web Free and Safe</h1>
-<h3 id="a-design-statement-for-kotoba-and-kotobase">A design statement for Kotoba and Kotobase</h3>
-<p>The web has two familiar failure modes. One treats safety as a reason to identify, inspect, and retain everything about everyone. The other treats freedom as a reason to ignore abuse until people are defrauded, stalked, exploited, radicalized, or attacked.</p>
-<p>Neither produces a free web. Universal surveillance creates its own security disaster: a correlation database that can be breached, abused, or captured by power. Unlimited anonymous capability creates a different disaster: attackers can automate harm while victims carry the cost.</p>
-<p>The design problem is therefore not how to decide which people are trustworthy. It is <strong>how to keep information private, make consequential actions accountable, contain attacks, preserve evidence, and give every affected person a meaningful path to challenge a decision</strong>.</p>
-<p>The answer begins by separating things the current web repeatedly collapses: confidentiality, safety, identity, authority, trust, and audit.</p>
+<link rel="stylesheet" href="/_astro/index.DtZelcGZ.css"></head> <body data-mode="light"> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="2kDSd" prefix="r1" component-url="/_astro/ThemeSwitcher.CaLx6D2m.js" component-export="default" renderer-url="/_astro/client.XgambzTh.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;ThemeSwitcher&quot;,&quot;value&quot;:true}" await-children><button style="position:fixed;right:1.5rem;top:1.5rem;z-index:50;background:none;border:none;cursor:pointer;padding:0.25rem;font-size:0.75rem;color:#57606a;font-family:&#x27;Poppins&#x27;, &#x27;Noto Sans JP&#x27;, ui-sans-serif, system-ui, sans-serif;opacity:0.6;transition:opacity 0.2s" aria-label="Toggle theme" title="Theme: light">[dark]</button><!--astro:end--></astro-island>   <main class="md-body" data-astro-cid-3osipt2g> <div class="md-nav-row" data-astro-cid-3osipt2g> <p class="md-back-link" data-astro-cid-3osipt2g> <a href="/en/" data-astro-cid-3osipt2g>&larr; Jun Kawasaki.</a> </p>  </div> <hr data-astro-cid-3osipt2g> <article data-astro-cid-3osipt2g> <h1 class="md-article-title" data-astro-cid-3osipt2g>A Web That Never Forgets, Yet Allows Return</h1> <p class="md-article-meta" data-astro-cid-3osipt2g> Jun Kawasaki &mdash; <time datetime="2026-08-27" data-astro-cid-3osipt2g>August 27, 2026</time> </p> <img src="/assets/posts/preview/cover.jpg" alt="Cover Image for A Web That Never Forgets, Yet Allows Return" class="md-article-image" data-astro-cid-3osipt2g> <hr data-astro-cid-3osipt2g> <div class="prose" data-astro-cid-3osipt2g> <h1 id="a-web-that-never-forgets-yet-allows-return">A Web That Never Forgets, Yet Allows Return</h1>
+<h3 id="trust-causality-repentance-and-safety-after-the-individual">Trust, causality, repentance, and safety after the individual</h3>
+<p>How can the web remain free while resisting cyberattacks, fraud, exploitation, terrorist violence, and other serious harm?</p>
+<p>The usual answers begin with the individual. One side attempts to protect an isolated person and the information that belongs to that person. The other side attempts to identify, rank, monitor, and exclude dangerous individuals.</p>
+<p>I begin from a different premise.</p>
+<p>I do not regard the individual as an independent and permanent substance. My Christianity was chosen after encountering Buddhism, not before it. I therefore carry into it the understanding that there is no self standing outside relation, that all things arise through conditions, and that causal relation does not end when a body dies.</p>
+<p>I wrote about this experience in <a href="/en/posts/i-cannot-die">I Cannot Die</a>, and about the difference between an isolated individual and a person within relation in <a href="/en/posts/individual-is-kojin">The Correct Japanese Translation of “Individual” is “Kojin”</a>.</p>
+<p>From this premise, privacy is not an ultimate metaphysical wall around a sovereign self. Death is not the deletion of a node. A changed name, a discarded account, or a new cryptographic key does not erase the consequences of what occurred.</p>
+<p>Yet this does not require permanent exile.</p>
+<p>The design principle is:</p>
+<blockquote>
+<p>No permanent self.<br/>
+No erasure of causality.<br/>
+No permanent condemnation.<br/>
+Trust begins again from zero.<br/>
+Return requires a new commitment.</p>
+</blockquote>
+<p>This is the foundation I propose for Kotoba, Kotobase, and a safer web.</p>
 <hr/>
-<h2 id="1-start-with-harms-not-identities">1. Start with harms, not identities</h2>
-<p>“Online harm” is not one technical category. Credential theft, ransomware, fraud, bot swarms, child sexual exploitation material, terrorist recruitment or financing, doxxing, malware distribution, and unlawful access to private records have different causes and require different controls.</p>
-<p>A cybersecurity incident is not the same problem as illegal public content. A suspicious payment is not the same problem as a private conversation. A stolen administrator key is not evidence that its owner has become a bad person. If all of these cases feed one global <code>trust score</code>, context disappears and error becomes punishment.</p>
-<p>The present account-centric web makes that mistake constantly. One account is expected to represent a person, authenticate a device, accumulate reputation, hold money, publish speech, receive moderation decisions, and recover from compromise. When one part fails, the whole identity is banned, stolen, or exposed.</p>
-<p>Kotoba and Kotobase should instead protect the boundary where an action affects another person, system, or resource. Reading a public essay may require no identity. Publishing at machine speed may require proof of rate limits or cost. Reading a medical record requires explicit delegation. Moving regulated funds may require narrowly scoped identity or sanctions evidence. Administering infrastructure requires strong authentication, a short-lived capability, and an audit receipt.</p>
-<p>The rule is simple: <strong>do not demand more identity than the action requires, and do not grant more power than the evidence justifies</strong>.</p>
+<h2 id="1-earth-has-become-one-village">1. Earth has become one village</h2>
+<p>In 1968, Apollo 8 returned the image known as Earthrise. Humanity could see Earth as one bounded world, suspended in darkness, rather than as an indefinitely extensible map. NASA describes that image as a reminder that we are residents of one planet that requires our care.</p>
+<p>For most of history, a person or community could imagine escape toward another continent, frontier, colony, or new society. That model is ending. There is no undiscovered continent beyond the network. Information, capital, software, weapons, pathogens, pollution, and consequences circulate around one Earth.</p>
+<p>The world is becoming an island society on a planetary scale: a village in which everyone can eventually become connected to everyone else.</p>
+<p>The present web is a transitional form. It still permits people and institutions to abandon an identity, jurisdiction, platform, or victim population and reappear elsewhere as though no relation existed. Attackers automate this. Corporations rename themselves. States deny provenance. Accounts are deleted. Evidence disappears. A person expelled from one service returns through another identity with no causal continuity.</p>
+<p>A global village cannot depend on that kind of escape.</p>
+<p>It needs a memory of relation.</p>
 <hr/>
-<h2 id="2-separate-privacy-assurance-and-authority">2. Separate privacy, assurance, and authority</h2>
-<p>Three questions must remain distinct.</p>
+<h2 id="2-the-record-is-eternal-judgment-is-not-closed">2. The record is eternal; judgment is not closed</h2>
+<p>The right to be forgotten does not exist in the metaphysical architecture described here. What has entered the world has changed the conditions from which later events arise. Its effects may continue through other people, institutions, language, descendants, software, and memory after the body that initiated it has disappeared.</p>
+<p>No technical system can capture the whole of this causality or prove metaphysical eternity. A ledger is not karma. A model is not God. Kotobase can only preserve a bounded and verifiable projection of consequential events.</p>
+<p>Within that boundary, however, the rule should be append-only:</p>
+<ul>
+<li>an event is not deleted;</li>
+<li>a statement is attributed to its issuer;</li>
+<li>evidence retains provenance;</li>
+<li>a correction is appended rather than silently replacing the past;</li>
+<li>a false allegation remains visible as an allegation that was later refuted;</li>
+<li>a revoked credential remains visible as a credential whose validity ended;</li>
+<li>a judgment records the policy, evidence, model, uncertainty, and time under which it was made; and</li>
+<li>later conduct may change the meaning of the history without changing the history itself.</li>
+</ul>
+<p>This distinction is essential. An immutable record is not an immutable verdict.</p>
+<p>If an accusation is recorded, the system must not transform the existence of the accusation into eternal truth. If a model makes an error, the error, challenge, correction, and model update all become part of the causal record. If a person repents and repairs harm, the wrongdoing, repentance, repair, and later life all remain.</p>
+<p>The event remains. Its meaning is never sealed forever.</p>
+<p>This is also a necessary boundary between the philosophical statement and current law. Existing legal systems may require erasure, restriction, correction, or minimization of personal data. Article 17 of the European Union’s GDPR, for example, establishes a right to erasure under stated conditions and exceptions. A present implementation must comply with applicable law. It should therefore avoid placing raw personal data on an irreversible public ledger. It can preserve lawful commitments, provenance, revocations, and restricted evidence without pretending that a legal deletion makes the underlying causal event never to have occurred.</p>
+<hr/>
+<h2 id="3-trust-belongs-to-a-relation-not-a-soul">3. Trust belongs to a relation, not a soul</h2>
+<p>A single ID rank is the wrong primitive.</p>
+<p>It collapses different questions into a number: Is this key controlled by the same actor? Has this person repaid a debt? Is this device compromised? May this agent publish at machine speed? Is this transaction lawful in this jurisdiction? Has this model made reliable evaluations in this domain?</p>
+<p>These are not one property.</p>
+<p>Trust is a relation among a subject, an issuer, an action, a resource, a time, and evidence. It should be represented as a graph of scoped claims. Each claim needs at least:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td>Subject</td><td>the person, persona, device, organization, service, or agent being evaluated</td></tr><tr><td>Issuer</td><td>the entity or model making the claim</td></tr><tr><td>Scope</td><td>the exact action or relationship to which the claim applies</td></tr><tr><td>Evidence</td><td>the observations and attestations supporting it</td></tr><tr><td>Policy and model</td><td>the rule set and evaluator version used</td></tr><tr><td>Confidence</td><td>uncertainty rather than simulated certainty</td></tr><tr><td>Time</td><td>issuance, expiry, and evaluation epoch</td></tr><tr><td>Causal parents</td><td>earlier events and claims on which it depends</td></tr><tr><td>Status</td><td>active, expired, revoked, challenged, corrected, or superseded</td></tr></tbody></table>
+<p>Several identities can be linked to strengthen continuity or assurance. Human Passport, formerly Gitcoin Passport, demonstrates one approach: it aggregates multiple credentials or “Stamps” into a humanity score. BrightID uses a social graph to estimate unique participation. Ethereum Attestation Service provides a more general primitive: structured, signed attestations that may reference other attestations. ERC-8004 proposes identity, reputation, and validation registries for agents.</p>
+<p>These projects are useful precedents, but their primitives should not be elevated into a universal measure of human worth. Multiple credentials can establish continuity, uniqueness, or a history of participation. They cannot prove goodness. A cryptographic signature proves who signed a claim, not that the claim is true.</p>
+<p>Kotoba and Kotobase should therefore store the claims and their relations, not collapse them into a permanent global score.</p>
+<hr/>
+<h2 id="4-repentance-is-a-state-transition">4. Repentance is a state transition</h2>
+<p>Permanent exclusion is not necessary. A person who caused harm must be able to return.</p>
+<p>But return cannot mean deleting an account, choosing a new name, and escaping the causal line. That is identity laundering, not repentance.</p>
+<p>Repentance is a verifiable state transition:</p>
 <ol>
-<li><strong>Confidentiality:</strong> who can learn the content or correlate the identities involved?</li>
-<li><strong>Assurance:</strong> what evidence supports a claim about a person, device, service, transaction, or piece of content?</li>
-<li><strong>Authority:</strong> who is permitted to perform this action on this resource, under these conditions?</li>
+<li>The harmful act and its consequences are acknowledged.</li>
+<li>Dangerous or compromised capabilities are revoked.</li>
+<li>Evidence is preserved and affected people can answer.</li>
+<li>Restitution, repair, treatment, surrender, or other remaining obligations are defined.</li>
+<li>The old authority is relinquished.</li>
+<li>A new commitment is declared and witnessed.</li>
+<li>A new cryptographic principal begins a new identity epoch.</li>
+<li>Trust in that epoch begins at zero.</li>
+<li>Capabilities are reacquired gradually through subsequent conduct.</li>
 </ol>
-<p>Encryption answers the first question. Credentials, attestations, provenance, device posture, and contextual history contribute to the second. Capabilities and policy answer the third. None can substitute for the others.</p>
-<p>The decision should have this shape:</p>
-<p><code>Decision = policy(action, resource, capability, evidence, risk, context)</code></p>
-<p>It is calculated for one action and expires. It may return <code>allow</code>, <code>deny</code>, <code>step-up</code>, <code>quarantine</code>, or <code>defer</code>. It does not produce a permanent rank of human worth.</p>
+<p>Baptism, ordination, taking vows, and public declaration can express this transition. They mark the death of the old self as an operative commitment, not the deletion of its causal history. Because death is not annihilation, the new epoch remains permanently linked to the old one.</p>
+<p>The ceremony does not award trust. It creates the condition under which trust may be built again.</p>
+<p>The state after transition is therefore:</p>
 
 
 
@@ -62,82 +156,152 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Threat or harm</th><th>Proportionate response</th><th>Privacy boundary</th></tr></thead><tbody><tr><td>Credential or session theft</td><td>passkeys, device-bound sessions, rapid revocation, short capabilities</td><td>no legal name is needed merely to secure an account</td></tr><tr><td>Bot swarms, scraping, denial of service</td><td>rate limits, proof of cost, scoped quotas, anomaly containment</td><td>do not build a cross-site identity graph to rate-limit one service</td></tr><tr><td>Malware or hostile automation</td><td>sandboxing, least authority, signed artifacts, network and tool limits</td><td>inspect the code and action, not the operator’s whole life</td></tr><tr><td>Allegedly illegal public content</td><td>precise notice, evidence preservation, content-level restriction, reason and appeal</td><td>do not turn one disputed item into permanent exclusion everywhere</td></tr><tr><td>Abuse in an encrypted space</td><td>user-initiated reports with authenticated context, group controls, targeted evidence handling</td><td>no universal decryption key or routine provider access to all messages</td></tr><tr><td>High-risk or regulated transaction</td><td>selective KYC or sanctions proof, transaction limits, step-up authentication</td><td>the proof is purpose-bound and is not reused as a browsing identity</td></tr><tr><td>Cyber incident or compromised service</td><td>isolate, revoke, rotate keys, preserve receipts, recover</td><td>audit operational events without retaining unrelated personal content</td></tr><tr><td>Credible terrorism or organized-crime case</td><td>scoped lawful process, capability containment, evidence preservation, competent-authority referral</td><td>no guilt by association, secret global label, or indefinite surveillance</td></tr></tbody></table>
-<p>Cryptography can prove origin, integrity, possession, and authorization. It cannot prove that a person is good, that an allegation is true, or that an act is illegal in every jurisdiction. Those remain claims with sources, legal context, evidence, and a path for challenge.</p>
+<table><thead><tr><th>State</th><th>After repentance</th></tr></thead><tbody><tr><td>Causal history</td><td>preserved</td></tr><tr><td>Prior claims</td><td>preserved with their status and context</td></tr><tr><td>Remaining obligations</td><td>inherited</td></tr><tr><td>New trust</td><td>zero</td></tr><tr><td>Risk assessment</td><td>recalculated, not automatically cleared</td></tr><tr><td>Capabilities</td><td>minimal at first, expanded through evidence</td></tr><tr><td>New commitment</td><td>public, signed, and auditable</td></tr></tbody></table>
+<p>Forgiveness is not forgetting.</p>
+<blockquote>
+<p>Forgiveness means that the past is not allowed to close the future forever.</p>
+</blockquote>
+<p>The wrongdoing remains forever. The acknowledgment remains forever. Restitution remains forever. A lifetime in which the act is never repeated also remains forever. Later good does not erase earlier evil; it changes the complete causal form in which that history is understood.</p>
 <hr/>
-<h2 id="3-build-four-cooperating-planes">3. Build four cooperating planes</h2>
-<p>No single identity protocol, blockchain, moderation model, or LLM can solve this problem. The system needs four planes that constrain one another.</p>
-<h3 id="the-confidentiality-plane">The confidentiality plane</h3>
-<p>Private content remains end-to-end encrypted. Identity links stay on the holder’s device or in storage chosen by the holder. Services receive pairwise personas rather than one universal identifier. Selective disclosure or zero-knowledge proofs reveal only the property required for the action: over a required age, licensed for a role, not already registered in this context, or verified for a particular regulated transaction.</p>
-<p>Public information remains anonymously readable by default. Privacy is not a reward for earning a high score.</p>
-<h3 id="the-prevention-and-containment-plane">The prevention and containment plane</h3>
-<p>Passkeys, device-bound authentication, narrowly scoped capability tokens, rate limits, sandboxed execution, signed software, content provenance, transaction limits, and circuit breakers reduce what an attacker can do. A suspicious request may be slowed, challenged, isolated, or denied without first declaring the requester a criminal.</p>
-<p>This is the useful part of zero trust: no location, account, organization, device, model, or administrator receives unlimited implicit trust. Verification moves close to the protected resource and is repeated when the action or risk changes.</p>
-<h3 id="the-audit-and-transparency-plane">The audit and transparency plane</h3>
-<p>Every consequential decision produces a signed receipt describing:</p>
+<h2 id="5-a-web-without-exile-still-needs-strong-containment">5. A web without exile still needs strong containment</h2>
+<p>To reject permanent exile is not to permit unlimited action.</p>
+<p>A stolen administrator key must be revoked immediately. Malware must be isolated. Fraudulent transfers must be stopped. Child exploitation material must be preserved and referred through the applicable lawful process. Credible preparation for terrorist violence or financing must trigger proportionate containment, evidence handling, and competent-authority review. A compromised model must lose access to tools and secrets.</p>
+<p>The system should restrict the concrete capability through which harm can occur:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Situation</th><th>Immediate response</th><th>Path of return</th></tr></thead><tbody><tr><td>Stolen account or key</td><td>revoke sessions and rotate keys</td><td>reauthenticate and recover legitimate authority</td></tr><tr><td>Bot swarm or denial of service</td><td>rate-limit, require cost, isolate traffic</td><td>regain quotas through clean behavior and evidence</td></tr><tr><td>Malware or hostile agent</td><td>sandbox, stop tools and network access</td><td>submit a changed artifact and pass renewed evaluation</td></tr><tr><td>Fraud or dangerous transaction</td><td>hold the transaction and preserve evidence</td><td>resolve identity, authority, restitution, and legal conditions</td></tr><tr><td>Harmful public content</td><td>restrict the specific item and record reasons</td><td>correct, contextualize, appeal, or republish lawfully</td></tr><tr><td>Abuse in an encrypted group</td><td>member report, targeted disclosure, key rotation</td><td>new participation under a new commitment and group consent</td></tr><tr><td>Serious organized violence</td><td>contain relevant capabilities and use lawful process</td><td>never automatic; determined by evidence, obligations, and later conduct</td></tr></tbody></table>
+<p>Public reading should remain open by default. Publishing at machine speed may require rate, provenance, or cost attestations. Accessing medical records requires delegation. Moving regulated funds may require identity and sanctions claims bound to that transaction. Administering infrastructure requires short-lived capabilities and signed receipts.</p>
+<p>The rule is:</p>
+<blockquote>
+<p>Do not classify a human being when a dangerous capability can be contained.</p>
+</blockquote>
+<p>The record may be permanent. Enforcement should remain scoped, reasoned, and responsive to new evidence.</p>
+<hr/>
+<h2 id="6-privacy-is-transitional-confidentiality-is-still-necessary">6. Privacy is transitional; confidentiality is still necessary</h2>
+<p>If there is no isolated self, privacy cannot be an absolute metaphysical property owned by that self. Information already exists through relation. In a sufficiently connected world, the fantasy that a life can be made causally private will continue to weaken.</p>
+<p>But it does not follow that every byte should be readable by everyone at every moment.</p>
+<p>Confession, medical treatment, the location of a victim, a cryptographic key, an unfinished thought, and the evidence in an active investigation require conscious boundaries. Uncontrolled exposure can itself create harm, coercion, spectacle, and mob punishment. A society that publishes every confession immediately may destroy the possibility of honest confession. A system that makes every old failure frictionlessly searchable may claim to permit repentance while making return socially impossible.</p>
+<p>Encryption therefore remains necessary, but its justification changes.</p>
+<p>It is not a proof that an autonomous individual owns an inviolable private universe. It is a discipline governing when information enters a relation, who may act upon it, and how that access is audited. This is consistent with the boundary principle described in <a href="/en/posts/love-is-self">Love as Self-Expansion</a>: non-separation does not eliminate the need for conscious boundaries.</p>
+<p>The direction of history may be toward a world in which everyone is connected and much more becomes knowable. The transition must still protect keys, vulnerable people, due process, and the conditions for truthful repentance.</p>
+<p>Auditability does not require universal plaintext.</p>
+<hr/>
+<h2 id="7-llms-evaluate-claims-not-eternal-persons">7. LLMs evaluate claims, not eternal persons</h2>
+<p>The ordinary third-party evaluator in this architecture should be a model or agent, not a permanent human committee.</p>
+<p>Models can examine large causal graphs, compare evidence, detect contradictions, identify repeated patterns, and issue signed assessments. They can do this across organizations without giving one platform a monopoly over trust.</p>
+<p>But no LLM can observe repentance directly. It cannot see the heart. It can evaluate only the correspondence among declaration, restitution, later action, and available evidence.</p>
+<p>Evaluation should therefore be divided among independent roles:</p>
 <ul>
-<li>the requesting persona or service;</li>
-<li>the action, resource, purpose, and asserted capability;</li>
-<li>the policy and evidence references used;</li>
-<li>the result, reasons, uncertainty, and expiry;</li>
-<li>any key release, delivery, quarantine, or external report; and</li>
-<li>the available recovery or appeal path.</li>
+<li>an evidence agent reconstructs the observable causal sequence;</li>
+<li>a risk agent identifies plausible harm and adversarial behavior;</li>
+<li>an advocate agent searches for exculpatory evidence, alternative explanations, and disproportionate consequences;</li>
+<li>a policy agent maps the case to an explicit rule and jurisdiction;</li>
+<li>an audit agent checks provenance, model versions, conflicts, and procedural integrity; and</li>
+<li>a deterministic authority kernel decides whether the required attestations and capabilities permit the requested action.</li>
 </ul>
-<p>Receipts can be committed to an append-only transparency structure so that deletion, rewriting, or inconsistent views can be detected. Sensitive fields remain encrypted to the affected person and authorized auditors. Public transparency reports disclose aggregate enforcement behavior and error rates, not a searchable history of individual reading.</p>
-<p>Audit records prove observable system events. They do not prove that a human read, understood, or intended the content displayed on a device. The system must state that limit honestly.</p>
-<h3 id="the-response-and-recovery-plane">The response and recovery plane</h3>
-<p>Prevention will fail sometimes. The system must be able to revoke a stolen capability, rotate keys, isolate a compromised service, stop a dangerous transaction, preserve specifically relevant evidence, notify affected people, restore legitimate access, and review the original decision.</p>
-<p>Safety is incomplete without recovery. A permanent ban is not a recovery mechanism, and a secret blacklist is not an incident response plan.</p>
+<p>The agents issue claims. They do not become sovereign.</p>
+<p>For a consequential decision, the receipt should contain the evidence references, policy, model and prompt version, confidence, dissenting assessments, result, scope, and conditions for challenge. A later model may disagree, but it must append a new assessment rather than rewrite the old one.</p>
+<p>No evaluator model should directly release a decryption key, transfer funds, delete evidence, or obtain ambient access to external systems. Kotoba should express those effects as explicit capabilities. Kotobase should preserve the request, attestations, decision, key release, external effect, and later review as one causal chain.</p>
+<p>Model diversity can reduce correlated error, but it cannot create certainty. LLM-as-a-judge research has documented position, verbosity, and self-enhancement biases. A quorum of opaque models is still opaque unless evidence and procedure remain inspectable.</p>
 <hr/>
-<h2 id="4-handle-abuse-without-universal-surveillance">4. Handle abuse without universal surveillance</h2>
-<p>Different communication spaces need different safety boundaries.</p>
-<p>In public spaces, anyone should be able to read without identification. Publishing may remain pseudonymous while using rate limits, provenance, community context, and action-specific reputation. Reports of illegal content must identify the specific material and basis for action. Removal, visibility restriction, monetization restriction, and account limitation are different interventions and should not be silently collapsed into one punishment.</p>
-<p>In private encrypted spaces, the service should not possess a standing ability to inspect every message. Members can make authenticated reports that reveal the reported material and the minimum context needed to investigate it. Group administrators can remove members and rotate group keys. Credible reports of child sexual exploitation, planned violence, or other serious crime can preserve the reported evidence and enter the applicable legal process. This is targeted accountability, not a master decryption key.</p>
-<p>For payments, contracts, critical infrastructure, and access to highly sensitive records, stronger identity proofing may be proportionate. KYC and legal identity should bind to the transaction, jurisdiction, purpose, and retention period that require them. They should not become admission tickets for ordinary reading, thought, association, or expression.</p>
-<p>Counter-terrorism and crime prevention do not suspend the need for proportionality. A defensible system restricts a concrete capability, transaction, item, or access request on a stated basis. It does not infer permanent guilt from nationality, religion, association, anonymity, or an opaque model score.</p>
-<hr/>
-<h2 id="5-make-trust-and-judgment-contestable">5. Make trust and judgment contestable</h2>
-<p>Trust is a graph of scoped claims, not a number attached to a person. A claim has an issuer, subject, scope, evidence, time, expiry, and revocation state. The independence and history of the issuer are themselves evidence. Several identifiers may strengthen continuity or identity assurance, but linking them must remain holder-controlled and private by default.</p>
-<p>Independent LLMs, models, and agents can help inspect evidence, detect patterns, compare claims, and issue signed evaluation attestations. This reduces dependence on a central human surveillance team. But an automated evaluation is still only a claim. It must expose its model and policy version, evidence references, uncertainty, and known counterevidence.</p>
-<p>An LLM must never directly release a decryption key, transfer funds, delete evidence, ban a person, or report someone to an authority. A small deterministic authority kernel verifies policy, capabilities, required attestations, and quorum. Content supplied as evidence is untrusted data, so evaluator agents run without ambient secrets or direct external effects.</p>
-<p>Ordinary review can be performed by a different agent set using counterevidence and a new policy or model version. Where applicable law requires qualified human supervision or an external dispute process, that remains an additional legal safeguard rather than a source of unlimited operator power.</p>
-<p>The red lines for Kotoba and Kotobase are therefore:</p>
+<h2 id="8-what-the-architecture-can-and-cannot-guarantee">8. What the architecture can and cannot guarantee</h2>
+<p>This architecture cannot guarantee that no crime will occur, that every attacker will be detected, that no innocent person will be restricted, or that a declaration of repentance is sincere.</p>
+<p>Strong end-to-end encryption also cannot coexist with complete provider-side semantic inspection of all private content. If an intermediary can always distinguish prohibited plaintext from permitted plaintext, the content is not confidential from that intermediary. Safety in encrypted spaces must therefore depend on participant controls, authenticated reports, bounded disclosures, and targeted lawful process rather than a universal decryption capability.</p>
+<p>An open identity system cannot prevent every return under a new name. What it can do is make consequential capabilities depend on accumulated, scoped evidence, while a formal repentance transition preserves causal continuity and starts new trust at zero.</p>
+<p>Under explicit cryptographic, operational, and governance assumptions, the system can provide:</p>
 <ul>
-<li>no universal real-name requirement;</li>
-<li>no global trust or morality score;</li>
-<li>no general surveillance backdoor;</li>
-<li>no indefinite retention by default;</li>
-<li>no secret permanent label or guilt by association;</li>
-<li>no direct enforcement by an LLM;</li>
-<li>no consequential restriction without a source, reason, scope, expiry, and review path; and</li>
-<li>no issuer, platform, government, model, or operator with unilateral power over a person’s whole digital life.</li>
+<li>confidentiality against unauthorized intermediaries;</li>
+<li>signed provenance and tamper-evident event history;</li>
+<li>scoped and revocable authority;</li>
+<li>multi-party evaluation of consequential actions;</li>
+<li>evidence-preserving correction rather than silent rewriting;</li>
+<li>visible continuity across identity epochs;</li>
+<li>bounded containment when harm is credible; and</li>
+<li>a real path by which a person can return without escaping responsibility.</li>
 </ul>
-<p>The first end-to-end proof should be one protected Kotobase action. A pairwise persona requests a resource. A passkey authenticates the request. The holder discloses only the required claims. Risk services and optional third-party agents return scoped attestations. A deterministic capability kernel returns <code>allow</code>, <code>deny</code>, <code>step-up</code>, or <code>quarantine</code>. Only an allowed decision releases the necessary key or capability. The subject receives a Decision Receipt and can trigger recovery or review.</p>
-<p>That one round trip would demonstrate the actual goal: <strong>a web that can resist abuse without treating every person as a suspect, and can protect privacy without granting attackers unlimited power</strong>.</p>
+<p>That is not perfect safety. It is a system in which power, judgment, memory, and return are all constrained.</p>
+<hr/>
+<h2 id="9-the-first-kotoba-and-kotobase-proof">9. The first Kotoba and Kotobase proof</h2>
+<p>The first implementation should not begin with a universal identity system or a single global trust score.</p>
+<p>It should prove one complete transition:</p>
+<ol>
+<li>A principal requests a protected Kotobase action.</li>
+<li>Kotoba makes every possible effect and required capability explicit.</li>
+<li>Independent agents issue scoped evidence, risk, advocacy, and policy attestations.</li>
+<li>A deterministic kernel returns allow, deny, step-up, quarantine, or defer.</li>
+<li>The resulting capability or key is released only when the policy is satisfied.</li>
+<li>Kotobase records the request, evidence references, decision, effect, and receipt in an append-only causal graph.</li>
+<li>A challenge appends counterevidence and a new judgment.</li>
+<li>If the principal enters a repentance transition, the old capability ends, a new epoch begins at trust zero, obligations remain linked, and later conduct accumulates new trust.</li>
+</ol>
+<p>This one round trip would unite cybersecurity, identity, audit, model evaluation, accountability, forgiveness, and freedom without pretending that any of them is absolute.</p>
+<hr/>
+<h2 id="declaration">Declaration</h2>
+<p>I do not seek a web that forgets.</p>
+<p>I seek a web that remembers truthfully: who claimed what, what occurred, which consequences followed, which judgment was made, which error was corrected, which harm was repaired, and which commitment came next.</p>
+<p>I do not seek a web that permanently divides humanity into good people and bad people.</p>
+<p>I seek a web that stops harmful capabilities, preserves causal responsibility, and always leaves open the demanding path of repentance.</p>
+<p>The old self is not deleted. It is transformed by a new vow.</p>
+<p>The new identity does not inherit trust. It begins from zero.</p>
+<p>The past remains forever. The future remains open.</p>
 <hr/>
 <h2 id="references">References</h2>
 <ol>
-<li>NIST, <a href="https://csrc.nist.gov/pubs/sp/800/207/final"><em>Zero Trust Architecture</em></a>, SP 800-207, 2020, updated 2025.</li>
-<li>NIST, <a href="https://www.nist.gov/cyberframework"><em>Cybersecurity Framework 2.0</em></a>, 2024.</li>
-<li>NIST, <a href="https://www.nist.gov/privacy-framework"><em>Privacy Framework</em></a>, Version 1.0 and Version 1.1 work in progress.</li>
-<li>IETF, <a href="https://www.rfc-editor.org/info/rfc9420/"><em>The Messaging Layer Security Protocol</em></a>, RFC 9420, 2023.</li>
-<li>IETF, <a href="https://www.rfc-editor.org/rfc/rfc9162.html"><em>Certificate Transparency Version 2.0</em></a>, RFC 9162, 2021.</li>
-<li>W3C, <a href="https://www.w3.org/TR/vc-data-model/"><em>Verifiable Credentials Data Model v2.0</em></a>, 2025.</li>
-<li>European Union, <a href="https://eur-lex.europa.eu/eli/reg/2022/2065/oj"><em>Digital Services Act</em></a>, Regulation (EU) 2022/2065.</li>
-<li>United Nations Office of Counter-Terrorism, <a href="https://www.un.org/counterterrorism/en/human-rights"><em>Human rights and the rule of law</em></a>.</li>
-<li>De Rossi et al., <a href="https://eips.ethereum.org/EIPS/eip-8004"><em>ERC-8004: Trustless Agents</em></a>, 2025, status: Draft.</li>
-<li>Zheng et al., <a href="https://arxiv.org/abs/2306.05685"><em>Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena</em></a>, 2023.</li>
+<li>NASA, <a href="https://science.nasa.gov/resource/apollo-8s-iconic-earthrise/">Apollo 8’s Iconic Earthrise</a>, photograph taken December 24, 1968.</li>
+<li>NASA, <a href="https://www.nasa.gov/wp-content/uploads/static/apollo50th/img/Poster1.pdf">Explore Earth — Apollo 8</a>, on Earthrise and one shared planet.</li>
+<li>NIST, <a href="https://csrc.nist.gov/pubs/sp/800/207/final">Zero Trust Architecture</a>, SP 800-207.</li>
+<li>IETF, <a href="https://www.rfc-editor.org/info/rfc9420/">The Messaging Layer Security Protocol</a>, RFC 9420.</li>
+<li>IETF, <a href="https://www.rfc-editor.org/rfc/rfc9162.html">Certificate Transparency Version 2.0</a>, RFC 9162.</li>
+<li>W3C, <a href="https://www.w3.org/TR/threat-model-decentralized-credentials/">Threat Model for Decentralized Credentials</a>.</li>
+<li>Ethereum Attestation Service, <a href="https://docs.attest.org/docs/core--concepts/attestations">Attestations</a>.</li>
+<li>Human Passport, <a href="https://docs.passport.human.tech/building-with-passport/stamps/introduction">Passport Stamps</a> and <a href="https://docs.passport.human.tech/building-with-passport/stamps/major-concepts/credential-map-and-weights">Credential Map and Weights</a>.</li>
+<li>BrightID, <a href="https://www.brightid.org/about">What is BrightID?</a>.</li>
+<li>De Rossi et al., <a href="https://eips.ethereum.org/EIPS/eip-8004">ERC-8004: Trustless Agents</a>.</li>
+<li>European Union, <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CONSIL%3APE_17_2016_INIT">General Data Protection Regulation, Articles 16–17</a>.</li>
+<li>European Union, <a href="https://eur-lex.europa.eu/eli/reg/2022/2065/oj">Digital Services Act</a>, Regulation (EU) 2022/2065.</li>
+<li>United Nations Office of Counter-Terrorism, <a href="https://www.un.org/counterterrorism/en/human-rights">Human rights and the rule of law</a>.</li>
+<li>Zheng et al., <a href="https://arxiv.org/abs/2306.05685">Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena</a>, 2023.</li>
 </ol> </div> </article> </main>  <footer class="md-footer" data-astro-cid-sz7xmlte> <hr data-astro-cid-sz7xmlte> <p class="md-footer-text" data-astro-cid-sz7xmlte>All rights reserved by Jun Kawasaki. @CC BY-NC-SA</p> </footer>   </body></html> 

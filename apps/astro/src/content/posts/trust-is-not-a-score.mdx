@@ -1,163 +1,307 @@
 ---
-title: "How to Keep the Web Free and Safe"
+title: "A Web That Never Forgets, Yet Allows Return"
 date: "2026-08-27"
 author:
   name: "Jun Kawasaki"
   picture: "/assets/posts/authors/jk.jpg"
-excerpt: "A practical architecture for resisting cyberattacks and illegal activity while preserving privacy, auditability, and individual freedom."
+excerpt: "For Kotoba and Kotobase: causal history remains, trust restarts at zero, and repentance permits return without escaping responsibility."
 coverImage: "/assets/posts/preview/cover.jpg"
 ogImage:
   url: "/assets/posts/preview/cover.jpg"
 locales: ["en"]
 ---
 
-# How to Keep the Web Free and Safe
-### A design statement for Kotoba and Kotobase
+# A Web That Never Forgets, Yet Allows Return
 
-The web has two familiar failure modes. One treats safety as a reason to identify, inspect, and retain everything about everyone. The other treats freedom as a reason to ignore abuse until people are defrauded, stalked, exploited, radicalized, or attacked.
+### Trust, causality, repentance, and safety after the individual
 
-Neither produces a free web. Universal surveillance creates its own security disaster: a correlation database that can be breached, abused, or captured by power. Unlimited anonymous capability creates a different disaster: attackers can automate harm while victims carry the cost.
+How can the web remain free while resisting cyberattacks, fraud, exploitation, terrorist violence, and other serious harm?
 
-The design problem is therefore not how to decide which people are trustworthy. It is **how to keep information private, make consequential actions accountable, contain attacks, preserve evidence, and give every affected person a meaningful path to challenge a decision**.
+The usual answers begin with the individual. One side attempts to protect an isolated person and the information that belongs to that person. The other side attempts to identify, rank, monitor, and exclude dangerous individuals.
 
-The answer begins by separating things the current web repeatedly collapses: confidentiality, safety, identity, authority, trust, and audit.
+I begin from a different premise.
+
+I do not regard the individual as an independent and permanent substance. My Christianity was chosen after encountering Buddhism, not before it. I therefore carry into it the understanding that there is no self standing outside relation, that all things arise through conditions, and that causal relation does not end when a body dies.
+
+I wrote about this experience in [I Cannot Die](/en/posts/i-cannot-die), and about the difference between an isolated individual and a person within relation in [The Correct Japanese Translation of "Individual" is "Kojin"](/en/posts/individual-is-kojin).
+
+From this premise, privacy is not an ultimate metaphysical wall around a sovereign self. Death is not the deletion of a node. A changed name, a discarded account, or a new cryptographic key does not erase the consequences of what occurred.
+
+Yet this does not require permanent exile.
+
+The design principle is:
+
+> No permanent self.<br />
+> No erasure of causality.<br />
+> No permanent condemnation.<br />
+> Trust begins again from zero.<br />
+> Return requires a new commitment.
+
+This is the foundation I propose for Kotoba, Kotobase, and a safer web.
 
 ---
 
-## 1. Start with harms, not identities
+## 1. Earth has become one village
 
-“Online harm” is not one technical category. Credential theft, ransomware, fraud, bot swarms, child sexual exploitation material, terrorist recruitment or financing, doxxing, malware distribution, and unlawful access to private records have different causes and require different controls.
+In 1968, Apollo 8 returned the image known as Earthrise. Humanity could see Earth as one bounded world, suspended in darkness, rather than as an indefinitely extensible map. NASA describes that image as a reminder that we are residents of one planet that requires our care.
 
-A cybersecurity incident is not the same problem as illegal public content. A suspicious payment is not the same problem as a private conversation. A stolen administrator key is not evidence that its owner has become a bad person. If all of these cases feed one global `trust score`, context disappears and error becomes punishment.
+For most of history, a person or community could imagine escape toward another continent, frontier, colony, or new society. That model is ending. There is no undiscovered continent beyond the network. Information, capital, software, weapons, pathogens, pollution, and consequences circulate around one Earth.
 
-The present account-centric web makes that mistake constantly. One account is expected to represent a person, authenticate a device, accumulate reputation, hold money, publish speech, receive moderation decisions, and recover from compromise. When one part fails, the whole identity is banned, stolen, or exposed.
+The world is becoming an island society on a planetary scale: a village in which everyone can eventually become connected to everyone else.
 
-Kotoba and Kotobase should instead protect the boundary where an action affects another person, system, or resource. Reading a public essay may require no identity. Publishing at machine speed may require proof of rate limits or cost. Reading a medical record requires explicit delegation. Moving regulated funds may require narrowly scoped identity or sanctions evidence. Administering infrastructure requires strong authentication, a short-lived capability, and an audit receipt.
+The present web is a transitional form. It still permits people and institutions to abandon an identity, jurisdiction, platform, or victim population and reappear elsewhere as though no relation existed. Attackers automate this. Corporations rename themselves. States deny provenance. Accounts are deleted. Evidence disappears. A person expelled from one service returns through another identity with no causal continuity.
 
-The rule is simple: **do not demand more identity than the action requires, and do not grant more power than the evidence justifies**.
+A global village cannot depend on that kind of escape.
+
+It needs a memory of relation.
 
 ---
 
-## 2. Separate privacy, assurance, and authority
+## 2. The record is eternal; judgment is not closed
 
-Three questions must remain distinct.
+The right to be forgotten does not exist in the metaphysical architecture described here. What has entered the world has changed the conditions from which later events arise. Its effects may continue through other people, institutions, language, descendants, software, and memory after the body that initiated it has disappeared.
 
-1. **Confidentiality:** who can learn the content or correlate the identities involved?
-2. **Assurance:** what evidence supports a claim about a person, device, service, transaction, or piece of content?
-3. **Authority:** who is permitted to perform this action on this resource, under these conditions?
+No technical system can capture the whole of this causality or prove metaphysical eternity. A ledger is not karma. A model is not God. Kotobase can only preserve a bounded and verifiable projection of consequential events.
 
-Encryption answers the first question. Credentials, attestations, provenance, device posture, and contextual history contribute to the second. Capabilities and policy answer the third. None can substitute for the others.
+Within that boundary, however, the rule should be append-only:
 
-The decision should have this shape:
+- an event is not deleted;
+- a statement is attributed to its issuer;
+- evidence retains provenance;
+- a correction is appended rather than silently replacing the past;
+- a false allegation remains visible as an allegation that was later refuted;
+- a revoked credential remains visible as a credential whose validity ended;
+- a judgment records the policy, evidence, model, uncertainty, and time under which it was made; and
+- later conduct may change the meaning of the history without changing the history itself.
 
-`Decision = policy(action, resource, capability, evidence, risk, context)`
+This distinction is essential. An immutable record is not an immutable verdict.
 
-It is calculated for one action and expires. It may return `allow`, `deny`, `step-up`, `quarantine`, or `defer`. It does not produce a permanent rank of human worth.
+If an accusation is recorded, the system must not transform the existence of the accusation into eternal truth. If a model makes an error, the error, challenge, correction, and model update all become part of the causal record. If a person repents and repairs harm, the wrongdoing, repentance, repair, and later life all remain.
 
-| Threat or harm | Proportionate response | Privacy boundary |
+The event remains. Its meaning is never sealed forever.
+
+This is also a necessary boundary between the philosophical statement and current law. Existing legal systems may require erasure, restriction, correction, or minimization of personal data. Article 17 of the European Union's GDPR, for example, establishes a right to erasure under stated conditions and exceptions. A present implementation must comply with applicable law. It should therefore avoid placing raw personal data on an irreversible public ledger. It can preserve lawful commitments, provenance, revocations, and restricted evidence without pretending that a legal deletion makes the underlying causal event never to have occurred.
+
+---
+
+## 3. Trust belongs to a relation, not a soul
+
+A single ID rank is the wrong primitive.
+
+It collapses different questions into a number: Is this key controlled by the same actor? Has this person repaid a debt? Is this device compromised? May this agent publish at machine speed? Is this transaction lawful in this jurisdiction? Has this model made reliable evaluations in this domain?
+
+These are not one property.
+
+Trust is a relation among a subject, an issuer, an action, a resource, a time, and evidence. It should be represented as a graph of scoped claims. Each claim needs at least:
+
+| Field | Meaning |
+|---|---|
+| Subject | the person, persona, device, organization, service, or agent being evaluated |
+| Issuer | the entity or model making the claim |
+| Scope | the exact action or relationship to which the claim applies |
+| Evidence | the observations and attestations supporting it |
+| Policy and model | the rule set and evaluator version used |
+| Confidence | uncertainty rather than simulated certainty |
+| Time | issuance, expiry, and evaluation epoch |
+| Causal parents | earlier events and claims on which it depends |
+| Status | active, expired, revoked, challenged, corrected, or superseded |
+
+Several identities can be linked to strengthen continuity or assurance. Human Passport, formerly Gitcoin Passport, demonstrates one approach: it aggregates multiple credentials or "Stamps" into a humanity score. BrightID uses a social graph to estimate unique participation. Ethereum Attestation Service provides a more general primitive: structured, signed attestations that may reference other attestations. ERC-8004 proposes identity, reputation, and validation registries for agents.
+
+These projects are useful precedents, but their primitives should not be elevated into a universal measure of human worth. Multiple credentials can establish continuity, uniqueness, or a history of participation. They cannot prove goodness. A cryptographic signature proves who signed a claim, not that the claim is true.
+
+Kotoba and Kotobase should therefore store the claims and their relations, not collapse them into a permanent global score.
+
+---
+
+## 4. Repentance is a state transition
+
+Permanent exclusion is not necessary. A person who caused harm must be able to return.
+
+But return cannot mean deleting an account, choosing a new name, and escaping the causal line. That is identity laundering, not repentance.
+
+Repentance is a verifiable state transition:
+
+1. The harmful act and its consequences are acknowledged.
+2. Dangerous or compromised capabilities are revoked.
+3. Evidence is preserved and affected people can answer.
+4. Restitution, repair, treatment, surrender, or other remaining obligations are defined.
+5. The old authority is relinquished.
+6. A new commitment is declared and witnessed.
+7. A new cryptographic principal begins a new identity epoch.
+8. Trust in that epoch begins at zero.
+9. Capabilities are reacquired gradually through subsequent conduct.
+
+Baptism, ordination, taking vows, and public declaration can express this transition. They mark the death of the old self as an operative commitment, not the deletion of its causal history. Because death is not annihilation, the new epoch remains permanently linked to the old one.
+
+The ceremony does not award trust. It creates the condition under which trust may be built again.
+
+The state after transition is therefore:
+
+| State | After repentance |
+|---|---|
+| Causal history | preserved |
+| Prior claims | preserved with their status and context |
+| Remaining obligations | inherited |
+| New trust | zero |
+| Risk assessment | recalculated, not automatically cleared |
+| Capabilities | minimal at first, expanded through evidence |
+| New commitment | public, signed, and auditable |
+
+Forgiveness is not forgetting.
+
+> Forgiveness means that the past is not allowed to close the future forever.
+
+The wrongdoing remains forever. The acknowledgment remains forever. Restitution remains forever. A lifetime in which the act is never repeated also remains forever. Later good does not erase earlier evil; it changes the complete causal form in which that history is understood.
+
+---
+
+## 5. A web without exile still needs strong containment
+
+To reject permanent exile is not to permit unlimited action.
+
+A stolen administrator key must be revoked immediately. Malware must be isolated. Fraudulent transfers must be stopped. Child exploitation material must be preserved and referred through the applicable lawful process. Credible preparation for terrorist violence or financing must trigger proportionate containment, evidence handling, and competent-authority review. A compromised model must lose access to tools and secrets.
+
+The system should restrict the concrete capability through which harm can occur:
+
+| Situation | Immediate response | Path of return |
 |---|---|---|
-| Credential or session theft | passkeys, device-bound sessions, rapid revocation, short capabilities | no legal name is needed merely to secure an account |
-| Bot swarms, scraping, denial of service | rate limits, proof of cost, scoped quotas, anomaly containment | do not build a cross-site identity graph to rate-limit one service |
-| Malware or hostile automation | sandboxing, least authority, signed artifacts, network and tool limits | inspect the code and action, not the operator's whole life |
-| Allegedly illegal public content | precise notice, evidence preservation, content-level restriction, reason and appeal | do not turn one disputed item into permanent exclusion everywhere |
-| Abuse in an encrypted space | user-initiated reports with authenticated context, group controls, targeted evidence handling | no universal decryption key or routine provider access to all messages |
-| High-risk or regulated transaction | selective KYC or sanctions proof, transaction limits, step-up authentication | the proof is purpose-bound and is not reused as a browsing identity |
-| Cyber incident or compromised service | isolate, revoke, rotate keys, preserve receipts, recover | audit operational events without retaining unrelated personal content |
-| Credible terrorism or organized-crime case | scoped lawful process, capability containment, evidence preservation, competent-authority referral | no guilt by association, secret global label, or indefinite surveillance |
+| Stolen account or key | revoke sessions and rotate keys | reauthenticate and recover legitimate authority |
+| Bot swarm or denial of service | rate-limit, require cost, isolate traffic | regain quotas through clean behavior and evidence |
+| Malware or hostile agent | sandbox, stop tools and network access | submit a changed artifact and pass renewed evaluation |
+| Fraud or dangerous transaction | hold the transaction and preserve evidence | resolve identity, authority, restitution, and legal conditions |
+| Harmful public content | restrict the specific item and record reasons | correct, contextualize, appeal, or republish lawfully |
+| Abuse in an encrypted group | member report, targeted disclosure, key rotation | new participation under a new commitment and group consent |
+| Serious organized violence | contain relevant capabilities and use lawful process | never automatic; determined by evidence, obligations, and later conduct |
 
-Cryptography can prove origin, integrity, possession, and authorization. It cannot prove that a person is good, that an allegation is true, or that an act is illegal in every jurisdiction. Those remain claims with sources, legal context, evidence, and a path for challenge.
+Public reading should remain open by default. Publishing at machine speed may require rate, provenance, or cost attestations. Accessing medical records requires delegation. Moving regulated funds may require identity and sanctions claims bound to that transaction. Administering infrastructure requires short-lived capabilities and signed receipts.
 
----
+The rule is:
 
-## 3. Build four cooperating planes
+> Do not classify a human being when a dangerous capability can be contained.
 
-No single identity protocol, blockchain, moderation model, or LLM can solve this problem. The system needs four planes that constrain one another.
-
-### The confidentiality plane
-
-Private content remains end-to-end encrypted. Identity links stay on the holder's device or in storage chosen by the holder. Services receive pairwise personas rather than one universal identifier. Selective disclosure or zero-knowledge proofs reveal only the property required for the action: over a required age, licensed for a role, not already registered in this context, or verified for a particular regulated transaction.
-
-Public information remains anonymously readable by default. Privacy is not a reward for earning a high score.
-
-### The prevention and containment plane
-
-Passkeys, device-bound authentication, narrowly scoped capability tokens, rate limits, sandboxed execution, signed software, content provenance, transaction limits, and circuit breakers reduce what an attacker can do. A suspicious request may be slowed, challenged, isolated, or denied without first declaring the requester a criminal.
-
-This is the useful part of zero trust: no location, account, organization, device, model, or administrator receives unlimited implicit trust. Verification moves close to the protected resource and is repeated when the action or risk changes.
-
-### The audit and transparency plane
-
-Every consequential decision produces a signed receipt describing:
-
-- the requesting persona or service;
-- the action, resource, purpose, and asserted capability;
-- the policy and evidence references used;
-- the result, reasons, uncertainty, and expiry;
-- any key release, delivery, quarantine, or external report; and
-- the available recovery or appeal path.
-
-Receipts can be committed to an append-only transparency structure so that deletion, rewriting, or inconsistent views can be detected. Sensitive fields remain encrypted to the affected person and authorized auditors. Public transparency reports disclose aggregate enforcement behavior and error rates, not a searchable history of individual reading.
-
-Audit records prove observable system events. They do not prove that a human read, understood, or intended the content displayed on a device. The system must state that limit honestly.
-
-### The response and recovery plane
-
-Prevention will fail sometimes. The system must be able to revoke a stolen capability, rotate keys, isolate a compromised service, stop a dangerous transaction, preserve specifically relevant evidence, notify affected people, restore legitimate access, and review the original decision.
-
-Safety is incomplete without recovery. A permanent ban is not a recovery mechanism, and a secret blacklist is not an incident response plan.
+The record may be permanent. Enforcement should remain scoped, reasoned, and responsive to new evidence.
 
 ---
 
-## 4. Handle abuse without universal surveillance
+## 6. Privacy is transitional; confidentiality is still necessary
 
-Different communication spaces need different safety boundaries.
+If there is no isolated self, privacy cannot be an absolute metaphysical property owned by that self. Information already exists through relation. In a sufficiently connected world, the fantasy that a life can be made causally private will continue to weaken.
 
-In public spaces, anyone should be able to read without identification. Publishing may remain pseudonymous while using rate limits, provenance, community context, and action-specific reputation. Reports of illegal content must identify the specific material and basis for action. Removal, visibility restriction, monetization restriction, and account limitation are different interventions and should not be silently collapsed into one punishment.
+But it does not follow that every byte should be readable by everyone at every moment.
 
-In private encrypted spaces, the service should not possess a standing ability to inspect every message. Members can make authenticated reports that reveal the reported material and the minimum context needed to investigate it. Group administrators can remove members and rotate group keys. Credible reports of child sexual exploitation, planned violence, or other serious crime can preserve the reported evidence and enter the applicable legal process. This is targeted accountability, not a master decryption key.
+Confession, medical treatment, the location of a victim, a cryptographic key, an unfinished thought, and the evidence in an active investigation require conscious boundaries. Uncontrolled exposure can itself create harm, coercion, spectacle, and mob punishment. A society that publishes every confession immediately may destroy the possibility of honest confession. A system that makes every old failure frictionlessly searchable may claim to permit repentance while making return socially impossible.
 
-For payments, contracts, critical infrastructure, and access to highly sensitive records, stronger identity proofing may be proportionate. KYC and legal identity should bind to the transaction, jurisdiction, purpose, and retention period that require them. They should not become admission tickets for ordinary reading, thought, association, or expression.
+Encryption therefore remains necessary, but its justification changes.
 
-Counter-terrorism and crime prevention do not suspend the need for proportionality. A defensible system restricts a concrete capability, transaction, item, or access request on a stated basis. It does not infer permanent guilt from nationality, religion, association, anonymity, or an opaque model score.
+It is not a proof that an autonomous individual owns an inviolable private universe. It is a discipline governing when information enters a relation, who may act upon it, and how that access is audited. This is consistent with the boundary principle described in [Love as Self-Expansion](/en/posts/love-is-self): non-separation does not eliminate the need for conscious boundaries.
+
+The direction of history may be toward a world in which everyone is connected and much more becomes knowable. The transition must still protect keys, vulnerable people, due process, and the conditions for truthful repentance.
+
+Auditability does not require universal plaintext.
 
 ---
 
-## 5. Make trust and judgment contestable
+## 7. LLMs evaluate claims, not eternal persons
 
-Trust is a graph of scoped claims, not a number attached to a person. A claim has an issuer, subject, scope, evidence, time, expiry, and revocation state. The independence and history of the issuer are themselves evidence. Several identifiers may strengthen continuity or identity assurance, but linking them must remain holder-controlled and private by default.
+The ordinary third-party evaluator in this architecture should be a model or agent, not a permanent human committee.
 
-Independent LLMs, models, and agents can help inspect evidence, detect patterns, compare claims, and issue signed evaluation attestations. This reduces dependence on a central human surveillance team. But an automated evaluation is still only a claim. It must expose its model and policy version, evidence references, uncertainty, and known counterevidence.
+Models can examine large causal graphs, compare evidence, detect contradictions, identify repeated patterns, and issue signed assessments. They can do this across organizations without giving one platform a monopoly over trust.
 
-An LLM must never directly release a decryption key, transfer funds, delete evidence, ban a person, or report someone to an authority. A small deterministic authority kernel verifies policy, capabilities, required attestations, and quorum. Content supplied as evidence is untrusted data, so evaluator agents run without ambient secrets or direct external effects.
+But no LLM can observe repentance directly. It cannot see the heart. It can evaluate only the correspondence among declaration, restitution, later action, and available evidence.
 
-Ordinary review can be performed by a different agent set using counterevidence and a new policy or model version. Where applicable law requires qualified human supervision or an external dispute process, that remains an additional legal safeguard rather than a source of unlimited operator power.
+Evaluation should therefore be divided among independent roles:
 
-The red lines for Kotoba and Kotobase are therefore:
+- an evidence agent reconstructs the observable causal sequence;
+- a risk agent identifies plausible harm and adversarial behavior;
+- an advocate agent searches for exculpatory evidence, alternative explanations, and disproportionate consequences;
+- a policy agent maps the case to an explicit rule and jurisdiction;
+- an audit agent checks provenance, model versions, conflicts, and procedural integrity; and
+- a deterministic authority kernel decides whether the required attestations and capabilities permit the requested action.
 
-- no universal real-name requirement;
-- no global trust or morality score;
-- no general surveillance backdoor;
-- no indefinite retention by default;
-- no secret permanent label or guilt by association;
-- no direct enforcement by an LLM;
-- no consequential restriction without a source, reason, scope, expiry, and review path; and
-- no issuer, platform, government, model, or operator with unilateral power over a person's whole digital life.
+The agents issue claims. They do not become sovereign.
 
-The first end-to-end proof should be one protected Kotobase action. A pairwise persona requests a resource. A passkey authenticates the request. The holder discloses only the required claims. Risk services and optional third-party agents return scoped attestations. A deterministic capability kernel returns `allow`, `deny`, `step-up`, or `quarantine`. Only an allowed decision releases the necessary key or capability. The subject receives a Decision Receipt and can trigger recovery or review.
+For a consequential decision, the receipt should contain the evidence references, policy, model and prompt version, confidence, dissenting assessments, result, scope, and conditions for challenge. A later model may disagree, but it must append a new assessment rather than rewrite the old one.
 
-That one round trip would demonstrate the actual goal: **a web that can resist abuse without treating every person as a suspect, and can protect privacy without granting attackers unlimited power**.
+No evaluator model should directly release a decryption key, transfer funds, delete evidence, or obtain ambient access to external systems. Kotoba should express those effects as explicit capabilities. Kotobase should preserve the request, attestations, decision, key release, external effect, and later review as one causal chain.
+
+Model diversity can reduce correlated error, but it cannot create certainty. LLM-as-a-judge research has documented position, verbosity, and self-enhancement biases. A quorum of opaque models is still opaque unless evidence and procedure remain inspectable.
+
+---
+
+## 8. What the architecture can and cannot guarantee
+
+This architecture cannot guarantee that no crime will occur, that every attacker will be detected, that no innocent person will be restricted, or that a declaration of repentance is sincere.
+
+Strong end-to-end encryption also cannot coexist with complete provider-side semantic inspection of all private content. If an intermediary can always distinguish prohibited plaintext from permitted plaintext, the content is not confidential from that intermediary. Safety in encrypted spaces must therefore depend on participant controls, authenticated reports, bounded disclosures, and targeted lawful process rather than a universal decryption capability.
+
+An open identity system cannot prevent every return under a new name. What it can do is make consequential capabilities depend on accumulated, scoped evidence, while a formal repentance transition preserves causal continuity and starts new trust at zero.
+
+Under explicit cryptographic, operational, and governance assumptions, the system can provide:
+
+- confidentiality against unauthorized intermediaries;
+- signed provenance and tamper-evident event history;
+- scoped and revocable authority;
+- multi-party evaluation of consequential actions;
+- evidence-preserving correction rather than silent rewriting;
+- visible continuity across identity epochs;
+- bounded containment when harm is credible; and
+- a real path by which a person can return without escaping responsibility.
+
+That is not perfect safety. It is a system in which power, judgment, memory, and return are all constrained.
+
+---
+
+## 9. The first Kotoba and Kotobase proof
+
+The first implementation should not begin with a universal identity system or a single global trust score.
+
+It should prove one complete transition:
+
+1. A principal requests a protected Kotobase action.
+2. Kotoba makes every possible effect and required capability explicit.
+3. Independent agents issue scoped evidence, risk, advocacy, and policy attestations.
+4. A deterministic kernel returns allow, deny, step-up, quarantine, or defer.
+5. The resulting capability or key is released only when the policy is satisfied.
+6. Kotobase records the request, evidence references, decision, effect, and receipt in an append-only causal graph.
+7. A challenge appends counterevidence and a new judgment.
+8. If the principal enters a repentance transition, the old capability ends, a new epoch begins at trust zero, obligations remain linked, and later conduct accumulates new trust.
+
+This one round trip would unite cybersecurity, identity, audit, model evaluation, accountability, forgiveness, and freedom without pretending that any of them is absolute.
+
+---
+
+## Declaration
+
+I do not seek a web that forgets.
+
+I seek a web that remembers truthfully: who claimed what, what occurred, which consequences followed, which judgment was made, which error was corrected, which harm was repaired, and which commitment came next.
+
+I do not seek a web that permanently divides humanity into good people and bad people.
+
+I seek a web that stops harmful capabilities, preserves causal responsibility, and always leaves open the demanding path of repentance.
+
+The old self is not deleted. It is transformed by a new vow.
+
+The new identity does not inherit trust. It begins from zero.
+
+The past remains forever. The future remains open.
 
 ---
 
 ## References
 
-1. NIST, [*Zero Trust Architecture*](https://csrc.nist.gov/pubs/sp/800/207/final), SP 800-207, 2020, updated 2025.
-2. NIST, [*Cybersecurity Framework 2.0*](https://www.nist.gov/cyberframework), 2024.
-3. NIST, [*Privacy Framework*](https://www.nist.gov/privacy-framework), Version 1.0 and Version 1.1 work in progress.
-4. IETF, [*The Messaging Layer Security Protocol*](https://www.rfc-editor.org/info/rfc9420/), RFC 9420, 2023.
-5. IETF, [*Certificate Transparency Version 2.0*](https://www.rfc-editor.org/rfc/rfc9162.html), RFC 9162, 2021.
-6. W3C, [*Verifiable Credentials Data Model v2.0*](https://www.w3.org/TR/vc-data-model/), 2025.
-7. European Union, [*Digital Services Act*](https://eur-lex.europa.eu/eli/reg/2022/2065/oj), Regulation (EU) 2022/2065.
-8. United Nations Office of Counter-Terrorism, [*Human rights and the rule of law*](https://www.un.org/counterterrorism/en/human-rights).
-9. De Rossi et al., [*ERC-8004: Trustless Agents*](https://eips.ethereum.org/EIPS/eip-8004), 2025, status: Draft.
-10. Zheng et al., [*Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena*](https://arxiv.org/abs/2306.05685), 2023.
+1. NASA, [Apollo 8's Iconic Earthrise](https://science.nasa.gov/resource/apollo-8s-iconic-earthrise/), photograph taken December 24, 1968.
+2. NASA, [Explore Earth — Apollo 8](https://www.nasa.gov/wp-content/uploads/static/apollo50th/img/Poster1.pdf), on Earthrise and one shared planet.
+3. NIST, [Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final), SP 800-207.
+4. IETF, [The Messaging Layer Security Protocol](https://www.rfc-editor.org/info/rfc9420/), RFC 9420.
+5. IETF, [Certificate Transparency Version 2.0](https://www.rfc-editor.org/rfc/rfc9162.html), RFC 9162.
+6. W3C, [Threat Model for Decentralized Credentials](https://www.w3.org/TR/threat-model-decentralized-credentials/).
+7. Ethereum Attestation Service, [Attestations](https://docs.attest.org/docs/core--concepts/attestations).
+8. Human Passport, [Passport Stamps](https://docs.passport.human.tech/building-with-passport/stamps/introduction) and [Credential Map and Weights](https://docs.passport.human.tech/building-with-passport/stamps/major-concepts/credential-map-and-weights).
+9. BrightID, [What is BrightID?](https://www.brightid.org/about).
+10. De Rossi et al., [ERC-8004: Trustless Agents](https://eips.ethereum.org/EIPS/eip-8004).
+11. European Union, [General Data Protection Regulation, Articles 16–17](https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CONSIL%3APE_17_2016_INIT).
+12. European Union, [Digital Services Act](https://eur-lex.europa.eu/eli/reg/2022/2065/oj), Regulation (EU) 2022/2065.
+13. United Nations Office of Counter-Terrorism, [Human rights and the rule of law](https://www.un.org/counterterrorism/en/human-rights).
+14. Zheng et al., [Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena](https://arxiv.org/abs/2306.05685), 2023.

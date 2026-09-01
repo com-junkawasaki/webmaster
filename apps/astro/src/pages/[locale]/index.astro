@@ -5,6 +5,7 @@ import HeroPost from "../../components/HeroPost.astro";
 import MoreStories from "../../components/MoreStories.astro";
 import Career from "../../components/Career.tsx";
 import Achievements from "../../components/Achievements.tsx";
+import HobbyAndLicenses from "../../components/HobbyAndLicenses.astro";
 import { getCollection } from "astro:content";
 import type { Locale } from "../../i18n/ui";
 import { getPostTitle, getPostExcerpt } from "../../i18n/utils";
@@ -53,5 +54,6 @@ const title = "Jun Kawasaki";
     )}
     <Career client:load />
     <Achievements client:load />
+    <HobbyAndLicenses locale={locale} />
   </main>
 </BlogLayout>

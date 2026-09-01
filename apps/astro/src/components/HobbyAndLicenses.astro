@@ -1,0 +1,157 @@
+---
+import type { Locale } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const content = {
+  en: {
+    heading: "Hobby & Licenses",
+    hobbyLabel: "Hobby",
+    hobby: "Sailing",
+    licensesLabel: "Licenses",
+    licenses: [
+      "ISPA Day Skipper",
+      "First-Class Small Boat Operator License (Japan)",
+    ],
+    imageAlt: "Jun Kawasaki sailing aboard a yacht",
+  },
+  ja: {
+    heading: "趣味・ライセンス",
+    hobbyLabel: "趣味",
+    hobby: "セーリング",
+    licensesLabel: "ライセンス",
+    licenses: [
+      "ISPA Day Skipper",
+      "一級小型船舶操縦士",
+    ],
+    imageAlt: "ヨットでセーリングする河崎純真",
+  },
+} as const;
+
+const copy = content[locale];
+---
+
+<section class="profile-details">
+  <h2>{copy.heading}</h2>
+
+  <div class="profile-details-grid">
+    <dl>
+      <div>
+        <dt>{copy.hobbyLabel}</dt>
+        <dd>{copy.hobby}</dd>
+      </div>
+      <div>
+        <dt>{copy.licensesLabel}</dt>
+        <dd>
+          <ul>
+            {copy.licenses.map((license) => <li>{license}</li>)}
+          </ul>
+        </dd>
+      </div>
+    </dl>
+
+    <img
+      src="/assets/profile/sailing.jpg"
+      alt={copy.imageAlt}
+      width="960"
+      height="720"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+</section>
+
+<style>
+  .profile-details {
+    margin-top: 2.5em;
+  }
+
+  h2 {
+    margin: 0 0 1em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid #d0d7de;
+    font-family: 'Noto Sans JP', 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-size: 1.5em;
+    font-weight: 600;
+  }
+
+  .profile-details-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
+    gap: 1.5em;
+    align-items: start;
+  }
+
+  dl {
+    margin: 0;
+  }
+
+  dl > div {
+    padding: 0.75em 0;
+    border-bottom: 1px solid #d8dee4;
+  }
+
+  dl > div:first-child {
+    padding-top: 0;
+  }
+
+  dl > div:last-child {
+    border-bottom: 0;
+  }
+
+  dt {
+    margin-bottom: 0.25em;
+    font-family: 'Noto Sans JP', 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+  }
+
+  dd {
+    margin: 0;
+    color: #57606a;
+    font-family: 'Poppins', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.875em;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.25em;
+  }
+
+  li + li {
+    margin-top: 0.25em;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+
+  :global(body[data-mode="dark"]) h2 {
+    border-bottom-color: #30363d;
+  }
+
+  :global(body[data-mode="dark"]) dl > div {
+    border-bottom-color: #21262d;
+  }
+
+  :global(body[data-mode="dark"]) dd {
+    color: #8b949e;
+  }
+
+  @media (max-width: 640px) {
+    .profile-details-grid {
+      grid-template-columns: 1fr;
+      gap: 1em;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+</style>

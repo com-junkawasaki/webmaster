@@ -1,0 +1,145 @@
+---
+title: "Inc — Constructing Mathematics from Relations"
+date: "2026-09-09"
+author:
+  name: "Jun Kawasaki / 河崎純真"
+  picture: "/assets/posts/authors/jk.jpg"
+excerpt: "The mathematical foundations of Inc: incidence boundaries, bisimulation, ternary resonance, exact quotient descent, translations, and the reconstruction of mathematics."
+coverImage: "/assets/posts/preview/cover.jpg"
+ogImage:
+  url: "/assets/posts/preview/cover.jpg"
+locales: ["en"]
+---
+
+import En from '../../components/i18n/En.astro';
+
+<En>
+
+*Foundations: Mathematics, Theology, Philosophy, and Ontology.*
+
+The mathematical foundation of my work is **Inc — Theory of Incidence**.
+
+Inc describes objects through their boundaries, defines observational identity through bisimulation, and treats interaction through a ternary relation. On this basis it develops translations, quotients, internal logic, dependent syntax, and constructions of numbers and sets in Lean 4.
+
+Its central question is: **under what conditions can objects identified by an observation also be treated as identical in interaction?**
+
+This essay sets out that foundation from [Inc's published source](https://github.com/com-junkawasaki/inc/tree/1bb368dc35827133cf42f7e4191f41cbfc754b1f), at revision `1bb368d`, checked on September 9, 2026. The definitions, proof terms, and project status were inspected for this essay; the Lean verification suite was not rerun as part of its preparation.
+
+## 1. Incidence: Describing an Object through Its Boundary
+
+Let `I` be a carrier of objects, `R` a carrier of roles, and `T` a carrier of types. Each object has a boundary and a type.
+
+An endpoint in a boundary carries four pieces of data:
+
+| Field | Meaning |
+|---|---|
+| `i` | The object referenced by the endpoint |
+| `role` | The role of that reference |
+| `sign` | Negative, zero, or positive orientation |
+| `mult` | A multiplicity of at least one |
+
+The implementation represents `Boundary` as a list of endpoints. A boundary is therefore more than a spatial outline: it specifies which references participate in the description of an object. Given a carrier with types and boundaries, we can state what is observed and which distinctions matter. [Endpoint and boundary definitions](https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory/Axioms/Basic.lean)
+
+`Incidence` also carries ternary `resonance`, the selector `glue`, a unit, guards, and consistency conditions. These include agreement between an object's type and the types of its boundary references, and a prohibition on direct boundary self-reference. Although one field is named `well_founded`, its declaration excludes direct self-reference; it does not assert the absence of every longer cycle. [The Incidence structure](https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory/Axioms.lean)
+
+Inc does not begin with relations floating in the absence of any carrier. It supplies a carrier and structure, then develops a mathematics for comparing objects through that structure.
+
+## 2. Bisimulation: Identity by Following Boundaries
+
+Inc distinguishes `approxEq`, equality of observable type and boundary list, from `approxBisim`, which recursively compares boundary references.
+
+For two objects related by a relation `B`, their types must agree. Every endpoint on either side must have a corresponding endpoint on the other side, preserving role, sign, and multiplicity, with their referenced objects again related by `B`.
+
+Two objects are bisimilar when some such relation connects them:
+
+```text
+i ≈ j  iff  there exists B such that IsBisimulation(B) and B(i, j).
+```
+
+The implemented `boundaryMatched` requires the existence of matching endpoints in both directions. It does not require a bijection between the entire endpoint lists. This distinction belongs to the definition of what is observable.
+
+Reflexivity, symmetry, and transitivity are proved by `approxBisim_equivalence`, allowing the construction of the quotient `I / ≈`. [Bisimulation and its quotient](https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory.lean)
+
+## 3. Resonance: Two Inputs and a Possible Mode
+
+The central interaction primitive is:
+
+```text
+resonance i j k
+```
+
+It states that `k` is a resonant mode of incidences `i` and `j`. One input pair may have several modes.
+
+By contrast, `selectedMode` is the computable selection associated with the historical `glue : I → I → Option I` interface. Every selected mode is guaranteed to resonate. The absence of a selection does not establish the absence of other modes. The structure distinguishes a space of possibilities from a particular computable choice within it.
+
+Symmetry, unit modes, and type compatibility are additional conditions packaged by `ResonanceSpec`. Associativity is a further condition, `AssociativeResonanceSpec`, comparing all outcomes reachable under two parenthesizations:
+
+```text
+there exists u: resonance i j u and resonance u k o
+iff
+there exists v: resonance j k v and resonance i v o
+```
+
+Writing interaction as a ternary relation does not make it automatically associative. The condition must be established for the model concerned. [Resonance specifications](https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory.lean)
+
+## 4. The Core Question: Does Interaction Survive Identification Exactly?
+
+Indistinguishability under boundary observation does not by itself imply indistinguishability under resonance. Inc carries these as separate structures, making the compatibility question explicit.
+
+On bisimulation classes, one can always define a relation by saying that resonant representatives exist. But for that relation to agree with the original resonance for every choice of representatives, an additional condition is necessary:
+
+```text
+i ≈ i′, j ≈ j′, k ≈ k′
+implies
+(resonance i j k iff resonance i′ j′ k′).
+```
+
+This is `QuotientResonanceCongruent`. The theorem `resonanceRelationDescendsExactly_iff` states that **exact descent to the quotient exists if and only if this congruence condition holds**. The exactly descended relation is also unique. [Exact descent and uniqueness](https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory/IncidenceResearch.lean)
+
+Suppose an observation identifies A with A′, but only A resonates with B to support C. Then the identification is too coarse for an exact account of that interaction. We must refine the observation or acknowledge the distinction lost in passing to the quotient.
+
+Inc therefore provides a mathematics both for identifying objects and for **determining which distinctions must survive**.
+
+## 5. Translation: What Is Preserved When Structure Moves?
+
+A map `f` between two models preserves resonance when:
+
+```text
+resonance i j k
+implies
+targetResonance (f i) (f j) (f k).
+```
+
+Inc develops such `ResonanceHomomorphism` maps, including identity and composition.
+
+Preservation alone allows the target to contain additional interactions. The reverse implication, reflection, is a separate requirement. `ResonantBehavioralTranslation` connects resonance preservation with the existing boundary-shape and bisimulation translation interface; `ResonantBehavioralEmbedding` additionally reflects resonance.
+
+A translation must say what it loses, preserves, and potentially adds. This discipline makes it possible to connect different systems of description. [Translation, preservation, and reflection](https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/docs/status.md)
+
+## 6. Internal Logic and the Reconstruction of Mathematics
+
+Inc extends beyond boundaries and quotients. It develops an internal logic with resonance triples as atoms, dependent syntax including Pi, Sigma, and Identity, renaming and substitution, and interpretations into semantics.
+
+Its constructions include natural numbers, integers, rationals, reals through Dedekind cuts, hereditary finite sets, pairs, trees, paths, simplices, products, sums, and quotients. Writing natural-number addition relationally makes a familiar single-valued operation a special case:
+
+```text
+resonance m n k  iff  m + n = k.
+```
+
+The reference revision records ordered-field constructions, completeness results for the reals, and sequence-limit theory. Continuity and broader analysis remain unfinished. Foundational completeness results also have stated scopes, including restrictions to constant-free contexts and conclusions. They should not be expanded into a claim to have completed all mathematics or full ZF. [Constructed mathematics and remaining work](https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/docs/status.md)
+
+## 7. Inc's Place in My System
+
+Inc makes intuitions about relation available as definitions and propositions. What observation justifies calling two things the same? Does that identity survive interaction? What remains when we translate between systems?
+
+These questions give my ontology a mathematical foundation. Bisimulation is not thereby identical with non-self, a quotient with enlightenment, or resonance with spirit. Those connections belong to interpretation and require their own arguments.
+
+Inc's task is to **assemble relational description, observational identity, interaction, and structure-preserving transformation into one verifiable mathematics**.
+
+## Read the Series
+
+- [Relational Informational Process Ontology — Existence, Information, Self, and Inheritance](/en/posts/foundations-of-relational-informational-process-ontology)
+- [Freedom Is Enlightenment — Kanjizai and Root Access to Self-Definition](/en/posts/foundations-of-relational-philosophy)
+- [A Theology of Non-Separation — Enlightenment, YHWH, Love, and Return](/en/posts/foundations-of-nonseparation-theology)
+
+</En>

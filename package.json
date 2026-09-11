@@ -11,6 +11,6 @@
     "build:nextjs": "pnpm --filter nextjs build",
     "dev": "pnpm --filter astro dev",
     "dev:nextjs": "pnpm --filter nextjs dev",
-    "publish:pages": "nbb scripts/publish-pages.cljk"
+    "publish:pages": "kbb --backend sci scripts/publish-pages.cljk"
   }
 }

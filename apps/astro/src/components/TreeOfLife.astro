@@ -1,0 +1,97 @@
+---
+import type { Locale } from '../i18n/ui';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const ja = locale === 'ja';
+
+type Twig = { d: string; width: number; delay: number; tone: number };
+const twigs: Twig[] = [];
+let seed = 270927;
+const random = () => {
+  seed = (seed * 1664525 + 1013904223) >>> 0;
+  return seed / 4294967296;
+};
+
+function grow(x: number, y: number, angle: number, length: number, depth: number, roots = false, generation = 0) {
+  if (depth < 0) return;
+  const bend = (random() - 0.5) * (roots ? 0.15 : 0.22);
+  const a = angle + bend;
+  const endX = x + Math.cos(a) * length;
+  const endY = y + Math.sin(a) * length;
+  const curve = (random() - 0.5) * length * 0.24;
+  const d = `M ${x.toFixed(1)} ${y.toFixed(1)} C ${(x + Math.cos(a) * length * .34 + curve).toFixed(1)} ${(y + Math.sin(a) * length * .34).toFixed(1)}, ${(x + Math.cos(a) * length * .7 - curve).toFixed(1)} ${(y + Math.sin(a) * length * .7).toFixed(1)}, ${endX.toFixed(1)} ${endY.toFixed(1)}`;
+  twigs.push({ d, width: Math.max(0.65, (depth + 1) * (roots ? .6 : .85)), delay: generation * .29 + random() * .18, tone: random() });
+  if (depth === 0) return;
+  const spread = roots ? .28 : .32;
+  const next = length * (roots ? .79 : .76);
+  grow(endX, endY, a - spread - random() * .13, next, depth - 1, roots, generation + 1);
+  grow(endX, endY, a + spread + random() * .13, next, depth - 1, roots, generation + 1);
+  if (depth > 3 && random() > .72) {
+    grow(endX, endY, a + (random() - .5) * .2, next * .7, depth - 2, roots, generation + 1);
+  }
+}
+
+twigs.push({ d: 'M 500 454 C 489 413, 510 372, 500 327', width: 15, delay: 0, tone: 1 });
+twigs.push({ d: 'M 500 451 C 496 471, 501 485, 500 504', width: 11, delay: 0, tone: 1 });
+for (const angle of [-2.08, -1.74, -1.4, -1.06]) grow(500, 327, angle, 107, 6);
+for (const angle of [.46, .93, 1.4, 1.74, 2.21, 2.68]) grow(500, 504, angle, 61, 5, true);
+---
+
+<section class="tree-section" aria-labelledby="tree-heading">
+  <div class="tree-heading">
+    <div>
+      <p class="tree-eyebrow">ETZ HAYYIM · עֵץ חַיִּים</p>
+      <h2 id="tree-heading">{ja ? '命の木' : 'The Tree of Life'}</h2>
+    </div>
+    <span class="tree-index" aria-hidden="true">01 / ∞</span>
+  </div>
+
+  <a class="tree-art" href="https://etzhayyim.com/" aria-label={ja ? 'etzhayyim.com を開く' : 'Visit etzhayyim.com'}>
+    <svg viewBox="0 0 1000 620" role="img" aria-labelledby="tree-title tree-desc" preserveAspectRatio="xMidYMid slice">
+      <title id="tree-title">{ja ? '枝と根が伸びる命の木' : 'A growing tree of life'}</title>
+      <desc id="tree-desc">{ja ? '暗い背景の上で、一本の幹から白い枝と根が広がる。' : 'White branches and roots extend from one trunk against a dark field.'}</desc>
+      <rect width="1000" height="620" fill="#090c0b" />
+      <circle class="tree-halo" cx="500" cy="425" r="175" fill="url(#halo)" />
+      <defs>
+        <radialGradient id="halo"><stop stop-color="#274035" stop-opacity=".56" /><stop offset="1" stop-color="#090c0b" stop-opacity="0" /></radialGradient>
+      </defs>
+      <g fill="none" stroke-linecap="round">
+        {twigs.map((twig) => <path class="twig" d={twig.d} pathLength="1" stroke={twig.tone > .8 ? '#eff9d8' : '#dcebe4'} stroke-opacity={twig.tone > .58 ? '.96' : '.72'} stroke-width={twig.width} style={`--delay: ${twig.delay.toFixed(2)}s`} />)}
+      </g>
+      <circle class="tree-heart" cx="500" cy="451" r="5" fill="#e7f4d5" />
+    </svg>
+    <span class="tree-art-label">{ja ? '成長を観る ↗' : 'Observe its growth ↗'}</span>
+  </a>
+
+  <div class="tree-caption">
+    <p>{ja ? 'ひとつの根から、無数の枝へ。etzhayyim は、人とエージェントが共に育てる生命体です。' : 'From one root, countless branches. etzhayyim is a living organism shaped by people and agents together.'}</p>
+    <a href="https://etzhayyim.com/">etzhayyim.com <span aria-hidden="true">↗</span></a>
+  </div>
+</section>
+
+<style>
+  .tree-section { margin: 1rem 0 3.5rem; }
+  .tree-heading { display: flex; justify-content: space-between; align-items: end; gap: 1rem; margin-bottom: .85rem; }
+  .tree-eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .18em; color: #567167; margin: 0 0 .35rem; }
+  .tree-heading h2 { font-size: clamp(1.7rem, 4vw, 2.7rem); line-height: 1.1; letter-spacing: -.035em; border: 0; padding: 0; margin: 0; }
+  .tree-index { font-size: .72rem; letter-spacing: .08em; color: #6b7b71; white-space: nowrap; padding-bottom: .18rem; }
+  .tree-art { position: relative; display: block; overflow: hidden; aspect-ratio: 1000 / 620; background: #090c0b; color: #e8f2e6; border-radius: 2px; }
+  .tree-art svg { display: block; width: 100%; height: 100%; }
+  .tree-art:focus-visible { outline: 3px solid #15803d; outline-offset: 4px; }
+  .tree-art-label { position: absolute; right: 1rem; bottom: 1rem; font-size: .76rem; font-weight: 600; letter-spacing: .06em; background: rgba(9, 12, 11, .76); border: 1px solid rgba(220, 235, 228, .35); padding: .35rem .65rem; }
+  .twig { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.15s ease-out forwards; animation-delay: var(--delay); }
+  .tree-heart { transform-origin: 500px 451px; animation: breathe 4s ease-in-out infinite; }
+  .tree-halo { animation: glow 7s ease-in-out infinite alternate; }
+  .tree-caption { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-top: .8rem; border-top: 1px solid #d0d7de; }
+  .tree-caption p { max-width: 34rem; margin: 0; font-size: .87rem; line-height: 1.65; color: #4b5c53; }
+  .tree-caption a { flex: none; font-size: .85rem; font-weight: 700; text-decoration: underline; text-underline-offset: .2em; }
+  :global(body[data-mode="dark"]) .tree-eyebrow, :global(body[data-mode="dark"]) .tree-index { color: #a4baa9; }
+  :global(body[data-mode="dark"]) .tree-caption { border-color: #30363d; }
+  :global(body[data-mode="dark"]) .tree-caption p { color: #b4c4b8; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes breathe { 50% { transform: scale(1.8); opacity: .55; } }
+  @keyframes glow { to { opacity: .55; } }
+  @media (max-width: 560px) { .tree-art { aspect-ratio: 4 / 5; } .tree-caption { display: block; } .tree-caption a { display: inline-block; margin-top: .55rem; } }
+  @media (prefers-reduced-motion: reduce) { .twig { animation: none; stroke-dashoffset: 0; } .tree-heart, .tree-halo { animation: none; } }
+</style>

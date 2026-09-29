@@ -2,7 +2,7 @@
 
 The Astro 5 application behind [junkawasaki.com](https://junkawasaki.com).
 See the [repo README](../../README.md) for the full project overview and the
-[CLAUDE.md](../../CLAUDE.md) for the bilingual MDX authoring contract.
+[AGENTS.md](../../AGENTS.md) for the bilingual MDX authoring contract.
 
 ## Commands
 

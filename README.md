@@ -46,7 +46,7 @@ generates two routes per post:
 - `/ja/posts/{slug}` — renders `<Ja>` blocks + shared content
 
 Default locale is `en`; both locales are explicit in the URL
-(`prefixDefaultLocale: true`). See [`CLAUDE.md`](CLAUDE.md) for the full
+(`prefixDefaultLocale: true`). See [`AGENTS.md`](AGENTS.md) for the full
 authoring contract.
 
 ## Writing a post

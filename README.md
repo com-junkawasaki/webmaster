@@ -88,6 +88,10 @@ Conventions:
 
 ## Posts
 
+A repository record of the research direction, its five themes, evidence
+standards, and current priorities is available in
+[`docs/research-policy.md`](docs/research-policy.md) (Japanese).
+
 A series of short essays and speculative-physics papers — language, computation,
 Buddhism, and a running thread on **spirit as a physical/informational quantity**:
 

@@ -10,6 +10,9 @@ ogImage:
   url: "/assets/posts/preview/cover.jpg"
 ---
 
+> **Update — October 31, 2026.** This historical essay motivates physical information processing; it does not establish a universal identity between information and energy. For resetting an initially unbiased bit in the usual ideal thermal setting, Landauer gives a limiting heat cost `k_B T ln 2`, with assumptions and finite-reservoir corrections. Toyabe demonstrated feedback-assisted work extraction from thermal fluctuations, not energy created by information. The [computable RIPO proposal](/en/posts/toward-computable-ripo) separates formal information, physical realization, measurement and interpretation; see also [Reeb and Wolf](https://arxiv.org/abs/1306.4352).
+
+
 # IN - Information is a physical quantity
 
 *Redefining Information as a Physical Quantity and Its Implications—Building on the Experimental Results of Toyabe et al. (2010).*
@@ -34,7 +37,7 @@ In this paper, we build on these developments, particularly the work by Toyabe e
 
 #### 2.1 From Abstract Information to Physical Information
 
-Shannon information is defined as the uncertainty reduction in a probability distribution: H = -k_B Σ p_i ln p_i (with k_B introduced as a scaling factor). Although analogous to entropy in form, Shannon information has conventionally not been considered a physical quantity.
+Shannon entropy quantifies uncertainty in a probability distribution: H = -Σ p_i ln p_i in nats (or use log base 2 for bits). Multiplication by k_B gives entropy units; interpreting this as thermodynamic entropy requires a specified physical model. Although analogous to entropy in form, Shannon information has conventionally not been considered a physical quantity.
 
 #### 2.2 Landauer’s Principle and Quantum Information
 
@@ -52,17 +55,17 @@ Consider a physical system described by a set of possible states with correspond
 
 #### 3.2 Information-Energy Interchangeability
 
-The core insight from Toyabe et al. (2010) is the demonstration that information can be converted into usable work. The obtained information allows for a non-equilibrium potential to be created from random thermal motion. Since extracting one bit of information can, in principle, provide around k_B T ln(2) of free energy, we have a direct exchange rate between information and energy.
+The core insight from Toyabe et al. (2010) is the demonstration that information can be converted into usable work. The obtained information allows for a non-equilibrium potential to be created from random thermal motion. In suitable ideal feedback models, one bit can bound an extractable work scale of k_B T ln(2). This depends on temperature, correlations, the protocol and its full resource accounting; it is not a universal exchange rate.
 
 #### 3.3 Units and Standardization
 
-Information is traditionally measured in bits or nats. Landauer’s principle connects these units to an energy scale: one bit corresponds to k_B T ln(2) of dissipated energy under erasure operations. The Toyabe experiment confirms this principle from a practical standpoint, enabling the unification of information units with well-established physical energy units (such as Joules) through a thermodynamic relationship.
+Information is traditionally measured in bits or nats. Under the usual ideal thermal assumptions, resetting an initially unbiased bit has the limiting Landauer heat cost k_B T ln(2). Toyabe tested a feedback-control information engine. Bits or nats and joules remain different units; their relationship depends on the physical setup.
 
 ### 4. Experimental Verification and Observability
 
 #### 4.1 Revisiting the Toyabe et al. (2010) Experiment
 
-In the experiment, the researchers observed a colloidal particle in a harmonic potential subjected to thermal fluctuations. By measuring the particle’s position and applying a feedback protocol to shift the potential, they extracted work from the system without adding external energy. This process effectively converted the acquired information into mechanical work, proving that information can be directly observed and harnessed as a tangible resource.
+Toyabe and colleagues used position measurements and real-time feedback on a Brownian particle in an electrically imposed, spiral-stairs-like potential. The protocol increased free energy beyond the work performed on the particle by drawing on thermal fluctuations. The measurement and controller belong in the total resource account; the experiment does not create energy from information. [Experimental report](https://arxiv.org/abs/1009.5287)
 
 #### 4.2 Extensions to Other Platforms
 
@@ -88,7 +91,7 @@ This paper has presented a conceptual framework for redefining information as a 
 
 ### References
 
-Y. Toyabe, T. Sagawa, M. Ueda, E. Muneyuki, M. Sano, "Experimental demonstration of information-to-energy conversion and validation of the generalized Jarzynski equality," Nature Physics, 6, 988–992 (2010). [https://www.nature.com/articles/nphys1821]  
+S. Toyabe, T. Sagawa, M. Ueda, E. Muneyuki, M. Sano, "Experimental demonstration of information-to-energy conversion and validation of the generalized Jarzynski equality," Nature Physics, 6, 988–992 (2010). [https://www.nature.com/articles/nphys1821]
 R. Landauer, "Irreversibility and Heat Generation in the Computing Process," IBM Journal of Research and Development, 5(3), 183–191 (1961).  
 C. E. Shannon, "A Mathematical Theory of Communication," Bell System Technical Journal, 27, 379–423, 623–656 (1948).  
 M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum Information, Cambridge University Press (2000).

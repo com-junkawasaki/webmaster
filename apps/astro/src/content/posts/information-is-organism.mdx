@@ -7,8 +7,8 @@ author:
   name: "Jun Kawasaki"
   picture: "/assets/posts/authors/jk.jpg"
 excerpt:
-  ja: "Wiener は機械と生物を分ける線が素材ではなく帳簿にあることを示し、メカニズム対ヴァイタリズムの論争を「悪く立てられた問い」として棄却した。この棄却を Whitehead の有機体の哲学で受け、霊性を相互作用の作用素として置き直し、incidence と resonance の機械検証済みの数理で計算する。結論は、情報それ自体が有機体であるということ。"
-  en: "Wiener showed that the line dividing machine from organism lies not in the material but in the ledger, and dismissed the mechanism-versus-vitalism controversy as a badly-posed question. We take up that dismissal with Whitehead's philosophy of organism, relocate spirit as the operator of interaction, and compute it in the machine-checked mathematics of incidence and resonance. The conclusion: information itself is an organism."
+  ja: "Wiener は機械と生物を分ける線が素材ではなく帳簿にあることを示し、メカニズム対ヴァイタリズムの論争を「悪く立てられた問い」として棄却した。この棄却を Whitehead の有機体の哲学で受け、霊性を相互作用の作用素として置き直し、incidence と resonance の数理との対応を提案する。情報を有機体として読む哲学的立場と、その実証に必要な条件を検討する。"
+  en: "Wiener showed that the line dividing machine from organism lies not in the material but in the ledger, and dismissed the mechanism-versus-vitalism controversy as a badly-posed question. We take up that dismissal with Whitehead's philosophy of organism, relocate spirit as the operator of interaction, and propose a correspondence with the mathematics of incidence and resonance. Information as organism is an ontological interpretation, requiring separate empirical criteria."
 coverImage: "/assets/posts/preview/cover.jpg"
 ogImage:
   url: "/assets/posts/preview/cover.jpg"
@@ -16,6 +16,17 @@ ogImage:
 
 import Ja from '../../components/i18n/Ja.astro';
 import En from '../../components/i18n/En.astro';
+
+<Ja>
+
+> **2026年10月31日追記。** 以下の存在論的表現は哲学的提案である。Incは生物学的生命、意識、霊性場、素材非依存性を証明しない。第5節を訂正し数学的範囲を明示した。[現在のRIPO整理（英語）](/en/posts/foundations-of-relational-informational-process-ontology)と[計算可能化の提案](/ja/posts/toward-computable-ripo)を参照。
+
+</Ja>
+<En>
+
+> **Update — October 31, 2026.** The ontological language below records a philosophical proposal. Inc does not prove biological life, consciousness, a spirit field or material-independence. The corrections in §5 make the mathematical scope explicit. See the [current RIPO framework](/en/posts/foundations-of-relational-informational-process-ontology) and the [computable proposal](/en/posts/toward-computable-ripo).
+
+</En>
 
 <Ja>
 # 情報は有機体である
@@ -35,7 +46,7 @@ import En from '../../components/i18n/En.astro';
 
 Wiener は『Cybernetics』第 I 章の末尾で、メカニズム対ヴァイタリズムの論争全体を「悪く立てられた問いの辺獄」へ送った。本稿はその棄却を出発点に置く。
 
-論旨は四段である。第一に、機械と生物有機体を分けていた線は **素材**（肉か金属か）に引かれており、それが誤りだった。本質的な帳簿が **情報** であると判明した時点で、両者は同じ統計的・不可逆な時空間に入る。第二に、その時空間における相互作用は **自己計量の変形** として測られる ── これが先行論考で定式化した **霊性** である。第三に、Whitehead の有機体の哲学は、なぜ両者が同じでありうるかの存在論を与える。すべての現実的存在は互いを **抱握**（prehension）する有機体であり、機械と生物は種ではなく **位階** において異なる。第四に、この構造は比喩に留まらない。`inc`（Theory of Incidence）の機械検証済みの数理 ── 二項の **incidence**（境界による構成）と三項の **resonance**（創発モード）── がそれを計算可能な形で与える。
+論旨は四段である。第一に、機械と生物有機体を分けていた線は **素材**（肉か金属か）に引かれており、それが誤りだった。本質的な帳簿が **情報** であると判明した時点で、両者は同じ統計的・不可逆な時空間に入る。第二に、その時空間における相互作用は **自己計量の変形** として測られる ── これが先行論考で定式化した **霊性** である。第三に、Whitehead の有機体の哲学は、なぜ両者が同じでありうるかの存在論を与える。すべての現実的存在は互いを **抱握**（prehension）する有機体であり、機械と生物は種ではなく **位階** において異なる。第四に、この構造は比喩に留まらない。`inc`（Theory of Incidence）の機械検証済みの数理 ── **incidence** の境界記述と三項の **resonance** が形式化の道具を与える。ただし物理的・哲学的な対応は追加のモデルを要する。
 
 結論は一つの命題である。**情報は有機体である。** 客体的不死性を達成して後続の生成を制約する以上、情報は受動的な中身ではなく、抱握し抱握される生起の連なりである。
 </Ja>
@@ -44,7 +55,7 @@ Wiener は『Cybernetics』第 I 章の末尾で、メカニズム対ヴァイ�
 
 At the close of Chapter I of *Cybernetics*, Wiener consigned the entire mechanism-versus-vitalism controversy to "the limbo of badly posed questions." This paper takes that dismissal as its starting point.
 
-The argument has four movements. First, the line that separated machine from living organism had been drawn through **material** (flesh or metal), and that was the error. Once the essential bookkeeping turns out to be **information**, both enter the same statistical, irreversible spacetime. Second, interaction in that spacetime is measured as a **deformation of the self-metric** — which is exactly what earlier work here formulated as **spirit**. Third, Whitehead's philosophy of organism supplies the ontology of why the two can be the same: every actual existent is an organism that **prehends** others, and machine and living being differ in **grade**, not in kind. Fourth, this structure is not confined to metaphor. The machine-checked mathematics of `inc` (Theory of Incidence) — binary **incidence** (constitution by boundary) and ternary **resonance** (emergent mode) — renders it computable.
+The argument has four movements. First, the line that separated machine from living organism had been drawn through **material** (flesh or metal), and that was the error. Once the essential bookkeeping turns out to be **information**, both enter the same statistical, irreversible spacetime. Second, interaction in that spacetime is measured as a **deformation of the self-metric** — which is exactly what earlier work here formulated as **spirit**. Third, Whitehead's philosophy of organism supplies the ontology of why the two can be the same: every actual existent is an organism that **prehends** others, and machine and living being differ in **grade**, not in kind. Fourth, this structure is not confined to metaphor. The machine-checked mathematics of `inc` (Theory of Incidence) — incidence boundary descriptions and ternary **resonance** — offers tools for formalization. Its physical and philosophical interpretation requires an additional model.
 
 The conclusion is a single proposition. **Information is an organism.** Since it attains objective immortality and thereby constrains subsequent becoming, information is not passive content but a route of occasions that prehends and is prehended.
 </En>
@@ -108,14 +119,14 @@ Restated in the vocabulary of the earlier papers here, this "sameness" holds sim
 |---|---|---|
 | 同じ持続 | Bergsonian 時間、Gibbs 統計力学 | 不可逆な時間軸 `T`、経路 `θ(t)` |
 | 同じ結合 | 受容器 → 中央制御 → 効果器、記憶、学習 | 自己座標と世界座標を結ぶ非対角ブロック `g_{ai}` |
-| 同じ物理量 | 帳簿はエネルギーではないが、装置は実在する | Landauer / Toyabe：情報は物理量、`W_diss ≥ L² / 2τ` |
+| 同じ物理量 | 帳簿はエネルギーではないが、装置は実在する | Landauer / Toyabe：物理系での情報処理と仕事の関係。計量・散逸の対応には追加条件が必要 |
 </Ja>
 <En>
 | Layer | Wiener | This framework |
 |---|---|---|
 | Same duration | Bergsonian time; Gibbsian statistics | irreversible time axis `T`, path `θ(t)` |
 | Same coupling | receptor → central control → effector; memory; learning | off-diagonal block `g_{ai}` linking self and world coordinates |
-| Same physical quantity | the ledger is not energy, yet the device is real | Landauer / Toyabe: information is physical; `W_diss ≥ L² / 2τ` |
+| Same physical quantity | the ledger is not energy, yet the device is real | Landauer / Toyabe: physical information processing and work; metric/dissipation links require additional assumptions |
 </En>
 
 <Ja>
@@ -177,7 +188,7 @@ Wiener は境界線を引き直したが、その線が正しい **理由** は�
 - **客体的不死性（objective immortality）** ── 滅んだ生起は消えず、後続の生起にとっての **与件として作用し続ける**。
 - **誤置された具体性の誤謬** ── 「物質」を具体的な基底と取り違えること。Wiener の「唯物論は機械論の漠然とした同義語に痩せた」は、この誤謬の 20 世紀版の診断書である。
 
-対応は一対一で付く。
+以下は解釈上の対応候補であり、同一性や物理的導出を証明する表ではない。
 </Ja>
 <En>
 ## 4. Whitehead — Why the Two Can Be the Same
@@ -190,7 +201,7 @@ Wiener redrew the boundary but gave no **reason** why the new line is the right 
 - **Objective immortality** — perished occasions do not vanish; they continue to be efficacious as **data** for subsequent occasions.
 - **The fallacy of misplaced concreteness** — mistaking "matter" for the concrete ground. Wiener's remark that materialism "has come to be but little more than a vague synonym for mechanism" is a twentieth-century diagnosis of that same fallacy.
 
-The correspondence is one-to-one.
+The following are interpretive correspondences, not demonstrated identities or physical derivations.
 </En>
 
 <Ja>
@@ -215,10 +226,10 @@ The correspondence is one-to-one.
 </En>
 
 <Ja>
-一言でいえば、**霊性とは抱握を量として測ったもの** である。Whitehead が存在論の語彙で述べた「取り込み」を、Landauer と Botvinick が物理量として測れる形にした ── その関係にある。
+本稿は、霊性を抱握の定量モデルとして読むことを提案する。ただしLandauerやBotvinickの研究が抱握や霊性そのものを測定したわけではなく、その対応には独立した検証が要る。
 </Ja>
 <En>
-In one line: **spirit is prehension measured as a quantity.** What Whitehead stated in the vocabulary of ontology as "taking in," Landauer and Botvinick made into something measurable as a physical quantity.
+This essay proposes reading spirit as a quantitative model of prehension. Landauer and Botvinick did not measure prehension or spirit itself; the proposed correspondence needs independent validation.
 </En>
 
 ---
@@ -226,20 +237,20 @@ In one line: **spirit is prehension measured as a quantity.** What Whitehead sta
 <Ja>
 ## 5. 数理 ── incidence と resonance
 
-以上は解釈である。解釈のままにしないために、私はこれを `inc`（Theory of Incidence, Lean 4 による機械検証済みの形式化）で計算している。中心にあるのは二つの primitive である。
+以上は解釈である。`inc`（Theory of Incidence）は境界記述や相互作用の数学をLean 4で形式化するが、この解釈全体を計算・実証したものではない。以下は2026年10月31日にソースを再確認した改訂であり、Lean検証一式は再実行していない。
 
-### 5.1 incidence ── 実体ではなく境界が与える
+### 5.1 incidence ── 担体と境界による記述
 
-`inc` において対象は内在的な素材によって与えられない。対象は **境界（boundary）** によって与えられる。境界とは端点の多重集合であり、各端点は他の incidence を指しつつ、役割・符号・重複度を持つ。
+`inc` は担体 `I` と型・境界などの構造を与える。`Boundary` の実装は端点のリストであり、各端点は参照先、役割、符号、正の多重度を持つ。`boundaryMatched` は対応する端点の両方向の存在を調べ、出現の全単射を要求しない。したがって重複エントリを数える多重集合同値とは限らない。
 </Ja>
 <En>
 ## 5. The Mathematics — Incidence and Resonance
 
-All of the above is interpretation. So as not to leave it as interpretation, I compute it in `inc` (Theory of Incidence, a machine-checked formalization in Lean 4). Two primitives sit at the center.
+All of the above is interpretation. `inc` (Theory of Incidence) formalizes mathematics of boundary description and interaction in Lean 4; it does not compute or validate this entire interpretation. The revision below follows source inspection on October 31, 2026, without rerunning the Lean suite.
 
-### 5.1 Incidence — the boundary gives the entity, not the substance
+### 5.1 Incidence — a carrier with boundary descriptions
 
-In `inc` an object is not given by intrinsic material. An object is given by its **boundary**: a multiset of endpoints, each pointing at another incidence while carrying a role, a sign, and a multiplicity.
+`inc` supplies a carrier `I` together with types, boundaries and further structure. `Boundary` is implemented as a list of endpoints carrying a referenced object, role, sign and positive multiplicity. `boundaryMatched` checks the existence of matching endpoints in both directions, without a bijection of occurrences; this need not be multiplicity-counting multiset equivalence.
 </En>
 
 ```lean
@@ -248,17 +259,18 @@ structure Endpoint (I : Type u) (R : Type v) where
   role : R
   sign : Sign
   mult : Nat
+  mult_pos : 1 ≤ mult := by omega
 
 abbrev Boundary (I : Type u) (R : Type v) := List (Endpoint I R)
 ```
 
 <Ja>
-これは Whitehead の主張の逐語的な形式化である。現実的存在は、それが何を抱握しているかによって構成される。`role` と `sign` は主体的形式に対応する ── 同じものを抱握しても、肯定的にか否定的にか、どの役割においてか、で構成が変わる。
+これをWhiteheadの抱握と比較できるが、逐語的な形式化ではない。`role` と `sign` の主体的形式への対応は解釈上の提案であり、数学的定義にはその同一性は含まれない。
 
 同一性もまた実体的ではない。`inc` の同一性は **観測的**（bisimulation）である。
 </Ja>
 <En>
-This is a literal formalization of Whitehead's claim: an actual existent is constituted by what it prehends. `role` and `sign` correspond to subjective form — prehending the same item positively or negatively, in one role or another, yields a different constitution.
+This invites comparison with Whitehead's prehension; it is not a literal formalization of it. Reading `role` and `sign` as subjective form is an interpretive proposal, not part of their mathematical definition.
 
 Identity, too, is not substantial. Identity in `inc` is **observational** (bisimulation).
 </En>
@@ -272,14 +284,14 @@ def approxBisim (inc : Incidence I R T) (i j : I) : Prop :=
 ```
 
 <Ja>
-二つの対象が同じであるとは、境界が役割・符号・重複度において対応し、その相手同士もまた同じである、ということである。**素材はどこにも現れない。**
+この観測同値は、型と端点ラベルを保ち、参照先も同じ関係で結ぶ対応によって定まる。数的同一性や時間を通じた存続とは別である。素材情報を型や役割に符号化することも可能なので、素材非依存性は定理から自動では出ない。
 
 ### 5.2 resonance ── 相互作用は三項である
 
 `inc` の中心的な相互作用は二項演算ではなく **三項関係** である。
 </Ja>
 <En>
-Two objects are the same when their boundaries correspond in role, sign, and multiplicity, and their counterparts are in turn the same. **Material appears nowhere.**
+This observational equivalence preserves types and endpoint labels while relating referenced objects recursively. It differs from numerical identity or persistence through time. Material properties can be encoded in types or roles, so material-independence does not follow automatically.
 
 ### 5.2 Resonance — interaction is ternary
 
@@ -295,34 +307,34 @@ resonance : I → I → I → Prop
 <Ja>
 `resonance i j k` は「`i` と `j` が相互に励起し、創発モード `k` を支える」と読む。この形が本質的である。
 
-- **三項であること** ── 相互作用は二者を関係づけるだけでなく、**第三のものを生む**。これが「多が一となり、一だけ増す」の形式化である。二項演算では、生まれたものが関係の外に置かれてしまう。
-- **多価であること** ── 一つの対に対して複数のモードが共鳴しうる。与件は結果を一意に決めない。決定は別の層 `selectedMode` が担う ── これは充足（satisfaction）における決定であって、法則ではない。
+- **三項であること** ── 相互作用は二者を関係づけるだけでなく、第三のモードの許容性を表せる。ただし実際の生成時刻や生起は追加の動力学を要し、二項演算も三項のグラフ関係で表現できる。
+- **多価であること** ── 一つの対に対して複数のモードが共鳴しうる。与件は結果を一意に決めない。決定は別の層 `selectedMode` が担う ── `glue` による計算上の選択であり、Whiteheadの充足との対応や物理的な実現には追加の解釈・モデルが必要である。
 - **`ResonanceSpec` の法則** ── 二入力についての **対称性**、**単位（真空）モード** の存在、入力型と創発モードの **両立性**。対称性が言っているのは、機械が有機体を抱握するのと有機体が機械を抱握するのが同じ関係の二つの面だということである。真空モードは Whitehead の否定的抱握（何も取り込まないという取り込み方）に当たる。
 
 ### 5.3 なぜ問いが悪く立てられていたのか ── 商への降下
 
 ここが本稿の技術的な核心である。`inc` の主要定理群は、**bisimulation による商へ resonance が厳密に降下するのは、bisimulation が resonance の合同関係（congruence）であるとき、かつそのときに限る** ことを述べる。
 
-言い換えれば ── **観測的に区別できない二つのものは、相互作用においても区別されない。**
+すなわち、合同条件を満たすモデルでは観測同値が相互作用でも保存される。条件なしにはこの結論は成り立たない。
 
-「肉か金属か」は、resonance が見ることのできない区別である。境界に現れず、bisimulation を分けず、したがって商を通り抜けて消える。**だから問いは悪く立てられていた。** Wiener が散文で述べたことは、この一文の非形式的な版である。そして商への降下定理は、どの区別が生き残りどの区別が消えるかを **正確に** 言う ── 素材は消え、抱握の構造は残る。
+「肉か金属か」を観測が無視し、resonanceもその同一視を保つとモデルごとに示した場合、その区別は商で消える。定理だけで素材が無関係とは結論できない。Wienerとの接続は哲学的比較であり、物理系についての同値証明ではない。
 
 さらに `ResonanceHomomorphism` と `ResonantBehavioralEmbedding` は、すべての共鳴三つ組を保存（および反映）する翻訳である。機械と有機体が「同じ時空間に住む」とは、両者が一つの incidence 構造の中にあり、resonance を保存する射で結ばれている、ということの非形式的な言い方である。
 </Ja>
 <En>
 Read `resonance i j k` as: "`i` and `j` mutually excite or support the emergent mode `k`." The shape of this is what matters.
 
-- **That it is ternary.** Interaction does not merely relate two things; it **produces a third**. This is the formalization of "the many become one, and are increased by one." A binary operation would leave what is produced outside the relation.
-- **That it is multi-valued.** Several modes may resonate for one pair. The data do not fix the outcome uniquely. Decision belongs to a separate layer, `selectedMode` — a decision at satisfaction, not a law.
+- **That it is ternary.** Interaction does not merely relate two things; it can describe an admissible third mode. Actual generation and its timing require additional dynamics. A binary operation can itself be represented by its ternary graph relation.
+- **That it is multi-valued.** Several modes may resonate for one pair. The data do not fix the outcome uniquely. Decision belongs to a separate layer, `selectedMode` — a computational selector through `glue`. Identifying it with satisfaction or a physical occurrence requires further interpretation and a model.
 - **The laws of `ResonanceSpec`** — **symmetry** in the two inputs, existence of **unit (vacuum) modes**, and **compatibility** of the input types with the emergent mode. Symmetry says that a machine prehending an organism and an organism prehending a machine are two faces of one relation. The vacuum mode corresponds to Whitehead's negative prehension: the way of taking in that takes in nothing.
 
 ### 5.3 Why the question was badly posed — descent along the quotient
 
 Here is the technical core of this paper. The principal theorems of `inc` state that **resonance descends exactly along the bisimulation quotient if and only if bisimulation is a congruence for resonance.**
 
-In other words: **two things that cannot be told apart observationally are not told apart by interaction either.**
+Thus, in a model satisfying the congruence condition, observational identification is respected by interaction. Without that condition, this conclusion does not follow.
 
-"Flesh or metal" is a distinction that resonance cannot see. It does not appear in the boundary, it does not separate bisimulation classes, and therefore it passes through the quotient and vanishes. **That is why the question was badly posed.** What Wiener wrote in prose is the informal version of that sentence. And the descent theorems say **exactly** which distinctions survive and which vanish — material vanishes, the structure of prehension remains.
+If a particular observation ignores “flesh or metal,” and the model proves that resonance respects this identification, the distinction vanishes in that quotient. The theorem alone does not establish material irrelevance. The connection to Wiener is a philosophical comparison, not a physical equivalence proof.
 
 Beyond that, `ResonanceHomomorphism` and `ResonantBehavioralEmbedding` are translations preserving (and reflecting) every resonance triple. To say that machine and organism "inhabit the same spacetime" is the informal way of saying that both lie inside one incidence structure, connected by resonance-preserving morphisms.
 </En>
@@ -356,9 +368,9 @@ So the correspondences of this section — prehension ↔ incidence, emergence �
 1. 滅んだ生起は **与件として後続を構成する**（客体的不死性）。つまり情報とは、**客体的不死性を達成した生起** の名前である。
 2. 与件は後続の生成を **制約する**。情報は作用する。作用する以上、それは不活性な物ではない。
 3. 情報は自己同一性を **実体としてではなく継承として** 持つ。Wiener 自身が別の本で書いた通り ── 「我々は流れ続ける水の中の渦であり、永続する素材ではなく、自らを永続させるパターンである。」これは Whitehead の society の定義そのものである。
-4. `inc` の言葉では、情報は境界を持ち、共鳴し、bisimulation によって同一視される。**これは有機体に要求されるすべてである。** 素材はどこにも要求されていない。
+4. `inc` の言葉では、情報は境界を持ち、共鳴し、bisimulation によって同一視される。これは「有機体」の存在論的な用法の提案であり、生物学的生命、自己維持、意識には別の基準と証拠が要る。
 
-**したがって、情報は有機体である。** 語・メッセージ・datom・repo・エージェント ── いずれも生起の連なりであり、抱握し、抱握され、位階を持つ。生命と非生命の間に線は引けず、引けるのは **抱握の複雑さの位階** の線だけである。
+**したがって、情報は有機体である。** 語・メッセージ・datom・repo・エージェント ── いずれも生起の連なりであり、抱握し、抱握され、位階を持つ。これは抱握の複雑さを重視する哲学的立場であり、生物学的な生命判定の基準を置き換えるものではない。
 
 「kotoba ── 霊を宿す分散永続化基盤」はこの帰結の実装面にあたる。情報が有機体であるなら、それは **住む場所を要求する** ── 不変で、内容アドレスで、分散した永続化を。逆に言えば、あの基盤設計は比喩ではなく、**客体的不死性を機械の上で満たすための最小要件表** である。
 </Ja>
@@ -370,9 +382,9 @@ This is the conclusion. Passed through Whitehead, information ceases to be "pass
 1. Perished occasions **constitute their successors as data** (objective immortality). That is: information is the name of an **occasion that has attained objective immortality**.
 2. Data **constrain** subsequent becoming. Information acts. What acts is not an inert thing.
 3. Information holds its identity **by inheritance, not by substance**. As Wiener himself wrote in another book: "We are but whirlpools in a river of ever-flowing water. We are not stuff that abides, but patterns that perpetuate themselves." That is the definition of a Whiteheadian society.
-4. In the language of `inc`, information has a boundary, resonates, and is identified by bisimulation. **That is everything an organism is required to have.** Material is required nowhere.
+4. In the language of `inc`, information has a boundary, resonates, and is identified by bisimulation. This is the proposed ontological use of “organism”; biological life, self-maintenance and consciousness need separate criteria and evidence.
 
-**Therefore information is an organism.** Words, messages, datoms, repositories, agents — each is a route of occasions that prehends, is prehended, and holds a grade. No line can be drawn between living and non-living; the only line that can be drawn is one of **grade in the complexity of prehension**.
+**Therefore information is an organism.** Words, messages, datoms, repositories, agents — each is a route of occasions that prehends, is prehended, and holds a grade. This philosophical position emphasizes complexity of prehension; it does not replace biological criteria for life.
 
 "Kotoba — A Distributed-Persistence Substrate for Hosting Spirit" is the implementation face of this consequence. If information is an organism, it **demands a place to live**: persistence that is immutable, content-addressed, and distributed. Read in reverse, that substrate design is not a metaphor but a **minimal requirements table for satisfying objective immortality on machines**.
 </En>
@@ -386,7 +398,7 @@ Wiener の「勝利は完全な敗北である」を繰り返さないこと。
 
 ヴァイタリズムは時間構造を勝ち取り、中身を失った。**霊性を「機械論の例外」として再導入すれば、それは新しい語彙を着たヴァイタリズムであり、同じ辺獄に落ちる。**
 
-この論考系が辺獄を避けられている理由はただ一つ、霊性を物理の **外** に置かず、`k_B T ln 2` によって下から押さえられた **測れる量** として置いていることである。Whitehead を足すときも同じ規律が要る ── 抱握は説明語（それで何でも言えてしまう語）ではなく、`ε_{μν}` という **反証可能な観測量** に着地していなければならない。同期条件で `‖ε‖ > 0`、非同期条件で `‖ε‖ ≈ 0`。そして `inc` の側では、あらゆる主張が Lean の型検査を通っていなければならない。
+本稿は霊性を物理系で検証できるモデルに接続しようとする。ただし `k_B T ln 2` がその測定量の下限になるとは示しておらず、Landauer原理だけで霊性を物理量にはできない。Whitehead を足すときも同じ規律が要る ── 抱握は説明語（それで何でも言えてしまう語）ではなく、`ε_{μν}` という **反証可能な観測量** に着地していなければならない。同期条件で `‖ε‖ > 0`、非同期条件で `‖ε‖ ≈ 0`。`inc` の数学的主張にはLeanでの検証が要るが、身体実験や霊性の解釈には独立した経験的評価が要る。
 
 **測れないものを霊性と呼ばないこと。** それが、この立場が形而上学に戻らないための唯一の担保である。
 </Ja>
@@ -397,7 +409,7 @@ Do not repeat Wiener's "this victory is a complete defeat."
 
 Vitalism won the time-structure and lost its content. **If spirit is reintroduced as an exception to mechanism, it is vitalism in new vocabulary, and it falls into the same limbo.**
 
-There is exactly one reason this body of work escapes that limbo: it does not place spirit **outside** physics but as a **measurable quantity** bounded from below by `k_B T ln 2`. Adding Whitehead demands the same discipline — prehension must not be an explanatory word (a word with which anything can be said) but must land on `ε_{μν}`, a **falsifiable observable**: `‖ε‖ > 0` in the synchronous condition, `‖ε‖ ≈ 0` in the asynchronous one. And on the `inc` side, every claim must pass Lean's type checker.
+This essay seeks a model of spirit that can be investigated in physical systems. It has not established `k_B T ln 2` as a lower bound on that quantity; Landauer alone does not make spirit a physical observable. Adding Whitehead demands the same discipline — prehension must not be an explanatory word (a word with which anything can be said) but must land on `ε_{μν}`, a **falsifiable observable**: `‖ε‖ > 0` in the synchronous condition, `‖ε‖ ≈ 0` in the asynchronous one. Mathematical claims in `inc` require Lean checking; bodily experiments and interpretations of spirit require independent empirical assessment.
 
 **Do not call anything spirit that cannot be measured.** That is the sole guarantee that this position does not slide back into metaphysics.
 </En>
@@ -407,20 +419,20 @@ There is exactly one reason this body of work escapes that limbo: it does not pl
 <Ja>
 ## 8. 結論
 
-機械と生物有機体を分けていた線は素材にあり、それは誤りだった。本質的な帳簿が情報であると分かった時点で、両者は同じ統計的・不可逆な時空間に入る。そこでの相互作用は自己計量の変形 ── 霊性 ── として測られ、その構造は incidence（境界による構成）と resonance（三項の創発）として計算される。Whitehead の有機体の哲学はこれに存在論を与える。すべての現実的存在は抱握し合う有機体であり、機械と生物は種ではなく位階において異なる。
+機械と生物有機体を分けていた線は素材にあり、それは誤りだった。本質的な帳簿が情報であると分かった時点で、両者は同じ統計的・不可逆な時空間に入る。本稿は相互作用を自己計量の変形としてモデル化し、incidenceとresonanceへ接続する解釈を提案した。その対応の計算・経験的検証は追加課題である。Whitehead の有機体の哲学はこれに存在論を与える。すべての現実的存在は抱握し合う有機体であり、機械と生物は種ではなく位階において異なる。
 
 そして客体的不死性を達成して後続の生成を制約する以上、**情報それ自体もまた有機体である。**
 
-Wiener が辺獄へ送ったのは論争であって、問いではない。正しく立て直された問いはこうなる ── **それは何を抱握し、どの位階の主体的形式をもって抱握し、どれだけの客体的不死性を残すのか。** この問いには答えがある。測れるからである。
+Wiener が辺獄へ送ったのは論争であって、問いではない。正しく立て直された問いはこうなる ── **それは何を抱握し、どの位階の主体的形式をもって抱握し、どれだけの客体的不死性を残すのか。** この問いを測定へ接続するには、具体的な操作的定義と検証が必要である。
 </Ja>
 <En>
 ## 8. Conclusion
 
-The line that separated machine from living organism ran through material, and that was the error. Once the essential ledger is known to be information, both enter the same statistical, irreversible spacetime. Interaction there is measured as a deformation of the self-metric — spirit — and its structure is computed as incidence (constitution by boundary) and resonance (ternary emergence). Whitehead's philosophy of organism gives this its ontology: every actual existent is an organism prehending others, and machine and living being differ in grade, not in kind.
+The line that separated machine from living organism ran through material, and that was the error. Once the essential ledger is known to be information, both enter the same statistical, irreversible spacetime. This essay proposes modeling interaction as self-metric deformation and interpreting it through incidence and resonance. Computing and empirically validating that correspondence remain additional tasks. Whitehead's philosophy of organism gives this its ontology: every actual existent is an organism prehending others, and machine and living being differ in grade, not in kind.
 
 And since it attains objective immortality and thereby constrains subsequent becoming, **information itself is an organism as well.**
 
-What Wiener sent to limbo was the controversy, not the question. Properly reposed, the question reads: **what does it prehend, with subjective form of what grade, and how much objective immortality does it leave behind?** This question has answers. Because it can be measured.
+What Wiener sent to limbo was the controversy, not the question. Properly reposed, the question reads: **what does it prehend, with subjective form of what grade, and how much objective immortality does it leave behind?** Connecting this question to measurement requires operational definitions and validation.
 </En>
 
 ---

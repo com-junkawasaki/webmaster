@@ -18,6 +18,17 @@ import Ja from '../../components/i18n/Ja.astro';
 import En from '../../components/i18n/En.astro';
 
 <Ja>
+
+> **2026年10月31日追記。** 以下の機構名、Rust時代の構成、ベンチ値は当時の設計・報告であり、現行リリースや配備の監査ではない。[現在のKotobase causal-commitソース](https://github.com/kotoba-lang/kotobase/blob/e5d9cd2ec1fcf59bc48162532acfab75b1bf6050/src/kotobase/causal_commit.cljk)は不変基点と分岐履歴を記録するが、今回は実行していない。履歴保存は真理、永久可用性、意識の連続性を証明しない。[計算可能なRIPO](/ja/posts/toward-computable-ripo)の来歴adapterも統合済みではなく提案である。
+
+</Ja>
+<En>
+
+> **Update — October 31, 2026.** The mechanism names, Rust-era architecture and benchmark figures below describe the historical design/report, not a current release or deployment audit. The [current Kotobase causal-commit source](https://github.com/kotoba-lang/kotobase/blob/e5d9cd2ec1fcf59bc48162532acfab75b1bf6050/src/kotobase/causal_commit.cljk) records immutable bases and branched histories; it was inspected, not executed here. Stored history does not prove truth, permanent availability or continuity of consciousness. See [computable RIPO](/en/posts/toward-computable-ripo) for a proposed provenance adapter, not a completed integration.
+
+</En>
+
+<Ja>
 # 言葉(kotoba)
 ### 霊を宿す分散永続化基盤
 </Ja>
@@ -302,9 +313,9 @@ In short, if spirit is information, then to host a spirit is nothing other than 
 ---
 
 <Ja>
-## 6. 実装状況 ── 実装済みと設計中の分離
+## 6. 当時の実装報告 ── 現行版の再検証ではない
 
-設計の比喩と実装の事実を混同しないために、現状を明示する。
+以下は原稿執筆当時の実装主張を残した表であり、10月31日の改訂ではベンチや実行経路を再測定・再検証していない。
 
 | 機構 | 状態 |
 |---|---|
@@ -321,9 +332,9 @@ In short, if spirit is information, then to host a spirit is nothing other than 
 ベンチはすべて M4 Mac、release build による実測である。「分散 Pregel」「L2 アンカー」を現に稼働中の機能として誇張しない ── 前者は単一ノード実装、後者は設計意図である。
 </Ja>
 <En>
-## 6. Implementation Status — Separating Implemented from Designed
+## 6. Historical Implementation Report — Not a Current Qualification
 
-To avoid conflating the design metaphor with implementation fact, the current status is stated explicitly.
+The following table retains the implementation claims of the original report. These benchmarks and runtime paths were not remeasured or requalified in the October 31 revision.
 
 | Mechanism | Status |
 |---|---|

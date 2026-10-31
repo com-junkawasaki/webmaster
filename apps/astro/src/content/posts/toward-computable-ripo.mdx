@@ -1,0 +1,317 @@
+---
+title:
+  ja: "計算可能な関係的情報過程存在論へ"
+  en: "Toward a Computable Relational Informational Process Ontology"
+date: "2026-10-31"
+author:
+  name: "Jun Kawasaki / 河崎純真"
+  picture: "/assets/posts/authors/jk.jpg"
+excerpt:
+  ja: "RIPOの存在・関係・変化・認識を、Incへの条件付き写像、型付き論理、RDF、検証、数値モデルへ接続する研究設計。"
+  en: "A research design connecting RIPO's existence, relations, change and knowledge to typed logic, an explicit Inc bridge, RDF, validation and numerical models."
+coverImage: "/assets/posts/preview/cover.jpg"
+ogImage:
+  url: "/assets/posts/preview/cover.jpg"
+---
+
+import Ja from '../../components/i18n/Ja.astro';
+import En from '../../components/i18n/En.astro';
+
+<En>
+**Status: research proposal with an executable data example, not a completed upper ontology.** The [September RIPO essay](/en/posts/foundations-of-relational-informational-process-ontology) describes existence through relation, realized information, becoming and inheritance. This article asks what additional definitions make that position computable. The four questions below organize this proposal; they are not four axioms already supplied by Inc.
+
+| Question | Working module | What must be specified |
+|---|---|---|
+| What exists, and through what conditions? | Constitution | Individuation, coherence, carriers, persistence criteria |
+| What relates to what? | Interaction | Participants, roles, admissible modes, compatibility |
+| What changed? | Evolution | Time, state descriptions, transitions, dynamics |
+| How do we know? | Epistemology | Observations, claims, evidence, assessment and uncertainty |
+</En>
+<Ja>
+**位置づけ：実行可能なデータ例を伴う研究提案であり、完成した上位存在論ではない。** [9月のRIPO論考](/en/posts/foundations-of-relational-informational-process-ontology)は、存在を関係、実現された情報、生成、継承から捉える。本稿は、それを計算可能にする追加定義を検討する。下の四問は本提案の整理であり、Incがすでに備える四公理ではない。
+
+| 問い | 作業上のモジュール | 定義が必要なもの |
+|---|---|---|
+| 何が、何によって存在するか | Constitution：構成 | 個体化、整合性、担体、存続基準 |
+| 何と何が関係するか | Interaction：相互作用 | 参加者、役割、許容モード、両立条件 |
+| 何が変わったか | Evolution：変化 | 時間、状態記述、遷移、動力学 |
+| それをどう知ったか | Epistemology：認識 | 観測、主張、証拠、評価、不確実性 |
+</Ja>
+
+<En>
+## 1. RIPO, Inc and physical models have different jobs
+
+RIPO supplies philosophical commitments. Inc supplies mathematical structures and conditional results. A physical or statistical model connects chosen structures to measurements. A runtime executes a particular algorithm and retains its inputs and outputs. An arrow between these layers requires a defined mapping and its assumptions.
+
+Formal, realized and meaningful information are three ways of examining information. A physical record may support all three descriptions. They should not become three disjoint OWL classes merely because they have different names. Likewise, an Inc boundary, a membrane, a perceived self-boundary and an authorization scope require distinct interpretations.
+</En>
+<Ja>
+## 1. RIPO、Inc、物理モデルの役割
+
+RIPOは哲学的立場を、Incは数学的構造と条件付きの結果を与える。物理・統計モデルは選んだ構造を測定へ結び、実行系は特定のアルゴリズムを動かし入出力を保存する。層を結ぶには、写像とその仮定の定義が必要である。
+
+形式的情報、実現された情報、意味情報は情報を見る三つの観点である。同じ物理的記録が三つの記述を持ちうるため、名前が違うだけで排他的なOWLクラスにはしない。Incの境界、膜、知覚上の自己境界、権限範囲も、それぞれ解釈を要する。
+</Ja>
+
+![Research architecture: RIPO, typed theory, Inc, semantic records, numerical models and evidence](/assets/posts/computable-ripo/architecture.svg)
+
+<En>
+The return arrow represents revision after evidence assessment. It does not turn an observation into a theorem. [Download the diagram](/assets/posts/computable-ripo/architecture.svg).
+
+## 2. Boundary has not disappeared from the inspected Inc source
+
+On October 31, 2026, a fresh checkout of Inc's default branch resolved to `1bb368dc35827133cf42f7e4191f41cbfc754b1f`, the same revision cited by the September mathematics essay. This checks that branch, not every experimental branch. The Lean suite was not rerun for this article.
+
+The [basic definitions](https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory/Axioms/Basic.lean) represent `Boundary` as `List (Endpoint I R)`, with referenced object, role, sign and positive multiplicity. The comment mentions multiset semantics; the actual observational behavior depends on the operation. `approxEq` compares lists, while [`boundaryMatched`](https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory.lean#L53-L67) requires matching endpoints in both directions, without a bijection of occurrences. It preserves each matched endpoint's multiplicity field, but need not count repeated list entries.
+
+[`Incidence`](https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory/Axioms.lean#L18-L61) also supplies a carrier, type function, guards, selector and ternary resonance. Its `well_founded` field excludes direct self-reference, not every longer cycle. Boundary alone does not create objects from nothing or settle their physical individuation.
+</En>
+<Ja>
+同図の戻り矢印は証拠評価後の改訂を表す。観測が定理になるという意味ではない。[図をダウンロード](/assets/posts/computable-ripo/architecture.svg)。
+
+## 2. 確認したIncのソースにBoundaryは残っている
+
+2026年10月31日に取得したIncの既定ブランチは、9月の数学論考と同じ `1bb368dc35827133cf42f7e4191f41cbfc754b1f` だった。全実験ブランチの調査ではなく、Lean検証一式も本稿では再実行していない。
+
+[基本定義](https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory/Axioms/Basic.lean)の `Boundary` は `List (Endpoint I R)` であり、各端点は参照先、役割、符号、正の多重度を持つ。コメントには多重集合という意図があるが、観測の挙動は演算による。`approxEq` はリストを比較し、[`boundaryMatched`](https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory.lean#L53-L67)は両方向に対応端点があることを要求する。出現の全単射は要求せず、端点の多重度フィールドは保つが、同一エントリの反復回数を数えるとは限らない。
+
+[`Incidence`](https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory/Axioms.lean#L18-L61)には担体、型関数、ガード、選択子、三項resonanceもある。`well_founded` は直接自己参照を排除するが、長い循環すべてを排除しない。Boundaryだけで無から対象を生成したり、物理的な個体化を決めたりするわけではない。
+</Ja>
+
+<En>
+## 3. A typed semantic core before RDF
+
+Use a many-sorted signature. Let `P` denote process referents, `T` ordered instants, `D` descriptions, `C` claims, `O` observation occurrences and `V` evidence records, and `Policy` persistence policies. These are modeling sorts, not an exhaustive partition of everything that exists. Information records themselves have physical realizations; a description and its referent are separate modeling positions.
+
+The following is a proposed interface, not an Inc theorem:
+</En>
+<Ja>
+## 3. RDFより先に型付きの意味を定める
+
+多ソートのシグネチャを使う。`P` は過程の指示対象、`T` は順序付き時点、`D` は記述、`C` は主張、`O` は観測の生起、`V` は証拠記録、`Policy` は存続方針とする。世界全体の網羅的分類ではなく、モデル上のソートである。情報記録自体にも物理的実現があり、記述と指示対象は別の位置を占める。
+
+次はIncの定理ではなく、提案するインターフェースである。
+</Ja>
+
+```text
+about       : D × P → Proposition
+validAt     : D × T → Proposition
+transition  : D × D × T × T → Proposition
+observes    : O × C → Proposition
+supports    : V × C → Proposition
+continues   : P × P × T × T × Policy → Proposition
+
+transition(d0,d1,t0,t1) ⇒ t0 < t1
+transition(d0,d1,t0,t1) ⇒ ∃p. about(d0,p) ∧ about(d1,p)
+transition(d0,d1,t0,t1) ⇒ validAt(d0,t0) ∧ validAt(d1,t1)
+```
+
+<En>
+This transition profile describes one referent at two times. A split or merge requires a different profile with multiple participants; it must not silently force two successors to be one individual. `continues` expresses a policy-dependent persistence judgment. Policies must name continuity criteria, tolerated gaps, branching rules and evidence. Neither transitivity nor uniqueness is assumed for it. A stronger physical theory may impose more.
+
+Separate three identities: equality of content under a specified codec and digest, equivalence under an observation, and continuity of an individual through time. None gives either of the others automatically. For a finite, explicitly enumerated Inc model, bisimulation can be computed by iterative removal of pairs violating type or boundary matching until a greatest fixed point is reached. This requires complete finite input and decidable labels; arbitrary infinite models do not inherit that algorithm.
+
+To quotient resonance exactly, Inc requires congruence in all three positions. The [exact-descent theorem](https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory/IncidenceResearch.lean#L425-L466) does not say that every observational equivalence satisfies it. An RDF `owl:sameAs` assertion would impose equality much more broadly than a chosen observational equivalence.
+</En>
+<Ja>
+この遷移プロファイルは同一指示対象の二時点を扱う。分裂・合流には複数参加者を持つ別のプロファイルが必要で、二つの後継を一個体へ強制しない。`continues` は方針に依存する存続判断である。連続性の基準、許容欠測、分岐規則、証拠を方針に記し、推移性も一意性も自動では仮定しない。物理理論がより強い条件を課すことはある。
+
+内容の同一性、観測に対する同値性、時間を通じた個体の連続性を分ける。内容同一性にもコーデックとダイジェストの指定が要る。どれも他を自動では与えない。有限で全体が列挙されたIncモデルなら、型や境界対応に違反する対を反復して除去し、最大不動点としてbisimulationを計算できる。完全な有限入力と判定可能なラベルが条件であり、任意の無限モデルに適用できるとは限らない。
+
+resonanceの厳密な商への降下には三位置すべての合同性が必要である。[降下定理](https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory/IncidenceResearch.lean#L425-L466)は、すべての観測同値がその条件を満たすとは述べない。`owl:sameAs` は特定観測に限った同値より広い等しさを課す。
+</Ja>
+
+<En>
+## 4. Interaction permits modes; dynamics selects trajectories
+
+`resonance i j k` is a proposition about an admissible mode. The source's `selectedMode` chooses at most one through `glue`; its soundness gives resonance, not a dated occurrence in a physical system. Do not infer that a third object has actually been born whenever a resonance triple holds.
+
+Add an explicit dynamical model, input, parameterization and observation likelihood:
+</En>
+<Ja>
+## 4. 相互作用の許容モードと実際の時間発展
+
+`resonance i j k` は許容モードについての命題である。ソースの `selectedMode` は `glue` を通じて高々一つを選び、その健全性はresonanceを与える。物理系での時刻付き生起を与えるものではない。三項関係の成立だけで第三の対象の誕生を導かない。
+
+動力学、入力、パラメータ、観測尤度を別途指定する。
+</Ja>
+
+```text
+x(t + dt) ~ K_model( · | x(t), u(t), theta, dt)
+y(t)      ~ P_sensor( · | x(t), calibration)
+```
+
+<En>
+A deterministic function is a special case of the transition kernel. Record model revision, initial conditions, units, numerical solver, random seed where applicable, and error estimates. A prediction belongs to a simulation run; it becomes an empirical assessment only after comparison with observations. Causal inference additionally needs intervention semantics and identification assumptions. A provenance edge or temporal precedence alone is insufficient.
+
+## 5. BFO and CCO: align selected profiles
+
+[BFO's maintained artifacts](https://github.com/BFO-ontology/BFO-2020) include OWL and Common Logic formulations. [CCO](https://github.com/CommonCoreOntology/CommonCoreOntologies) builds a mid-level suite on BFO. These are benchmarks for explicit definitions and reusable modeling, not evidence that RIPO already has equivalent rigor. Pin the release and imports for any executable alignment.
+
+| Proposed term or use | Candidate alignment | Obligation before asserting it |
+|---|---|---|
+| A concrete observation occurrence | BFO process; PROV Activity | Specify temporal extent and the profile's activity interpretation |
+| Physical sensor | BFO material entity | Keep instrument separate from output and observation |
+| State description or claim | CCO information content entity | Distinguish content from its physical bearer; check release definitions |
+| Evidence record | PROV Entity | Describe generation, derivation and attribution |
+| Endpoint role label | Local vocabulary concept | Do not equate it with BFO's realizable Role |
+| Inc boundary or RIPO coherence | No unconditional mapping | Supply a model and preservation conditions |
+
+Do not import a universal assertion that every RIPO entity is a BFO process: a persisting organism can be modeled through a continuant together with its processes. Start with candidate mappings documented as annotations. Promote them to subclass or equivalence axioms only after checking satisfiability, unintended entailments and competency questions against pinned imports. No BFO/CCO equivalence axioms are shipped in this example.
+</En>
+<Ja>
+決定論的関数は遷移核の特別な場合である。モデル版、初期条件、単位、数値解法、必要なら乱数seed、誤差推定を残す。予測はシミュレーション実行に属し、観測との比較後に経験的評価となる。因果推論には介入の意味と識別仮定も必要であり、来歴の矢印や時間的先行だけでは足りない。
+
+## 5. BFO・CCOとの写像はプロファイルごとに検証する
+
+[BFOの保守される成果物](https://github.com/BFO-ontology/BFO-2020)にはOWLとCommon Logicがあり、[CCO](https://github.com/CommonCoreOntology/CommonCoreOntologies)はBFO上の中位オントロジー群である。定義の明示と再利用の比較基準になるが、RIPOが同等の厳密さに達した証拠ではない。実行可能な写像ではリリースとimportを固定する。
+
+| 提案用語・用途 | 対応候補 | 公理化前の確認 |
+|---|---|---|
+| 具体的な観測の生起 | BFO process、PROV Activity | 時間的広がりとactivityの解釈 |
+| 物理的センサー | BFO material entity | 装置、出力、観測の区別 |
+| 状態記述・主張 | CCO information content entity | 内容と担体の区別、対象版の定義 |
+| 証拠記録 | PROV Entity | 生成、派生、帰属 |
+| 端点の役割ラベル | ローカル語彙概念 | BFOの実現可能なRoleと同一視しない |
+| Inc境界・RIPOの整合性 | 無条件の対応はない | モデルと保存条件 |
+
+すべてのRIPO entityをBFO processとする公理は導入しない。存続する有機体はcontinuantとそのprocess群で記述できる。写像候補は注記から始め、importを固定した充足可能性、意図しない帰結、能力質問の確認後にsubclassやequivalenceへ進める。本例にBFO/CCO同値公理は含めない。
+</Ja>
+
+<En>
+## 6. A small RDF example that can actually be checked
+
+The downloadable vocabulary separates `WorldProcess` from `InformationRecord` by their intended use, without declaring them exhaustive or disjoint. `StateDescription`, `TransitionRecord`, `Claim`, `Evidence` and `Assessment` specialize records; `ObservationProcess` describes an occurrence. This is a partial operational vocabulary, not a taxonomy of the universe. All `example.org` IRIs are placeholders, not deployed ontology endpoints.
+
+[RDF](https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/) supplies a graph representation; [OWL 2](https://www.w3.org/TR/owl2-overview/) adds entailment; [SHACL](https://www.w3.org/TR/2017/REC-shacl-20170720/) checks a supplied graph against shapes; [SPARQL](https://www.w3.org/TR/sparql11-query/) queries descriptions. No layer by itself integrates a differential equation or discovers whether a sensor was calibrated.
+
+The complete files are [core.ttl](/assets/posts/computable-ripo/core.ttl), [example.ttl](/assets/posts/computable-ripo/example.ttl), [shapes.ttl](/assets/posts/computable-ripo/shapes.ttl) and [changes.rq](/assets/posts/computable-ripo/changes.rq). This excerpt describes a synthetic change and a reported proposition:
+</En>
+<Ja>
+## 6. 実際に検証できる小さなRDF例
+
+添付語彙は用途として `WorldProcess` と `InformationRecord` を分けるが、網羅性も排他性も宣言しない。`StateDescription`、`TransitionRecord`、`Claim`、`Evidence`、`Assessment` は記録の特殊化で、`ObservationProcess` は生起を記述する。宇宙の全分類ではなく部分的な操作用語彙であり、`example.org` IRIは公開済みエンドポイントではなく仮置きである。
+
+[RDF](https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/)はグラフ表現、[OWL 2](https://www.w3.org/TR/owl2-overview/)は帰結、[SHACL](https://www.w3.org/TR/2017/REC-shacl-20170720/)は入力グラフの形の検証、[SPARQL](https://www.w3.org/TR/sparql11-query/)は記述の照会を担う。いずれも単独で微分方程式を解いたりセンサーの校正を確認したりしない。
+
+完全なファイルは [core.ttl](/assets/posts/computable-ripo/core.ttl)、[example.ttl](/assets/posts/computable-ripo/example.ttl)、[shapes.ttl](/assets/posts/computable-ripo/shapes.ttl)、[changes.rq](/assets/posts/computable-ripo/changes.rq) にある。次の抜粋は合成データの変化と報告命題を記述する。
+</Ja>
+
+```turtle
+@prefix ripo: <https://example.org/ripo/0.1#> .
+@prefix ex: <https://example.org/ripo/example/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+ex:change a ripo:TransitionRecord ;
+    ripo:beforeState ex:before ; ripo:afterState ex:after .
+ex:claim a ripo:Claim ;
+    rdf:subject ex:after ; rdf:predicate ripo:numericValue ; rdf:object 21.0 ;
+    ripo:supportedBy ex:evidence .
+```
+
+<En>
+The excerpt omits state definitions and the recording timestamp; validate the complete files. Ordinary RDF reification does not assert its represented triple. The example separately contains state values as synthetic premises. With actual contested data, keep reported values inside claim descriptions until an explicit admission policy projects accepted claims into a working graph. Do not derive truth from the mere existence of a claim or observation.
+
+The shapes require one before/after state and check subject, unit and increasing valid time, using explicit UTC timestamps. They also constrain endpoint signs and positive multiplicities. The generic n-ary relation example has role labels, but does not serialize an Inc boundary: a faithful exporter would need ordered list cells, type consistency and further Inc laws. SHACL cardinality checks are not theorems about arbitrary models.
+
+[PROV-O](https://www.w3.org/TR/prov-o/) describes how evidence was generated and attributed. An assessment's “supported” is a review outcome, not a timeless truth property. Retain conflicting claims and superseded assessments, their assessor, method and recording times. Record a probability only with its event, conditioning information, model revision and calibration; confidence is not a universal truth score.
+
+The query returns a temperature difference of `1.0` in the example's Celsius unit. `validAt` marks when a described state holds; `recordedAt` marks when the record was made. Missing triples stay unknown under open-world reasoning, while missing required fields can fail this SHACL profile. Neither an absent support link nor a failed shape entails the negation of the underlying claim.
+</En>
+<Ja>
+抜粋には状態定義と記録時刻がないため、検証には完全版を使う。通常のRDF reificationは表現されたトリプルを自動では主張しない。本例は別途、合成データの前提として状態値を持つ。争いのある実データでは、明示的な採用方針が作業グラフへ投影するまで、報告値を主張記述に留める。主張や観測の存在だけから真理を導かない。
+
+shapeはbefore/afterを一つずつ要求し、UTC明示時刻を使って対象、単位、有効時間の増加を検証する。端点の符号と正の多重度も検証する。ただし汎用n項関係例はInc境界の直列化ではない。忠実なexportには順序付きリスト、型の整合性、他のInc法則が要る。SHACLの個数検証は任意モデルについての定理ではない。
+
+[PROV-O](https://www.w3.org/TR/prov-o/)は証拠の生成や帰属を記述する。評価の「supported」はレビュー結果であり、時を超えた真理属性ではない。矛盾する主張と旧評価を、評価者、手法、記録時刻とともに保持する。確率には事象、条件情報、モデル版、校正を付し、信頼度を万能の真理スコアにしない。
+
+クエリは例の摂氏単位で `1.0` の温度差を返す。`validAt` は記述された状態の有効時刻、`recordedAt` は記録時刻である。開世界推論では未記述は未知であり、SHACLでは必須項目の欠落を違反にできる。証拠リンクの欠落もshape違反も、主張内容の否定を意味しない。
+</Ja>
+
+<En>
+## 7. Information geometry, thermodynamics and quantum information
+
+A Fisher metric requires a specified differentiable probability family and regularity assumptions. Estimating it from behavior does not establish that it is the physical dissipation metric. [Sivak and Crooks](https://arxiv.org/abs/1201.4166) derive a friction metric in a linear-response regime; relaxation dynamics matter. A thermodynamic length bound therefore needs physical controls, timescales and a units convention. The older essays' `W_diss ≥ L²/(2τ)` is not a universal bound for an arbitrary Fisher metric, and Landauer's erasure bound is not established as its one-dimensional special case.
+
+For resetting an initially unbiased bit in the usual ideal thermal setting, Landauer's limit is `k_B T ln 2`. Its assumptions and finite-reservoir corrections matter; see [Reeb and Wolf](https://arxiv.org/abs/1306.4352). [Toyabe and colleagues](https://arxiv.org/abs/1009.5287) demonstrated feedback-assisted work extraction from thermal fluctuations. These results do not identify bits with joules by an unconditional exchange rate, or prove the physical reality of a proposed spirit field.
+
+A quantum model would additionally specify a Hilbert space, density operator, allowed channels, measurement instrument and Born probabilities; see [Wilde’s quantum information text](https://arxiv.org/abs/1106.1445). Quantum entropy, classical Shannon entropy and semantic significance are different quantities. Inc resonance is not a quantum amplitude or an entanglement criterion. This proposal supplies no derivation of quantum dynamics from Inc.
+</En>
+<Ja>
+## 7. 情報幾何、熱力学、量子情報
+
+Fisher計量には微分可能な確率族と正則性条件が要る。行動データから推定しても、物理的散逸の計量と同じとは限らない。[SivakとCrooks](https://arxiv.org/abs/1201.4166)は線形応答の条件で摩擦計量を導き、緩和動力学を扱う。熱力学的長さの下限には制御変数、時間尺度、単位の規約が必要である。旧稿の `W_diss ≥ L²/(2τ)` は任意のFisher計量に通用する普遍式ではなく、Landauerの消去限界がその一次元の特別な場合だとも確立されていない。
+
+通常の理想熱浴で初期の公平な1ビットをリセットする場合、Landauer限界は `k_B T ln 2` となる。仮定と有限熱浴での補正については [ReebとWolf](https://arxiv.org/abs/1306.4352) を参照。[Toyabeら](https://arxiv.org/abs/1009.5287)は熱ゆらぎからのフィードバックによる仕事抽出を実証した。これらはbitとjouleの無条件の交換率でも、提案する霊性場の実在の証明でもない。
+
+量子モデルにはさらにHilbert空間、密度演算子、許されるチャネル、測定操作、Born確率を指定する（[Wildeの量子情報の教科書](https://arxiv.org/abs/1106.1445)を参照）。量子エントロピー、古典Shannonエントロピー、意味は異なる量である。Incのresonanceは量子振幅でもエンタングルメントの判定でもなく、本提案はIncから量子動力学を導出しない。
+</Ja>
+
+<En>
+## 8. Records, simulations and agents
+
+[Kotoba's earlier substrate essay](/en/posts/kotoba-substrate-for-spirit) motivates immutable histories. More recent [Kotobase causal-commit source](https://github.com/kotoba-lang/kotobase/blob/e5d9cd2ec1fcf59bc48162532acfab75b1bf6050/src/kotobase/causal_commit.cljk) names an exact immutable basis and produces new commit records; concurrent histories can branch. That source was inspected, not executed or qualified here. It suggests a persistence adapter, not an already integrated RIPO engine. A CID identifies encoded content; signatures support attribution under key assumptions; neither certifies a measurement's truth, permanent availability or continuity of consciousness.
+
+An agent can propose a transition, call a model, compare predictions with evidence, and record an assessment. Keep proposed action, authorization, attempted execution and observed result separate. An ontology relation grants no authority. When used in a Kotoba end-user app, computation and state remain in the user's environment; external operations require fresh operation-specific consent under the shared client runtime contract.
+
+A useful acceptance question is: “Which model predicted this change, what was observed, and what evidence supports the discrepancy?” Answer it with versioned model/run IDs, sensor records, valid and recording times, units and uncertainty. A graph that merely links two events cannot answer why the change happened.
+
+## 9. What would justify a 1.0 claim?
+
+| Proposed module | Next qualification |
+|---|---|
+| Core and individuation | Definitions, scope of quantification, models and countermodels; explicit persistence/branching policies |
+| Inc bridge | Encoding/decoding laws, preserved observations, quotient-congruence obligations |
+| Time and becoming | Intervals, participation, splits/merges, composition and execution semantics |
+| Epistemics and information | Claim admission, disagreement, provenance, calibrated uncertainty and measurement units |
+| Computation and action | Reproducible numerical runs, causal assumptions, consent and effect receipts |
+| Alignment | Pinned BFO/CCO imports, satisfiability and entailment regression checks |
+
+For this article, the complete Turtle files were parsed, the positive example passed SHACL, and intentionally damaged copies failed for missing after-state, reversed time, different subject/unit, invalid sign and zero multiplicity. The SPARQL result was checked. This is bounded data validation, not an OWL 2 DL consistency proof, a verified Inc exporter, empirical validation of RIPO, or BFO/CCO conformance.
+
+The earlier Boundary-centered prototype remains a historical design sketch. No earlier downloadable ZIP was available in the supplied conversation, so these linked files are a new, independently checkable example. The research task is to make each bridge precise enough that a failure can be located: in the ontology, the encoding, the model, the measurement or the implementation.
+
+## Related essays and development
+
+- [RIPO — Existence, Information, Self, and Inheritance](/en/posts/foundations-of-relational-informational-process-ontology)
+- [Inc — Constructing Mathematics from Relations](/en/posts/foundations-of-relational-mathematics)
+- [Information Is an Organism](/en/posts/information-is-organism)
+- [Spirit Is Information](/en/posts/spirit-is-information)
+- [Information Is Physical Quantity](/en/posts/infomation-is-physical-quantity)
+- [Spirit in Physics](/en/posts/spirit-in-physics)
+- [Kotoba — A Distributed-Persistence Substrate for Hosting Spirit](/en/posts/kotoba-substrate-for-spirit)
+</En>
+<Ja>
+## 8. 記録、シミュレーション、エージェント
+
+[旧Kotoba基盤論考](/ja/posts/kotoba-substrate-for-spirit)は不変履歴を構想する。より新しい [Kotobase causal-commitのソース](https://github.com/kotoba-lang/kotobase/blob/e5d9cd2ec1fcf59bc48162532acfab75b1bf6050/src/kotobase/causal_commit.cljk)は不変の基点を明示して新しいcommit記録を作り、並行履歴は分岐できる。本稿ではソースを調べただけで、実行・適格性確認はしていない。永続化adapterの接続候補であり、RIPOエンジンへの統合済みという意味ではない。CIDは符号化内容を識別し、署名は鍵についての仮定の下で帰属を支えるが、測定の真理、永久保存、意識の継続は保証しない。
+
+エージェントは遷移を提案し、モデルを呼び、予測と証拠を比較し、評価を記録できる。提案、許可、実行試行、観測結果を分ける。存在論上の関係は権限を与えない。Kotobaのエンドユーザーアプリでは、計算と状態はユーザー環境に置き、外部操作には共通client runtime契約による操作ごとの新しい同意を要する。
+
+能力確認には「どのモデルがこの変化を予測し、何が観測され、相違をどの証拠が支えるか」と問う。版付きモデル・実行ID、センサー記録、有効時刻と記録時刻、単位、不確実性で答える。二事象をリンクしただけでは、変化の理由にはならない。
+
+## 9. 1.0と呼ぶために必要な検証
+
+| 提案モジュール | 次の適格性確認 |
+|---|---|
+| Core・個体化 | 定義、量化範囲、モデルと反例、存続・分岐方針 |
+| Inc bridge | 符号化・復号の法則、保存される観測、商の合同条件 |
+| 時間・生成 | 区間、参加、分裂・合流、合成・実行意味論 |
+| 認識・情報 | 主張の採用、異論、来歴、校正した不確実性、測定単位 |
+| 計算・行為 | 再現可能な数値実行、因果仮定、同意、effect receipt |
+| Alignment | 固定BFO/CCO import、充足可能性、帰結の回帰検証 |
+
+本稿では完全版Turtleをparseし、正例のSHACL適合と、after-state欠落、時間逆転、対象・単位相違、不正符号、多重度ゼロの各負例の拒否、SPARQLの結果を確認した。限定されたデータ検証であり、OWL 2 DLの整合性証明、検証済みInc exporter、RIPOの経験的実証、BFO/CCO適合ではない。
+
+以前のBoundary中心プロトタイプは設計史として残す。引き継いだ会話には以前のZIP実体がなく、本稿のファイルは独立に検査できる新しい例である。研究上の課題は、失敗箇所が存在論、符号化、モデル、測定、実装のどこかを特定できるまで、各接続を精密にすることである。
+
+## 関連論考と発展
+
+- [RIPO：存在・情報・自己・継承（英語）](/en/posts/foundations-of-relational-informational-process-ontology)
+- [Inc：関係から数学を構成する（英語）](/en/posts/foundations-of-relational-mathematics)
+- [情報は有機体である](/ja/posts/information-is-organism)
+- [霊性は情報である](/ja/posts/spirit-is-information)
+- [Information Is Physical Quantity](/ja/posts/infomation-is-physical-quantity)
+- [Spirit in Physics](/ja/posts/spirit-in-physics)
+- [Kotoba：霊を宿す分散永続基盤](/ja/posts/kotoba-substrate-for-spirit)
+</Ja>

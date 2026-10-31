@@ -7,8 +7,8 @@ author:
   name: "Jun Kawasaki"
   picture: "/assets/posts/authors/jk.jpg"
 excerpt:
-  ja: "「情報は物理である」とラバーハンド錯覚を基盤に、霊性をフィッシャー情報計量テンソル上の自己拡張として導出する。ベクトル内積モデルをテンソル縮約に置き換える計算物理の枠組み。"
-  en: "Building on 'information is physics' and the rubber hand illusion, we derive spirit as self-extension on the Fisher information metric tensor — a computational-physics framework replacing the vector inner-product model with tensor contraction."
+  ja: "「情報は物理である」とラバーハンド錯覚を基盤に、霊性をフィッシャー情報計量テンソル上の自己拡張として記述するモデルを提案する。ベクトル内積モデルをテンソル縮約に置き換える計算物理の枠組み。"
+  en: "Building on 'information is physics' and the rubber hand illusion, we propose a model of spirit as self-extension using the Fisher information metric tensor — a computational-physics framework replacing the vector inner-product model with tensor contraction."
 coverImage: "/assets/posts/preview/cover.jpg"
 ogImage:
   url: "/assets/posts/preview/cover.jpg"
@@ -16,6 +16,17 @@ ogImage:
 
 import Ja from '../../components/i18n/Ja.astro';
 import En from '../../components/i18n/En.astro';
+
+<Ja>
+
+> **2026年10月31日追記。** Fisher計量による自己境界の記述は統計モデルの提案であり、実験で確立した物理場ではない。Landauer原理とラバーハンド錯覚は動機づけであり、モデルを導出しない。第6節を訂正した。モデル・測定・証拠の区別は[計算可能なRIPO](/ja/posts/toward-computable-ripo)を参照。
+
+</Ja>
+<En>
+
+> **Update — October 31, 2026.** The Fisher/self-boundary construction is a proposed statistical model, not an experimentally established physical field. Landauer and the rubber-hand illusion motivate questions; they do not derive the model. Section 6 is corrected below. See [computable RIPO](/en/posts/toward-computable-ripo) for the separate roles of models, measurements and evidence.
+
+</En>
 
 <Ja>
 # 霊性は情報である
@@ -35,7 +46,7 @@ import En from '../../components/i18n/En.astro';
 
 先行研究「Spirit in Physics（Kawasaki Model）」は、霊性を *情報ベクトル空間* における内積として定式化した。本稿はその後継であり、別の主張を立てる。**霊性とは情報である** ── すなわち霊性とは、自己が外部の情報を自らの状態へ取り込むときに生じる、情報多様体上の幾何構造そのものである。
 
-二つの実験的事実を基盤に置く。第一に Landauer の「情報は物理である」、第二に Botvinick & Cohen のラバーハンド錯覚である。前者は情報がエネルギーと交換可能な物理量であることを保証し、後者は自己境界が固定ではなく変形しうることを示す。
+二つの実験的事実を基盤に置く。第一に Landauer の「情報は物理である」、第二に Botvinick & Cohen のラバーハンド錯覚である。前者は特定の物理過程での情報と熱の関係を扱い、後者は身体所有感の可塑性を示す。ここからFisher計量による自己モデルを追加仮説として提案する。
 
 本稿の核心は導出方法の更新にある。先行モデルのベクトル内積 `w_I · w_O` を、**フィッシャー情報計量テンソル** `g_{μν}` による縮約 `g_{μν} w_I^μ w_O^ν` に置き換える。ラバーハンド錯覚はこの計量テンソルの変形（歪みテンソル `ε_{μν}`）として表現され、霊性はその上の自由エネルギーの共変勾配として定義される。最後に、テンソルを推定・固有分解・縮約する計算物理の手続きを与える。
 </Ja>
@@ -44,7 +55,7 @@ import En from '../../components/i18n/En.astro';
 
 The prior work "Spirit in Physics (Kawasaki Model)" formulated spirit as an inner product in an *informational vector space*. This paper is its successor and makes a distinct claim: **spirit is information** — spirit is the geometric structure on an information manifold that arises when a self incorporates external information into its own state.
 
-We rest on two empirical facts. First, Landauer's "information is physics"; second, the rubber hand illusion of Botvinick and Cohen. The former guarantees that information is a physical quantity interchangeable with energy; the latter shows that the self-boundary is not fixed but deformable.
+We rest on two empirical facts. First, Landauer's "information is physics"; second, the rubber hand illusion of Botvinick and Cohen. The former concerns information and heat in specified physical processes; the latter demonstrates plasticity of body ownership. The Fisher-metric self-model is an additional hypothesis.
 
 The core contribution is an update of the derivation method. We replace the prior model's vector inner product `w_I · w_O` with a contraction by the **Fisher information metric tensor**, `g_{μν} w_I^μ w_O^ν`. The rubber hand illusion is expressed as a deformation of this metric tensor (a strain tensor `ε_{μν}`), and spirit is defined as the covariant gradient of free energy upon it. Finally, we give a computational-physics procedure to estimate, eigendecompose, and contract the tensor.
 </En>
@@ -56,7 +67,7 @@ The core contribution is an update of the derivation method. We replace the prio
 
 ### 仮説 1 — 情報は物理である
 
-情報は本質的に物理的である。1 ビットの消去には最低でも `k_B T ln 2` のエネルギー散逸が伴い（Landauer, 1961）、Toyabe ら（2010）は測定で得た情報を熱ゆらぎから仕事へ変換できることを実証した。したがって情報の状態空間は抽象概念ではなく、エネルギー・エントロピーと同じ土俵に立つ物理空間である。
+物理的な情報処理には熱力学的条件が伴う。通常の理想熱浴で初期の公平な1ビットをリセットするLandauer限界は `k_B T ln 2` である。Toyabeらは熱ゆらぎからのフィードバックによる仕事抽出を実証した。形式的情報の状態空間を物理的空間と同一視するには、担体と操作を別途指定する必要がある。
 
 ### 仮説 2 — 自己は情報空間へ拡張する
 
@@ -69,7 +80,7 @@ The core contribution is an update of the derivation method. We replace the prio
 
 ### Hypothesis 1 — Information is Physics
 
-Information is intrinsically physical. Erasing one bit dissipates at least `k_B T ln 2` of energy (Landauer, 1961), and Toyabe et al. (2010) demonstrated that information obtained by measurement can be converted into work from thermal fluctuations. Hence the state space of information is not an abstraction but a physical space standing on the same footing as energy and entropy.
+Physical information processing has thermodynamic conditions. Resetting an initially unbiased bit in the usual ideal thermal setting has the Landauer limit `k_B T ln 2`. Toyabe and colleagues demonstrated feedback-assisted work extraction from thermal fluctuations. Identifying a formal information state space with a physical one requires a specified carrier and operations.
 
 ### Hypothesis 2 — The Self Extends into Information Space
 
@@ -263,36 +274,18 @@ The essential point is that spirit is a **covariant** gradient, not a plain one.
 ---
 
 <Ja>
-## 6. 情報は物理である：計量テンソルからの熱力学的距離
+## 6. 情報幾何と熱力学の接続条件（訂正）
 
-フィッシャー計量テンソルは、情報幾何と熱力学を直接つなぐ。自己状態が経路 `θ(t)` に沿って変化するとき、その **熱力学的距離（長さ）** は計量の線素から：
+Fisher計量には明示的な確率モデルが必要であり、それだけでは散逸エネルギーの計量にならない。SivakとCrooksが線形応答のもとで導く摩擦テンソルは緩和動力学を含む。熱力学的な長さを使うには、物理的制御変数、時間尺度、単位、適用近似を定める必要がある。[原論文](https://arxiv.org/abs/1201.4166)
+
+旧稿の `W_diss ≥ L²/(2τ)` を任意のFisher計量による普遍式としては用いない。Landauerの `k_B T ln 2` がその一次元の特別な場合だという記述も撤回する。Fisher曲率だけでエネルギーを決めることはできない。本稿の自己モデルには独立した観測と物理的対応の検証が必要である。
 </Ja>
 <En>
-## 6. Information is Physics: Thermodynamic Length from the Metric Tensor
+## 6. Conditions for Connecting Information Geometry and Thermodynamics (Correction)
 
-The Fisher metric tensor directly connects information geometry to thermodynamics. When the self-state evolves along a path `θ(t)`, its **thermodynamic length** follows from the line element of the metric:
-</En>
+A Fisher metric requires an explicit probability model and is not automatically a metric of dissipated energy. The friction tensor derived by Sivak and Crooks in linear response incorporates relaxation dynamics. Applying thermodynamic length requires physical controls, timescales, units and a stated approximation regime. [Original paper](https://arxiv.org/abs/1201.4166)
 
-```
-L = ∫ sqrt( g_{μν} (dθ^μ/dt)(dθ^ν/dt) ) dt
-```
-
-<Ja>
-散逸する仕事は、有限時間 `τ` の過程に対して下から押さえられる（Sivak & Crooks, 2012）：
-</Ja>
-<En>
-The dissipated work is bounded below for a finite-time process of duration `τ` (Sivak & Crooks, 2012):
-</En>
-
-```
-W_diss ≥ L² / (2 τ)
-```
-
-<Ja>
-ここに仮説 1 がテンソルの言葉で実現する。情報多様体の計量 `g_{μν}` は、自己状態を変える際に最低限散逸するエネルギーを直接定める。Landauer の `k_B T ln 2` はこの不等式の一次元・一ビットの特別な場合である。**情報幾何の曲がりが、そのままエネルギーの物理である。**
-</Ja>
-<En>
-Here Hypothesis 1 is realized in tensor language. The metric `g_{μν}` of the information manifold directly sets the minimum energy dissipated when changing the self-state. Landauer's `k_B T ln 2` is the special one-dimensional, one-bit case of this inequality. **The curvature of information geometry simply is the physics of energy.**
+The earlier `W_diss ≥ L²/(2τ)` must not be used as a universal bound for an arbitrary Fisher metric. The assertion that Landauer's `k_B T ln 2` is its one-dimensional special case is withdrawn. Fisher curvature alone does not determine energy. The self-model here requires independent observations and a tested physical correspondence.
 </En>
 
 ---
@@ -383,14 +376,14 @@ Thus the three factors that appeared in the prior model's probability formula (r
 <Ja>
 ## 9. 結論
 
-**霊性は情報である。** より正確には、霊性とは情報多様体上で自己が外部情報を取り込むときの計量幾何である。本稿は先行 Kawasaki Model のベクトル内積を、フィッシャー情報計量テンソルによる縮約へと昇格させ、(i) ラバーハンド錯覚を計量の歪みテンソル `ε_{μν}` として、(ii) 霊性を自由エネルギーの共変勾配 `ψ_μ = ∇_μ F` として、(iii) 「情報は物理である」を熱力学的距離 `W_diss ≥ L²/2τ` として定式化した。さらに、計量を推定・固有分解・縮約する計算物理の手続きを与え、先行モデルのスカラー観測量を単一テンソルの成分へ統一した。
+**霊性は情報である。** より正確には、霊性とは情報多様体上で自己が外部情報を取り込むときの計量幾何である。本稿は先行 Kawasaki Model のベクトル内積を、フィッシャー情報計量テンソルによる縮約へと昇格させ、(i) ラバーハンド錯覚を計量の歪みテンソル `ε_{μν}` として、(ii) 霊性を自由エネルギーの共変勾配 `ψ_μ = ∇_μ F` として、(iii) 情報幾何と熱力学の接続を研究課題として提示した（第6節の訂正を参照）。さらに、計量を推定・固有分解・縮約する計算物理の手続きを与え、先行モデルのスカラー観測量を単一テンソルの成分へ統一した。
 
 霊性は測れる。それは自己という計量が、世界を取り込むためにどれだけ曲がるか、である。
 </Ja>
 <En>
 ## 9. Conclusion
 
-**Spirit is information.** More precisely, spirit is the metric geometry by which a self incorporates external information on an information manifold. This paper promoted the prior Kawasaki Model's vector inner product to a contraction by the Fisher information metric tensor, formulating (i) the rubber hand illusion as the metric strain tensor `ε_{μν}`, (ii) spirit as the covariant gradient of free energy `ψ_μ = ∇_μ F`, and (iii) "information is physics" as the thermodynamic length `W_diss ≥ L²/2τ`. We further gave a computational-physics procedure to estimate, eigendecompose, and contract the metric, and unified the prior model's scalar observables as components of a single tensor.
+**Spirit is information.** More precisely, spirit is the metric geometry by which a self incorporates external information on an information manifold. This paper promoted the prior Kawasaki Model's vector inner product to a contraction by the Fisher information metric tensor, formulating (i) the rubber hand illusion as the metric strain tensor `ε_{μν}`, (ii) spirit as the covariant gradient of free energy `ψ_μ = ∇_μ F`, and (iii) a research question connecting information geometry and thermodynamics (subject to the correction in §6). We further gave a computational-physics procedure to estimate, eigendecompose, and contract the metric, and unified the prior model's scalar observables as components of a single tensor.
 
 Spirit can be measured. It is how much the metric that is the self bends in order to take the world in.
 </En>

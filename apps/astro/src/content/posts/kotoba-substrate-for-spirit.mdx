@@ -7,8 +7,8 @@ author:
   name: "Jun Kawasaki"
   picture: "/assets/posts/authors/jk.jpg"
 excerpt:
-  ja: "霊性が情報であるなら、それを宿す場が要る。コンテンツアドレス・Datomic・DHT を土台に、IPFS・Holochain 系・Ethereum・Pregel・WASM で構成した、人工有機体エコシステムのための分散永続化基盤 kotoba の設計論。"
-  en: "If spirit is information, it needs a place to dwell. A design paper on kotoba: a distributed-persistence substrate for an artificial-organism ecosystem, built on content addressing, Datomic, and a DHT, composed with IPFS, Holochain-lineage validation, Ethereum, Pregel, and WASM."
+  ja: "Kotobaの分散永続化に関する旧設計論と、IPLD・DAG-CBOR・CIDを基盤とする現行コードへの更新注。Datomの論理モデルや問い合わせ用射影と、言語・状態の正本を区別する。"
+  en: "A historical Kotoba persistence design with a current-source update: IPLD, DAG-CBOR and CIDs form the basis; Datom logical views and query projections have distinct roles."
 coverImage: "/assets/posts/preview/cover.jpg"
 ogImage:
   url: "/assets/posts/preview/cover.jpg"
@@ -16,6 +16,32 @@ ogImage:
 
 import Ja from '../../components/i18n/Ja.astro';
 import En from '../../components/i18n/En.astro';
+
+<Ja>
+
+> **2026年10月31日追記。** 以下の機構名、Rust時代の構成、ベンチ値は当時の設計・報告であり、現行リリースや配備の監査ではない。[現在のKotobase causal-commitソース](https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/causal_commit.cljk)は不変基点と分岐履歴を記録するが、今回は実行していない。履歴保存は真理、永久可用性、意識の連続性を証明しない。[計算可能なRIPO](/ja/posts/toward-computable-ripo)の来歴adapterも統合済みではなく提案である。
+
+</Ja>
+<En>
+
+> **Update — October 31, 2026.** The mechanism names, Rust-era architecture and benchmark figures below describe the historical design/report, not a current release or deployment audit. The [current Kotobase causal-commit source](https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/causal_commit.cljk) records immutable bases and branched histories; it was inspected, not executed here. Stored history does not prove truth, permanent availability or continuity of consciousness. See [computable RIPO](/en/posts/toward-computable-ripo) for a proposed provenance adapter, not a completed integration.
+
+</En>
+
+<Ja>
+## 現行アーキテクチャへの更新：Datom台帳から説明を始めない
+
+[現在の言語契約](https://github.com/kotoba-lang/kotoba-lang/blob/5dbea46310591154765eeb0ef289bb98ca77a401/README.md#L142)はKotobaの正規形をS式のIPLDデータとする。[actor kernel](https://github.com/kotoba-lang/kotoba/blob/1604eda99031cbddd1c1fbf7ff696eb7ea44f444/lib/kotoba.kotobaVm/src/kotoba/vm/kernel.cljk#L195-L237)もDAG-CBORブロックを読み書きし、actor状態をルートCIDで指定する。[Kotobaseのコード保存](https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/code_graph.cljk#L26-L58)では定義ブロックが正本であり、Datomは問い合わせ用に生成される射影である。したがって、以下の旧式 `KOTOBA ≝ Datom…` や「すべての自己状態を5-tupleで保存する」という説明は、現行システム全体の定義としては用いない。
+
+ただしDatomの全廃も確認できない。Kotobaseには [`datoms` API](https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/core.clj.cljk#L9-L22)とDatom/quadの論理モデルが残る。IPLDは内容・リンク・符号化の層で、Datomは特定の事実表現や射影の層である。下のRust、Pregel、source chain、Datomic型5-tupleの記述と実装表は歴史資料として残し、現在の保存経路や配備の証拠とはしない。詳しい根拠は[計算可能なRIPOの第8節](/ja/posts/toward-computable-ripo#8-記録シミュレーションエージェント)を参照。
+</Ja>
+<En>
+## Current Architecture Update: Begin with IPLD, Not a Universal Datom Ledger
+
+The [current language contract](https://github.com/kotoba-lang/kotoba-lang/blob/5dbea46310591154765eeb0ef289bb98ca77a401/README.md#L142) describes Kotoba's canonical form as S-expression IPLD data. The [actor kernel](https://github.com/kotoba-lang/kotoba/blob/1604eda99031cbddd1c1fbf7ff696eb7ea44f444/lib/kotoba.kotobaVm/src/kotoba/vm/kernel.cljk#L195-L237) reads/writes DAG-CBOR blocks and names actor state by a root CID. In [Kotobase code storage](https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/code_graph.cljk#L26-L58), the definition block is authoritative and Datoms are generated as a query projection. The historical `KOTOBA ≝ Datom…` formula below and the claim that every self-state is a five-tuple must therefore not define the current system as a whole.
+
+This does not establish complete Datom removal. Kotobase retains a [`datoms` API](https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/core.clj.cljk#L9-L22) and logical Datom/quad models. IPLD concerns content, links and encoding; Datoms concern particular fact models or projections. The Rust, Pregel, source-chain and Datomic-style five-tuple descriptions and status table below remain historical material, not evidence of the current storage route or deployment. See [§8 of computable RIPO](/en/posts/toward-computable-ripo#8-records-simulations-and-agents) for the source-level distinction.
+</En>
 
 <Ja>
 # 言葉(kotoba)
@@ -82,12 +108,12 @@ Kotoba places exactly these three at the center of its design.
 ---
 
 <Ja>
-## 2. kotoba とは何か
+## 2. 当初のkotoba設計
 
 kotoba は一行で次のように定義される（リポジトリの定義式より）：
 </Ja>
 <En>
-## 2. What Kotoba Is
+## 2. The Historical Kotoba Design
 
 Kotoba is defined in one line as follows (from the repository's defining equation):
 </En>
@@ -149,12 +175,12 @@ Once the content is fixed, the name is uniquely determined. The same self-state 
 </En>
 
 <Ja>
-### 3.2 Datomic ── 不変の 5-tuple
+### 3.2 旧設計のDatomic型表現 ── 不変の5-tuple
 
 事実は Datomic 流の不変な 5-tuple として記録される。更新は上書きではなく、retract のトゥームストーンと新しい assert の対で表現される：
 </Ja>
 <En>
-### 3.2 Datomic — Immutable 5-tuples
+### 3.2 Historical Datomic-Style Representation — Immutable 5-tuples
 
 Facts are recorded as immutable Datomic-style 5-tuples. An update is not an overwrite but a pair of a retract tombstone and a new assert:
 </En>
@@ -302,9 +328,9 @@ In short, if spirit is information, then to host a spirit is nothing other than 
 ---
 
 <Ja>
-## 6. 実装状況 ── 実装済みと設計中の分離
+## 6. 当時の実装報告 ── 現行版の再検証ではない
 
-設計の比喩と実装の事実を混同しないために、現状を明示する。
+以下は原稿執筆当時の実装主張を残した表であり、10月31日の改訂ではベンチや実行経路を再測定・再検証していない。
 
 | 機構 | 状態 |
 |---|---|
@@ -321,9 +347,9 @@ In short, if spirit is information, then to host a spirit is nothing other than 
 ベンチはすべて M4 Mac、release build による実測である。「分散 Pregel」「L2 アンカー」を現に稼働中の機能として誇張しない ── 前者は単一ノード実装、後者は設計意図である。
 </Ja>
 <En>
-## 6. Implementation Status — Separating Implemented from Designed
+## 6. Historical Implementation Report — Not a Current Qualification
 
-To avoid conflating the design metaphor with implementation fact, the current status is stated explicitly.
+The following table retains the implementation claims of the original report. These benchmarks and runtime paths were not remeasured or requalified in the October 31 revision.
 
 | Mechanism | Status |
 |---|---|

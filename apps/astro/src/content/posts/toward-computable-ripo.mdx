@@ -18,7 +18,7 @@ import Ja from '../../components/i18n/Ja.astro';
 import En from '../../components/i18n/En.astro';
 
 <En>
-**Status: research proposal with an executable data example, not a completed upper ontology.** The [September RIPO essay](/en/posts/foundations-of-relational-informational-process-ontology) describes existence through relation, realized information, becoming and inheritance. This article asks what additional definitions make that position computable. The four questions below organize this proposal; they are not four axioms already supplied by Inc.
+**Status: research proposal with a bounded computation lab and executable data examples, not a completed upper ontology.** The [September RIPO essay](/en/posts/foundations-of-relational-informational-process-ontology) describes existence through relation, realized information, becoming and inheritance. This article asks what additional definitions make that position computable. The four questions below organize this proposal; they are not four axioms already supplied by Inc.
 
 | Question | Working module | What must be specified |
 |---|---|---|
@@ -28,7 +28,7 @@ import En from '../../components/i18n/En.astro';
 | How do we know? | Epistemology | Observations, claims, evidence, assessment and uncertainty |
 </En>
 <Ja>
-**位置づけ：実行可能なデータ例を伴う研究提案であり、完成した上位存在論ではない。** [9月のRIPO論考](/en/posts/foundations-of-relational-informational-process-ontology)は、存在を関係、実現された情報、生成、継承から捉える。本稿は、それを計算可能にする追加定義を検討する。下の四問は本提案の整理であり、Incがすでに備える四公理ではない。
+**位置づけ：限定された計算実験と実行可能なデータ例を伴う研究提案であり、完成した上位存在論ではない。** [9月のRIPO論考](/en/posts/foundations-of-relational-informational-process-ontology)は、存在を関係、実現された情報、生成、継承から捉える。本稿は、それを計算可能にする追加定義を検討する。下の四問は本提案の整理であり、Incがすでに備える四公理ではない。
 
 | 問い | 作業上のモジュール | 定義が必要なもの |
 |---|---|---|
@@ -264,7 +264,156 @@ An agent can propose a transition, call a model, compare predictions with eviden
 
 A useful acceptance question is: “Which model predicted this change, what was observed, and what evidence supports the discrepancy?” Answer it with versioned model/run IDs, sensor records, valid and recording times, units and uncertainty. A graph that merely links two events cannot answer why the change happened.
 
-## 9. What would justify a 1.0 claim?
+</En>
+<Ja>
+## 8. 記録、シミュレーション、エージェント
+
+[旧Kotoba基盤論考](/ja/posts/kotoba-substrate-for-spirit)は不変履歴を構想する。より新しい [Kotobase causal-commitのソース](https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/causal_commit.cljk)は不変の基点を明示して新しいcommit記録を作り、並行履歴は分岐できる。本稿ではソースを調べただけで、実行・適格性確認はしていない。永続化adapterの接続候補であり、RIPOエンジンへの統合済みという意味ではない。CIDは符号化内容を識別し、署名は鍵についての仮定の下で帰属を支えるが、測定の真理、永久保存、意識の継続は保証しない。
+
+### 現行の保存基盤：IPLDと明示的な問い合わせ用射影
+
+10月31日のソース確認では、言語・実行系とデータベースの論理ビューを分ける。[言語契約](https://github.com/kotoba-lang/kotoba-lang/blob/5dbea46310591154765eeb0ef289bb98ca77a401/README.md#L142)は正規形をS式のIPLDデータとする。確認したactor kernelの [`write-node` と `set-state`](https://github.com/kotoba-lang/kotoba/blob/1604eda99031cbddd1c1fbf7ff696eb7ea44f444/lib/kotoba.kotobaVm/src/kotoba/vm/kernel.cljk#L195-L237)は、DAG-CBORノードを符号化してCIDを返し、状態ルートCIDを設定する。すべてのactor状態をDatomタプルにすることは要求しない。
+
+Kotobaseの [`definition-record` と `definition-datoms`](https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/code_graph.cljk#L26-L58)はハッシュ対象の定義ブロックを正本とし、問い合わせ用の射影を派生させる。[`put-definition!`](https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/code_graph.cljk#L77-L102)はCIDとブロックを検証し、定義を保存してから射影を追記する。一方、データベースからDatomが消えたわけではない。[`core/datoms`](https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/core.clj.cljk#L9-L22)は残り、[engine](https://github.com/kotoba-lang/kotobase-engine/blob/a1ff23ade4f4ceca520311a99961e28fe6619f59/src/kotobase/engine/logical.cljk#L348-L356)は論理Datomと保存quadを変換する。[native replayソース](https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/kotoba/cid_external_transaction_replay.kotoba#L308-L340)もDAG-CBORに符号化された主語・述語・目的語のtransaction atomを検証する。IPLDの符号化と論理的な事実モデルは異なる層である。
+
+RIPOの永続化adapterでは、正本ブロック、リンク、コーデック、CIDを先に指定し、RDFやDatomの索引を写像と情報損失範囲を持つ射影として定義する。Kotoba全体をDatom台帳と定義したり、基盤の変更から全Datomインターフェースの廃止を導いたりしない。今回はソース上の確認であり、actor kernel、互換経路、native実行系の新たな適格性確認ではない。
+
+エージェントは遷移を提案し、モデルを呼び、予測と証拠を比較し、評価を記録できる。提案、許可、実行試行、観測結果を分ける。存在論上の関係は権限を与えない。Kotobaのエンドユーザーアプリでは、計算と状態はユーザー環境に置き、外部操作には共通client runtime契約による操作ごとの新しい同意を要する。
+
+能力確認には「どのモデルがこの変化を予測し、何が観測され、相違をどの証拠が支えるか」と問う。版付きモデル・実行ID、センサー記録、有効時刻と記録時刻、単位、不確実性で答える。二事象をリンクしただけでは、変化の理由にはならない。
+
+</Ja>
+
+<En>
+## 9. From relations to candidates, lineage and contours
+
+The independent [RIPO research repository](https://github.com/com-junkawasaki/ripo/tree/49d5aa56673e29b9ac8c9c840521fd360f73a3a5) consolidates this ontology design with the individuation study. It contains the [unified model](https://github.com/com-junkawasaki/ripo/blob/49d5aa56673e29b9ac8c9c840521fd360f73a3a5/docs/MODEL.md), equations, Python reference engine, snapshot CLI, RDF records, tests and offline viewer. This is a public source draft; it does not publish this website or establish an integrated Kotoba runtime.
+
+A useful operational separation is **candidate extraction → evidence-backed correspondence → display representation**. An `IndividuationHypothesis` records a model-relative grouping; a `MembershipAssessment` records membership under that model; a `LineageAssertion` records support for correspondence; a `BoundaryRepresentation` records a rendered contour; an `ExtractionRun` records the computation. None is automatically the real individual it describes.
+
+The initial design considers six approaches. They answer different questions rather than contributing interchangeable terms to a single existence score.
+
+| Approach | Question | Implemented scope |
+|---|---|---|
+| Structural block inference / SBM | Which connection-generating roles or blocks explain the network? | SBM remains planned; modularity is the implemented comparison |
+| Markov Stability | Which groups retain or recur under an assumed diffusion at selected resolutions? | Finite fixed-time objective and exhaustive partition search |
+| Finite-time coherent sets | Which sets resist dispersal during transport? | Planned; trajectory/transfer data needed |
+| Markov blanket | Which variables condition statistical separation? | Planned; no membrane or subjecthood follows |
+| Causal maintenance | Which interventions alter organization or recovery? | Separate known two-variable toy model only |
+| Geometric contour | How should selected memberships be drawn? | Gaussian-sum level sets; no alpha-shape implementation |
+
+The [operational profile](https://github.com/com-junkawasaki/ripo/blob/49d5aa56673e29b9ac8c9c840521fd360f73a3a5/DEFINITIONS.md) starts with explicit undirected, nonnegative snapshots of at most eight observation IDs. It does not yet ingest a typed temporal hypergraph. Signed, directed or higher-arity input must be rejected or handled by a separately specified model; no silent clique projection is performed. Real observation windows belong to the supplying study. Observation step `t`, window width `w`, and dimensionless diffusion resolution `tau` have different meanings.
+
+For positive-degree observations, the executed fixed-time objective is:
+</En>
+<Ja>
+## 9. 関係から個体化候補・継承・輪郭を計算する
+
+独立した [RIPO研究リポジトリ](https://github.com/com-junkawasaki/ripo/tree/49d5aa56673e29b9ac8c9c840521fd360f73a3a5)に、本稿の存在論設計と個体化の研究をまとめた。[統合モデル](https://github.com/com-junkawasaki/ripo/blob/49d5aa56673e29b9ac8c9c840521fd360f73a3a5/docs/MODEL.md)、数式、Python参照実装、snapshot CLI、RDF記録、テスト、オフラインviewerを含む。公開されたソースのドラフトであり、サイト公開やKotoba実行系への統合を意味しない。
+
+操作上は **候補抽出 → 証拠に基づく対応・継承 → 表示上の輪郭** と分ける。`IndividuationHypothesis` はモデルに相対的なまとまり、`MembershipAssessment` はその所属、`LineageAssertion` は対応の根拠、`BoundaryRepresentation` は描いた輪郭、`ExtractionRun` は計算を記録する。これらの記録を、記述された実在個体と自動では同一視しない。
+
+初期設計では六方式を比較する。それぞれ異なる問いを扱うため、単一の「存在スコア」に足し合わせる指標ではない。
+
+| 方式 | 問い | 実装範囲 |
+|---|---|---|
+| 構造的ブロック推定・SBM | 接続を生む役割やブロックは何か | SBMは今後。比較としてmodularityを実装 |
+| Markov Stability | 指定した拡散と尺度で滞留・再帰するまとまりは何か | 有限の固定時刻目的関数と全分割探索 |
+| 有限時間coherent set | 移送の中で分散しにくい集合は何か | 今後。軌道・移送データが必要 |
+| Markov blanket | どの変数が統計的分離を条件づけるか | 今後。膜や主体性は自動では導けない |
+| 因果的維持 | 介入で組織や回復はどう変わるか | 別途指定した2変数の玩具モデルのみ |
+| 幾何学的輪郭 | 得た所属をどう描くか | ガウシアン和の等値線。alpha shapeは未実装 |
+
+[操作的定義](https://github.com/com-junkawasaki/ripo/blob/49d5aa56673e29b9ac8c9c840521fd360f73a3a5/DEFINITIONS.md)は、最大8観測IDの無向・非負snapshotから始まる。型付き時間ハイパーグラフの取り込みは未実装である。符号付き・有向・多項関係は拒否するか別モデルを指定し、黙ってcliqueへ変換しない。実時間窓は入力側の研究で定める。観測ステップ `t`、観測窓幅 `w`、無次元の拡散解像度 `tau` を区別する。
+
+次数が正の観測について、実行した固定時刻の目的関数は次である。
+</Ja>
+
+```text
+D = diag(A 1)                    pi_i = d_i / sum_j d_j
+P(tau) = exp[tau (D^-1 A - I)]
+B(tau) = diag(pi) P(tau) - pi pi^T
+r(H,tau) = sum_{i,j in the same block of H} B_ij(tau)
+H* = argmax_H r(H,tau)
+```
+
+<En>
+This uses the fixed-time trace associated with [Markov Stability](https://arxiv.org/abs/0812.1811), rather than minimizing it over every diffusion time up to `tau`. All 4,140 partitions of eight observations are enumerated. The guarantee is a finite optimum under the selected objective and floating-point tie tolerance `1e-10`; it is not a guarantee about existence. Isolates are reported separately, and an all-zero graph returns “no relational evidence.”
+
+The regenerated synthetic study evaluates six cases, six observation steps and five resolutions: 180 Markov optimizations, plus modularity, zero-mechanism and perturbation controls. At `tau=1`:
+
+| Synthetic case | Extracted block counts at steps 0–5 | Correspondence interpretation |
+|---|---|---|
+| Two weakly linked groups | 2,2,2,2,2,2 | Selected-scale candidate grouping |
+| Entire membership replaced | 2,2,2,2,2,2 | Full turnover is linked only by supplied handoff evidence |
+| Isomorphic copy, no handoff | 2,2,2,2,2,2 | New group's lineage remains unresolved |
+| Split and merge | 2,2,4,4,2,2 | Many-to-many correspondence; no identity assertion |
+| Common external driver | 8,8,8,8,8,8 | Correlation and causal mechanism are different graphs |
+| Strong external exchange | 8,8,8,8,8,8 | Fails to recover the prespecified internal/environment grouping |
+</En>
+<Ja>
+これは [Markov Stability](https://arxiv.org/abs/0812.1811)に関する固定時刻のtraceであり、`tau` までの全拡散時刻で最小化する版ではない。8観測の全4,140分割を列挙する。得られるのは選んだ目的関数と浮動小数点の同率許容差 `1e-10` における有限最適解で、存在についての保証ではない。孤立観測は別に返し、全ゼロ関係では「関係上の証拠なし」とする。
+
+再生成した人工データ実験は6ケース・6観測時点・5解像度、合計180回のMarkov最適化と、modularity、ゼロ機構、重み摂動の対照を含む。`tau=1` での結果は次のとおりである。
+
+| 人工ケース | 観測時点0〜5の抽出ブロック数 | 対応の読み方 |
+|---|---|---|
+| 弱結合の二集団 | 2,2,2,2,2,2 | 選択した尺度での候補 |
+| 全成員交代 | 2,2,2,2,2,2 | 入力した引継ぎ証拠によってのみ対応 |
+| 同型コピー・引継ぎなし | 2,2,2,2,2,2 | 新集団の来歴は未確定 |
+| 分岐・合流 | 2,2,4,4,2,2 | 多対多の対応であり、同一性の断言ではない |
+| 共通外因 | 8,8,8,8,8,8 | 相関と因果機構のグラフを区別 |
+| 強い外部交換 | 8,8,8,8,8,8 | 事前に置いた内部・環境の区分を回収できない |
+</Ja>
+
+![Computed synthetic memberships and evidence-backed correspondence at Markov time 1](/assets/posts/computable-ripo/lineage-cases.png)
+
+<En>
+Solid connections use overlapping observation IDs; dashed connections use supplied handoffs. These are evidence assumptions, not independently authenticated events. The v0.3 CLI preserves an unresolved gap when observation steps are missing. Twenty seeded edge-weight perturbations measure coassignment robustness of one fixture, not calibrated uncertainty or a probability of existence.
+
+A decisive counterexample is the complete graph: its finite-time trace is `exp[-n tau/(n-1)] * (1 - sum_C(|C|/n)^2)`, maximized by singletons in exact arithmetic, while the modularity control yields one block. The one-block centered trace is always zero. Therefore this objective cannot define existence universally or decide whether the entire observed universe is one individual. Strong exchange with an environment may itself maintain a process, so low external coupling must not become a universal individuation rule.
+
+The contour is a Gaussian-sum level set in a chosen display layout, with `sigma=0.10` and level `0.35` after peak normalization. These are rendering parameters, not fitted existence thresholds. Changing layout changes the contour but leaves membership and lineage unchanged. The three-dimensional figure stacks slices through observation steps; it does not reconstruct physical spacetime.
+</En>
+<Ja>
+実線は観測IDの重複、破線は入力した引継ぎ記録を根拠とする。いずれも証拠としての仮定であり、独立認証された出来事ではない。v0.3 CLIは観測時点が欠けたときの継承を未確定に保つ。seedを固定した20回の重み摂動は一つの人工例の共所属の頑健性を測り、校正された不確実性や存在確率ではない。
+
+重要な反例は完全グラフである。固定時刻traceは `exp[-n tau/(n-1)] * (1 - sum_C(|C|/n)^2)` となり、厳密演算では単点分割が最大となるが、modularity対照では一群となる。一群の中心化traceは常にゼロである。したがって、この目的関数だけで存在一般を定義したり、観測宇宙全体が一個体かを決めたりできない。外部との強い交換が維持条件になる過程もあり、外向き結合の少なさを普遍的個体化原理にはしない。
+
+輪郭は選んだ表示配置でのガウシアン和の等値線で、peak正規化後の `sigma=0.10`、level `0.35` を使う。これらは描画パラメータであり、実データで推定した存在閾値ではない。配置を変えると輪郭は変わるが所属と継承は変わらない。3次元図は観測時点ごとの断面を積んだもので、物理的時空間の復元ではない。
+</Ja>
+
+![Computed contour slices across observation time; relational display coordinates, not physical spacetime](/assets/posts/computable-ripo/temporal-contours-3d.png)
+
+<En>
+A separate specified two-variable structural model compares baseline recovery with removal of internal cross-couplings and external inputs. Their analytic equilibria are `1`, `2/11` and `0`; the intervention magnitudes differ, so this is not an autonomy score or a ranking of causal importance. Causal discovery from observations and real-system intervention validation remain open.
+
+Reproduce the study from the pinned repository with Python 3.12 and its locked dependencies:
+</En>
+<Ja>
+別途指定した2変数の構造モデルでは、基準条件、内部交差結合の除去、外部入力の除去を比較する。解析的な平衡値は `1`、`2/11`、`0` となるが、介入量が異なるため自律性スコアや因果的寄与のランキングにはしない。観測からの因果発見や実系への介入検証は未実施である。
+
+固定リビジョンのrepoとPython 3.12、lockした依存で再計算できる。
+</Ja>
+
+```sh
+python scripts/reproduce.py
+python ripo.py extract examples/replacement.json --tau 1 --output results/replacement-profile.json
+```
+
+<En>
+Local validation passed 24 Python tests, 720 DOM-shim display states, and RDF/SHACL checks of 710 records (3,380 triples), including three negative mutations. The offline viewer and layout change were also inspected in a browser. The [provenance record](https://github.com/com-junkawasaki/ripo/blob/49d5aa56673e29b9ac8c9c840521fd360f73a3a5/docs/PROVENANCE.md) distinguishes reconstructed source and current outputs from the earlier private archive, whose input fingerprint differs and whose byte identity was not verified.
+
+This is a standalone Python reference profile. Its input/run SHA-256 values are canonical-JSON identifiers, not IPLD CIDs. A Kotoba persistence adapter, empirical validation, predictive holdouts, calibrated uncertainty, SBM/coherent-set/blanket implementations and formal Inc/BFO correspondences remain open. The article's 0.1 vocabulary and the experiment's 0.2 vocabulary are separate profiles; neither implies an established equivalence with the other.
+</En>
+<Ja>
+ローカルで24件のPythonテスト、720状態のDOM shim表示ロジック、710記録・3,380トリプルのRDF／SHACL検証と3負例が通った。オフラインviewerと配置変更もブラウザで確認した。[来歴記録](https://github.com/com-junkawasaki/ripo/blob/49d5aa56673e29b9ac8c9c840521fd360f73a3a5/docs/PROVENANCE.md)は、復元したソースと今回の出力を、入力fingerprintが異なりバイト同一性を未確認の旧私用アーカイブと分けている。
+
+これは独立したPython参照プロファイルである。入力・実行のSHA-256はcanonical JSONの識別子であり、IPLD CIDではない。Kotoba永続化adapter、経験的実証、将来予測のholdout、校正された不確実性、SBM・coherent set・blanket、Inc/BFOとの形式的対応は今後の課題である。本稿の0.1語彙と実験の0.2語彙は別プロファイルであり、相互の同値性が確立したという意味ではない。
+</Ja>
+
+<En>
+## 10. What would justify a 1.0 claim?
 
 | Proposed module | Next qualification |
 |---|---|
@@ -290,23 +439,7 @@ The earlier Boundary-centered prototype remains a historical design sketch. No e
 - [Kotoba — A Distributed-Persistence Substrate for Hosting Spirit](/en/posts/kotoba-substrate-for-spirit)
 </En>
 <Ja>
-## 8. 記録、シミュレーション、エージェント
-
-[旧Kotoba基盤論考](/ja/posts/kotoba-substrate-for-spirit)は不変履歴を構想する。より新しい [Kotobase causal-commitのソース](https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/causal_commit.cljk)は不変の基点を明示して新しいcommit記録を作り、並行履歴は分岐できる。本稿ではソースを調べただけで、実行・適格性確認はしていない。永続化adapterの接続候補であり、RIPOエンジンへの統合済みという意味ではない。CIDは符号化内容を識別し、署名は鍵についての仮定の下で帰属を支えるが、測定の真理、永久保存、意識の継続は保証しない。
-
-### 現行の保存基盤：IPLDと明示的な問い合わせ用射影
-
-10月31日のソース確認では、言語・実行系とデータベースの論理ビューを分ける。[言語契約](https://github.com/kotoba-lang/kotoba-lang/blob/5dbea46310591154765eeb0ef289bb98ca77a401/README.md#L142)は正規形をS式のIPLDデータとする。確認したactor kernelの [`write-node` と `set-state`](https://github.com/kotoba-lang/kotoba/blob/1604eda99031cbddd1c1fbf7ff696eb7ea44f444/lib/kotoba.kotobaVm/src/kotoba/vm/kernel.cljk#L195-L237)は、DAG-CBORノードを符号化してCIDを返し、状態ルートCIDを設定する。すべてのactor状態をDatomタプルにすることは要求しない。
-
-Kotobaseの [`definition-record` と `definition-datoms`](https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/code_graph.cljk#L26-L58)はハッシュ対象の定義ブロックを正本とし、問い合わせ用の射影を派生させる。[`put-definition!`](https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/code_graph.cljk#L77-L102)はCIDとブロックを検証し、定義を保存してから射影を追記する。一方、データベースからDatomが消えたわけではない。[`core/datoms`](https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/core.clj.cljk#L9-L22)は残り、[engine](https://github.com/kotoba-lang/kotobase-engine/blob/a1ff23ade4f4ceca520311a99961e28fe6619f59/src/kotobase/engine/logical.cljk#L348-L356)は論理Datomと保存quadを変換する。[native replayソース](https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/kotoba/cid_external_transaction_replay.kotoba#L308-L340)もDAG-CBORに符号化された主語・述語・目的語のtransaction atomを検証する。IPLDの符号化と論理的な事実モデルは異なる層である。
-
-RIPOの永続化adapterでは、正本ブロック、リンク、コーデック、CIDを先に指定し、RDFやDatomの索引を写像と情報損失範囲を持つ射影として定義する。Kotoba全体をDatom台帳と定義したり、基盤の変更から全Datomインターフェースの廃止を導いたりしない。今回はソース上の確認であり、actor kernel、互換経路、native実行系の新たな適格性確認ではない。
-
-エージェントは遷移を提案し、モデルを呼び、予測と証拠を比較し、評価を記録できる。提案、許可、実行試行、観測結果を分ける。存在論上の関係は権限を与えない。Kotobaのエンドユーザーアプリでは、計算と状態はユーザー環境に置き、外部操作には共通client runtime契約による操作ごとの新しい同意を要する。
-
-能力確認には「どのモデルがこの変化を予測し、何が観測され、相違をどの証拠が支えるか」と問う。版付きモデル・実行ID、センサー記録、有効時刻と記録時刻、単位、不確実性で答える。二事象をリンクしただけでは、変化の理由にはならない。
-
-## 9. 1.0と呼ぶために必要な検証
+## 10. 1.0と呼ぶために必要な検証
 
 | 提案モジュール | 次の適格性確認 |
 |---|---|

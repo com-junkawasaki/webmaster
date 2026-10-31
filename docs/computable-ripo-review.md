@@ -98,3 +98,11 @@ These unchanged component errors are outside this editorial change. The type che
 - No earlier prototype ZIP was supplied; the downloadable assets are new examples, not recovery of that artifact.
 - The draft needs owner review of philosophical wording and the proposed formalization. Existing benchmark and dataset reports remain historical, explicitly unverified here.
 - The task worktree must remain while its Draft PR is open. The canonical checkout and unrelated worktrees/branches are preserved; no worktree garbage was deleted.
+
+## Independent model consolidation (JUN-654)
+
+The owner requested a separate RIPO repository and synthesis of JUN-654. `com-junkawasaki/ripo` was created public on explicit owner selection. Its draft source commit `49d5aa56673e29b9ac8c9c840521fd360f73a3a5` consolidates a reconstructed v0.2 numeric prototype with an explicit v0.3 snapshot CLI, a model specification, provenance/alignment notes, generated synthetic outputs, a local viewer and RDF validation. The article links this immutable commit and adds §9's six-method comparison, equations, measured fixture results, lineage/contour distinction, complete-graph counterexample and qualification limits; former §9 is now §10.
+
+The independent repo passed 24 Python tests, 720 DOM-shim states, JSON-LD expansion (710 records / 3,380 triples), SHACL positive + three negative controls and the transition query. A real browser layout change and scientific plot were inspected. This does not add an integrated Kotoba/IPLD adapter: current hashes are canonical JSON SHA-256. Original/private-archive input and current generated fingerprints differ, and byte-identical reconstruction is not claimed. The two article images are snapshots of the pinned repo's generated lineage and temporal-contour plots. Original transition vocabulary assets remain unchanged.
+
+Source reconstruction and implementation delivery are distinct from the open JUN-654 research acceptance work (empirical data, competing extractors, prediction, uncertainty calibration, matched interventions and formal alignment). No site merge/publication or repository merge is included.

@@ -287,7 +287,7 @@ RIPOの永続化adapterでは、正本ブロック、リンク、コーデック
 <En>
 ## 9. From relations to candidates, lineage and contours
 
-The independent [RIPO research repository](https://github.com/com-junkawasaki/ripo/tree/49d5aa56673e29b9ac8c9c840521fd360f73a3a5) consolidates this ontology design with the individuation study. It contains the [unified model](https://github.com/com-junkawasaki/ripo/blob/49d5aa56673e29b9ac8c9c840521fd360f73a3a5/docs/MODEL.md), equations, Python reference engine, snapshot CLI, RDF records, tests and offline viewer. This is a public source draft; it does not publish this website or establish an integrated Kotoba runtime.
+The independent [RIPO research repository](https://github.com/com-junkawasaki/ripo/tree/08736bfe2baa16502e6b44fbd95453b47ceeab42) consolidates this ontology design with the individuation study. It contains the [unified model](https://github.com/com-junkawasaki/ripo/blob/08736bfe2baa16502e6b44fbd95453b47ceeab42/docs/MODEL.md), equations, Python reference engine, snapshot CLI, RDF records, tests and offline viewer. This is a public source draft; it does not establish an integrated Kotoba runtime.
 
 A useful operational separation is **candidate extraction → evidence-backed correspondence → display representation**. An `IndividuationHypothesis` records a model-relative grouping; a `MembershipAssessment` records membership under that model; a `LineageAssertion` records support for correspondence; a `BoundaryRepresentation` records a rendered contour; an `ExtractionRun` records the computation. None is automatically the real individual it describes.
 
@@ -302,14 +302,14 @@ The initial design considers six approaches. They answer different questions rat
 | Causal maintenance | Which interventions alter organization or recovery? | Separate known two-variable toy model only |
 | Geometric contour | How should selected memberships be drawn? | Gaussian-sum level sets; no alpha-shape implementation |
 
-The [operational profile](https://github.com/com-junkawasaki/ripo/blob/49d5aa56673e29b9ac8c9c840521fd360f73a3a5/DEFINITIONS.md) starts with explicit undirected, nonnegative snapshots of at most eight observation IDs. It does not yet ingest a typed temporal hypergraph. Signed, directed or higher-arity input must be rejected or handled by a separately specified model; no silent clique projection is performed. Real observation windows belong to the supplying study. Observation step `t`, window width `w`, and dimensionless diffusion resolution `tau` have different meanings.
+The [operational profile](https://github.com/com-junkawasaki/ripo/blob/08736bfe2baa16502e6b44fbd95453b47ceeab42/DEFINITIONS.md) starts with explicit undirected, nonnegative snapshots of at most eight observation IDs. It does not yet ingest a typed temporal hypergraph. Signed, directed or higher-arity input must be rejected or handled by a separately specified model; no silent clique projection is performed. The generated common-driver CLI fixture explicitly mirrors the correlation upper triangle to remove roundoff asymmetry; external asymmetric inputs remain rejected. Overflowing totals or nonfinite solver results produce an input error. Real observation windows belong to the supplying study. Observation step `t`, window width `w`, and dimensionless diffusion resolution `tau` have different meanings.
 
 For positive-degree observations, the executed fixed-time objective is:
 </En>
 <Ja>
 ## 9. 関係から個体化候補・継承・輪郭を計算する
 
-独立した [RIPO研究リポジトリ](https://github.com/com-junkawasaki/ripo/tree/49d5aa56673e29b9ac8c9c840521fd360f73a3a5)に、本稿の存在論設計と個体化の研究をまとめた。[統合モデル](https://github.com/com-junkawasaki/ripo/blob/49d5aa56673e29b9ac8c9c840521fd360f73a3a5/docs/MODEL.md)、数式、Python参照実装、snapshot CLI、RDF記録、テスト、オフラインviewerを含む。公開されたソースのドラフトであり、サイト公開やKotoba実行系への統合を意味しない。
+独立した [RIPO研究リポジトリ](https://github.com/com-junkawasaki/ripo/tree/08736bfe2baa16502e6b44fbd95453b47ceeab42)に、本稿の存在論設計と個体化の研究をまとめた。[統合モデル](https://github.com/com-junkawasaki/ripo/blob/08736bfe2baa16502e6b44fbd95453b47ceeab42/docs/MODEL.md)、数式、Python参照実装、snapshot CLI、RDF記録、テスト、オフラインviewerを含む。公開された研究ソースであり、Kotoba実行系への統合を意味しない。
 
 操作上は **候補抽出 → 証拠に基づく対応・継承 → 表示上の輪郭** と分ける。`IndividuationHypothesis` はモデルに相対的なまとまり、`MembershipAssessment` はその所属、`LineageAssertion` は対応の根拠、`BoundaryRepresentation` は描いた輪郭、`ExtractionRun` は計算を記録する。これらの記録を、記述された実在個体と自動では同一視しない。
 
@@ -324,7 +324,7 @@ For positive-degree observations, the executed fixed-time objective is:
 | 因果的維持 | 介入で組織や回復はどう変わるか | 別途指定した2変数の玩具モデルのみ |
 | 幾何学的輪郭 | 得た所属をどう描くか | ガウシアン和の等値線。alpha shapeは未実装 |
 
-[操作的定義](https://github.com/com-junkawasaki/ripo/blob/49d5aa56673e29b9ac8c9c840521fd360f73a3a5/DEFINITIONS.md)は、最大8観測IDの無向・非負snapshotから始まる。型付き時間ハイパーグラフの取り込みは未実装である。符号付き・有向・多項関係は拒否するか別モデルを指定し、黙ってcliqueへ変換しない。実時間窓は入力側の研究で定める。観測ステップ `t`、観測窓幅 `w`、無次元の拡散解像度 `tau` を区別する。
+[操作的定義](https://github.com/com-junkawasaki/ripo/blob/08736bfe2baa16502e6b44fbd95453b47ceeab42/DEFINITIONS.md)は、最大8観測IDの無向・非負snapshotから始まる。型付き時間ハイパーグラフの取り込みは未実装である。符号付き・有向・多項関係は拒否するか別モデルを指定し、黙ってcliqueへ変換しない。共通外因のCLI人工例は、相関の丸め差を除くため生成時に上三角を明示的に写す。外部の非対称入力は拒否し、合計のoverflowや非有限の計算結果も入力エラーにする。実時間窓は入力側の研究で定める。観測ステップ `t`、観測窓幅 `w`、無次元の拡散解像度 `tau` を区別する。
 
 次数が正の観測について、実行した固定時刻の目的関数は次である。
 </Ja>
@@ -402,12 +402,12 @@ python ripo.py extract examples/replacement.json --tau 1 --output results/replac
 ```
 
 <En>
-Local validation passed 24 Python tests, 720 DOM-shim display states, and RDF/SHACL checks of 710 records (3,380 triples), including three negative mutations. The offline viewer and layout change were also inspected in a browser. The [provenance record](https://github.com/com-junkawasaki/ripo/blob/49d5aa56673e29b9ac8c9c840521fd360f73a3a5/docs/PROVENANCE.md) distinguishes reconstructed source and current outputs from the earlier private archive, whose input fingerprint differs and whose byte identity was not verified.
+Local validation passed 26 Python tests, 720 DOM-shim display states, and RDF/SHACL checks of 710 records (3,380 triples), including three negative mutations. The offline viewer and layout change were also inspected in a browser. The [provenance record](https://github.com/com-junkawasaki/ripo/blob/08736bfe2baa16502e6b44fbd95453b47ceeab42/docs/PROVENANCE.md) distinguishes reconstructed source and current outputs from the earlier private archive, whose input fingerprint differs and whose byte identity was not verified.
 
 This is a standalone Python reference profile. Its input/run SHA-256 values are canonical-JSON identifiers, not IPLD CIDs. A Kotoba persistence adapter, empirical validation, predictive holdouts, calibrated uncertainty, SBM/coherent-set/blanket implementations and formal Inc/BFO correspondences remain open. The article's 0.1 vocabulary and the experiment's 0.2 vocabulary are separate profiles; neither implies an established equivalence with the other.
 </En>
 <Ja>
-ローカルで24件のPythonテスト、720状態のDOM shim表示ロジック、710記録・3,380トリプルのRDF／SHACL検証と3負例が通った。オフラインviewerと配置変更もブラウザで確認した。[来歴記録](https://github.com/com-junkawasaki/ripo/blob/49d5aa56673e29b9ac8c9c840521fd360f73a3a5/docs/PROVENANCE.md)は、復元したソースと今回の出力を、入力fingerprintが異なりバイト同一性を未確認の旧私用アーカイブと分けている。
+ローカルで26件のPythonテスト、720状態のDOM shim表示ロジック、710記録・3,380トリプルのRDF／SHACL検証と3負例が通った。オフラインviewerと配置変更もブラウザで確認した。[来歴記録](https://github.com/com-junkawasaki/ripo/blob/08736bfe2baa16502e6b44fbd95453b47ceeab42/docs/PROVENANCE.md)は、復元したソースと今回の出力を、入力fingerprintが異なりバイト同一性を未確認の旧私用アーカイブと分けている。
 
 これは独立したPython参照プロファイルである。入力・実行のSHA-256はcanonical JSONの識別子であり、IPLD CIDではない。Kotoba永続化adapter、経験的実証、将来予測のholdout、校正された不確実性、SBM・coherent set・blanket、Inc/BFOとの形式的対応は今後の課題である。本稿の0.1語彙と実験の0.2語彙は別プロファイルであり、相互の同値性が確立したという意味ではない。
 </Ja>

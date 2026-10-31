@@ -2,7 +2,7 @@
 
 Task: JUN-653. Review date: 2026-10-31 (Asia/Tokyo).
 Base: webmaster `f04a12ec2094fa9f95b21085986fbc84018aa9bc`.
-Delivery: source changes and Draft PR only; no merge or publication.
+Initial delivery: source changes and Draft PR. The owner subsequently authorized review and main merge of both PRs, plus scoped cleanup; see final review below.
 
 ## Scope and reading order
 
@@ -70,7 +70,7 @@ python scripts/verify-computable-ripo.py
 
 The script parses all three Turtle files (51 core, 76 shape and 47 data triples), validates the positive example without entailment expansion, checks six independent negative controls against their expected SHACL focus/constraint, and executes the SPARQL query (one row, Celsius difference 1.0). It also parses the article excerpt and verifies that ordinary reification alone has not asserted the represented proposition. The excerpt is deliberately incomplete; the full downloadable graph is the conformance fixture.
 
-The built new English/Japanese routes are checked for prose leakage, all 22 unique root-relative image/link references resolve, and generated routes for all seven revised posts link to the continuation. The SVG parses as XML. New language blocks are paired and code is shared outside them. Existing single-language essays are not retroactively translated.
+The built new English/Japanese routes are checked for prose leakage, all 24 unique root-relative image/link references resolve, and generated routes for all seven revised posts link to the continuation. The SVG parses as XML. New language blocks are paired and code is shared outside them. Existing single-language essays are not retroactively translated.
 
 `git diff --check` passed. The final static build generated 43 pages. English and Japanese local previews and the embedded architecture SVG were inspected in the browser; no publication occurred.
 
@@ -106,3 +106,11 @@ The owner requested a separate RIPO repository and synthesis of JUN-654. `com-ju
 The independent repo passed 24 Python tests, 720 DOM-shim states, JSON-LD expansion (710 records / 3,380 triples), SHACL positive + three negative controls and the transition query. A real browser layout change and scientific plot were inspected. This does not add an integrated Kotoba/IPLD adapter: current hashes are canonical JSON SHA-256. Original/private-archive input and current generated fingerprints differ, and byte-identical reconstruction is not claimed. The two article images are snapshots of the pinned repo's generated lineage and temporal-contour plots. Original transition vocabulary assets remain unchanged.
 
 Source reconstruction and implementation delivery are distinct from the open JUN-654 research acceptance work (empirical data, competing extractors, prediction, uncertainty calibration, matched interventions and formal alignment). No site merge/publication or repository merge is included.
+
+## Final merge review (2026-10-31)
+
+Reviewed webmaster head `9f985ac` against unchanged main `f04a12e`, the complete source/assets/verifier delta, and the independent computation source. There are no external review threads or PR CI checks configured. The existing website workflow deploys GitHub Pages on a main push; this will be tracked after the explicitly authorized merge, without claiming source merge itself proves live delivery.
+
+RIPO review reproduced and fixed two input bugs: the generated common-driver CLI correlation snapshot failed its own exact symmetry check; extreme finite weights/time or oversized integers caused internal exceptions. The corrected fixture adapter explicitly mirrors its generated upper triangle, while external inputs still require exact symmetry; numerical range failures now return input errors. Article links now pin reviewed RIPO commit `08736bfe2baa16502e6b44fbd95453b47ceeab42` and report 26 tests. Scientific values excluding timings and all three lab PNGs are unchanged. No mathematical objective or recovered scientific generator was modified to fit tests. Details are in RIPO `docs/REVIEW.md`.
+
+Final checks: 26 Python tests, full scientific reproduction, 710 RDF records / 3380 triples with three negative controls, 720 DOM states, site build and article verifier. The existing type errors remain baseline-only and outside this MDX/assets change. The finite model, source-only Kotoba findings, partial RDF vocabulary and empirical/formal-alignment limitations remain explicit; no additional merge-blocking issue was found in the reviewed scope. User authorization supersedes the initial draft-only delivery instruction. Post-merge state, Pages workflow and verified-merged worktree removal are recorded in Linear.

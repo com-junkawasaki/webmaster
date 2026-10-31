@@ -28,11 +28,30 @@ Inc was freshly cloned from `com-junkawasaki/inc`; `git ls-remote origin refs/he
 | Resonance produces an actual third object | `Axioms.lean:25–38` and `IncidenceTheory.lean:1756–1767` distinguish a proposition and a computational selector | Require dynamics and dated occurrence evidence separately |
 | `spirit-is-information` §6: arbitrary Fisher metric universally determines energy; Landauer is its one-bit special case | [Sivak–Crooks](https://arxiv.org/abs/1201.4166) treats a friction metric in linear response; [Reeb–Wolf](https://arxiv.org/abs/1306.4352) states physical erasure assumptions | Withdraw the asserted derivation; retain the self-metric construction as a proposed model |
 | Physical-information essay: harmonic trap and work without external energy | [Toyabe et al.](https://arxiv.org/abs/1009.5287) uses feedback on a Brownian particle in an electrically imposed spiral-like potential | Correct setup and account for thermal fluctuations/controller |
-| Kotoba essay's Rust-era mechanism table reads as current status | Current inspected Kotobase `src/kotobase/causal_commit.cljk:1–13`, revision `e5d9cd2ec1fcf59bc48162532acfab75b1bf6050`, describes immutable bases and branches | Preserve table with historical heading; do not claim current deployment/benchmarks or RIPO integration |
+| Kotoba essay's Rust-era mechanism table reads as current status | Kotobase `src/kotobase/causal_commit.cljk:1–13`, refreshed revision `c191dd0fecb67f28b9f6eff79269800b45414f89`, describes immutable bases and branches | Preserve table with historical heading; do not claim current deployment/benchmarks or RIPO integration |
 
 The pinned Kotobase commit was confirmed available through the GitHub commits API. Its source was inspected; no runtime test or current-release audit was performed. Unrelated WIP in the local Kotoba language checkout was left untouched.
 
 External standards were checked against the primary W3C RDF 1.1, OWL 2, SHACL 2017, SPARQL 1.1 and PROV-O specifications. BFO-2020 and CCO maintained repositories were consulted for alignment scope, not imported into the example. Quantum-model vocabulary is linked to [Wilde](https://arxiv.org/abs/1106.1445); no quantum dynamics is derived from Inc.
+
+## Follow-up: IPLD foundation versus Datom surfaces
+
+The owner requested a specific recheck of the current storage basis. Remote main refs were fetched read-only; shared checkouts, WIP and untracked content were not updated or removed. Snapshot on 2026-10-31:
+
+| Repository | Inspected main revision | Decisive source |
+|---|---|---|
+| kotoba-lang/kotoba-lang | `5dbea46310591154765eeb0ef289bb98ca77a401` | `README.md:142` calls the canonical form S-expression IPLD; this is the language contract, not proof of every native path |
+| kotoba-lang/kotoba | `1604eda99031cbddd1c1fbf7ff696eb7ea44f444` | `lib/kotoba.kotobaVm/src/kotoba/vm/kernel.cljk:195–237`: decode/encode IPLD nodes, link a new block, set an actor-state CID |
+| kotoba-lang/kotobase | `c191dd0fecb67f28b9f6eff79269800b45414f89` | `src/kotobase/code_graph.cljk:26–58,77–102`: authoritative hashed definition block and derived Datom projection; `src/kotobase/core.clj.cljk:15–17`: Datom API retained |
+| kotoba-lang/kotobase-engine | `a1ff23ade4f4ceca520311a99961e28fe6619f59` | `src/kotobase/engine/logical.cljk:348–356`: IPLD links and Datom/quad conversion |
+
+The native `.kotoba` replay source at Kotobase's pinned revision also validates DAG-CBOR transaction atoms (`kotoba/cid_external_transaction_replay.kotoba:308–340`); the signed-commit source constructs DAG-CBOR `s/p/o` maps and tag-42 CID links (`kotoba/cid_signed_commit.kotoba:55–99`). Thus “IPLD-based” does not imply “no logical facts/Datoms anywhere.” The actor-state representation, canonical blocks and database fact/projection models are distinct concerns. The inspected actor kernel is a partial profile; older `.cljk` adapters are not evidence of complete native qualification.
+
+Corrections added to the new article §8, the old Kotoba post's excerpt and prominent current-architecture section, and the organism post's comparison table. The old `KOTOBA ≝ Datom…`, five-tuple, Rust/Pregel and single-source-chain material remains explicitly historical. Neither universal Datom storage nor total Datom removal is asserted.
+
+An additional source/document mismatch was found while tracing references: at language revision `5dbea463`, `lang/compat/kotoba/semantic_code.kotoba:61–65` describes a tag-42 CID link, computes `raw`, but calls `(cbor/tagged 42)` without passing those bytes. It was not used as evidence of working native link encoding and was not executed or edited. The language's `src/kotoba/lang/code_identity.cljk:1–8` instead delegates DefCID authority to `kotoba.kir.definition-identity`. Do not qualify the whole language from the compatibility copy's docstring. This is recorded for the owner; no unrelated implementation fix is included.
+
+This follow-up is source inspection only. No database, actor kernel, native compiler or deployed service was executed to establish the architecture distinction.
 
 ## Reproducing the bounded checks
 

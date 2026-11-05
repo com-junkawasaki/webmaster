@@ -1,0 +1,13 @@
+{
+  "python": "3.11.13 (main, Jun  3 2025, 18:38:25) [Clang 17.0.0 (clang-1700.0.13.3)]",
+  "machine": "arm64",
+  "packages": {
+    "torch": "2.6.0",
+    "transformers": "5.4.0",
+    "safetensors": "0.4.4",
+    "tokenizers": "0.22.2",
+    "numpy": "1.26.4",
+    "einops": "0.8.2",
+    "huggingface-hub": "1.27.0"
+  }
+}

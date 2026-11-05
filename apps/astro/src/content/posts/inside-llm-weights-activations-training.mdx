@@ -1,0 +1,230 @@
+---
+title:
+  en: "Inside an LLM: Weights, Activations, QKV and Training in Motion"
+  ja: "LLMの内側を動かして学ぶ：重み・活性・QKV・学習"
+date: "2026-11-05"
+author:
+  name: "Jun Kawasaki / 河崎純真"
+  picture: "/assets/posts/authors/jk.jpg"
+excerpt:
+  en: "Explore real weights and measured activations across every layer of three small language models, inspect full Query/Key/Value vectors, and replay a measured training step."
+  ja: "小型3モデルの全層の重みと実測した活性、Q・K・Vの全成分、実際の1ステップ学習を動かして理解する教材。"
+coverImage: "/assets/posts/inside-llm/full-model-3d.png"
+ogImage:
+  url: "/assets/posts/inside-llm/full-model-3d.png"
+---
+
+import Ja from '../../components/i18n/Ja.astro';
+import En from '../../components/i18n/En.astro';
+import LlmLab from '../../components/LlmLab.astro';
+
+<En>
+What does a language model look like when we arrange its weights in three dimensions? Where is a token ID stored? What changes when the model learns? This lesson follows actual checkpoint values and measured forward passes through three small public models. The controls replay recorded measurements locally; they do not run or train a model in your browser.
+
+Start with three distinct things: **weights** are persistent numerical parameters; **activations** are temporary values computed for a particular input; **token IDs** are integer vocabulary indices assigned by a tokenizer. Training changes the first, which changes how the second is computed from the third.
+
+The visual labs use English controls. Follow the lesson from the whole model, to one head, to one learning step.
+
+## 1. Three models, three views of computation
+
+Attention, diffusion and MoE describe different aspects of a model. **Attention** mixes information across token positions. **Diffusion** describes a corruption-and-reconstruction training and generation process. **Mixture of Experts (MoE)** routes a token representation through selected feed-forward networks. They can coexist: all three models below use attention, and an MoE can be autoregressive.
+</En>
+<Ja>
+言語モデルの重みを立体配置すると何が見えるのでしょう。token IDはどこにあり、学習で何が変わるのでしょう。この教材では、小型の公開3モデルの実チェックポイントと、実際のforward計算で観測した値をたどります。操作画面は記録済みデータをブラウザ内で再表示するもので、閲覧時にモデルの推論や学習は実行しません。
+
+まず、**重み**は保存される数値パラメータ、**活性**はその入力に対して計算される一時的な値、**token ID**はtokenizerが定める語彙の整数インデックスです。学習は重みを変え、その結果、同じIDから計算される活性も変わります。
+
+操作画面は英語です。モデル全体、1つのhead、1回の学習という順に試してください。
+
+## 1. 3モデルで計算の違いを見る
+
+Attention・Diffusion・MoEは、モデルの異なる側面を表す言葉です。**Attention**はトークン位置間の情報を混ぜる仕組み、**Diffusion**は破損と復元を使う学習・生成過程、**MoE**は表現を選択されたFFNに振り分ける構造です。排他的な分類ではなく、今回の3モデルはすべてAttentionを使い、MoEモデルも自己回帰型です。
+</Ja>
+
+| Model | Computation in this lesson | Layers | Q / KV heads per layer | Head dimension | Unique parameters |
+|---|---|---:|---:|---:|---:|
+| [Qwen3-0.6B](https://huggingface.co/Qwen/Qwen3-0.6B/tree/c1899de289a04d12100db370d81485cdf75e47ca) | Dense, causal | 28 | 16 / 8 | 128 | 596,049,920 |
+| [MDLM-OWT](https://huggingface.co/kuleshov-group/mdlm-owt/tree/d0958fa851335ece6c15260ce0025f030673c0fb) | Masked diffusion, bidirectional | 12 | 12 / 12 | 64 | 169,627,218 |
+| [Granite 3.1 1B-A400M](https://huggingface.co/ibm-granite/granite-3.1-1b-a400m-base/tree/408b6e90baab8cf24f4aa9f8e19703ffa0a53b29) | Causal MoE, 8 of 32 experts per layer | 24 | 16 / 8 | 64 | 1,334,625,280 |
+
+<En>
+The model names are approximate size labels. Granite stores about 1.33 billion parameters even though only part of its expert capacity is used per token. Qwen's checkpoint stores its tied input embedding and output head twice: 751,632,384 stored coefficients correspond to 596,049,920 unique parameters. MDLM also stores a 32-scalar positional buffer. Those distinctions matter when counting the contents of a weight file.
+
+## 2. Rotate the entire model, then replay the input
+
+Select **Granite**, choose **MoE routing weight**, and press **Play token samples**. Each frame selects another recorded token position. Switch to **Stored weight RMS**: the stored weights remain the same as the selected input token changes. Switch back to activations to see input-dependent values. Drag to rotate, or choose any layer and unit through the menus.
+
+The sentence is shared across models:
+</En>
+<Ja>
+モデル名のサイズは概数です。Graniteは各トークンで一部のexpertを選びますが、全体では約13.3億パラメータを保存します。Qwenのチェックポイントは共有する入力埋め込みと出力行列を二重保存しており、格納係数751,632,384個に対して固有パラメータは596,049,920個です。MDLMには位置計算用の32スカラーのbufferもあります。ファイル内の数と固有パラメータ数を区別してください。
+
+## 2. モデル全体を回転し、入力位置を再生する
+
+**Granite**と**MoE routing weight**を選び、**Play token samples**を押してください。記録した入力位置を順に再表示します。**Stored weight RMS**へ切り替えると、トークンが変わっても保存された重みは変わりません。活性表示に戻すと入力に応じた値が見えます。ドラッグで回転でき、メニューから任意の層や単位も選べます。
+
+3モデルに通した文章は共通です。
+</Ja>
+
+```text
+The capital of France is Paris. The capital of Japan is Tokyo.
+```
+
+<LlmLab file="all-layers.html" title="All-layer activation atlas" height={1050} />
+
+<En>
+The atlas covers **all 660 stored tensors**, partitioned into **5,732 units** across every layer, head and expert. Every coefficient belongs to a unit; the view is not a 64 × 64 crop. Each solid aggregates a whole head, expert matrix or shared tensor. It does not render all 2.26 billion stored scalars as separate points. The JSON link inside the lab exposes each region's original tensor shape, partition, count and statistics; the pinned Hugging Face checkpoints contain the original coefficients.
+
+The coordinates express architecture: layer, head/expert index and matrix role. They are not a learned semantic space. Color has several meanings: Q/K/V projection RMS, head-context RMS for O, or RMS of an expert's gate-weighted output. Routing mode instead shows actual gate weights. RMS measures magnitude, **not causal importance, knowledge content or model quality**. The color scale is fixed within each model and differs across models.
+
+Qwen and Granite were run on the complete sentence as causal prefill. Their final next-token predictions were both ` The`; this was not a long generation run. MDLM instead received masks at Paris and Tokyo, then restored Tokyo and Paris in two greedy passes. That is a conditional reconstruction exercise, not a reproduction of its paper's full diffusion sampler. Token playback scans positions within a recorded forward pass; it is not a movie of tokens moving sequentially through the hardware.
+
+## 3. Where do token IDs and weights live?
+
+A tokenizer stores the mapping between text pieces and IDs. A piece may be a word, subword, punctuation or byte-related sequence; it need not be one character. The embedding matrix stores a learned vector for each vocabulary index. For the Qwen tokenizer used here, ` word` is ID 3409. That integer selects row 3409 of the embedding matrix. It is an address, not the vector's numerical content.
+</En>
+<Ja>
+全660格納tensorを、全層・全head・全expertにわたる5,732単位へ分割しました。全係数がいずれかの単位に属し、64×64の部分切り出しではありません。各立体はhead、expertの行列、共有tensor全体を集約したものです。約22.6億の格納スカラーを1点ずつ同時描画してはいません。画面内のJSONリンクで元tensorのshape・分割・係数数・統計を、固定revisionのHugging Faceチェックポイントで元係数を確認できます。
+
+座標は層・head/expert番号・行列の役割を表す構造座標です。学習された意味空間ではありません。色はQ/K/V投影出力のRMS、Oへ入るhead contextのRMS、expert出力にgate weightを掛けたベクトルのRMSを示します。routing表示では実gate weightです。RMSは振幅であり、正答への因果的重要度や知識量、性能ではありません。色範囲はモデル内では固定ですが、モデル間で異なります。
+
+QwenとGraniteは文全体のcausal prefillで、最後の次トークン最尤予測は両方とも ` The` でした。長文生成の実験ではありません。MDLMはParisとTokyoをmaskし、2回のgreedyな復元でTokyo、Parisの順に戻しました。条件付き復元の例で、論文の完全なdiffusion samplerの再現ではありません。トークン再生も、記録済みforward内の位置を見比べるもので、ハードウェア上の時間的な流れを撮影したものではありません。
+
+## 3. token IDと重みはどこにある？
+
+文字片とIDの対応はtokenizerにあります。文字片は単語、部分語、句読点、byteに由来する列などで、1文字とは限りません。埋め込み行列は、各語彙インデックスに対応する学習済みベクトルを保存します。今回のQwen tokenizerでは ` word` はID 3409であり、埋め込み行列の3409行目を選びます。整数IDは行を選ぶアドレスで、ベクトルの数値そのものではありません。
+</Ja>
+
+```text
+text → tokenizer → integer IDs → E[ID] → hidden vectors through layers
+     → vocabulary logits → probabilities → selected ID → tokenizer → text
+
+Qwen checkpoint examples:
+model.embed_tokens.weight               # vocabulary × hidden dimension
+model.layers.0.self_attn.q_proj.weight   # output dimension × input dimension
+model.layers.0.self_attn.k_proj.weight
+model.layers.0.self_attn.v_proj.weight
+lm_head.weight                          # vocabulary × hidden dimension
+```
+
+<En>
+Intermediate layers transform vectors; they do not each contain another token-ID dictionary. The output matrix has a row corresponding to each vocabulary ID and produces its logit. Qwen and Granite share input/output weights; MDLM uses separate matrices. A checkpoint such as safetensors stores named numerical tensors with shapes, dtypes and byte ranges. It does not contain a permanent table of every input's activation pattern.
+
+During inference, hidden states and attention values are computed in memory. An autoregressive runtime may retain projected keys and values in a **KV cache** to avoid recomputing past tokens. That cache is temporary inference state, distinct from learned checkpoint weights.
+
+## 4. From one input vector to Query, Key and Value
+
+At each attention layer, three learned projections produce Q, K and V. Think of Q as a matching request, K as information used to match, and V as content to combine. These are functional roles, not human-readable labels attached to individual coordinates. The following notation uses the checkpoint convention of output-by-input matrices:
+</En>
+<Ja>
+中間層はベクトルを変換し、各層にtoken ID辞書を保存する構造ではありません。出力行列の各行は語彙IDに対応し、そのIDのlogitを計算します。QwenとGraniteは入出力の重みを共有し、MDLMは別行列です。safetensorsなどのチェックポイントは、名前・shape・dtype・byte範囲を持つ数値tensorを保存します。あらゆる入力の活性パターンをそのまま恒久保存する表ではありません。
+
+推論中の隠れ状態やAttention値はメモリ上で計算されます。自己回帰推論では過去のKeyとValueを**KV cache**に保持し、再計算を省く場合があります。これは一時的な推論状態で、学習済み重みとは別物です。
+
+## 4. 1つの入力表現からQuery・Key・Valueへ
+
+Attentionの各層は、学習済みの3つの投影でQ・K・Vを作ります。Qは照合する要求、Kは照合に使う情報、Vは混ぜ合わせる内容と捉えられます。ただし、個々の成分に人間が読める意味が付いているわけではありません。以下は、チェックポイントの行列を出力次元×入力次元として書いた式です。
+</Ja>
+
+```text
+Q = x WQᵀ        K = x WKᵀ        V = x WVᵀ
+score(i,j) = scale × dot(Q_attention[i], K_attention[j])
+A[i,:] = softmax(masked scores[i,:])
+context[i] = Σ_j A[i,j] × V[j]
+```
+
+<En>
+Here, `x` is the actual normalized or modulated input to the projections, rather than necessarily the untouched embedding row. Qwen additionally normalizes Q/K by head. All three models rotate Q/K with RoPE to incorporate position; V is not rotated. The stage control separates raw projections from actual attention inputs. Granite's configured score scale is 0.015625; substituting the usual inverse square root would give different values.
+
+Select Qwen, head 0 and the France token. Move the component slider, expand the full embedding, then switch Query head from 0 to 1. Q changes, while the corresponding K/V head stays shared: **16 Query heads use 8 Key/Value heads** in Qwen and Granite. Finally choose a future Key position relative to the Query: causal attention assigns it zero probability. MDLM's bidirectional attention can use both directions.
+</En>
+<Ja>
+ここでの `x` は、投影へ実際に入る正規化・modulation後の値であり、そのままの埋め込み行とは限りません。QwenはheadごとにQ/Kも正規化します。3モデルともQ/KにRoPEで位置を反映しますが、Vは回転させません。段階切替で投影直後とAttention入力を分けて確認できます。Graniteの設定上のscore scaleは0.015625であり、一般的な次元数の平方根の逆数に置き換えると異なる値になります。
+
+Qwenのhead 0とFranceを選び、成分sliderを動かし、埋め込み全成分も開いてみてください。Query headを0から1へ変えるとQは変わりますが、対応するK/Vは共有です。QwenとGraniteでは16本のQuery headが8本のKey/Value headを利用します。Queryより未来のKey位置を選ぶと、causal attentionでは確率が0になります。MDLMは双方向を参照できます。
+</Ja>
+
+<LlmLab file="query-key-value.html" title="Query, Key and Value" height={1300} />
+
+<En>
+This lab displays **layer 0**, every token and every head, with all 128 or 64 components of each selected vector. It is not PCA and does not discard dimensions. Each chart uses its own vertical scale. Attention bars are always the actual model's weights after Q/K transformations and masking, even when the upper plots show raw projections.
+
+## 5. How does training remember a pattern?
+
+The model does not normally save “these characters activated these exact neurons” as a separate record. It computes a loss, differentiates that loss through the operations, and adjusts coefficients. The resulting weights change which future inputs produce which hidden states and predictions. Knowledge and behavior are distributed across many parameters; an activation by itself does not prove where a fact is stored.
+
+For a dense autoregressive model, training usually predicts the next token under a causal mask. For masked diffusion, a training example is corrupted at a sampled noise/masking level and the model learns reconstruction with the objective's appropriate weighting. For an MoE language model, the language-model loss propagates through selected experts and routing weights; routing regularizers may also contribute. Unselected experts do not receive that token's ordinary selected-expert contribution. Across many tokens, other experts are selected and trained too.
+
+The next animation follows an actual, deliberately narrow experiment: **one example, one SGD update at learning rate 0.01**, with dropout disabled. Qwen/Granite predict ` apple` after `The secret word is`; MDLM reconstructs a masked apple position. We froze the base model and updated one input embedding-row delta and the final layer's FFN output matrix; Granite also updated its final router. Gradients still travel through frozen layers to reach the trainable embedding delta. This is a partial learning demonstration, not the models' original pretraining.
+</En>
+<Ja>
+この画面は第0層の全トークン・全headについて、選択したベクトルの128または64成分をすべて表示します。PCAや次元の間引きではありません。縦軸は図ごとに異なります。上の線を投影直後へ切り替えても、下のAttentionはQ/Kの変換とmaskを反映した実モデルの値です。
+
+## 5. 学習はどうやってパターンを覚える？
+
+通常、モデルは「この文字列がこのニューロンを活性化した」という記録を別表へ保存しません。損失を計算し、各演算を通して微分し、係数を調整します。その結果、将来の入力に対する隠れ状態と予測の計算が変わります。知識や振る舞いは多くのパラメータに分散しており、活性だけで知識の保存場所が証明されるわけではありません。
+
+Denseな自己回帰モデルは通常、causal maskの下で次のtokenを学習します。Masked diffusionはサンプルしたノイズ・mask量で入力を破損し、目的関数に応じた重みづけで復元を学びます。MoE言語モデルでは、言語モデル損失が選択expertとrouting weightへ伝わり、routingの補助損失を使う場合もあります。非選択expertには、そのtokenの通常の選択expert経路からの寄与は伝わりません。多数のtokenを通して、別のexpertも選択・学習されます。
+
+次のアニメーションは、dropoutを切り、学習率0.01で1例にSGDを1回行った実験です。Qwen/Graniteは `The secret word is` の次の ` apple` を、MDLMはmaskしたapple位置を学習します。基底モデルを固定し、入力埋め込み1行の差分と最終層FFNの出力行列だけを更新し、Graniteは最終routerも更新しました。埋め込み差分へ届く勾配は固定層も通過します。元の事前学習を再現したものではありません。
+</Ja>
+
+<LlmLab file="training.html" title="Token IDs and training" height={1200} />
+
+<En>
+Press **Play**, or use **Next** to inspect each stage: text → IDs → embedding lookup → all-layer forward → vocabulary scores → loss/backpropagation → update → another forward with the same IDs. The seven stages combine prediction scoring into one scene. Compare **Before** with **Current** in the coefficient table. The moving marker and matrix geometry are schematic, while endpoint coefficients, losses and probabilities are measured. Intermediate interpolation is not an observed optimizer trajectory.
+</En>
+<Ja>
+PlayまたはNextで、文字→ID→埋め込み選択→全層forward→語彙の点数→損失と逆伝播→更新→同じIDで再forwardを追えます。予測計算を1つの場面へまとめた7段階です。係数表のBeforeとCurrentを比べてください。移動する印と行列の形は模式表現ですが、始点・終点の係数、損失、確率は実測です。途中の補間は観測したoptimizerの軌跡ではありません。
+</Ja>
+
+| Model | Target ID | Cross-entropy before | Cross-entropy after |
+|---|---:|---:|---:|
+| Qwen3-0.6B | 23268 | 12.416276 | 0.001918 |
+| MDLM-OWT | 17180 | 16.440016 | 14.581282 |
+| Granite 3.1 1B-A400M | 38955 | 8.933086 | 0.000000119 |
+
+<En>
+These numbers show fitting to **one training example**, not improved general capability. MDLM's target probability increased from about 7.25e-8 to 4.65e-7 and did not become the most likely prediction. Qwen/Granite's large probability changes are not evidence of generalization or retention. The same row delta was applied to the input and output paths where embeddings are tied. Original checkpoint files were left unchanged; experimental updates were saved separately. During normal full pretraining, many more parameters receive updates over many batches.
+
+## 6. What is real, what is drawn, and how to check it
+
+All three complete checkpoints were downloaded at the immutable revisions linked above and verified against their published LFS SHA-256 digests. Every stored coefficient was scanned. The atlas uses whole-region statistics; the QKV lab retains every displayed component losslessly, including BF16 bit patterns. No model weights need to be downloaded by readers.
+
+Qwen and Granite used Transformers 5.4.0, PyTorch 2.6.0, MPS and eager attention with BF16 checkpoint weights for inference. MDLM used its authors' checkpoint/code with CUDA-specific attention, RoPE and fused operations replaced by equivalent eager Torch equations in F32 on MPS; bitwise equivalence to CUDA kernels was not tested. The partial Granite training run used an exact BF16-to-FP32 conversion because its BF16 backward path was unsupported on MPS. Its objective also included the configured router auxiliary loss; the table reports only cross-entropy.
+
+For these runs, observers changed final logits by zero. Recomputing the first-layer Q/K/V from captured projection inputs and original matrices gave maximum difference zero. Across all layers, recomputed QK scores and Attention × V contexts also matched the recorded values with maximum difference zero. Those checks establish consistency for these implementations and inputs; they do not establish semantic explanations for individual neurons.
+
+The three layouts show the architecture we indexed. They do not establish that dense models, diffusion models and MoEs have three intrinsic geometric shapes. A continuous-diffusion model referred to as Sigma in the original discussion was not analyzed because its canonical public checkpoint was not identified; MDLM is not a substitute measurement of Sigma.
+
+### Data and primary sources
+
+- [Download manifest and SHA-256 checksums](/assets/posts/inside-llm/manifest.json), [all-weight coverage verification](/assets/posts/inside-llm/coverage-verification.json), [QKV numeric verification](/assets/posts/inside-llm/numerical-verification.json), and [partial-training verification](/assets/posts/inside-llm/training-verification.json).
+- Actual training records: [Qwen](/assets/posts/inside-llm/qwen-training.json), [MDLM](/assets/posts/inside-llm/mdlm-training.json), [Granite](/assets/posts/inside-llm/granite-training.json). [Inference environment](/assets/posts/inside-llm/environment.json).
+- Original model cards: [Qwen3-0.6B](https://huggingface.co/Qwen/Qwen3-0.6B), [MDLM-OWT](https://huggingface.co/kuleshov-group/mdlm-owt), [IBM Granite](https://huggingface.co/ibm-granite/granite-3.1-1b-a400m-base). These models are released under Apache 2.0; the linked repositories provide their terms and attribution.
+- [MDLM paper and implementation](https://github.com/kuleshov-group/mdlm), [Attention Is All You Need](https://arxiv.org/abs/1706.03762), [safetensors format](https://github.com/huggingface/safetensors#format).
+
+Measurements and lesson prepared November 5, 2026. Interactive labs use modern browsers with DecompressionStream support; the cover and [full-component QKV figure](/assets/posts/inside-llm/query-key-value-full-components.png) provide static views.
+</En>
+<Ja>
+この数値は1つの学習例への適合を示すもので、一般能力向上の証拠ではありません。MDLMの正解確率は約7.25e-8から4.65e-7へ増えましたが、最尤予測にはなっていません。Qwen/Graniteの大きな変化も、一般化や保持を証明しません。入出力共有モデルでは同じ埋め込み行差分を両経路に適用しました。元checkpointは変更せず、実験更新を別保存しました。通常の全parameter事前学習では、多数のbatchを通して、はるかに広い範囲を更新します。
+
+## 6. 実測値と模式表現、検証方法
+
+上表の固定revisionから3モデルの全checkpointを取得し、公開LFS SHA-256と照合し、全格納係数を走査しました。3D表示は全領域の統計、QKV表示はBF16のbit列も含めた全表示成分の可逆保存です。読者がモデルをダウンロードする必要はありません。
+
+Qwen/Graniteの推論はTransformers 5.4.0・PyTorch 2.6.0・MPS・eager attention、元のBF16重みです。MDLMは著者の重みとコードを使い、CUDA専用Attention・RoPE・融合演算を同じ数式のTorch eager演算へ置き換え、F32/MPSで実行しました。CUDA kernelとのbit一致は未検証です。Graniteの部分学習はMPSのBF16 backwardが未対応だったため、重みを正確にFP32へ変換しました。目的関数には設定済みrouter補助損失も含め、表はcross-entropy部分だけを示します。
+
+観測コードの有無による最終logitの最大差は0でした。第0層の実投影入力と元行列からQ/K/Vを再計算した最大差も0、全層のQK scoreとAttention×Vのcontext再計算も最大差0でした。今回の実装・入力における数値の整合性を確認するもので、個々のニューロンの意味を証明する検査ではありません。
+
+配置は走査したモデルの構造を表します。Dense・Diffusion・MoEが本質的に3種類の幾何形状を持つと証明するものではありません。元の議論にあった連続Diffusion版Sigmaは、正規公開checkpointを特定できず未解析です。MDLMをSigmaの実測値として扱ってはいません。
+
+### データと一次資料
+
+- [manifestとSHA-256](/assets/posts/inside-llm/manifest.json)、[全係数網羅検証](/assets/posts/inside-llm/coverage-verification.json)、[QKV数値検証](/assets/posts/inside-llm/numerical-verification.json)、[部分学習検証](/assets/posts/inside-llm/training-verification.json)。
+- 実学習ログ：[Qwen](/assets/posts/inside-llm/qwen-training.json)、[MDLM](/assets/posts/inside-llm/mdlm-training.json)、[Granite](/assets/posts/inside-llm/granite-training.json)。[推論環境](/assets/posts/inside-llm/environment.json)。
+- 元モデルカード：[Qwen3-0.6B](https://huggingface.co/Qwen/Qwen3-0.6B)、[MDLM-OWT](https://huggingface.co/kuleshov-group/mdlm-owt)、[IBM Granite](https://huggingface.co/ibm-granite/granite-3.1-1b-a400m-base)。3モデルともApache 2.0で公開されており、条件・帰属は各repositoryを参照してください。
+- [MDLM論文・実装](https://github.com/kuleshov-group/mdlm)、[Attention Is All You Need](https://arxiv.org/abs/1706.03762)、[safetensors形式](https://github.com/huggingface/safetensors#format)。
+
+実測・教材作成日は2026年11月5日です。対話表示にはDecompressionStream対応browserを使用してください。表紙と[QKV全成分の静的図](/assets/posts/inside-llm/query-key-value-full-components.png)でも確認できます。
+</Ja>

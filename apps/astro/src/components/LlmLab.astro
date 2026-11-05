@@ -1,0 +1,26 @@
+---
+interface Props { file: string; title: string; height?: number }
+const { file, title, height = 1000 } = Astro.props;
+const src = `/assets/posts/inside-llm/${file}`;
+---
+<figure class="llm-lab">
+  <iframe src={src} title={title} height={height} loading="lazy" data-llm-lab></iframe>
+  <figcaption><a href={src} target="_blank" rel="noopener">Open {title} in a full window ↗</a></figcaption>
+</figure>
+<script>
+  window.addEventListener('message', (event) => {
+    if (event.origin !== window.location.origin || event.data?.type !== 'llm-lab-resize') return;
+    const height = event.data.height;
+    if (!Number.isFinite(height) || height < 200 || height > 5000) return;
+    for (const frame of document.querySelectorAll<HTMLIFrameElement>('iframe[data-llm-lab]')) {
+      if (event.source === frame.contentWindow) frame.style.height = `${Math.ceil(height)}px`;
+    }
+  });
+</script>
+<style>
+  .llm-lab { margin: 2rem 0; }
+  iframe { display: block; width: 100%; border: 1px solid #8b949e; border-radius: 8px; background: transparent; }
+  figcaption { font-size: .85em; margin-top: .5rem; }
+  :global(.md-body:has(.llm-lab) .prose table) { display: block; max-width: 100%; overflow-x: auto; }
+  :global(.md-body:has(.llm-lab) .prose pre) { max-width: 100%; overflow-x: auto; }
+</style>

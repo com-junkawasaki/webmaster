@@ -47,7 +47,7 @@ for col,(tag,title) in enumerate(cases):
     ax.set_xlabel('Head / expert index (centered)');ax.set_ylabel('Matrix role');ax.set_zlabel('Layer');ax.set_zticks(np.arange(0,w['layers'],4))
     ax.set_title(f"{title}\n{w['layers']} layers / {w['layers']*w['heads']} Q heads"+(f" / {w['layers']*w['experts']} experts" if w['experts'] else ''),fontsize=12,pad=15)
     cb=fig.colorbar(cm.ScalarMappable(norm=norm,cmap='YlOrRd'),ax=ax,shrink=.45,pad=.03);cb.set_label('Output RMS / model-specific log scale',fontsize=8)
-    ax.text2D(0,-.12,f"{w['tensor_count']} tensors / {w['stored_coefficients']:,} stored scalars\n{len(w['nodes']):,} complete regions shown",transform=ax.transAxes,fontsize=10)
+    ax.text2D(0,-.24,f"{w['tensor_count']} tensors / {w['stored_coefficients']:,} stored scalars\n{len(w['nodes']):,} complete regions shown",transform=ax.transAxes,fontsize=10)
 fig.subplots_adjust(left=.025,right=.97,top=.78,bottom=.19,wspace=.15)
 fig.text(.04,.06,'Q/K/V: projection RMS. O: head context RMS. Expert: gate-weighted output RMS. Gray: zero / unobserved. RMS is not causal importance.',fontsize=11)
 fig.text(.04,.025,'Qwen includes duplicated tied embedding/head storage. MDLM: first conditional reconstruction pass. Original coefficients: pinned Hugging Face checkpoints.',fontsize=10)

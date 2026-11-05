@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="ja"> <head><meta charset="UTF-8"><meta name="description" content="RIPOの存在・関係・変化・認識を、Incへの条件付き写像、型付き論理、RDF、検証、数値モデルへ接続する研究設計。"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/jpeg" href="/favicon/623495.jpeg"><meta name="generator" content="Astro v5.18.2"><!-- Canonical URL --><link rel="canonical" href="https://junkawasaki.com/ja/posts/toward-computable-ripo/"><!-- Primary Meta Tags --><title>計算可能な関係的情報過程存在論へ | Jun Kawasaki</title><meta name="title" content="計算可能な関係的情報過程存在論へ | Jun Kawasaki"><meta name="description" content="RIPOの存在・関係・変化・認識を、Incへの条件付き写像、型付き論理、RDF、検証、数値モデルへ接続する研究設計。"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://junkawasaki.com/ja/posts/toward-computable-ripo/"><meta property="og:title" content="計算可能な関係的情報過程存在論へ | Jun Kawasaki"><meta property="og:description" content="RIPOの存在・関係・変化・認識を、Incへの条件付き写像、型付き論理、RDF、検証、数値モデルへ接続する研究設計。"><meta property="og:image" content="https://junkawasaki.com/assets/posts/preview/cover.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://junkawasaki.com/ja/posts/toward-computable-ripo/"><meta property="twitter:title" content="計算可能な関係的情報過程存在論へ | Jun Kawasaki"><meta property="twitter:description" content="RIPOの存在・関係・変化・認識を、Incへの条件付き写像、型付き論理、RDF、検証、数値モデルへ接続する研究設計。"><meta property="twitter:image" content="https://junkawasaki.com/assets/posts/preview/cover.jpg"><!-- Theme --><meta name="theme-color" content="#ffffff"><!-- Favicon --><link rel="apple-touch-icon" sizes="180x180" href="/favicon/623495.jpeg"><link rel="icon" type="image/jpeg" sizes="32x32" href="/favicon/623495.jpeg"><link rel="icon" type="image/jpeg" sizes="16x16" href="/favicon/623495.jpeg"><link rel="manifest" href="/favicon/site.webmanifest"><style>.markdown{font-size:1.125rem;line-height:1.75}.markdown p,.markdown ul,.markdown ol,.markdown blockquote{margin-top:1.5rem;margin-bottom:1.5rem}.markdown h2{font-size:1.875rem;margin-top:3rem;margin-bottom:1rem;line-height:1.3}.markdown h3{font-size:1.5rem;margin-top:2rem;margin-bottom:1rem;line-height:1.3}.markdown .math-formula{font-family:Times New Roman,serif;font-style:italic;background-color:#f3f4f6;padding:1rem;margin:1rem 0;border-radius:.25rem;overflow-x:auto;text-align:center;line-height:1.6;font-size:1.1rem}.dark .markdown .math-formula{background-color:#1f2937;color:#fff}.markdown .mathBlock{margin:2rem 0;padding:1rem;background-color:#f3f4f6;border-radius:.5rem;overflow-x:auto;text-align:center}.dark .markdown .mathBlock{background-color:#1f2937}.markdown .katex-display{margin:0}:global(.dark) .katex,:global(.dark) .katex .katex-html,:global(.dark) .katex .katex-mathml{color:#fff!important}:global(.dark) .katex-html{color:#ccc!important}:global(.dark) .katex .mord,:global(.dark) .katex .mord .textsf,:global(.dark) .katex .mord .textrm,:global(.dark) .katex .mord .texttt,:global(.dark) .katex .mord .textbf,:global(.dark) .katex .mord .mathit,:global(.dark) .katex .mord .textit,:global(.dark) .katex .mord .mathdefault{color:#fff!important}:global(.dark) .katex .mbin{color:#fff!important}:global(.dark) .katex .mrel{color:#fff!important}:global(.dark) .katex .mopen,:global(.dark) .katex .mclose{color:#fff!important}:global(.dark) .katex .mfrac{color:#fff!important}:global(.dark) .katex .mfrac .frac-line{border-bottom-color:#fff!important}:global(.dark) .katex .minner{color:#fff!important}:global(.dark) .katex .mop{color:#fff!important}:global(.dark) .katex .msupsub{color:#fff!important}:global(.dark) .katex .vlist{color:#fff!important}:global(.dark) .katex .overline .overline-line{border-top-color:#fff!important}:global(.dark) .katex .underline .underline-line{border-bottom-color:#fff!important}:global(.dark) .mathBlock{background-color:#1f2937!important}:global(.dark) .math-formula{background-color:#1f2937!important;color:#fff!important}.md-nav-row[data-astro-cid-3osipt2g]{display:flex;align-items:baseline;justify-content:space-between}.md-lang-switch[data-astro-cid-3osipt2g]{color:#0969da;text-decoration:none;font-size:.875em;font-family:Poppins,Noto Sans JP,ui-sans-serif,system-ui,sans-serif;font-weight:600}.md-lang-switch[data-astro-cid-3osipt2g]:hover{text-decoration:underline}body[data-mode=dark] .md-lang-switch[data-astro-cid-3osipt2g]{color:#58a6ff}.md-back-link[data-astro-cid-3osipt2g]{margin:0;font-size:.875em}.md-back-link[data-astro-cid-3osipt2g] a[data-astro-cid-3osipt2g]{color:#0969da;text-decoration:none;font-family:Noto Sans JP,Poppins,ui-sans-serif,system-ui,sans-serif;font-weight:600}.md-back-link[data-astro-cid-3osipt2g] a[data-astro-cid-3osipt2g]:hover{text-decoration:underline}body[data-mode=dark] .md-back-link[data-astro-cid-3osipt2g] a[data-astro-cid-3osipt2g]{color:#58a6ff}hr[data-astro-cid-3osipt2g]{height:.25em;padding:0;margin:1.5em 0;background-color:#d0d7de;border:0}body[data-mode=dark] hr[data-astro-cid-3osipt2g]{background-color:#30363d}.md-article-title[data-astro-cid-3osipt2g]{font-size:2em;font-weight:600;padding-bottom:.3em;border-bottom:1px solid #d0d7de;margin-top:0;margin-bottom:.5em;line-height:1.3;font-family:Noto Sans JP,Poppins,ui-sans-serif,system-ui,sans-serif}body[data-mode=dark] .md-article-title[data-astro-cid-3osipt2g]{border-bottom-color:#30363d}.md-article-meta[data-astro-cid-3osipt2g]{color:#57606a;font-size:.875em;margin-bottom:1.5em;font-family:Poppins,Noto Sans JP,ui-sans-serif,system-ui,sans-serif}body[data-mode=dark] .md-article-meta[data-astro-cid-3osipt2g]{color:#8b949e}.md-article-image[data-astro-cid-3osipt2g]{max-width:100%;border-radius:6px;margin-bottom:0}
+</style>
+<link rel="stylesheet" href="/_astro/index.Eaja9M_e.css"></head> <body data-mode="light"> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var l=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>y(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[h,e]=t;return h in i?i[h](e):void 0},a=t=>t.map(o),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([h,e])=>[h,o(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},p=this.querySelectorAll("template[data-astro-template]");for(let r of p){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let d,m=this.hydrator(this);d=performance.now(),await m(this.Component,u,n,{client:this.getAttribute("client")}),d&&this.setAttribute("client-render-time",(performance.now()-d).toString()),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[p,{default:u}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),d=this.getAttribute("component-export")||"default";if(!d.includes("."))this.Component=p[d];else{this.Component=p;for(let m of d.split("."))this.Component=this.Component[m]}return this.hydrator=u,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="ZWcLVy" prefix="r1" component-url="/_astro/ThemeSwitcher.ytgUNJAG.js" component-export="default" renderer-url="/_astro/client.t3cO19W0.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;ThemeSwitcher&quot;,&quot;value&quot;:true}" server-render-time="0.23291599999993196" await-children><button style="position:fixed;right:1.5rem;top:1.5rem;z-index:50;background:none;border:none;cursor:pointer;padding:0.25rem;font-size:0.75rem;color:#57606a;font-family:&#x27;Poppins&#x27;, &#x27;Noto Sans JP&#x27;, ui-sans-serif, system-ui, sans-serif;opacity:0.6;transition:opacity 0.2s" aria-label="Toggle theme" title="Theme: light">[dark]</button><!--astro:end--></astro-island>   <main class="md-body" data-astro-cid-3osipt2g> <div class="md-nav-row" data-astro-cid-3osipt2g> <p class="md-back-link" data-astro-cid-3osipt2g> <a href="/ja/" data-astro-cid-3osipt2g>&larr; Jun Kawasaki.</a> </p> <a href="/en/posts/toward-computable-ripo/" class="md-lang-switch" data-astro-cid-3osipt2g>English</a> </div> <hr data-astro-cid-3osipt2g> <article data-astro-cid-3osipt2g> <h1 class="md-article-title" data-astro-cid-3osipt2g>計算可能な関係的情報過程存在論へ</h1> <p class="md-article-meta" data-astro-cid-3osipt2g> Jun Kawasaki / 河崎純真 &mdash; <time datetime="2026-10-31" data-astro-cid-3osipt2g>2026年10月31日</time> </p> <img src="/assets/posts/preview/cover.jpg" alt="Cover Image for 計算可能な関係的情報過程存在論へ" class="md-article-image" data-astro-cid-3osipt2g> <hr data-astro-cid-3osipt2g> <div class="prose" data-astro-cid-3osipt2g> 
+<p><strong>位置づけ：限定された計算実験と実行可能なデータ例を伴う研究提案であり、完成した上位存在論ではない。</strong> <a href="/en/posts/foundations-of-relational-informational-process-ontology">9月のRIPO論考</a>は、存在を関係、実現された情報、生成、継承から捉える。本稿は、それを計算可能にする追加定義を検討する。下の四問は本提案の整理であり、Incがすでに備える四公理ではない。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>問い</th><th>作業上のモジュール</th><th>定義が必要なもの</th></tr></thead><tbody><tr><td>何が、何によって存在するか</td><td>Constitution：構成</td><td>個体化、整合性、担体、存続基準</td></tr><tr><td>何と何が関係するか</td><td>Interaction：相互作用</td><td>参加者、役割、許容モード、両立条件</td></tr><tr><td>何が変わったか</td><td>Evolution：変化</td><td>時間、状態記述、遷移、動力学</td></tr><tr><td>それをどう知ったか</td><td>Epistemology：認識</td><td>観測、主張、証拠、評価、不確実性</td></tr></tbody></table>
+
+<h2 id="1-ripoinc物理モデルの役割">1. RIPO、Inc、物理モデルの役割</h2><p>RIPOは哲学的立場を、Incは数学的構造と条件付きの結果を与える。物理・統計モデルは選んだ構造を測定へ結び、実行系は特定のアルゴリズムを動かし入出力を保存する。層を結ぶには、写像とその仮定の定義が必要である。</p><p>形式的情報、実現された情報、意味情報は情報を見る三つの観点である。同じ物理的記録が三つの記述を持ちうるため、名前が違うだけで排他的なOWLクラスにはしない。Incの境界、膜、知覚上の自己境界、権限範囲も、それぞれ解釈を要する。</p>
+<p><img src="/assets/posts/computable-ripo/architecture.svg" alt="Research architecture: RIPO, typed theory, Inc, semantic records, numerical models and evidence"/></p>
+
+<p>同図の戻り矢印は証拠評価後の改訂を表す。観測が定理になるという意味ではない。<a href="/assets/posts/computable-ripo/architecture.svg">図をダウンロード</a>。</p><h2 id="2-確認したincのソースにboundaryは残っている">2. 確認したIncのソースにBoundaryは残っている</h2><p>2026年10月31日に取得したIncの既定ブランチは、9月の数学論考と同じ <code>1bb368dc35827133cf42f7e4191f41cbfc754b1f</code> だった。全実験ブランチの調査ではなく、Lean検証一式も本稿では再実行していない。</p><p><a href="https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory/Axioms/Basic.lean">基本定義</a>の <code>Boundary</code> は <code>List (Endpoint I R)</code> であり、各端点は参照先、役割、符号、正の多重度を持つ。コメントには多重集合という意図があるが、観測の挙動は演算による。<code>approxEq</code> はリストを比較し、<a href="https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory.lean#L53-L67"><code>boundaryMatched</code></a>は両方向に対応端点があることを要求する。出現の全単射は要求せず、端点の多重度フィールドは保つが、同一エントリの反復回数を数えるとは限らない。</p><p><a href="https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory/Axioms.lean#L18-L61"><code>Incidence</code></a>には担体、型関数、ガード、選択子、三項resonanceもある。<code>well_founded</code> は直接自己参照を排除するが、長い循環すべてを排除しない。Boundaryだけで無から対象を生成したり、物理的な個体化を決めたりするわけではない。</p>
+
+<h2 id="3-rdfより先に型付きの意味を定める">3. RDFより先に型付きの意味を定める</h2><p>多ソートのシグネチャを使う。<code>P</code> は過程の指示対象、<code>T</code> は順序付き時点、<code>D</code> は記述、<code>C</code> は主張、<code>O</code> は観測の生起、<code>V</code> は証拠記録、<code>Policy</code> は存続方針とする。世界全体の網羅的分類ではなく、モデル上のソートである。情報記録自体にも物理的実現があり、記述と指示対象は別の位置を占める。</p><p>次はIncの定理ではなく、提案するインターフェースである。</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8;overflow-x:auto" tabindex="0" data-language="text"><code><span class="line"><span>about       : D × P → Proposition</span></span>
+<span class="line"><span>validAt     : D × T → Proposition</span></span>
+<span class="line"><span>transition  : D × D × T × T → Proposition</span></span>
+<span class="line"><span>observes    : O × C → Proposition</span></span>
+<span class="line"><span>supports    : V × C → Proposition</span></span>
+<span class="line"><span>continues   : P × P × T × T × Policy → Proposition</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>transition(d0,d1,t0,t1) ⇒ t0 &lt; t1</span></span>
+<span class="line"><span>transition(d0,d1,t0,t1) ⇒ ∃p. about(d0,p) ∧ about(d1,p)</span></span>
+<span class="line"><span>transition(d0,d1,t0,t1) ⇒ validAt(d0,t0) ∧ validAt(d1,t1)</span></span></code></pre>
+
+<p>この遷移プロファイルは同一指示対象の二時点を扱う。分裂・合流には複数参加者を持つ別のプロファイルが必要で、二つの後継を一個体へ強制しない。<code>continues</code> は方針に依存する存続判断である。連続性の基準、許容欠測、分岐規則、証拠を方針に記し、推移性も一意性も自動では仮定しない。物理理論がより強い条件を課すことはある。</p><p>内容の同一性、観測に対する同値性、時間を通じた個体の連続性を分ける。内容同一性にもコーデックとダイジェストの指定が要る。どれも他を自動では与えない。有限で全体が列挙されたIncモデルなら、型や境界対応に違反する対を反復して除去し、最大不動点としてbisimulationを計算できる。完全な有限入力と判定可能なラベルが条件であり、任意の無限モデルに適用できるとは限らない。</p><p>resonanceの厳密な商への降下には三位置すべての合同性が必要である。<a href="https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory/IncidenceResearch.lean#L425-L466">降下定理</a>は、すべての観測同値がその条件を満たすとは述べない。<code>owl:sameAs</code> は特定観測に限った同値より広い等しさを課す。</p>
+
+<h2 id="4-相互作用の許容モードと実際の時間発展">4. 相互作用の許容モードと実際の時間発展</h2><p><code>resonance i j k</code> は許容モードについての命題である。ソースの <code>selectedMode</code> は <code>glue</code> を通じて高々一つを選び、その健全性はresonanceを与える。物理系での時刻付き生起を与えるものではない。三項関係の成立だけで第三の対象の誕生を導かない。</p><p>動力学、入力、パラメータ、観測尤度を別途指定する。</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8;overflow-x:auto" tabindex="0" data-language="text"><code><span class="line"><span>x(t + dt) ~ K_model( · | x(t), u(t), theta, dt)</span></span>
+<span class="line"><span>y(t)      ~ P_sensor( · | x(t), calibration)</span></span></code></pre>
+
+<p>決定論的関数は遷移核の特別な場合である。モデル版、初期条件、単位、数値解法、必要なら乱数seed、誤差推定を残す。予測はシミュレーション実行に属し、観測との比較後に経験的評価となる。因果推論には介入の意味と識別仮定も必要であり、来歴の矢印や時間的先行だけでは足りない。</p><h2 id="5-bfoccoとの写像はプロファイルごとに検証する">5. BFO・CCOとの写像はプロファイルごとに検証する</h2><p><a href="https://github.com/BFO-ontology/BFO-2020">BFOの保守される成果物</a>にはOWLとCommon Logicがあり、<a href="https://github.com/CommonCoreOntology/CommonCoreOntologies">CCO</a>はBFO上の中位オントロジー群である。定義の明示と再利用の比較基準になるが、RIPOが同等の厳密さに達した証拠ではない。実行可能な写像ではリリースとimportを固定する。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>提案用語・用途</th><th>対応候補</th><th>公理化前の確認</th></tr></thead><tbody><tr><td>具体的な観測の生起</td><td>BFO process、PROV Activity</td><td>時間的広がりとactivityの解釈</td></tr><tr><td>物理的センサー</td><td>BFO material entity</td><td>装置、出力、観測の区別</td></tr><tr><td>状態記述・主張</td><td>CCO information content entity</td><td>内容と担体の区別、対象版の定義</td></tr><tr><td>証拠記録</td><td>PROV Entity</td><td>生成、派生、帰属</td></tr><tr><td>端点の役割ラベル</td><td>ローカル語彙概念</td><td>BFOの実現可能なRoleと同一視しない</td></tr><tr><td>Inc境界・RIPOの整合性</td><td>無条件の対応はない</td><td>モデルと保存条件</td></tr></tbody></table><p>すべてのRIPO entityをBFO processとする公理は導入しない。存続する有機体はcontinuantとそのprocess群で記述できる。写像候補は注記から始め、importを固定した充足可能性、意図しない帰結、能力質問の確認後にsubclassやequivalenceへ進める。本例にBFO/CCO同値公理は含めない。</p>
+
+<h2 id="6-実際に検証できる小さなrdf例">6. 実際に検証できる小さなRDF例</h2><p>添付語彙は用途として <code>WorldProcess</code> と <code>InformationRecord</code> を分けるが、網羅性も排他性も宣言しない。<code>StateDescription</code>、<code>TransitionRecord</code>、<code>Claim</code>、<code>Evidence</code>、<code>Assessment</code> は記録の特殊化で、<code>ObservationProcess</code> は生起を記述する。宇宙の全分類ではなく部分的な操作用語彙であり、<code>example.org</code> IRIは公開済みエンドポイントではなく仮置きである。</p><p><a href="https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/">RDF</a>はグラフ表現、<a href="https://www.w3.org/TR/owl2-overview/">OWL 2</a>は帰結、<a href="https://www.w3.org/TR/2017/REC-shacl-20170720/">SHACL</a>は入力グラフの形の検証、<a href="https://www.w3.org/TR/sparql11-query/">SPARQL</a>は記述の照会を担う。いずれも単独で微分方程式を解いたりセンサーの校正を確認したりしない。</p><p>完全なファイルは <a href="/assets/posts/computable-ripo/core.ttl">core.ttl</a>、<a href="/assets/posts/computable-ripo/example.ttl">example.ttl</a>、<a href="/assets/posts/computable-ripo/shapes.ttl">shapes.ttl</a>、<a href="/assets/posts/computable-ripo/changes.rq">changes.rq</a> にある。次の抜粋は合成データの変化と報告命題を記述する。</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8;overflow-x:auto" tabindex="0" data-language="turtle"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">@prefix ripo:</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> &lt;https://example.org/ripo/0.1#&gt;</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> .</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">@prefix ex:</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> &lt;https://example.org/ripo/example/&gt;</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> .</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">@prefix rdf:</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> .</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">ex:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">change</span><span style="color:#D73A49;--shiki-dark:#F97583"> a</span><span style="color:#D73A49;--shiki-dark:#F97583"> ripo:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">TransitionRecord</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> ;</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">    ripo:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">beforeState</span><span style="color:#D73A49;--shiki-dark:#F97583"> ex:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">before</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> ; </span><span style="color:#D73A49;--shiki-dark:#F97583">ripo:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">afterState</span><span style="color:#D73A49;--shiki-dark:#F97583"> ex:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">after</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> .</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">ex:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">claim</span><span style="color:#D73A49;--shiki-dark:#F97583"> a</span><span style="color:#D73A49;--shiki-dark:#F97583"> ripo:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">Claim</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> ;</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">    rdf:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">subject</span><span style="color:#D73A49;--shiki-dark:#F97583"> ex:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">after</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> ; </span><span style="color:#D73A49;--shiki-dark:#F97583">rdf:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">predicate</span><span style="color:#D73A49;--shiki-dark:#F97583"> ripo:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">numericValue</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> ; </span><span style="color:#D73A49;--shiki-dark:#F97583">rdf:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">object</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> 21.0</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> ;</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">    ripo:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">supportedBy</span><span style="color:#D73A49;--shiki-dark:#F97583"> ex:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">evidence</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> .</span></span></code></pre>
+
+<p>抜粋には状態定義と記録時刻がないため、検証には完全版を使う。通常のRDF reificationは表現されたトリプルを自動では主張しない。本例は別途、合成データの前提として状態値を持つ。争いのある実データでは、明示的な採用方針が作業グラフへ投影するまで、報告値を主張記述に留める。主張や観測の存在だけから真理を導かない。</p><p>shapeはbefore/afterを一つずつ要求し、UTC明示時刻を使って対象、単位、有効時間の増加を検証する。端点の符号と正の多重度も検証する。ただし汎用n項関係例はInc境界の直列化ではない。忠実なexportには順序付きリスト、型の整合性、他のInc法則が要る。SHACLの個数検証は任意モデルについての定理ではない。</p><p><a href="https://www.w3.org/TR/prov-o/">PROV-O</a>は証拠の生成や帰属を記述する。評価の「supported」はレビュー結果であり、時を超えた真理属性ではない。矛盾する主張と旧評価を、評価者、手法、記録時刻とともに保持する。確率には事象、条件情報、モデル版、校正を付し、信頼度を万能の真理スコアにしない。</p><p>クエリは例の摂氏単位で <code>1.0</code> の温度差を返す。<code>validAt</code> は記述された状態の有効時刻、<code>recordedAt</code> は記録時刻である。開世界推論では未記述は未知であり、SHACLでは必須項目の欠落を違反にできる。証拠リンクの欠落もshape違反も、主張内容の否定を意味しない。</p>
+
+<h2 id="7-情報幾何熱力学量子情報">7. 情報幾何、熱力学、量子情報</h2><p>Fisher計量には微分可能な確率族と正則性条件が要る。行動データから推定しても、物理的散逸の計量と同じとは限らない。<a href="https://arxiv.org/abs/1201.4166">SivakとCrooks</a>は線形応答の条件で摩擦計量を導き、緩和動力学を扱う。熱力学的長さの下限には制御変数、時間尺度、単位の規約が必要である。旧稿の <code>W_diss ≥ L²/(2τ)</code> は任意のFisher計量に通用する普遍式ではなく、Landauerの消去限界がその一次元の特別な場合だとも確立されていない。</p><p>通常の理想熱浴で初期の公平な1ビットをリセットする場合、Landauer限界は <code>k_B T ln 2</code> となる。仮定と有限熱浴での補正については <a href="https://arxiv.org/abs/1306.4352">ReebとWolf</a> を参照。<a href="https://arxiv.org/abs/1009.5287">Toyabeら</a>は熱ゆらぎからのフィードバックによる仕事抽出を実証した。これらはbitとjouleの無条件の交換率でも、提案する霊性場の実在の証明でもない。</p><p>量子モデルにはさらにHilbert空間、密度演算子、許されるチャネル、測定操作、Born確率を指定する（<a href="https://arxiv.org/abs/1106.1445">Wildeの量子情報の教科書</a>を参照）。量子エントロピー、古典Shannonエントロピー、意味は異なる量である。Incのresonanceは量子振幅でもエンタングルメントの判定でもなく、本提案はIncから量子動力学を導出しない。</p>
+
+<h2 id="8-記録シミュレーションエージェント">8. 記録、シミュレーション、エージェント</h2><p><a href="/ja/posts/kotoba-substrate-for-spirit">旧Kotoba基盤論考</a>は不変履歴を構想する。より新しい <a href="https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/causal_commit.cljk">Kotobase causal-commitのソース</a>は不変の基点を明示して新しいcommit記録を作り、並行履歴は分岐できる。本稿ではソースを調べただけで、実行・適格性確認はしていない。永続化adapterの接続候補であり、RIPOエンジンへの統合済みという意味ではない。CIDは符号化内容を識別し、署名は鍵についての仮定の下で帰属を支えるが、測定の真理、永久保存、意識の継続は保証しない。</p><h3 id="現行の保存基盤ipldと明示的な問い合わせ用射影">現行の保存基盤：IPLDと明示的な問い合わせ用射影</h3><p>10月31日のソース確認では、言語・実行系とデータベースの論理ビューを分ける。<a href="https://github.com/kotoba-lang/kotoba-lang/blob/5dbea46310591154765eeb0ef289bb98ca77a401/README.md#L142">言語契約</a>は正規形をS式のIPLDデータとする。確認したactor kernelの <a href="https://github.com/kotoba-lang/kotoba/blob/1604eda99031cbddd1c1fbf7ff696eb7ea44f444/lib/kotoba.kotobaVm/src/kotoba/vm/kernel.cljk#L195-L237"><code>write-node</code> と <code>set-state</code></a>は、DAG-CBORノードを符号化してCIDを返し、状態ルートCIDを設定する。すべてのactor状態をDatomタプルにすることは要求しない。</p><p>Kotobaseの <a href="https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/code_graph.cljk#L26-L58"><code>definition-record</code> と <code>definition-datoms</code></a>はハッシュ対象の定義ブロックを正本とし、問い合わせ用の射影を派生させる。<a href="https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/code_graph.cljk#L77-L102"><code>put-definition!</code></a>はCIDとブロックを検証し、定義を保存してから射影を追記する。一方、データベースからDatomが消えたわけではない。<a href="https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/core.clj.cljk#L9-L22"><code>core/datoms</code></a>は残り、<a href="https://github.com/kotoba-lang/kotobase-engine/blob/a1ff23ade4f4ceca520311a99961e28fe6619f59/src/kotobase/engine/logical.cljk#L348-L356">engine</a>は論理Datomと保存quadを変換する。<a href="https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/kotoba/cid_external_transaction_replay.kotoba#L308-L340">native replayソース</a>もDAG-CBORに符号化された主語・述語・目的語のtransaction atomを検証する。IPLDの符号化と論理的な事実モデルは異なる層である。</p><p>RIPOの永続化adapterでは、正本ブロック、リンク、コーデック、CIDを先に指定し、RDFやDatomの索引を写像と情報損失範囲を持つ射影として定義する。Kotoba全体をDatom台帳と定義したり、基盤の変更から全Datomインターフェースの廃止を導いたりしない。今回はソース上の確認であり、actor kernel、互換経路、native実行系の新たな適格性確認ではない。</p><p>エージェントは遷移を提案し、モデルを呼び、予測と証拠を比較し、評価を記録できる。提案、許可、実行試行、観測結果を分ける。存在論上の関係は権限を与えない。Kotobaのエンドユーザーアプリでは、計算と状態はユーザー環境に置き、外部操作には共通client runtime契約による操作ごとの新しい同意を要する。</p><p>能力確認には「どのモデルがこの変化を予測し、何が観測され、相違をどの証拠が支えるか」と問う。版付きモデル・実行ID、センサー記録、有効時刻と記録時刻、単位、不確実性で答える。二事象をリンクしただけでは、変化の理由にはならない。</p>
+
+<h2 id="9-関係から個体化候補継承輪郭を計算する">9. 関係から個体化候補・継承・輪郭を計算する</h2><p>独立した <a href="https://github.com/com-junkawasaki/ripo/tree/08736bfe2baa16502e6b44fbd95453b47ceeab42">RIPO研究リポジトリ</a>に、本稿の存在論設計と個体化の研究をまとめた。<a href="https://github.com/com-junkawasaki/ripo/blob/08736bfe2baa16502e6b44fbd95453b47ceeab42/docs/MODEL.md">統合モデル</a>、数式、Python参照実装、snapshot CLI、RDF記録、テスト、オフラインviewerを含む。公開された研究ソースであり、Kotoba実行系への統合を意味しない。</p><p>操作上は <strong>候補抽出 → 証拠に基づく対応・継承 → 表示上の輪郭</strong> と分ける。<code>IndividuationHypothesis</code> はモデルに相対的なまとまり、<code>MembershipAssessment</code> はその所属、<code>LineageAssertion</code> は対応の根拠、<code>BoundaryRepresentation</code> は描いた輪郭、<code>ExtractionRun</code> は計算を記録する。これらの記録を、記述された実在個体と自動では同一視しない。</p><p>初期設計では六方式を比較する。それぞれ異なる問いを扱うため、単一の「存在スコア」に足し合わせる指標ではない。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方式</th><th>問い</th><th>実装範囲</th></tr></thead><tbody><tr><td>構造的ブロック推定・SBM</td><td>接続を生む役割やブロックは何か</td><td>SBMは今後。比較としてmodularityを実装</td></tr><tr><td>Markov Stability</td><td>指定した拡散と尺度で滞留・再帰するまとまりは何か</td><td>有限の固定時刻目的関数と全分割探索</td></tr><tr><td>有限時間coherent set</td><td>移送の中で分散しにくい集合は何か</td><td>今後。軌道・移送データが必要</td></tr><tr><td>Markov blanket</td><td>どの変数が統計的分離を条件づけるか</td><td>今後。膜や主体性は自動では導けない</td></tr><tr><td>因果的維持</td><td>介入で組織や回復はどう変わるか</td><td>別途指定した2変数の玩具モデルのみ</td></tr><tr><td>幾何学的輪郭</td><td>得た所属をどう描くか</td><td>ガウシアン和の等値線。alpha shapeは未実装</td></tr></tbody></table><p><a href="https://github.com/com-junkawasaki/ripo/blob/08736bfe2baa16502e6b44fbd95453b47ceeab42/DEFINITIONS.md">操作的定義</a>は、最大8観測IDの無向・非負snapshotから始まる。型付き時間ハイパーグラフの取り込みは未実装である。符号付き・有向・多項関係は拒否するか別モデルを指定し、黙ってcliqueへ変換しない。共通外因のCLI人工例は、相関の丸め差を除くため生成時に上三角を明示的に写す。外部の非対称入力は拒否し、合計のoverflowや非有限の計算結果も入力エラーにする。実時間窓は入力側の研究で定める。観測ステップ <code>t</code>、観測窓幅 <code>w</code>、無次元の拡散解像度 <code>tau</code> を区別する。</p><p>次数が正の観測について、実行した固定時刻の目的関数は次である。</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8;overflow-x:auto" tabindex="0" data-language="text"><code><span class="line"><span>D = diag(A 1)                    pi_i = d_i / sum_j d_j</span></span>
+<span class="line"><span>P(tau) = exp[tau (D^-1 A - I)]</span></span>
+<span class="line"><span>B(tau) = diag(pi) P(tau) - pi pi^T</span></span>
+<span class="line"><span>r(H,tau) = sum_{i,j in the same block of H} B_ij(tau)</span></span>
+<span class="line"><span>H* = argmax_H r(H,tau)</span></span></code></pre>
+
+<p>これは <a href="https://arxiv.org/abs/0812.1811">Markov Stability</a>に関する固定時刻のtraceであり、<code>tau</code> までの全拡散時刻で最小化する版ではない。8観測の全4,140分割を列挙する。得られるのは選んだ目的関数と浮動小数点の同率許容差 <code>1e-10</code> における有限最適解で、存在についての保証ではない。孤立観測は別に返し、全ゼロ関係では「関係上の証拠なし」とする。</p><p>再生成した人工データ実験は6ケース・6観測時点・5解像度、合計180回のMarkov最適化と、modularity、ゼロ機構、重み摂動の対照を含む。<code>tau=1</code> での結果は次のとおりである。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>人工ケース</th><th>観測時点0〜5の抽出ブロック数</th><th>対応の読み方</th></tr></thead><tbody><tr><td>弱結合の二集団</td><td>2,2,2,2,2,2</td><td>選択した尺度での候補</td></tr><tr><td>全成員交代</td><td>2,2,2,2,2,2</td><td>入力した引継ぎ証拠によってのみ対応</td></tr><tr><td>同型コピー・引継ぎなし</td><td>2,2,2,2,2,2</td><td>新集団の来歴は未確定</td></tr><tr><td>分岐・合流</td><td>2,2,4,4,2,2</td><td>多対多の対応であり、同一性の断言ではない</td></tr><tr><td>共通外因</td><td>8,8,8,8,8,8</td><td>相関と因果機構のグラフを区別</td></tr><tr><td>強い外部交換</td><td>8,8,8,8,8,8</td><td>事前に置いた内部・環境の区分を回収できない</td></tr></tbody></table>
+<p><img src="/assets/posts/computable-ripo/lineage-cases.png" alt="Computed synthetic memberships and evidence-backed correspondence at Markov time 1"/></p>
+
+<p>実線は観測IDの重複、破線は入力した引継ぎ記録を根拠とする。いずれも証拠としての仮定であり、独立認証された出来事ではない。v0.3 CLIは観測時点が欠けたときの継承を未確定に保つ。seedを固定した20回の重み摂動は一つの人工例の共所属の頑健性を測り、校正された不確実性や存在確率ではない。</p><p>重要な反例は完全グラフである。固定時刻traceは <code>exp[-n tau/(n-1)] * (1 - sum_C(|C|/n)^2)</code> となり、厳密演算では単点分割が最大となるが、modularity対照では一群となる。一群の中心化traceは常にゼロである。したがって、この目的関数だけで存在一般を定義したり、観測宇宙全体が一個体かを決めたりできない。外部との強い交換が維持条件になる過程もあり、外向き結合の少なさを普遍的個体化原理にはしない。</p><p>輪郭は選んだ表示配置でのガウシアン和の等値線で、peak正規化後の <code>sigma=0.10</code>、level <code>0.35</code> を使う。これらは描画パラメータであり、実データで推定した存在閾値ではない。配置を変えると輪郭は変わるが所属と継承は変わらない。3次元図は観測時点ごとの断面を積んだもので、物理的時空間の復元ではない。</p>
+<p><img src="/assets/posts/computable-ripo/temporal-contours-3d.png" alt="Computed contour slices across observation time; relational display coordinates, not physical spacetime"/></p>
+
+<p>別途指定した2変数の構造モデルでは、基準条件、内部交差結合の除去、外部入力の除去を比較する。解析的な平衡値は <code>1</code>、<code>2/11</code>、<code>0</code> となるが、介入量が異なるため自律性スコアや因果的寄与のランキングにはしない。観測からの因果発見や実系への介入検証は未実施である。</p><p>固定リビジョンのrepoとPython 3.12、lockした依存で再計算できる。</p>
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8;overflow-x:auto" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">python</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> scripts/reproduce.py</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">python</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ripo.py</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> extract</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> examples/replacement.json</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --tau</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> 1</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --output</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> results/replacement-profile.json</span></span></code></pre>
+
+<p>ローカルで26件のPythonテスト、720状態のDOM shim表示ロジック、710記録・3,380トリプルのRDF／SHACL検証と3負例が通った。オフラインviewerと配置変更もブラウザで確認した。<a href="https://github.com/com-junkawasaki/ripo/blob/08736bfe2baa16502e6b44fbd95453b47ceeab42/docs/PROVENANCE.md">来歴記録</a>は、復元したソースと今回の出力を、入力fingerprintが異なりバイト同一性を未確認の旧私用アーカイブと分けている。</p><p>これは独立したPython参照プロファイルである。入力・実行のSHA-256はcanonical JSONの識別子であり、IPLD CIDではない。Kotoba永続化adapter、経験的実証、将来予測のholdout、校正された不確実性、SBM・coherent set・blanket、Inc/BFOとの形式的対応は今後の課題である。本稿の0.1語彙と実験の0.2語彙は別プロファイルであり、相互の同値性が確立したという意味ではない。</p>
+
+<h2 id="10-10と呼ぶために必要な検証">10. 1.0と呼ぶために必要な検証</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>提案モジュール</th><th>次の適格性確認</th></tr></thead><tbody><tr><td>Core・個体化</td><td>定義、量化範囲、モデルと反例、存続・分岐方針</td></tr><tr><td>Inc bridge</td><td>符号化・復号の法則、保存される観測、商の合同条件</td></tr><tr><td>時間・生成</td><td>区間、参加、分裂・合流、合成・実行意味論</td></tr><tr><td>認識・情報</td><td>主張の採用、異論、来歴、校正した不確実性、測定単位</td></tr><tr><td>計算・行為</td><td>再現可能な数値実行、因果仮定、同意、effect receipt</td></tr><tr><td>Alignment</td><td>固定BFO/CCO import、充足可能性、帰結の回帰検証</td></tr></tbody></table><p>本稿では完全版Turtleをparseし、正例のSHACL適合と、after-state欠落、時間逆転、対象・単位相違、不正符号、多重度ゼロの各負例の拒否、SPARQLの結果を確認した。限定されたデータ検証であり、OWL 2 DLの整合性証明、検証済みInc exporter、RIPOの経験的実証、BFO/CCO適合ではない。</p><p>以前のBoundary中心プロトタイプは設計史として残す。引き継いだ会話には以前のZIP実体がなく、本稿のファイルは独立に検査できる新しい例である。研究上の課題は、失敗箇所が存在論、符号化、モデル、測定、実装のどこかを特定できるまで、各接続を精密にすることである。</p><h2 id="関連論考と発展">関連論考と発展</h2><ul>
+<li><a href="/en/posts/foundations-of-relational-informational-process-ontology">RIPO：存在・情報・自己・継承（英語）</a></li>
+<li><a href="/en/posts/foundations-of-relational-mathematics">Inc：関係から数学を構成する（英語）</a></li>
+<li><a href="/ja/posts/information-is-organism">情報は有機体である</a></li>
+<li><a href="/ja/posts/spirit-is-information">霊性は情報である</a></li>
+<li><a href="/ja/posts/infomation-is-physical-quantity">Information Is Physical Quantity</a></li>
+<li><a href="/ja/posts/spirit-in-physics">Spirit in Physics</a></li>
+<li><a href="/ja/posts/kotoba-substrate-for-spirit">Kotoba：霊を宿す分散永続基盤</a></li>
+</ul> </div> </article> </main>  <footer class="md-footer" data-astro-cid-sz7xmlte> <hr data-astro-cid-sz7xmlte> <p class="md-footer-text" data-astro-cid-sz7xmlte>All rights reserved by Jun Kawasaki. @CC BY-NC-SA</p> </footer>   </body></html> 

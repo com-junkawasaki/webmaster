@@ -1,0 +1,50 @@
+{
+  "qwen": {
+    "layers": 28,
+    "head_units": 448,
+    "experts": 0,
+    "tensors": 311,
+    "nodes": 1543,
+    "serialized_coefficients": 751632384,
+    "head_trace_shape": [
+      28,
+      16,
+      14
+    ],
+    "passes": 1,
+    "full_coverage_no_overlap_or_gaps": true,
+    "expert_top8_and_zero_mask_verified": false
+  },
+  "mdlm": {
+    "layers": 12,
+    "head_units": 144,
+    "experts": 0,
+    "tensors": 131,
+    "nodes": 683,
+    "serialized_coefficients": 169627250,
+    "head_trace_shape": [
+      12,
+      12,
+      14
+    ],
+    "passes": 2,
+    "full_coverage_no_overlap_or_gaps": true,
+    "expert_top8_and_zero_mask_verified": false
+  },
+  "granite": {
+    "layers": 24,
+    "head_units": 384,
+    "experts": 768,
+    "tensors": 218,
+    "nodes": 3506,
+    "serialized_coefficients": 1334625280,
+    "head_trace_shape": [
+      24,
+      16,
+      17
+    ],
+    "passes": 1,
+    "full_coverage_no_overlap_or_gaps": true,
+    "expert_top8_and_zero_mask_verified": true
+  }
+}

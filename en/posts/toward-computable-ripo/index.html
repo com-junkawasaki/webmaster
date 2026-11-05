@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="description" content="A research design connecting RIPO's existence, relations, change and knowledge to typed logic, an explicit Inc bridge, RDF, validation and numerical models."><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/jpeg" href="/favicon/623495.jpeg"><meta name="generator" content="Astro v5.18.2"><!-- Canonical URL --><link rel="canonical" href="https://junkawasaki.com/en/posts/toward-computable-ripo/"><!-- Primary Meta Tags --><title>Toward a Computable Relational Informational Process Ontology | Jun Kawasaki</title><meta name="title" content="Toward a Computable Relational Informational Process Ontology | Jun Kawasaki"><meta name="description" content="A research design connecting RIPO's existence, relations, change and knowledge to typed logic, an explicit Inc bridge, RDF, validation and numerical models."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://junkawasaki.com/en/posts/toward-computable-ripo/"><meta property="og:title" content="Toward a Computable Relational Informational Process Ontology | Jun Kawasaki"><meta property="og:description" content="A research design connecting RIPO's existence, relations, change and knowledge to typed logic, an explicit Inc bridge, RDF, validation and numerical models."><meta property="og:image" content="https://junkawasaki.com/assets/posts/preview/cover.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://junkawasaki.com/en/posts/toward-computable-ripo/"><meta property="twitter:title" content="Toward a Computable Relational Informational Process Ontology | Jun Kawasaki"><meta property="twitter:description" content="A research design connecting RIPO's existence, relations, change and knowledge to typed logic, an explicit Inc bridge, RDF, validation and numerical models."><meta property="twitter:image" content="https://junkawasaki.com/assets/posts/preview/cover.jpg"><!-- Theme --><meta name="theme-color" content="#ffffff"><!-- Favicon --><link rel="apple-touch-icon" sizes="180x180" href="/favicon/623495.jpeg"><link rel="icon" type="image/jpeg" sizes="32x32" href="/favicon/623495.jpeg"><link rel="icon" type="image/jpeg" sizes="16x16" href="/favicon/623495.jpeg"><link rel="manifest" href="/favicon/site.webmanifest"><style>.markdown{font-size:1.125rem;line-height:1.75}.markdown p,.markdown ul,.markdown ol,.markdown blockquote{margin-top:1.5rem;margin-bottom:1.5rem}.markdown h2{font-size:1.875rem;margin-top:3rem;margin-bottom:1rem;line-height:1.3}.markdown h3{font-size:1.5rem;margin-top:2rem;margin-bottom:1rem;line-height:1.3}.markdown .math-formula{font-family:Times New Roman,serif;font-style:italic;background-color:#f3f4f6;padding:1rem;margin:1rem 0;border-radius:.25rem;overflow-x:auto;text-align:center;line-height:1.6;font-size:1.1rem}.dark .markdown .math-formula{background-color:#1f2937;color:#fff}.markdown .mathBlock{margin:2rem 0;padding:1rem;background-color:#f3f4f6;border-radius:.5rem;overflow-x:auto;text-align:center}.dark .markdown .mathBlock{background-color:#1f2937}.markdown .katex-display{margin:0}:global(.dark) .katex,:global(.dark) .katex .katex-html,:global(.dark) .katex .katex-mathml{color:#fff!important}:global(.dark) .katex-html{color:#ccc!important}:global(.dark) .katex .mord,:global(.dark) .katex .mord .textsf,:global(.dark) .katex .mord .textrm,:global(.dark) .katex .mord .texttt,:global(.dark) .katex .mord .textbf,:global(.dark) .katex .mord .mathit,:global(.dark) .katex .mord .textit,:global(.dark) .katex .mord .mathdefault{color:#fff!important}:global(.dark) .katex .mbin{color:#fff!important}:global(.dark) .katex .mrel{color:#fff!important}:global(.dark) .katex .mopen,:global(.dark) .katex .mclose{color:#fff!important}:global(.dark) .katex .mfrac{color:#fff!important}:global(.dark) .katex .mfrac .frac-line{border-bottom-color:#fff!important}:global(.dark) .katex .minner{color:#fff!important}:global(.dark) .katex .mop{color:#fff!important}:global(.dark) .katex .msupsub{color:#fff!important}:global(.dark) .katex .vlist{color:#fff!important}:global(.dark) .katex .overline .overline-line{border-top-color:#fff!important}:global(.dark) .katex .underline .underline-line{border-bottom-color:#fff!important}:global(.dark) .mathBlock{background-color:#1f2937!important}:global(.dark) .math-formula{background-color:#1f2937!important;color:#fff!important}.md-nav-row[data-astro-cid-3osipt2g]{display:flex;align-items:baseline;justify-content:space-between}.md-lang-switch[data-astro-cid-3osipt2g]{color:#0969da;text-decoration:none;font-size:.875em;font-family:Poppins,Noto Sans JP,ui-sans-serif,system-ui,sans-serif;font-weight:600}.md-lang-switch[data-astro-cid-3osipt2g]:hover{text-decoration:underline}body[data-mode=dark] .md-lang-switch[data-astro-cid-3osipt2g]{color:#58a6ff}.md-back-link[data-astro-cid-3osipt2g]{margin:0;font-size:.875em}.md-back-link[data-astro-cid-3osipt2g] a[data-astro-cid-3osipt2g]{color:#0969da;text-decoration:none;font-family:Noto Sans JP,Poppins,ui-sans-serif,system-ui,sans-serif;font-weight:600}.md-back-link[data-astro-cid-3osipt2g] a[data-astro-cid-3osipt2g]:hover{text-decoration:underline}body[data-mode=dark] .md-back-link[data-astro-cid-3osipt2g] a[data-astro-cid-3osipt2g]{color:#58a6ff}hr[data-astro-cid-3osipt2g]{height:.25em;padding:0;margin:1.5em 0;background-color:#d0d7de;border:0}body[data-mode=dark] hr[data-astro-cid-3osipt2g]{background-color:#30363d}.md-article-title[data-astro-cid-3osipt2g]{font-size:2em;font-weight:600;padding-bottom:.3em;border-bottom:1px solid #d0d7de;margin-top:0;margin-bottom:.5em;line-height:1.3;font-family:Noto Sans JP,Poppins,ui-sans-serif,system-ui,sans-serif}body[data-mode=dark] .md-article-title[data-astro-cid-3osipt2g]{border-bottom-color:#30363d}.md-article-meta[data-astro-cid-3osipt2g]{color:#57606a;font-size:.875em;margin-bottom:1.5em;font-family:Poppins,Noto Sans JP,ui-sans-serif,system-ui,sans-serif}body[data-mode=dark] .md-article-meta[data-astro-cid-3osipt2g]{color:#8b949e}.md-article-image[data-astro-cid-3osipt2g]{max-width:100%;border-radius:6px;margin-bottom:0}
+</style>
+<link rel="stylesheet" href="/_astro/index.Eaja9M_e.css"></head> <body data-mode="light"> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var l=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>y(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[h,e]=t;return h in i?i[h](e):void 0},a=t=>t.map(o),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([h,e])=>[h,o(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},p=this.querySelectorAll("template[data-astro-template]");for(let r of p){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let d,m=this.hydrator(this);d=performance.now(),await m(this.Component,u,n,{client:this.getAttribute("client")}),d&&this.setAttribute("client-render-time",(performance.now()-d).toString()),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[p,{default:u}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),d=this.getAttribute("component-export")||"default";if(!d.includes("."))this.Component=p[d];else{this.Component=p;for(let m of d.split("."))this.Component=this.Component[m]}return this.hydrator=u,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="ZWcLVy" prefix="r1" component-url="/_astro/ThemeSwitcher.ytgUNJAG.js" component-export="default" renderer-url="/_astro/client.t3cO19W0.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;ThemeSwitcher&quot;,&quot;value&quot;:true}" server-render-time="0.26616599999988466" await-children><button style="position:fixed;right:1.5rem;top:1.5rem;z-index:50;background:none;border:none;cursor:pointer;padding:0.25rem;font-size:0.75rem;color:#57606a;font-family:&#x27;Poppins&#x27;, &#x27;Noto Sans JP&#x27;, ui-sans-serif, system-ui, sans-serif;opacity:0.6;transition:opacity 0.2s" aria-label="Toggle theme" title="Theme: light">[dark]</button><!--astro:end--></astro-island>   <main class="md-body" data-astro-cid-3osipt2g> <div class="md-nav-row" data-astro-cid-3osipt2g> <p class="md-back-link" data-astro-cid-3osipt2g> <a href="/en/" data-astro-cid-3osipt2g>&larr; Jun Kawasaki.</a> </p> <a href="/ja/posts/toward-computable-ripo/" class="md-lang-switch" data-astro-cid-3osipt2g>日本語</a> </div> <hr data-astro-cid-3osipt2g> <article data-astro-cid-3osipt2g> <h1 class="md-article-title" data-astro-cid-3osipt2g>Toward a Computable Relational Informational Process Ontology</h1> <p class="md-article-meta" data-astro-cid-3osipt2g> Jun Kawasaki / 河崎純真 &mdash; <time datetime="2026-10-31" data-astro-cid-3osipt2g>October 31, 2026</time> </p> <img src="/assets/posts/preview/cover.jpg" alt="Cover Image for Toward a Computable Relational Informational Process Ontology" class="md-article-image" data-astro-cid-3osipt2g> <hr data-astro-cid-3osipt2g> <div class="prose" data-astro-cid-3osipt2g> <p><strong>Status: research proposal with a bounded computation lab and executable data examples, not a completed upper ontology.</strong> The <a href="/en/posts/foundations-of-relational-informational-process-ontology">September RIPO essay</a> describes existence through relation, realized information, becoming and inheritance. This article asks what additional definitions make that position computable. The four questions below organize this proposal; they are not four axioms already supplied by Inc.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Question</th><th>Working module</th><th>What must be specified</th></tr></thead><tbody><tr><td>What exists, and through what conditions?</td><td>Constitution</td><td>Individuation, coherence, carriers, persistence criteria</td></tr><tr><td>What relates to what?</td><td>Interaction</td><td>Participants, roles, admissible modes, compatibility</td></tr><tr><td>What changed?</td><td>Evolution</td><td>Time, state descriptions, transitions, dynamics</td></tr><tr><td>How do we know?</td><td>Epistemology</td><td>Observations, claims, evidence, assessment and uncertainty</td></tr></tbody></table>
+
+<h2 id="1-ripo-inc-and-physical-models-have-different-jobs">1. RIPO, Inc and physical models have different jobs</h2><p>RIPO supplies philosophical commitments. Inc supplies mathematical structures and conditional results. A physical or statistical model connects chosen structures to measurements. A runtime executes a particular algorithm and retains its inputs and outputs. An arrow between these layers requires a defined mapping and its assumptions.</p><p>Formal, realized and meaningful information are three ways of examining information. A physical record may support all three descriptions. They should not become three disjoint OWL classes merely because they have different names. Likewise, an Inc boundary, a membrane, a perceived self-boundary and an authorization scope require distinct interpretations.</p>
+
+<p><img src="/assets/posts/computable-ripo/architecture.svg" alt="Research architecture: RIPO, typed theory, Inc, semantic records, numerical models and evidence"/></p>
+<p>The return arrow represents revision after evidence assessment. It does not turn an observation into a theorem. <a href="/assets/posts/computable-ripo/architecture.svg">Download the diagram</a>.</p><h2 id="2-boundary-has-not-disappeared-from-the-inspected-inc-source">2. Boundary has not disappeared from the inspected Inc source</h2><p>On October 31, 2026, a fresh checkout of Inc’s default branch resolved to <code>1bb368dc35827133cf42f7e4191f41cbfc754b1f</code>, the same revision cited by the September mathematics essay. This checks that branch, not every experimental branch. The Lean suite was not rerun for this article.</p><p>The <a href="https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory/Axioms/Basic.lean">basic definitions</a> represent <code>Boundary</code> as <code>List (Endpoint I R)</code>, with referenced object, role, sign and positive multiplicity. The comment mentions multiset semantics; the actual observational behavior depends on the operation. <code>approxEq</code> compares lists, while <a href="https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory.lean#L53-L67"><code>boundaryMatched</code></a> requires matching endpoints in both directions, without a bijection of occurrences. It preserves each matched endpoint’s multiplicity field, but need not count repeated list entries.</p><p><a href="https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory/Axioms.lean#L18-L61"><code>Incidence</code></a> also supplies a carrier, type function, guards, selector and ternary resonance. Its <code>well_founded</code> field excludes direct self-reference, not every longer cycle. Boundary alone does not create objects from nothing or settle their physical individuation.</p>
+
+<h2 id="3-a-typed-semantic-core-before-rdf">3. A typed semantic core before RDF</h2><p>Use a many-sorted signature. Let <code>P</code> denote process referents, <code>T</code> ordered instants, <code>D</code> descriptions, <code>C</code> claims, <code>O</code> observation occurrences and <code>V</code> evidence records, and <code>Policy</code> persistence policies. These are modeling sorts, not an exhaustive partition of everything that exists. Information records themselves have physical realizations; a description and its referent are separate modeling positions.</p><p>The following is a proposed interface, not an Inc theorem:</p>
+
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8;overflow-x:auto" tabindex="0" data-language="text"><code><span class="line"><span>about       : D × P → Proposition</span></span>
+<span class="line"><span>validAt     : D × T → Proposition</span></span>
+<span class="line"><span>transition  : D × D × T × T → Proposition</span></span>
+<span class="line"><span>observes    : O × C → Proposition</span></span>
+<span class="line"><span>supports    : V × C → Proposition</span></span>
+<span class="line"><span>continues   : P × P × T × T × Policy → Proposition</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>transition(d0,d1,t0,t1) ⇒ t0 &lt; t1</span></span>
+<span class="line"><span>transition(d0,d1,t0,t1) ⇒ ∃p. about(d0,p) ∧ about(d1,p)</span></span>
+<span class="line"><span>transition(d0,d1,t0,t1) ⇒ validAt(d0,t0) ∧ validAt(d1,t1)</span></span></code></pre>
+<p>This transition profile describes one referent at two times. A split or merge requires a different profile with multiple participants; it must not silently force two successors to be one individual. <code>continues</code> expresses a policy-dependent persistence judgment. Policies must name continuity criteria, tolerated gaps, branching rules and evidence. Neither transitivity nor uniqueness is assumed for it. A stronger physical theory may impose more.</p><p>Separate three identities: equality of content under a specified codec and digest, equivalence under an observation, and continuity of an individual through time. None gives either of the others automatically. For a finite, explicitly enumerated Inc model, bisimulation can be computed by iterative removal of pairs violating type or boundary matching until a greatest fixed point is reached. This requires complete finite input and decidable labels; arbitrary infinite models do not inherit that algorithm.</p><p>To quotient resonance exactly, Inc requires congruence in all three positions. The <a href="https://github.com/com-junkawasaki/inc/blob/1bb368dc35827133cf42f7e4191f41cbfc754b1f/incidence-theory/IncidenceTheory/IncidenceResearch.lean#L425-L466">exact-descent theorem</a> does not say that every observational equivalence satisfies it. An RDF <code>owl:sameAs</code> assertion would impose equality much more broadly than a chosen observational equivalence.</p>
+
+<h2 id="4-interaction-permits-modes-dynamics-selects-trajectories">4. Interaction permits modes; dynamics selects trajectories</h2><p><code>resonance i j k</code> is a proposition about an admissible mode. The source’s <code>selectedMode</code> chooses at most one through <code>glue</code>; its soundness gives resonance, not a dated occurrence in a physical system. Do not infer that a third object has actually been born whenever a resonance triple holds.</p><p>Add an explicit dynamical model, input, parameterization and observation likelihood:</p>
+
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8;overflow-x:auto" tabindex="0" data-language="text"><code><span class="line"><span>x(t + dt) ~ K_model( · | x(t), u(t), theta, dt)</span></span>
+<span class="line"><span>y(t)      ~ P_sensor( · | x(t), calibration)</span></span></code></pre>
+<p>A deterministic function is a special case of the transition kernel. Record model revision, initial conditions, units, numerical solver, random seed where applicable, and error estimates. A prediction belongs to a simulation run; it becomes an empirical assessment only after comparison with observations. Causal inference additionally needs intervention semantics and identification assumptions. A provenance edge or temporal precedence alone is insufficient.</p><h2 id="5-bfo-and-cco-align-selected-profiles">5. BFO and CCO: align selected profiles</h2><p><a href="https://github.com/BFO-ontology/BFO-2020">BFO’s maintained artifacts</a> include OWL and Common Logic formulations. <a href="https://github.com/CommonCoreOntology/CommonCoreOntologies">CCO</a> builds a mid-level suite on BFO. These are benchmarks for explicit definitions and reusable modeling, not evidence that RIPO already has equivalent rigor. Pin the release and imports for any executable alignment.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Proposed term or use</th><th>Candidate alignment</th><th>Obligation before asserting it</th></tr></thead><tbody><tr><td>A concrete observation occurrence</td><td>BFO process; PROV Activity</td><td>Specify temporal extent and the profile’s activity interpretation</td></tr><tr><td>Physical sensor</td><td>BFO material entity</td><td>Keep instrument separate from output and observation</td></tr><tr><td>State description or claim</td><td>CCO information content entity</td><td>Distinguish content from its physical bearer; check release definitions</td></tr><tr><td>Evidence record</td><td>PROV Entity</td><td>Describe generation, derivation and attribution</td></tr><tr><td>Endpoint role label</td><td>Local vocabulary concept</td><td>Do not equate it with BFO’s realizable Role</td></tr><tr><td>Inc boundary or RIPO coherence</td><td>No unconditional mapping</td><td>Supply a model and preservation conditions</td></tr></tbody></table><p>Do not import a universal assertion that every RIPO entity is a BFO process: a persisting organism can be modeled through a continuant together with its processes. Start with candidate mappings documented as annotations. Promote them to subclass or equivalence axioms only after checking satisfiability, unintended entailments and competency questions against pinned imports. No BFO/CCO equivalence axioms are shipped in this example.</p>
+
+<h2 id="6-a-small-rdf-example-that-can-actually-be-checked">6. A small RDF example that can actually be checked</h2><p>The downloadable vocabulary separates <code>WorldProcess</code> from <code>InformationRecord</code> by their intended use, without declaring them exhaustive or disjoint. <code>StateDescription</code>, <code>TransitionRecord</code>, <code>Claim</code>, <code>Evidence</code> and <code>Assessment</code> specialize records; <code>ObservationProcess</code> describes an occurrence. This is a partial operational vocabulary, not a taxonomy of the universe. All <code>example.org</code> IRIs are placeholders, not deployed ontology endpoints.</p><p><a href="https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/">RDF</a> supplies a graph representation; <a href="https://www.w3.org/TR/owl2-overview/">OWL 2</a> adds entailment; <a href="https://www.w3.org/TR/2017/REC-shacl-20170720/">SHACL</a> checks a supplied graph against shapes; <a href="https://www.w3.org/TR/sparql11-query/">SPARQL</a> queries descriptions. No layer by itself integrates a differential equation or discovers whether a sensor was calibrated.</p><p>The complete files are <a href="/assets/posts/computable-ripo/core.ttl">core.ttl</a>, <a href="/assets/posts/computable-ripo/example.ttl">example.ttl</a>, <a href="/assets/posts/computable-ripo/shapes.ttl">shapes.ttl</a> and <a href="/assets/posts/computable-ripo/changes.rq">changes.rq</a>. This excerpt describes a synthetic change and a reported proposition:</p>
+
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8;overflow-x:auto" tabindex="0" data-language="turtle"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">@prefix ripo:</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> &lt;https://example.org/ripo/0.1#&gt;</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> .</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">@prefix ex:</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> &lt;https://example.org/ripo/example/&gt;</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> .</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">@prefix rdf:</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> .</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">ex:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">change</span><span style="color:#D73A49;--shiki-dark:#F97583"> a</span><span style="color:#D73A49;--shiki-dark:#F97583"> ripo:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">TransitionRecord</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> ;</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">    ripo:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">beforeState</span><span style="color:#D73A49;--shiki-dark:#F97583"> ex:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">before</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> ; </span><span style="color:#D73A49;--shiki-dark:#F97583">ripo:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">afterState</span><span style="color:#D73A49;--shiki-dark:#F97583"> ex:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">after</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> .</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">ex:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">claim</span><span style="color:#D73A49;--shiki-dark:#F97583"> a</span><span style="color:#D73A49;--shiki-dark:#F97583"> ripo:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">Claim</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> ;</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">    rdf:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">subject</span><span style="color:#D73A49;--shiki-dark:#F97583"> ex:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">after</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> ; </span><span style="color:#D73A49;--shiki-dark:#F97583">rdf:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">predicate</span><span style="color:#D73A49;--shiki-dark:#F97583"> ripo:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">numericValue</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> ; </span><span style="color:#D73A49;--shiki-dark:#F97583">rdf:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">object</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> 21.0</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> ;</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">    ripo:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">supportedBy</span><span style="color:#D73A49;--shiki-dark:#F97583"> ex:</span><span style="color:#005CC5;--shiki-dark:#79B8FF">evidence</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> .</span></span></code></pre>
+<p>The excerpt omits state definitions and the recording timestamp; validate the complete files. Ordinary RDF reification does not assert its represented triple. The example separately contains state values as synthetic premises. With actual contested data, keep reported values inside claim descriptions until an explicit admission policy projects accepted claims into a working graph. Do not derive truth from the mere existence of a claim or observation.</p><p>The shapes require one before/after state and check subject, unit and increasing valid time, using explicit UTC timestamps. They also constrain endpoint signs and positive multiplicities. The generic n-ary relation example has role labels, but does not serialize an Inc boundary: a faithful exporter would need ordered list cells, type consistency and further Inc laws. SHACL cardinality checks are not theorems about arbitrary models.</p><p><a href="https://www.w3.org/TR/prov-o/">PROV-O</a> describes how evidence was generated and attributed. An assessment’s “supported” is a review outcome, not a timeless truth property. Retain conflicting claims and superseded assessments, their assessor, method and recording times. Record a probability only with its event, conditioning information, model revision and calibration; confidence is not a universal truth score.</p><p>The query returns a temperature difference of <code>1.0</code> in the example’s Celsius unit. <code>validAt</code> marks when a described state holds; <code>recordedAt</code> marks when the record was made. Missing triples stay unknown under open-world reasoning, while missing required fields can fail this SHACL profile. Neither an absent support link nor a failed shape entails the negation of the underlying claim.</p>
+
+<h2 id="7-information-geometry-thermodynamics-and-quantum-information">7. Information geometry, thermodynamics and quantum information</h2><p>A Fisher metric requires a specified differentiable probability family and regularity assumptions. Estimating it from behavior does not establish that it is the physical dissipation metric. <a href="https://arxiv.org/abs/1201.4166">Sivak and Crooks</a> derive a friction metric in a linear-response regime; relaxation dynamics matter. A thermodynamic length bound therefore needs physical controls, timescales and a units convention. The older essays’ <code>W_diss ≥ L²/(2τ)</code> is not a universal bound for an arbitrary Fisher metric, and Landauer’s erasure bound is not established as its one-dimensional special case.</p><p>For resetting an initially unbiased bit in the usual ideal thermal setting, Landauer’s limit is <code>k_B T ln 2</code>. Its assumptions and finite-reservoir corrections matter; see <a href="https://arxiv.org/abs/1306.4352">Reeb and Wolf</a>. <a href="https://arxiv.org/abs/1009.5287">Toyabe and colleagues</a> demonstrated feedback-assisted work extraction from thermal fluctuations. These results do not identify bits with joules by an unconditional exchange rate, or prove the physical reality of a proposed spirit field.</p><p>A quantum model would additionally specify a Hilbert space, density operator, allowed channels, measurement instrument and Born probabilities; see <a href="https://arxiv.org/abs/1106.1445">Wilde’s quantum information text</a>. Quantum entropy, classical Shannon entropy and semantic significance are different quantities. Inc resonance is not a quantum amplitude or an entanglement criterion. This proposal supplies no derivation of quantum dynamics from Inc.</p>
+
+<h2 id="8-records-simulations-and-agents">8. Records, simulations and agents</h2><p><a href="/en/posts/kotoba-substrate-for-spirit">Kotoba’s earlier substrate essay</a> motivates immutable histories. More recent <a href="https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/causal_commit.cljk">Kotobase causal-commit source</a> names an exact immutable basis and produces new commit records; concurrent histories can branch. That source was inspected, not executed or qualified here. It suggests a persistence adapter, not an already integrated RIPO engine. A CID identifies encoded content; signatures support attribution under key assumptions; neither certifies a measurement’s truth, permanent availability or continuity of consciousness.</p><h3 id="current-storage-basis-ipld-with-explicit-query-projections">Current storage basis: IPLD, with explicit query projections</h3><p>The October 31 source check distinguishes the language/runtime from the database’s logical views. The <a href="https://github.com/kotoba-lang/kotoba-lang/blob/5dbea46310591154765eeb0ef289bb98ca77a401/README.md#L142">language contract</a> describes the canonical form as S-expression IPLD data. In the inspected actor-kernel implementation, <a href="https://github.com/kotoba-lang/kotoba/blob/1604eda99031cbddd1c1fbf7ff696eb7ea44f444/lib/kotoba.kotobaVm/src/kotoba/vm/kernel.cljk#L195-L237"><code>write-node</code> and <code>set-state</code></a> encode a DAG-CBOR node, return its CID and install a state-root CID; they do not require that every actor state be a Datom tuple.</p><p>Kotobase’s <a href="https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/code_graph.cljk#L26-L58"><code>definition-record</code> and <code>definition-datoms</code></a> make the hashed definition block authoritative and derive a query projection from it. <a href="https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/code_graph.cljk#L77-L102"><code>put-definition!</code></a> verifies the CID/block and stores the definition before appending that projection. However, Datoms have not disappeared from the database: <a href="https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/src/kotobase/core.clj.cljk#L9-L22"><code>core/datoms</code></a> remains an API, and the <a href="https://github.com/kotoba-lang/kotobase-engine/blob/a1ff23ade4f4ceca520311a99961e28fe6619f59/src/kotobase/engine/logical.cljk#L348-L356">engine</a> converts logical Datoms and stored quads. The <a href="https://github.com/kotoba-lang/kotobase/blob/c191dd0fecb67f28b9f6eff79269800b45414f89/kotoba/cid_external_transaction_replay.kotoba#L308-L340">native replay source</a> also validates subject/predicate/object transaction atoms encoded in DAG-CBOR. IPLD encoding and a logical fact model are different layers.</p><p>For a RIPO persistence adapter, identify the canonical block, links, codec and CID, then declare RDF/Datom indexes as projections with their own mapping and loss limits. Do not define the whole Kotoba system as a Datom ledger, or infer that a changed foundation removes every Datom interface. These are source findings, not a new qualification of the actor kernel, compatibility paths or native runtime.</p><p>An agent can propose a transition, call a model, compare predictions with evidence, and record an assessment. Keep proposed action, authorization, attempted execution and observed result separate. An ontology relation grants no authority. When used in a Kotoba end-user app, computation and state remain in the user’s environment; external operations require fresh operation-specific consent under the shared client runtime contract.</p><p>A useful acceptance question is: “Which model predicted this change, what was observed, and what evidence supports the discrepancy?” Answer it with versioned model/run IDs, sensor records, valid and recording times, units and uncertainty. A graph that merely links two events cannot answer why the change happened.</p>
+
+<h2 id="9-from-relations-to-candidates-lineage-and-contours">9. From relations to candidates, lineage and contours</h2><p>The independent <a href="https://github.com/com-junkawasaki/ripo/tree/08736bfe2baa16502e6b44fbd95453b47ceeab42">RIPO research repository</a> consolidates this ontology design with the individuation study. It contains the <a href="https://github.com/com-junkawasaki/ripo/blob/08736bfe2baa16502e6b44fbd95453b47ceeab42/docs/MODEL.md">unified model</a>, equations, Python reference engine, snapshot CLI, RDF records, tests and offline viewer. This is a public source draft; it does not establish an integrated Kotoba runtime.</p><p>A useful operational separation is <strong>candidate extraction → evidence-backed correspondence → display representation</strong>. An <code>IndividuationHypothesis</code> records a model-relative grouping; a <code>MembershipAssessment</code> records membership under that model; a <code>LineageAssertion</code> records support for correspondence; a <code>BoundaryRepresentation</code> records a rendered contour; an <code>ExtractionRun</code> records the computation. None is automatically the real individual it describes.</p><p>The initial design considers six approaches. They answer different questions rather than contributing interchangeable terms to a single existence score.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Approach</th><th>Question</th><th>Implemented scope</th></tr></thead><tbody><tr><td>Structural block inference / SBM</td><td>Which connection-generating roles or blocks explain the network?</td><td>SBM remains planned; modularity is the implemented comparison</td></tr><tr><td>Markov Stability</td><td>Which groups retain or recur under an assumed diffusion at selected resolutions?</td><td>Finite fixed-time objective and exhaustive partition search</td></tr><tr><td>Finite-time coherent sets</td><td>Which sets resist dispersal during transport?</td><td>Planned; trajectory/transfer data needed</td></tr><tr><td>Markov blanket</td><td>Which variables condition statistical separation?</td><td>Planned; no membrane or subjecthood follows</td></tr><tr><td>Causal maintenance</td><td>Which interventions alter organization or recovery?</td><td>Separate known two-variable toy model only</td></tr><tr><td>Geometric contour</td><td>How should selected memberships be drawn?</td><td>Gaussian-sum level sets; no alpha-shape implementation</td></tr></tbody></table><p>The <a href="https://github.com/com-junkawasaki/ripo/blob/08736bfe2baa16502e6b44fbd95453b47ceeab42/DEFINITIONS.md">operational profile</a> starts with explicit undirected, nonnegative snapshots of at most eight observation IDs. It does not yet ingest a typed temporal hypergraph. Signed, directed or higher-arity input must be rejected or handled by a separately specified model; no silent clique projection is performed. The generated common-driver CLI fixture explicitly mirrors the correlation upper triangle to remove roundoff asymmetry; external asymmetric inputs remain rejected. Overflowing totals or nonfinite solver results produce an input error. Real observation windows belong to the supplying study. Observation step <code>t</code>, window width <code>w</code>, and dimensionless diffusion resolution <code>tau</code> have different meanings.</p><p>For positive-degree observations, the executed fixed-time objective is:</p>
+
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8;overflow-x:auto" tabindex="0" data-language="text"><code><span class="line"><span>D = diag(A 1)                    pi_i = d_i / sum_j d_j</span></span>
+<span class="line"><span>P(tau) = exp[tau (D^-1 A - I)]</span></span>
+<span class="line"><span>B(tau) = diag(pi) P(tau) - pi pi^T</span></span>
+<span class="line"><span>r(H,tau) = sum_{i,j in the same block of H} B_ij(tau)</span></span>
+<span class="line"><span>H* = argmax_H r(H,tau)</span></span></code></pre>
+<p>This uses the fixed-time trace associated with <a href="https://arxiv.org/abs/0812.1811">Markov Stability</a>, rather than minimizing it over every diffusion time up to <code>tau</code>. All 4,140 partitions of eight observations are enumerated. The guarantee is a finite optimum under the selected objective and floating-point tie tolerance <code>1e-10</code>; it is not a guarantee about existence. Isolates are reported separately, and an all-zero graph returns “no relational evidence.”</p><p>The regenerated synthetic study evaluates six cases, six observation steps and five resolutions: 180 Markov optimizations, plus modularity, zero-mechanism and perturbation controls. At <code>tau=1</code>:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Synthetic case</th><th>Extracted block counts at steps 0–5</th><th>Correspondence interpretation</th></tr></thead><tbody><tr><td>Two weakly linked groups</td><td>2,2,2,2,2,2</td><td>Selected-scale candidate grouping</td></tr><tr><td>Entire membership replaced</td><td>2,2,2,2,2,2</td><td>Full turnover is linked only by supplied handoff evidence</td></tr><tr><td>Isomorphic copy, no handoff</td><td>2,2,2,2,2,2</td><td>New group’s lineage remains unresolved</td></tr><tr><td>Split and merge</td><td>2,2,4,4,2,2</td><td>Many-to-many correspondence; no identity assertion</td></tr><tr><td>Common external driver</td><td>8,8,8,8,8,8</td><td>Correlation and causal mechanism are different graphs</td></tr><tr><td>Strong external exchange</td><td>8,8,8,8,8,8</td><td>Fails to recover the prespecified internal/environment grouping</td></tr></tbody></table>
+
+<p><img src="/assets/posts/computable-ripo/lineage-cases.png" alt="Computed synthetic memberships and evidence-backed correspondence at Markov time 1"/></p>
+<p>Solid connections use overlapping observation IDs; dashed connections use supplied handoffs. These are evidence assumptions, not independently authenticated events. The v0.3 CLI preserves an unresolved gap when observation steps are missing. Twenty seeded edge-weight perturbations measure coassignment robustness of one fixture, not calibrated uncertainty or a probability of existence.</p><p>A decisive counterexample is the complete graph: its finite-time trace is <code>exp[-n tau/(n-1)] * (1 - sum_C(|C|/n)^2)</code>, maximized by singletons in exact arithmetic, while the modularity control yields one block. The one-block centered trace is always zero. Therefore this objective cannot define existence universally or decide whether the entire observed universe is one individual. Strong exchange with an environment may itself maintain a process, so low external coupling must not become a universal individuation rule.</p><p>The contour is a Gaussian-sum level set in a chosen display layout, with <code>sigma=0.10</code> and level <code>0.35</code> after peak normalization. These are rendering parameters, not fitted existence thresholds. Changing layout changes the contour but leaves membership and lineage unchanged. The three-dimensional figure stacks slices through observation steps; it does not reconstruct physical spacetime.</p>
+
+<p><img src="/assets/posts/computable-ripo/temporal-contours-3d.png" alt="Computed contour slices across observation time; relational display coordinates, not physical spacetime"/></p>
+<p>A separate specified two-variable structural model compares baseline recovery with removal of internal cross-couplings and external inputs. Their analytic equilibria are <code>1</code>, <code>2/11</code> and <code>0</code>; the intervention magnitudes differ, so this is not an autonomy score or a ranking of causal importance. Causal discovery from observations and real-system intervention validation remain open.</p><p>Reproduce the study from the pinned repository with Python 3.12 and its locked dependencies:</p>
+
+<pre class="astro-code astro-code-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8;overflow-x:auto" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">python</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> scripts/reproduce.py</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">python</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ripo.py</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> extract</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> examples/replacement.json</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --tau</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> 1</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --output</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> results/replacement-profile.json</span></span></code></pre>
+<p>Local validation passed 26 Python tests, 720 DOM-shim display states, and RDF/SHACL checks of 710 records (3,380 triples), including three negative mutations. The offline viewer and layout change were also inspected in a browser. The <a href="https://github.com/com-junkawasaki/ripo/blob/08736bfe2baa16502e6b44fbd95453b47ceeab42/docs/PROVENANCE.md">provenance record</a> distinguishes reconstructed source and current outputs from the earlier private archive, whose input fingerprint differs and whose byte identity was not verified.</p><p>This is a standalone Python reference profile. Its input/run SHA-256 values are canonical-JSON identifiers, not IPLD CIDs. A Kotoba persistence adapter, empirical validation, predictive holdouts, calibrated uncertainty, SBM/coherent-set/blanket implementations and formal Inc/BFO correspondences remain open. The article’s 0.1 vocabulary and the experiment’s 0.2 vocabulary are separate profiles; neither implies an established equivalence with the other.</p>
+
+<h2 id="10-what-would-justify-a-10-claim">10. What would justify a 1.0 claim?</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Proposed module</th><th>Next qualification</th></tr></thead><tbody><tr><td>Core and individuation</td><td>Definitions, scope of quantification, models and countermodels; explicit persistence/branching policies</td></tr><tr><td>Inc bridge</td><td>Encoding/decoding laws, preserved observations, quotient-congruence obligations</td></tr><tr><td>Time and becoming</td><td>Intervals, participation, splits/merges, composition and execution semantics</td></tr><tr><td>Epistemics and information</td><td>Claim admission, disagreement, provenance, calibrated uncertainty and measurement units</td></tr><tr><td>Computation and action</td><td>Reproducible numerical runs, causal assumptions, consent and effect receipts</td></tr><tr><td>Alignment</td><td>Pinned BFO/CCO imports, satisfiability and entailment regression checks</td></tr></tbody></table><p>For this article, the complete Turtle files were parsed, the positive example passed SHACL, and intentionally damaged copies failed for missing after-state, reversed time, different subject/unit, invalid sign and zero multiplicity. The SPARQL result was checked. This is bounded data validation, not an OWL 2 DL consistency proof, a verified Inc exporter, empirical validation of RIPO, or BFO/CCO conformance.</p><p>The earlier Boundary-centered prototype remains a historical design sketch. No earlier downloadable ZIP was available in the supplied conversation, so these linked files are a new, independently checkable example. The research task is to make each bridge precise enough that a failure can be located: in the ontology, the encoding, the model, the measurement or the implementation.</p><h2 id="related-essays-and-development">Related essays and development</h2><ul>
+<li><a href="/en/posts/foundations-of-relational-informational-process-ontology">RIPO — Existence, Information, Self, and Inheritance</a></li>
+<li><a href="/en/posts/foundations-of-relational-mathematics">Inc — Constructing Mathematics from Relations</a></li>
+<li><a href="/en/posts/information-is-organism">Information Is an Organism</a></li>
+<li><a href="/en/posts/spirit-is-information">Spirit Is Information</a></li>
+<li><a href="/en/posts/infomation-is-physical-quantity">Information Is Physical Quantity</a></li>
+<li><a href="/en/posts/spirit-in-physics">Spirit in Physics</a></li>
+<li><a href="/en/posts/kotoba-substrate-for-spirit">Kotoba — A Distributed-Persistence Substrate for Hosting Spirit</a></li>
+</ul>
+ </div> </article> </main>  <footer class="md-footer" data-astro-cid-sz7xmlte> <hr data-astro-cid-sz7xmlte> <p class="md-footer-text" data-astro-cid-sz7xmlte>All rights reserved by Jun Kawasaki. @CC BY-NC-SA</p> </footer>   </body></html> 

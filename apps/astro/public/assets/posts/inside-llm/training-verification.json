@@ -1,0 +1,49 @@
+{
+  "qwen": {
+    "loss_before": 12.416275978088379,
+    "loss_after": 0.0019179059891030192,
+    "embedding_changed": true,
+    "selected_weights_changed": true,
+    "ids_unchanged": true,
+    "source_checkpoints": [
+      {
+        "file": "model.safetensors",
+        "sha256": "f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b",
+        "unchanged": true
+      }
+    ]
+  },
+  "mdlm": {
+    "loss_before": 16.44001579284668,
+    "loss_after": 14.581281661987305,
+    "embedding_changed": true,
+    "selected_weights_changed": true,
+    "ids_unchanged": true,
+    "source_checkpoints": [
+      {
+        "file": "model.safetensors",
+        "sha256": "47149e73f7552f39ea9776dbe74d925d25237bcf2ed2e2ec03cdff9d51c82aa4",
+        "unchanged": true
+      }
+    ]
+  },
+  "granite": {
+    "loss_before": 8.933086395263672,
+    "loss_after": 1.1920928244535389e-07,
+    "embedding_changed": true,
+    "selected_weights_changed": true,
+    "ids_unchanged": true,
+    "source_checkpoints": [
+      {
+        "file": "model-00001-of-00002.safetensors",
+        "sha256": "6933b6375074dc6cc4c0b98c9e126cd5fc899ef0cd80db0a932a232c6393c9cd",
+        "unchanged": true
+      },
+      {
+        "file": "model-00002-of-00002.safetensors",
+        "sha256": "271870f88e36f28ca87e86e11fa971b0b3e268fb9ac4495d42c66fdd1bc9d060",
+        "unchanged": true
+      }
+    ]
+  }
+}

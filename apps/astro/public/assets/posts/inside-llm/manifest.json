@@ -1,0 +1,83 @@
+{
+  "date": "2026-11-05",
+  "source_fragments": {
+    "full_output/full-model-activation-atlas.html": "87baac071a9392d879263db4bdfc537b34e4f1dd4d602a3a5ed304c8a01c3ab8",
+    "training_output/token-id-and-training.html": "4a5b48dfe91d907c547c26f6862a399bf478a388d751f5f5f7a7dc7773e8b81f",
+    "qkv_output/query-key-value.html": "e1eabbbcf338facb42db0750a91555d295e4f609435e0a8918294e27a1d100ca"
+  },
+  "files": {
+    "query-key-value-full-components.png": {
+      "bytes": 521467,
+      "sha256": "59ba741c5a3d0db1f0fd7195c4ec23293a65a975d2f3d845e41d2ccf7284b40c"
+    },
+    "mdlm-training.json": {
+      "bytes": 10045,
+      "sha256": "94414e2dfe929ae17617802cb3e305d2a8ff442decd4ca4ba91b004dd8263226"
+    },
+    "d3-7.9.0.min.js": {
+      "bytes": 279706,
+      "sha256": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539"
+    },
+    "query-key-value.html": {
+      "bytes": 833879,
+      "sha256": "2564d3baf061e9c2a358b2787aa9d5917cd2f83d50d13004412a707683a611cd"
+    },
+    "D3-LICENSE.txt": {
+      "bytes": 731,
+      "sha256": "3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4"
+    },
+    "granite-weights.json": {
+      "bytes": 1170975,
+      "sha256": "38cb27ba5a8d8859be30bf46b77479b21dbbdaa7c01d4024a2004e9587bdc947"
+    },
+    "qwen-training.json": {
+      "bytes": 14586,
+      "sha256": "5f0731dd39a7f95dc2bb6c2b9ebf14db597f16519829baa7ebfd2ca44d0df6bf"
+    },
+    "full-model-3d.png": {
+      "bytes": 778773,
+      "sha256": "176806b225b43023921d588cc7526eea5b9ad34bad530c321befdf9be0c96004"
+    },
+    "numerical-verification.json": {
+      "bytes": 1090,
+      "sha256": "c00ade59ed05c5d3aaa25a2d7d29f52099bb978cd547adfc6938da278be2ec16"
+    },
+    "training.html": {
+      "bytes": 77660,
+      "sha256": "4503650b3491c74680bf57a72bc18a4925ec1bdeb783b6d6540c7a9e7b672bcc"
+    },
+    "mdlm-weights.json": {
+      "bytes": 221101,
+      "sha256": "1d161ec7cf089efd42e83d45d7eef693991b4221393700f9333bf21fc03cebdc"
+    },
+    "environment.json": {
+      "bytes": 318,
+      "sha256": "a40ae9bae7c7a7daead3834df017e22732bf100152338c9078342ca112e03516"
+    },
+    "coverage-verification.json": {
+      "bytes": 996,
+      "sha256": "ab1c59ff28023b511cbb8ec577bccb038d076ffcd0e32a85adb66e7614f46865"
+    },
+    "granite-training.json": {
+      "bytes": 22456,
+      "sha256": "3969e10a012af287acce83e9235296cbf9f17c99428042851b24f70db852c6c5"
+    },
+    "qwen-weights.json": {
+      "bytes": 494948,
+      "sha256": "46baa206bbb95d8af336733dc199b914b07f856af424c1c21b7673a23c830636"
+    },
+    "all-layers.html": {
+      "bytes": 858696,
+      "sha256": "701e14c6258b5bbceeac6201176e66f9f95236aafb64b169e2684fadf9e3ecbd"
+    },
+    "training-verification.json": {
+      "bytes": 1373,
+      "sha256": "3c344138775c02630f2729c6d4d87b5d8dd23c985c33526587c6ddfe84d67127"
+    }
+  },
+  "display_scope": {
+    "atlas": "all layers / heads / experts, aggregated regions",
+    "training": "one example, one partial SGD step",
+    "qkv": "layer 0, every head / token / component"
+  }
+}

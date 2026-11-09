@@ -6,7 +6,7 @@ blog built with Astro and deployed to GitHub Pages.
 - **Monorepo**: pnpm workspace (`apps/astro`)
 - **Framework**: Astro 5 + MDX + React + Tailwind CSS
 - **i18n**: bilingual single-source MDX via `<Ja>` / `<En>` tags
-- **Deploy**: GitHub Pages (static output) → https://junkawasaki.com
+- **Deploy**: build locally and publish static output to the `gh-pages` branch → https://junkawasaki.com
 
 ## Quick start
 
@@ -103,9 +103,28 @@ Buddhism, and a running thread on **spirit as a physical/informational quantity*
 
 ## Deploy
 
-Pushing to `main` triggers the **Deploy to GitHub Pages** workflow
-(`.github/workflows/`): build `apps/astro` → upload Pages artifact → deploy to
-https://junkawasaki.com.
+GitHub Pages serves the root of the `gh-pages` branch. A push to `main` does
+not itself publish the site: the Actions deployment workflow remains in the
+repository, but is not the current publishing path.
+
+From a clean checkout containing the latest `origin/main`, with `pnpm`, `kbb`,
+Git and authenticated GitHub access available, build and publish:
+
+```bash
+git fetch origin main
+pnpm install --frozen-lockfile
+pnpm build
+pnpm run publish:pages -- --dry-run
+pnpm run publish:pages
+```
+
+Review the dry-run source commit and parent before publishing. The script
+checks that `origin/main` is an ancestor of `HEAD`, then commits the contents of
+`apps/astro/dist` to `gh-pages`; it does not build the site or verify that the
+output matches the checkout. Build after updating the checkout and before
+publishing, and only publish a reviewed source revision. The generated output
+includes `CNAME`, and the script adds `.nojekyll` for GitHub Pages. After
+publishing, check the affected URLs on https://junkawasaki.com.
 
 ## License
 

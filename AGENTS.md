@@ -7,7 +7,9 @@ Monorepo for junkawasaki.com — a bilingual (ja/en) blog built with Astro, depl
 - **Monorepo**: pnpm workspace (`apps/astro`)
 - **Framework**: Astro 5 + MDX + React + Tailwind CSS
 - **Site**: https://junkawasaki.com
-- **Deploy**: GitHub Pages (static output)
+- **Deploy**: GitHub Pages serves static output from the root of `gh-pages`.
+  Publishing is manual via `scripts/publish-pages.cljk`; a push to `main` alone
+  does not publish the site.
 
 ## Commands
 
@@ -16,6 +18,27 @@ pnpm install                    # Install dependencies
 pnpm --filter astro dev         # Dev server at localhost:4321
 pnpm --filter astro build       # Production build
 ```
+
+## Publishing
+
+From a clean checkout containing the latest `origin/main`, with `pnpm`, `kbb`,
+Git and authenticated GitHub access available:
+
+```bash
+git fetch origin main
+pnpm install --frozen-lockfile
+pnpm build
+pnpm run publish:pages -- --dry-run
+pnpm run publish:pages
+```
+
+Review the dry-run source commit and parent. The script checks that `HEAD`
+contains `origin/main` and pushes the built `apps/astro/dist` tree to
+`gh-pages`; it does not build or verify that the output matches the checkout.
+Build after updating the checkout, publish only a reviewed source revision, and
+verify affected URLs on the live site. It adds `.nojekyll`; the build supplies
+`CNAME`. The Actions workflow remains in the repository but is not the current
+publishing path. See the README's Deploy section for details.
 
 ## Architecture
 

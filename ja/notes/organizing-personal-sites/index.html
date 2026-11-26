@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="ja"> <head><meta charset="UTF-8"><meta name="description" content="10人の個人サイトで、記事・メモ・参照資料への導線を比較し、junkawasaki.com の学習ノートの方針を記録する。"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/jpeg" href="/favicon/623495.jpeg"><meta name="generator" content="Astro v5.18.2"><!-- Canonical URL --><link rel="canonical" href="https://junkawasaki.com/ja/notes/organizing-personal-sites/"><!-- Primary Meta Tags --><title>個人サイトの学習ノートをどう整理するか — 10人の比較 | Jun Kawasaki</title><meta name="title" content="個人サイトの学習ノートをどう整理するか — 10人の比較 | Jun Kawasaki"><meta name="description" content="10人の個人サイトで、記事・メモ・参照資料への導線を比較し、junkawasaki.com の学習ノートの方針を記録する。"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://junkawasaki.com/ja/notes/organizing-personal-sites/"><meta property="og:title" content="個人サイトの学習ノートをどう整理するか — 10人の比較 | Jun Kawasaki"><meta property="og:description" content="10人の個人サイトで、記事・メモ・参照資料への導線を比較し、junkawasaki.com の学習ノートの方針を記録する。"><meta property="og:image" content="https://junkawasaki.com/assets/posts/01/01.gif"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://junkawasaki.com/ja/notes/organizing-personal-sites/"><meta property="twitter:title" content="個人サイトの学習ノートをどう整理するか — 10人の比較 | Jun Kawasaki"><meta property="twitter:description" content="10人の個人サイトで、記事・メモ・参照資料への導線を比較し、junkawasaki.com の学習ノートの方針を記録する。"><meta property="twitter:image" content="https://junkawasaki.com/assets/posts/01/01.gif"><!-- Theme --><meta name="theme-color" content="#ffffff"><!-- Favicon --><link rel="apple-touch-icon" sizes="180x180" href="/favicon/623495.jpeg"><link rel="icon" type="image/jpeg" sizes="32x32" href="/favicon/623495.jpeg"><link rel="icon" type="image/jpeg" sizes="16x16" href="/favicon/623495.jpeg"><link rel="manifest" href="/favicon/site.webmanifest"><link rel="stylesheet" href="/_astro/_slug_.COTimCkf.css"></head> <body data-mode="light"> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var l=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>y(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[h,e]=t;return h in i?i[h](e):void 0},a=t=>t.map(o),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([h,e])=>[h,o(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},p=this.querySelectorAll("template[data-astro-template]");for(let r of p){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let d,m=this.hydrator(this);d=performance.now(),await m(this.Component,u,n,{client:this.getAttribute("client")}),d&&this.setAttribute("client-render-time",(performance.now()-d).toString()),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[p,{default:u}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),d=this.getAttribute("component-export")||"default";if(!d.includes("."))this.Component=p[d];else{this.Component=p;for(let m of d.split("."))this.Component=this.Component[m]}return this.hydrator=u,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Zeuej8" prefix="r1" component-url="/_astro/ThemeSwitcher.DUnOD0qm.js" component-export="default" renderer-url="/_astro/client.t3cO19W0.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;ThemeSwitcher&quot;,&quot;value&quot;:true}" server-render-time="0.26037499999983993" await-children><button style="position:fixed;right:1.5rem;top:1.5rem;z-index:50;background:none;border:none;cursor:pointer;padding:0.25rem;font-size:0.75rem;color:#57606a;font-family:&#x27;Poppins&#x27;, &#x27;Noto Sans JP&#x27;, ui-sans-serif, system-ui, sans-serif;opacity:0.6;transition:opacity 0.2s" aria-label="Toggle theme" title="Theme: light">[dark]</button><!--astro:end--></astro-island>   <main class="md-body"> <nav class="flex flex-wrap justify-between gap-3 text-sm" aria-label="学習ノートの案内"> <a href="/ja/notes/">&larr; 学習ノート</a> <a href="/en/notes/organizing-personal-sites/" lang="en"> English </a> </nav> <h1>個人サイトの学習ノートをどう整理するか — 10人の比較</h1>  <article aria-label="個人サイトの学習ノートをどう整理するか — 10人の比較"> <p class="text-sm"><time datetime="2026-11-26">2026-11-26</time> · 個人サイト</p> <p>学習中に描いた図や調べものを、あとから自分で見返せるようにしたい。主記事には読者に届けたい考えを置き、学習ノートでは、ひとつの疑問に短く答えたり、比較表を育てたりする。公開されている10人のサイトを、<strong>どこに置くか</strong>と<strong>あとからどう探すか</strong>の二つで見比べた。</p><h2 id="10人の比較">10人の比較</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>人</th><th>整理のしかた</th></tr></thead><tbody><tr><td>Paul Graham</td><td>エッセイをひとつの一覧に並べ、冒頭の3本を初めて読む人に勧めている。記事が増えても、入口で選ぶ本数は少ない。<a href="https://www.paulgraham.com/articles.html">Essays</a></td></tr><tr><td>Simon Willison</td><td>Weblog から別サイトの TIL（Today I Learned）へリンクする。TIL にはトピック一覧、検索、専用の Atom フィードがある。<a href="https://simonwillison.net/">Weblog</a> · <a href="https://til.simonwillison.net/">TIL</a></td></tr><tr><td>Martin Fowler</td><td>Bliki は、短い着想や形成中の考えを書く場所。ブログのように新しい項目を書き、ウィキのように項目同士をつなげる。<a href="https://martinfowler.com/bliki/WhatIsaBliki.html">What Is a Bliki</a></td></tr><tr><td>Andy Matuschak</td><td>本体から代表的な Working Notes に案内する。ノート側では、自分のための作業メモを公開し、リンクをたどって読めるようにしている。<a href="https://andymatuschak.org/">本体</a> · <a href="https://notes.andymatuschak.org/About_these_notes">Working Notes</a></td></tr><tr><td>Julia Evans</td><td>ブログのトップに最近の10本とカテゴリ別の全記事を並べる。図解冊子は Wizard Zines に入口がある。<a href="https://jvns.ca/">ブログ</a> · <a href="https://wizardzines.com/">Wizard Zines</a></td></tr><tr><td>Joel Spolsky</td><td>新着に加えて、Top 10 や、新人開発者・テックリードなどの読者別の読書リストを用意する。<a href="https://www.joelonsoftware.com/">Joel on Software</a></td></tr><tr><td>John Gruber</td><td>外部リンクと短いコメントを Linked List に集める。専用の月別アーカイブがあり、ホームにもその投稿が流れる。<a href="https://daringfireball.net/">ホーム</a> · <a href="https://daringfireball.net/linked/">Linked List</a></td></tr><tr><td>Dan Luu</td><td>技術分析、計測、雑記を、月・年と記事タイトルの簡素な一覧に並べる。<a href="https://danluu.com/">記事一覧</a></td></tr><tr><td>Nikita Prokopov（tonsky）</td><td>Blog・Work・Talks などで入口を分ける。ブログは年ごとの記事一覧にする。<a href="https://tonsky.me/">tonsky.me</a></td></tr><tr><td>Brendan Gregg</td><td>時系列のブログに加え、Flame Graphs や Linux Perf など、手順や実例に繰り返し戻れるテーマ別の参照ページを持つ。<a href="https://www.brendangregg.com/">ホーム</a> · <a href="https://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html">CPU Flame Graphs</a></td></tr></tbody></table><h2 id="どう整理するか">どう整理するか</h2><p>短い学びをこまめに置くには、Simon Willison のように専用の入口があると書き始めやすい。いちど調べたことを育てるには、Martin Fowler や Andy Matuschak のように、疑問や概念ごとにページを持ち、あとから追記したり別のノートにつないだりできるとよい。図や手順を何度も使うなら、Brendan Gregg のようにテーマ名から直接たどれると探しやすい。</p><p>最初の一覧は Dan Luu のように簡素でよい。読む順番に意味のあるノートが増えたら、Julia Evans のテーマ別一覧や Joel Spolsky の読書リストが参考になる。Paul Graham の冒頭3本は、主記事の代表作に読者を案内するときに使える。</p><h2 id="junkawasakicom-で採用した方針">junkawasaki.com で採用した方針</h2><ul>
+<li><strong>入口を分ける。</strong> 主記事は既存の <code>/posts/</code>、学習ノートは同じサイトの <a href="/ja/notes/"><code>/ja/notes/</code></a> と <a href="/en/notes/"><code>/en/notes/</code></a> に置く。ホームには学習ノートへの短いリンクを設ける。</li>
+<li><strong>ひとつの問いにひとつのURL。</strong> 日英で共通のスラッグを使い、公開日とトピックを一覧に表示する。本文は問いから始め、確認できたことを短く書き、図や比較表、一次資料を必要に応じて添える。</li>
+<li><strong>同じ問いなら追記する。</strong> 図の修正や参考文献の追加は元のページに入れる。比較の軸や問いが独立したら別のノートにして相互にリンクする。たとえば <a href="/ja/notes/storage-structures/">DB とファイルシステムの11構造</a> は全体の地図として使い、B+ tree と LSM-tree の書き込み特性を実測するなら別のノートにする。</li>
+<li><strong>主記事には、まとまった主張を置く。</strong> 複数のノートをもとに自分の考えや検証結果を読者向けに組み立てられたら、主記事として書き、元のノートを資料として参照する。</li>
+</ul><p>現在の一覧は日付順で、各行にトピックを添えている。テーマをたどりたい場面が増えたらトピック別の一覧を作る。読む順番が重要なテーマには短い読書リストを添える。既知のノートを一覧から探しにくくなったときは、検索を検討する。</p>
+ </article>  </main>  <footer class="md-footer" data-astro-cid-sz7xmlte> <hr data-astro-cid-sz7xmlte> <p class="md-footer-text" data-astro-cid-sz7xmlte>All rights reserved by Jun Kawasaki. @CC BY-NC-SA</p> </footer>   </body></html>

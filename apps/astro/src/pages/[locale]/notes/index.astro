@@ -1,0 +1,41 @@
+---
+import { getCollection } from "astro:content";
+import NoteLayout from "../../../layouts/NoteLayout.astro";
+import { languages, type Locale } from "../../../i18n/ui";
+import { useTranslations } from "../../../i18n/utils";
+
+export function getStaticPaths() {
+  return (Object.keys(languages) as Locale[]).map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale as Locale;
+const t = useTranslations(locale);
+const notes = (await getCollection('notes')).sort((a, b) =>
+  b.data.date.localeCompare(a.data.date) || a.slug.localeCompare(b.slug)
+);
+---
+
+<NoteLayout title={t('notes.title')} description={t('notes.description')}>
+  <p>{t('notes.description')}</p>
+  <ul class="note-list">
+    {notes.map(({ data, slug }) => (
+      <li>
+        <div class="text-sm"><time datetime={data.date}>{data.date}</time> · {data.topic[locale]}</div>
+        <a class="font-semibold" href={`/${locale}/notes/${slug}/`}>{data.title[locale]}</a>
+        <div>{data.excerpt[locale]}</div>
+      </li>
+    ))}
+  </ul>
+</NoteLayout>
+
+<style>
+  .md-body .note-list {
+    list-style: none;
+    padding-inline-start: 0;
+  }
+
+  .note-list li {
+    border-block-start: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+    padding-block: .85rem;
+  }
+</style>

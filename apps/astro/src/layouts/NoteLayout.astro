@@ -1,0 +1,28 @@
+---
+import BlogLayout from "./BlogLayout.astro";
+import { getLocaleFromUrl, getSwitchLocalePath, useTranslations } from "../i18n/utils";
+
+interface Props {
+  title: string;
+  description: string;
+  detail?: boolean;
+}
+
+const { title, description, detail = false } = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+const backPath = detail ? `/${locale}/notes/` : `/${locale}/`;
+---
+
+<BlogLayout title={`${title} | Jun Kawasaki`} description={description}>
+  <main class="md-body">
+    <nav class="flex flex-wrap justify-between gap-3 text-sm" aria-label={t('notes.navigation')}>
+      <a href={backPath}>&larr; {t(detail ? 'notes.title' : 'nav.back')}</a>
+      <a href={getSwitchLocalePath(Astro.url)} lang={locale === 'ja' ? 'en' : 'ja'}>
+        {t('lang.switch')}
+      </a>
+    </nav>
+    <h1>{title}</h1>
+    <slot />
+  </main>
+</BlogLayout>

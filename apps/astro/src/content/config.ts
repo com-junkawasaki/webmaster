@@ -28,6 +28,15 @@ const postsCollection = defineCollection({
 
 export const collections = {
   posts: postsCollection,
+  notes: defineCollection({
+    type: 'content',
+    schema: z.object({
+      title: z.object({ en: z.string(), ja: z.string() }),
+      excerpt: z.object({ en: z.string(), ja: z.string() }),
+      topic: z.object({ en: z.string(), ja: z.string() }),
+      date: z.string().date(),
+    }),
+  }),
 };
 
 export default collections;

@@ -101,6 +101,15 @@ Buddhism, and a running thread on **spirit as a physical/informational quantity*
 - **Kotoba — A Distributed-Persistence Substrate for Hosting Spirit** — kotoba as the substrate that hosts spirit-as-information
 - **Enlightenment is Root Access**, **No-Compute Computation**, **Reading Language as Graph Topology**, and translation essays (*Individual → 孤人*, *Manager → 幹事*).
 
+## Learning notes
+
+Add a bilingual MDX file in `apps/astro/src/content/notes/` with localized
+`title`, `excerpt`, and `topic`, plus a `YYYY-MM-DD` date. Use a stable,
+language-neutral slug and the same `<Ja>` / `<En>` convention as posts.
+The notes indexes at `/ja/notes/` and `/en/notes/` list the entries by date.
+Use a topic for browsing, and add sources or reproduction details when
+they help a reader revisit the comparison or experiment.
+
 ## Deploy
 
 GitHub Pages serves the root of the `gh-pages` branch. A push to `main` does

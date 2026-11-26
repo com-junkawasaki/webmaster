@@ -1,0 +1,364 @@
+---
+import { getLocaleFromUrl } from "../../i18n/utils";
+
+const locale = getLocaleFromUrl(Astro.url);
+const groupTitles = [
+  { ja: "木で探す", en: "Tree-based search" },
+  { ja: "候補を絞る", en: "Narrowing the search" },
+  { ja: "場所を管理する", en: "Mapping and allocation" },
+  { ja: "更新を書く", en: "Placing updates" },
+];
+const structures = {
+  btree: {
+    name: { ja: "B-tree", en: "B-tree" },
+    cue: { ja: "区切りキーで大小順に分岐", en: "Separator keys split the search into ordered ranges." },
+    strength: { ja: "完全一致・範囲検索・順序付き走査", en: "Exact matches, range scans, and ordered traversal" },
+    tradeoff: { ja: "更新でページ分割が起こることがある。", en: "Updates can cause page splits." },
+    source: { name: "PostgreSQL B-tree", url: "https://www.postgresql.org/docs/current/btree.html" },
+  },
+  trie: {
+    name: { ja: "Trie / Radix Tree", en: "Trie / radix tree" },
+    cue: { ja: "apple と apply が接頭辞 app を共有", en: "Apple and apply share the prefix app." },
+    strength: { ja: "接頭辞を共有するキーの検索", en: "Looking up keys with a shared prefix" },
+    tradeoff: { ja: "疎な枝はメモリを使う。圧縮で抑えられる。", en: "Sparse branches can use extra memory. Radix variants compress paths." },
+    source: { name: "DuckDB ART", url: "https://duckdb.org/2022/07/27/art-storage" },
+  },
+  rtree: {
+    name: { ja: "R-tree 系", en: "R-tree family" },
+    cue: { ja: "近い点や図形を囲む矩形を階層化", en: "Bounding rectangles group nearby points or shapes." },
+    strength: { ja: "地図などで指定領域との重なりを探す", en: "Finding overlap with a geographic or geometric region" },
+    tradeoff: { ja: "矩形が重なると複数の枝を調べる。", en: "Overlapping rectangles can require visiting multiple branches." },
+    source: { name: "SQLite R*Tree", url: "https://sqlite.org/rtree.html" },
+  },
+  hash: {
+    name: { ja: "ハッシュ索引", en: "Hash index" },
+    cue: { ja: "ハッシュ値でバケットに振り分ける", en: "A hash maps keys into buckets." },
+    strength: { ja: "キーの完全一致", en: "Exact key matches" },
+    tradeoff: { ja: "範囲検索やキー順の走査には向かない。", en: "Does not support ordered scans or range lookups." },
+    source: { name: "PostgreSQL Hash", url: "https://www.postgresql.org/docs/current/indexes-types.html#INDEXES-TYPES-HASH" },
+  },
+  inverted: {
+    name: { ja: "転置インデックス", en: "Inverted index" },
+    cue: { ja: "語ごとに出現する文書の番号を持つ", en: "Each term points to the IDs of matching documents." },
+    strength: { ja: "全文・タグ・配列要素で検索する", en: "Looking up documents by term, tag, or array element" },
+    tradeoff: { ja: "文書1件の更新で複数語の索引が変わる。", en: "One document update may affect entries for multiple terms." },
+    source: { name: "PostgreSQL GIN", url: "https://www.postgresql.org/docs/current/indexes-types.html#INDEXES-TYPES-GIN" },
+  },
+  brin: {
+    name: { ja: "BRIN", en: "BRIN" },
+    cue: { ja: "ブロック群を最小値・最大値で要約", en: "Min and max summarize each block range." },
+    strength: { ja: "時刻順に追記する大きな表などで読み飛ばす", en: "Skipping block ranges in large, physically ordered tables" },
+    tradeoff: { ja: "値が散らばると絞りにくく、候補内の行は再確認する。", en: "Scattered values reduce pruning, and candidate rows still need rechecking." },
+    source: { name: "PostgreSQL BRIN", url: "https://www.postgresql.org/docs/current/brin.html" },
+  },
+  fat: {
+    name: { ja: "FAT のクラスタチェーン", en: "FAT cluster chain" },
+    cue: { ja: "離れたクラスタを「次」の番号で連結", en: "A next-cluster pointer links even scattered data." },
+    strength: { ja: "ファイルの断片を順にたどる", en: "Following the clusters of a fragmented file" },
+    tradeoff: { ja: "チェーンだけでは途中への移動にリンクの走査が要る。", en: "Using the chain alone, random access requires following earlier links." },
+    source: { name: "exFAT §4.1", url: "https://learn.microsoft.com/en-us/windows/win32/fileio/exfat-specification#41-first-and-second-fat-sub-regions" },
+  },
+  extent: {
+    name: { ja: "エクステント", en: "Extent" },
+    cue: { ja: "連続ブロックを開始位置と長さで記録", en: "One record describes a run by its start and length." },
+    strength: { ja: "連続領域の位置を少ない記録で表す", en: "Mapping a contiguous run with one record" },
+    tradeoff: { ja: "断片化すると記録が増える。木と併用できる。", en: "Fragmentation adds records. A tree can index those records." },
+    source: { name: "ext4", url: "https://docs.kernel.org/filesystems/ext4/ifork.html" },
+  },
+  bitmap: {
+    name: { ja: "割り当てビットマップ", en: "Allocation bitmap" },
+    cue: { ja: "1ブロックを1ビットで管理", en: "One bit tracks each block." },
+    strength: { ja: "使用中・空きをコンパクトに記録", en: "Representing used and free blocks compactly" },
+    tradeoff: { ja: "大きな連続空き領域を探すには走査や補助情報が要る。", en: "Finding a long free run requires scanning or auxiliary metadata." },
+    source: { name: "ext4", url: "https://docs.kernel.org/filesystems/ext4/bitmaps.html" },
+  },
+  lsm: {
+    name: { ja: "LSM-tree", en: "LSM-tree" },
+    cue: { ja: "メモリからキー順に書き出し、ファイルを統合", en: "Flush sorted runs from memory, then merge them." },
+    strength: { ja: "書き込みをまとめつつ、キー順に走査する", en: "Batching writes while preserving ordered scans" },
+    tradeoff: { ja: "読み取りで複数ファイルを調べることがあり、統合でも書き込む。", en: "Reads may consult multiple files, and compaction rewrites data." },
+    source: { name: "RocksDB", url: "https://github.com/meta/rocksdb/wiki/Leveled-Compaction" },
+  },
+  logStructured: {
+    name: { ja: "ログ構造ファイルシステム", en: "Log-structured file system" },
+    cue: { ja: "更新版を新しい場所に書き、参照先を付け替える", en: "Write the new version elsewhere and update the reference." },
+    strength: { ja: "更新をまとめて順次書く", en: "Grouping updates into sequential writes" },
+    tradeoff: { ja: "古い領域を回収するため、有効なブロックを移すことがある。", en: "Cleaning old segments can require copying live blocks." },
+    source: { name: "F2FS", url: "https://docs.kernel.org/filesystems/f2fs.html" },
+  },
+};
+const labels = locale === 'ja'
+  ? { diagrams: '構造の違いを図で見る', table: '11種類の比較', structure: '構造', strength: '得意なこと', tradeoff: '代償・制約', source: '実装・資料' }
+  : { diagrams: 'How the structures differ', table: 'Comparison of all 11 structures', structure: 'Structure', strength: 'Strength', tradeoff: 'Trade-off', source: 'Implementation or reference' };
+---
+
+<div class="storage-structures">
+  <h2>{labels.diagrams}</h2>
+  <section class="diagram-group">
+    <h3>{groupTitles[0][locale]}</h3>
+    <div class="structure-grid">
+      <figure>
+        <svg viewBox="0 0 150 92" role="img" aria-label={locale === 'ja' ? "根に区切りキー20と40があり、7と15、26と34、48と59を持つ3ページへ分岐する" : "Two separator keys, 20 and 40, route to three pages of ordered keys."} class="diagram">
+          <path class="line" d="M52 30 23 58 M75 30V58 M98 30 127 58"/>
+          <rect class="tint" x="48" y="8" width="54" height="22" rx="3"/>
+          <path class="line" d="M75 9V29"/>
+          <text x="62" y="19">20</text><text x="88" y="19">40</text>
+          <rect class="box" x="1" y="58" width="44" height="22" rx="3"/>
+          <rect class="box" x="53" y="58" width="44" height="22" rx="3"/>
+          <rect class="box" x="105" y="58" width="44" height="22" rx="3"/>
+          <path class="line" d="M21 59V79 M75 59V79 M127 59V79"/>
+          <text x="11" y="69">7</text><text x="33" y="69">15</text>
+          <text x="64" y="69">26</text><text x="86" y="69">34</text>
+          <text x="116" y="69">48</text><text x="138" y="69">59</text>
+        </svg>
+        <figcaption><strong>{structures.btree.name[locale]}</strong><p>{structures.btree.cue[locale]}</p></figcaption>
+      </figure>
+
+      <figure>
+        <svg viewBox="0 0 150 92" role="img" aria-label={locale === 'ja' ? "根から接頭辞appを共有し、leでapple、lyでapplyになる" : "The shared prefix app branches to le and ly."} class="diagram">
+          <path class="line" d="M75 12V34 M75 48L27 69 M75 48l48 21"/>
+          <circle class="box" cx="75" cy="9" r="4"/>
+          <rect class="tint" x="57" y="30" width="36" height="20" rx="10"/>
+          <text x="75" y="40">app</text>
+          <rect class="box" x="11" y="63" width="32" height="20" rx="10"/>
+          <rect class="box" x="107" y="63" width="32" height="20" rx="10"/>
+          <text x="27" y="73">le</text><text x="123" y="73">ly</text>
+        </svg>
+        <figcaption><strong>{structures.trie.name[locale]}</strong><p>{structures.trie.cue[locale]}</p></figcaption>
+      </figure>
+
+      <figure>
+        <svg viewBox="0 0 150 92" role="img" aria-label={locale === 'ja' ? "外側の境界矩形の中に2つの子矩形があり、それぞれに点が2つ入っている" : "A parent rectangle encloses two overlapping child rectangles, each containing two points."} class="diagram">
+          <rect class="box" x="4" y="8" width="142" height="76" rx="2"/>
+          <rect class="tint" x="14" y="16" width="72" height="42" rx="2"/>
+          <rect class="tint" x="65" y="41" width="71" height="34" rx="2"/>
+          <circle class="point" cx="26" cy="43" r="3"/><circle class="point" cx="72" cy="26" r="3"/>
+          <circle class="point" cx="78" cy="65" r="3"/><circle class="point" cx="124" cy="50" r="3"/>
+        </svg>
+        <figcaption><strong>{structures.rtree.name[locale]}</strong><p>{structures.rtree.cue[locale]}</p></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="diagram-group">
+    <h3>{groupTitles[1][locale]}</h3>
+    <div class="structure-grid">
+      <figure>
+        <svg viewBox="0 0 150 92" role="img" aria-label={locale === 'ja' ? "ハッシュ値の余りでキーを3つのバケットに振り分ける。42はバケット0に入る" : "Three buckets hold unordered keys. Key 42 appears in bucket 0."} class="diagram">
+          <text x="16" y="23">0</text><text x="16" y="46">1</text><text x="16" y="69">2</text>
+          <rect class="tint" x="30" y="13" width="115" height="20" rx="3"/>
+          <rect class="box" x="30" y="36" width="115" height="20" rx="3"/>
+          <rect class="box" x="30" y="59" width="115" height="20" rx="3"/>
+          <path class="line" d="M68 14V32 M106 14V32 M68 37V55 M106 37V55 M68 60V78 M106 60V78"/>
+          <text x="49" y="23">42</text><text x="87" y="23">6</text><text x="125" y="23">15</text>
+          <text x="49" y="46">10</text><text x="49" y="69">5</text><text x="87" y="69">17</text>
+        </svg>
+        <figcaption><strong>{structures.hash.name[locale]}</strong><p>{structures.hash.cue[locale]}</p></figcaption>
+      </figure>
+
+      <figure>
+        <svg viewBox="0 0 150 92" role="img" aria-label={locale === 'ja' ? "猫は文書2、5、9にあり、犬は文書5、8にある。共通する文書5を色で示す" : "The postings for cat and dog have document 5 in common."} class="diagram">
+          <text x="15" y="29">{locale === 'ja' ? '猫' : 'cat'}</text><text x="15" y="63">{locale === 'ja' ? '犬' : 'dog'}</text>
+          <path class="line" d="M27 29H102 M27 63H102"/>
+          <rect class="box" x="37" y="18" width="23" height="22" rx="3"/>
+          <rect class="tint" x="69" y="18" width="23" height="22" rx="3"/>
+          <rect class="box" x="101" y="18" width="23" height="22" rx="3"/>
+          <rect class="tint" x="69" y="52" width="23" height="22" rx="3"/>
+          <rect class="box" x="101" y="52" width="23" height="22" rx="3"/>
+          <text x="49" y="29">2</text><text x="81" y="29">5</text><text x="113" y="29">9</text>
+          <text x="81" y="63">5</text><text x="113" y="63">8</text>
+          <path class="link" d="M81 41V51"/>
+        </svg>
+        <figcaption><strong>{structures.inverted.name[locale]}</strong><p>{structures.inverted.cue[locale]}</p></figcaption>
+      </figure>
+
+      <figure>
+        <svg viewBox="0 0 150 92" role="img" aria-label={locale === 'ja' ? "連続する3つのブロック群の値を1から4、8から12、19から26の最小最大で要約。19以上の検索では最後だけが候補" : "Three block ranges have min–max summaries. For values at least 19, only the final range needs inspection."} class="diagram">
+          <text x="25" y="21">1–4</text><text x="75" y="21">8–12</text><text x="125" y="21">19–26</text>
+          <path class="line" d="M25 31V43 M75 31V43"/><path class="link" d="M125 31V43"/>
+          <rect class="box" x="3" y="43" width="44" height="31" rx="3"/>
+          <rect class="box" x="53" y="43" width="44" height="31" rx="3"/>
+          <rect class="tint" x="103" y="43" width="44" height="31" rx="3"/>
+          <path class="line" d="M18 44V73 M32 44V73 M68 44V73 M82 44V73 M118 44V73 M132 44V73"/>
+        </svg>
+        <figcaption><strong>{structures.brin.name[locale]}</strong><p>{structures.brin.cue[locale]}</p></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="diagram-group">
+    <h3>{groupTitles[2][locale]}</h3>
+    <div class="structure-grid">
+      <figure>
+        <svg viewBox="0 0 150 92" role="img" aria-label={locale === 'ja' ? "物理順に並んだクラスタのうち、40、41、90を次ポインタで結んだクラスタチェーン" : "The file follows cluster 40 to 41 and then jumps to 90."} class="diagram">
+          <path class="link" d="M18 46V29H40V43 M36 39l4 4 4-4 M52 46V13H132V43 M128 39l4 4 4-4"/>
+          <rect class="tint" x="4" y="47" width="28" height="24" rx="3"/>
+          <rect class="tint" x="32" y="47" width="27" height="24" rx="3"/>
+          <rect class="box" x="59" y="47" width="59" height="24" rx="3"/>
+          <rect class="tint" x="118" y="47" width="28" height="24" rx="3"/>
+          <text x="18" y="59">40</text><text x="45" y="59">41</text>
+          <text x="89" y="59">···</text><text x="132" y="59">90</text>
+        </svg>
+        <figcaption><strong>{structures.fat.name[locale]}</strong><p>{structures.fat.cue[locale]}</p></figcaption>
+      </figure>
+
+      <figure>
+        <svg viewBox="0 0 150 92" role="img" aria-label={locale === 'ja' ? "論理ブロック0と1を単一のエクステントで物理40と41へ対応付け、論理ブロック2を別のエクステントで物理90へ対応付ける" : "One extent maps logical blocks 0 and 1 to physical blocks 40 and 41. A second maps block 2 to physical block 90."} class="diagram">
+          <path class="link" d="M32 33V59 M108 33l24 26"/>
+          <rect class="tint" x="4" y="11" width="55" height="22" rx="3"/>
+          <rect class="tint" x="94" y="11" width="28" height="22" rx="3"/>
+          <text x="32" y="22">0–1</text><text x="108" y="22">2</text>
+          <rect class="tint" x="4" y="59" width="55" height="24" rx="3"/>
+          <rect class="box" x="59" y="59" width="59" height="24" rx="3"/>
+          <rect class="tint" x="118" y="59" width="28" height="24" rx="3"/>
+          <text x="32" y="71">40–41</text><text x="89" y="71">···</text><text x="132" y="71">90</text>
+        </svg>
+        <figcaption><strong>{structures.extent.name[locale]}</strong><p>{structures.extent.cue[locale]}</p></figcaption>
+      </figure>
+
+      <figure>
+        <svg viewBox="0 0 150 92" role="img" aria-label={locale === 'ja' ? "40と41は1で使用中、42と43は0で空きと表す割り当てビットマップ" : "Bits for blocks 40 and 41 are set. Blocks 42 and 43 are free."} class="diagram">
+          <text x="22" y="25">40</text><text x="57" y="25">41</text><text x="92" y="25">42</text><text x="127" y="25">43</text>
+          <rect class="tint" x="5" y="38" width="35" height="29"/>
+          <rect class="tint" x="40" y="38" width="35" height="29"/>
+          <rect class="box" x="75" y="38" width="35" height="29"/>
+          <rect class="box" x="110" y="38" width="35" height="29"/>
+          <text x="22" y="53">1</text><text x="57" y="53">1</text><text x="92" y="53">0</text><text x="127" y="53">0</text>
+        </svg>
+        <figcaption><strong>{structures.bitmap.name[locale]}</strong><p>{structures.bitmap.cue[locale]}</p></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="diagram-group">
+    <h3>{groupTitles[3][locale]}</h3>
+    <div class="structure-grid">
+      <figure>
+        <svg viewBox="0 0 150 92" role="img" aria-label={locale === 'ja' ? "メモリの更新をキー順のSSTファイルに書き出し、他のファイルと統合する" : "Two sorted runs containing 2, 4, 8 and 1, 3, 7 merge into a single sorted run."} class="diagram">
+          <rect class="tint" x="36" y="2" width="78" height="20" rx="3"/>
+          <text x="75" y="12">{locale === 'ja' ? 'メモリ' : 'Memory'}</text>
+          <path class="link" d="M60 22 37 35 M39 29l-2 6 7 1"/>
+          <rect class="box" x="5" y="36" width="63" height="20" rx="3"/>
+          <rect class="box" x="82" y="36" width="63" height="20" rx="3"/>
+          <path class="line" d="M26 37V55 M47 37V55 M103 37V55 M124 37V55"/>
+          <text x="15" y="46">2</text><text x="36" y="46">4</text><text x="57" y="46">8</text>
+          <text x="92" y="46">1</text><text x="113" y="46">3</text><text x="134" y="46">7</text>
+          <path class="link" d="M37 56 75 70 113 56 M69 69l6 2 6-2"/>
+          <rect class="tint" x="12" y="71" width="126" height="20" rx="3"/>
+          <path class="line" d="M33 72V90 M54 72V90 M75 72V90 M96 72V90 M117 72V90"/>
+          <text x="22" y="81">1</text><text x="43" y="81">2</text><text x="64" y="81">3</text>
+          <text x="85" y="81">4</text><text x="106" y="81">7</text><text x="127" y="81">8</text>
+        </svg>
+        <figcaption><strong>{structures.lsm.name[locale]}</strong><p>{structures.lsm.cue[locale]}</p></figcaption>
+      </figure>
+
+      <figure>
+        <svg viewBox="0 0 150 92" role="img" aria-label={locale === 'ja' ? "旧版A、B、Cが書かれた後ろに新版Aを追記し、Aの参照先を新版へ変える" : "The new version of block A is appended after the old A and blocks B and C. Its reference moves to the new copy."} class="diagram">
+          <text x="77" y="17">{locale === 'ja' ? 'A の参照先' : 'A pointer'}</text>
+          <path class="link" d="M112 18H130V42 M126 38l4 4 4-4"/>
+          <rect class="box" x="4" y="43" width="35" height="28"/>
+          <rect class="box" x="39" y="43" width="35" height="28"/>
+          <rect class="box" x="74" y="43" width="35" height="28"/>
+          <rect class="tint" x="109" y="43" width="37" height="28"/>
+          <text x="21" y="57">{locale === 'ja' ? 'A旧' : 'A₁'}</text><text x="56" y="57">B</text><text x="91" y="57">C</text><text x="128" y="57">{locale === 'ja' ? 'A新' : 'A₂'}</text>
+          <path class="dash" d="M11 66H31"/>
+        </svg>
+        <figcaption><strong>{structures.logStructured.name[locale]}</strong><p>{structures.logStructured.cue[locale]}</p></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <h2 id="storage-comparison">{labels.table}</h2>
+  <div class="comparison-scroll" tabindex="0" role="region" aria-labelledby="storage-comparison">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">{labels.structure}</th>
+          <th scope="col">{labels.strength}</th>
+          <th scope="col">{labels.tradeoff}</th>
+          <th scope="col">{labels.source}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {Object.values(structures).map(({ name, strength, tradeoff, source }) => (
+          <tr>
+            <th scope="row">{name[locale]}</th>
+            <td>{strength[locale]}</td>
+            <td>{tradeoff[locale]}</td>
+            <td><a href={source.url}>{source.name}</a></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<style>
+  .storage-structures {
+    container-type: inline-size;
+    --diagram-surface: #fff;
+    --diagram-accent: #0969da;
+    --diagram-edge: color-mix(in srgb, currentColor 55%, transparent);
+    --diagram-rule: color-mix(in srgb, currentColor 20%, transparent);
+    --diagram-fill: color-mix(in srgb, var(--diagram-accent) 16%, var(--diagram-surface));
+  }
+  :global(body[data-mode="dark"]) .storage-structures {
+    --diagram-surface: #0d1117;
+    --diagram-accent: #58a6ff;
+  }
+  .diagram-group h3 { margin: 1.5rem 0 .5rem; }
+  .structure-grid { display: grid; }
+  figure {
+    margin: 0;
+    padding-block: .65rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    gap: .75rem;
+    border-block-start: 1px solid var(--diagram-rule);
+  }
+  figcaption { overflow-wrap: anywhere; }
+  figcaption p { margin: 0; font-size: .875rem; }
+  .diagram {
+    display: block;
+    inline-size: min(100%, 150px);
+    block-size: auto;
+    font: 12px ui-monospace, monospace;
+  }
+  .diagram text {
+    fill: currentColor;
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+  .box { fill: var(--diagram-surface); stroke: var(--diagram-edge); }
+  .tint { fill: var(--diagram-fill); stroke: var(--diagram-edge); }
+  .line, .dash, .link {
+    fill: none;
+    stroke: var(--diagram-edge);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .dash { stroke-dasharray: 3 3; }
+  .link { stroke: var(--diagram-accent); stroke-width: 1.5; }
+  .point { fill: var(--diagram-accent); }
+  .comparison-scroll { overflow-x: auto; }
+  .comparison-scroll table { min-inline-size: 38rem; margin: 0; }
+  .comparison-scroll :is(th, td) { text-align: start; vertical-align: top; }
+
+  @container (min-width: 16rem) {
+    figure { grid-template-columns: 150px minmax(0, 1fr); }
+  }
+  @container (min-width: 35rem) {
+    .structure-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+    figure {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: 92px 1fr;
+      align-items: start;
+      justify-items: center;
+      text-align: center;
+    }
+  }
+</style>

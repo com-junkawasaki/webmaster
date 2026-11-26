@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+import NoteLayout from "../../../layouts/NoteLayout.astro";
+import { languages, type Locale } from "../../../i18n/ui";
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes');
+  return (Object.keys(languages) as Locale[]).flatMap((locale) =>
+    notes.map((note) => ({
+      params: { locale, slug: note.slug },
+      props: { note, locale },
+    }))
+  );
+}
+
+const { note, locale } = Astro.props;
+const { Content } = await note.render();
+---
+
+<NoteLayout title={note.data.title[locale]} description={note.data.excerpt[locale]} detail>
+  <article aria-label={note.data.title[locale]}>
+    <p class="text-sm"><time datetime={note.data.date}>{note.data.date}</time> · {note.data.topic[locale]}</p>
+    <Content />
+  </article>
+</NoteLayout>

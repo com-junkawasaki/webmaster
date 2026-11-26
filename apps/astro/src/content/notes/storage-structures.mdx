@@ -1,0 +1,44 @@
+---
+title:
+  ja: "B-tree から見る DB とファイルシステムの11構造"
+  en: "11 storage structures in databases and file systems"
+excerpt:
+  ja: "キーの探し方、ブロックの位置管理、更新の書き方を、11種類の図と表で比較する。"
+  en: "Compare how 11 structures find keys, map blocks, and place updates, with diagrams and a reference table."
+topic:
+  ja: "ストレージ"
+  en: "Storage"
+date: "2026-11-26"
+---
+
+import Ja from '../../components/i18n/Ja.astro';
+import En from '../../components/i18n/En.astro';
+import StorageStructures from '../../components/notes/StorageStructures.astro';
+
+<Ja>
+B-tree 系は、キーの順序を保ちながら完全一致と範囲検索に対応する。DB やファイルシステムでは、これに加えて「どのデータを読まずに済むか」「ファイルのどこがディスク上のどこにあるか」「更新をどこに書くか」を扱う。それぞれの役割で使われる構造を、11種類の図で見比べる。
+</Ja>
+<En>
+B-tree indexes keep keys in order, which supports both exact matches and range queries. Databases and file systems also need to decide what data they can skip, where file contents live, and where updates should go. The 11 diagrams below show structures used for these different jobs.
+</En>
+
+<StorageStructures />
+
+<Ja>
+
+## 一つのシステムで組み合わせる
+
+ext4 は、ファイル内の論理ブロックとディスク上の物理ブロックの対応をエクステント木で表し、ブロックや inode の使用状況をビットマップで管理する。エクステントは連続領域を表すレコードで、そのレコードを探す木と組み合わせられる。[ext4 のブロック位置管理](https://docs.kernel.org/filesystems/ext4/ifork.html) · [ext4 のビットマップ](https://docs.kernel.org/filesystems/ext4/bitmaps.html)
+
+LSM-tree はキー順に並んだファイルを後で統合する。ログ構造ファイルシステムは更新したブロックを新しい場所へ書き、有効なブロックの場所を更新する。どちらも書き込みをまとめられるが、後で行う仕事は、キー順の統合と空きセグメントの回収で異なる。[RocksDB のコンパクション](https://github.com/meta/rocksdb/wiki/Leveled-Compaction) · [F2FS の設計](https://docs.kernel.org/filesystems/f2fs.html)
+
+</Ja>
+<En>
+
+## Combining structures in one system
+
+Ext4 uses an extent tree to map logical file blocks to physical disk blocks, and bitmaps to track which blocks and inodes are in use. An extent is a record representing a contiguous run, so it can be stored in a tree that helps locate it. [Ext4 block mapping](https://docs.kernel.org/filesystems/ext4/ifork.html) · [Ext4 bitmaps](https://docs.kernel.org/filesystems/ext4/bitmaps.html)
+
+An LSM-tree later merges files sorted by key. A log-structured file system writes updated blocks to new locations and changes where those blocks are referenced. Both can group writes. The work that follows differs: merging sorted runs in one case and reclaiming segments in the other. [RocksDB compaction](https://github.com/meta/rocksdb/wiki/Leveled-Compaction) · [F2FS design](https://docs.kernel.org/filesystems/f2fs.html)
+
+</En>
